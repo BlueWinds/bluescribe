@@ -1,0 +1,86 @@
+import FS from '@isomorphic-git/lightning-fs'
+
+import { randomId } from '../utils'
+import { readXML, xmlData } from './'
+
+export const fs = new FS('rosters')
+const pfs = fs.promises
+
+export const listRosters = async (gameSystem) => {
+  const rosters = {}
+  const files = await pfs.readdir('/')
+  await Promise.all(files.map(async file => {
+    try {
+      const roster = (await loadRoster(file))
+      if (roster._gameSystemId === gameSystem._id) {
+        rosters[file] = roster._name
+      }
+    } catch (e) {
+      console.log('unlinking', '/' + file)
+      await pfs.unlink('/' + file)
+    }
+  }))
+  return rosters
+}
+
+export const loadRoster = async (file) => {
+  const {roster} = await readXML('/' + file, fs)
+  roster.__ = {
+    filename: file,
+    updated: false,
+  }
+
+  return roster
+}
+
+export const createRoster = async (name, gameSystem) => {
+  const roster = {
+    _id: randomId(),
+    _name: name,
+    _battleScribeVersion: "2.03",
+    _gameSystemId: gameSystem._id,
+    _gameSystemName: gameSystem._name,
+    _gameSystemRevision: gameSystem._revision,
+    _xmlns: "http://www.battlescribe.net/schema/rosterSchema",
+    __: {
+      filename: name + '.rosz',
+      updated: true,
+    }
+  }
+
+  return roster
+}
+
+export const saveRoster = async (roster) => {
+  const {__: {filename}, ...contents} = roster
+
+  const data = await xmlData({roster: contents}, filename)
+  await fs.promises.writeFile('/' + filename, data)
+}
+
+export const importRoster = async (file) => {
+  const data = await file.arrayBuffer()
+  console.log('writing', '/' + file.name)
+  await fs.promises.writeFile('/' + file.name, data)
+}
+
+export const downloadRoster = async (roster) => {
+  const {__: {filename}, ...contents} = roster
+
+  const data = await xmlData({roster: contents}, filename)
+  const blob = new Blob([data], {type: 'application/xml'})
+
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.setAttribute('href', url)
+  a.download = filename
+  a.style.display = 'none'
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+  URL.revokeObjectURL(url)
+}
+
+export const deleteRoster = async (file) => {
+  await pfs.unlink('/' + file)
+}
