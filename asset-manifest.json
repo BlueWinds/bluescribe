@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/bluescribe/static/css/main.d981dc29.css",
-    "main.js": "/bluescribe/static/js/main.11022714.js",
+    "main.css": "/bluescribe/static/css/main.d30a783a.css",
+    "main.js": "/bluescribe/static/js/main.cb7a8af4.js",
     "index.html": "/bluescribe/index.html",
-    "main.d981dc29.css.map": "/bluescribe/static/css/main.d981dc29.css.map",
-    "main.11022714.js.map": "/bluescribe/static/js/main.11022714.js.map"
+    "main.d30a783a.css.map": "/bluescribe/static/css/main.d30a783a.css.map",
+    "main.cb7a8af4.js.map": "/bluescribe/static/js/main.cb7a8af4.js.map"
   },
   "entrypoints": [
-    "static/css/main.d981dc29.css",
-    "static/js/main.11022714.js"
+    "static/css/main.d30a783a.css",
+    "static/js/main.cb7a8af4.js"
   ]
 }
