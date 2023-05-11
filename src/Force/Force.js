@@ -53,6 +53,8 @@ const Force = ({ path }) => {
     </Fragment>
   })
 
+  const globalErrors = errors?.filter(e => !e.includes('must have'))
+
   return (<details key={force._id} open>
     <summary>
       {force._catalogueName}
@@ -66,9 +68,10 @@ const Force = ({ path }) => {
         })
       }}>Remove</a>
     </summary>
-    <ul className="errors">{errors?.filter(e => !e.includes('must have')).map(e => <li key={e}>{e}</li>)}</ul>
+    {globalErrors?.length && <ul className="errors">{globalErrors.map(e => <li key={e}>{e}</li>)}</ul>}
     <div className="grid columns">
       <div className="selections">
+        <h6>Selections</h6>
         <table><tbody>
           <tr onClick={() => setSelectedPath(path)}><th colSpan="3">Add Unit</th></tr>
           {categories}
