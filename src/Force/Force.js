@@ -61,14 +61,14 @@ const Force = ({ path }) => {
       <small>{force._name}</small>
       <small>{costString(sumCosts(force))}</small>
       {errors && <span className="errors" data-tooltip-id="tooltip" data-tooltip-html={errors.join('<br />')}>Validation errors</span>}
-      <a className="outline" href="/#" onClick={() => {
+      <span role="link" className="outline" onClick={() => {
         confirmDelete(() => {
           roster.forces.force.splice(_.last(path.split('.')), 1)
           setRoster(roster)
         })
-      }}>Remove</a>
+      }}>Remove</span>
     </summary>
-    {globalErrors?.length && <ul className="errors">{globalErrors.map(e => <li key={e}>{e}</li>)}</ul>}
+    {!!globalErrors?.length && <ul className="errors">{globalErrors.map(e => <li key={e}>{e}</li>)}</ul>}
     <div className="grid columns">
       <div className="selections">
         <h6>Selections</h6>

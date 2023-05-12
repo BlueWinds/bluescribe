@@ -52,6 +52,7 @@ h2 button {
 ul.errors {
   padding-top: 1rem;
   padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 summary > span, summary > a, summary > small {

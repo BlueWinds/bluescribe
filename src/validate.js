@@ -14,19 +14,25 @@ const arrayMerge = (dest, source) => {
 export const validateRoster = (roster, gameData) => {
   const errors = {}
 
-  if (!roster.forces || roster.forces.length < 1) {
-    errors[''] = ['A roster requires at least one Force.']
-    return errors
+  try {
+    if (!roster.forces || roster.forces.force.length < 1) {
+      errors[''] = ['A roster requires at least one Force.']
+      return errors
+    }
+
+    gameData.gameSystem.categoryEntries.forEach(categoryEntry => {
+      const entry = getEntry(roster, '', categoryEntry._id, gameData)
+      arrayMerge(errors, checkConstraints(roster, '', entry, gameData))
+    })
+
+    roster.forces?.force.forEach((force, index) => {
+      arrayMerge(errors, validateForce(roster, `forces.force.${index}`, force, gameData))
+    })
+  } catch (e) {
+    e.location = 'roster'
+    errors[''] = errors[''] || []
+    errors[''].push(e)
   }
-
-  gameData.gameSystem.categoryEntries.forEach(categoryEntry => {
-    const entry = getEntry(roster, '', categoryEntry._id, gameData)
-    arrayMerge(errors, checkConstraints(roster, '', entry, gameData))
-  })
-
-  roster.forces?.force.forEach((force, index) => {
-    arrayMerge(errors, validateForce(roster, `forces.force.${index}`, force, gameData))
-  })
 
   return errors
 }
@@ -34,27 +40,33 @@ export const validateRoster = (roster, gameData) => {
 const validateForce = (roster, path, force, gameData) => {
   const errors = {}
 
-  gameData.gameSystem.entryLinks.forEach(entryLink => {
-    const entry = getEntry(roster, path, entryLink._id, gameData)
-    arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
-  })
+  try {
+    gameData.gameSystem.entryLinks.forEach(entryLink => {
+      const entry = getEntry(roster, path, entryLink._id, gameData)
+      arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
+    })
 
-  const catalogue = gameData.ids[force._catalogueId]
-  catalogue.entryLinks?.forEach(selectionEntry => {
-    const entry = getEntry(roster, path, selectionEntry._id, gameData)
-    arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
-  })
+    const catalogue = gameData.ids[force._catalogueId]
+    catalogue.entryLinks?.forEach(selectionEntry => {
+      const entry = getEntry(roster, path, selectionEntry._id, gameData)
+      arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
+    })
 
-  const f = gameData.ids[force._entryId]
-  f.categoryLinks?.forEach(categoryLink => {
-    const entry = getEntry(roster, path, categoryLink._id, gameData)
-    arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
-  })
+    const f = gameData.ids[force._entryId]
+    f.categoryLinks?.forEach(categoryLink => {
+      const entry = getEntry(roster, path, categoryLink._id, gameData)
+      arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
+    })
 
-  force.selections?.selection.forEach((selection, index) => {
-    arrayMerge(errors, validateSelection(roster, `${path}.selections.selection.${index}`, selection, gameData))
-  })
-
+    force.selections?.selection.forEach((selection, index) => {
+      arrayMerge(errors, validateSelection(roster, `${path}.selections.selection.${index}`, selection, gameData))
+    })
+  } catch (e) {
+    e.path = path
+    e.location = force._name
+    errors[''] = errors[''] || []
+    errors[''].push(e)
+  }
 
   return errors
 }
@@ -63,35 +75,44 @@ const validateSelection = (roster, path, selection, gameData) => {
   const errors = {}
   const entry = getEntry(roster, path, selection._entryId, gameData)
 
-  if (entry._hidden) {
-    arrayMerge(errors, {
-      [path]: [`${selection._name} is hidden and cannot be selected.`],
-    })
-  }
-
-  entry.selectionEntryGroups?.forEach(group => {
-    if (group._hidden) {
-      if (selection.selections.selection.some(s => s._entryGroupId === group._id)) {
-        arrayMerge(errors, {
-          [path]: [`${group._name} is hidden and cannot be selected.`],
-        })
-      }
+  try {
+    if (entry._hidden) {
+      arrayMerge(errors, {
+        [path]: [`${selection._name} is hidden and cannot be selected.`],
+      })
     }
-    arrayMerge(errors, checkConstraints(roster, `${path}.selections.selection.100000`, group, gameData, true))
-  })
 
-  entry.selectionEntries?.forEach(selectionEntry => {
-    arrayMerge(errors, checkConstraints(roster, `${path}.selections.selection.100000`, selectionEntry, gameData, true))
-  })
+    entry.selectionEntryGroups?.forEach(group => {
+      if (group._hidden) {
+        // BUG
+        if (selection.selections?.selection.some(s => s._entryGroupId === group._id)) {
+          arrayMerge(errors, {
+            [path]: [`${group._name} is hidden and cannot be selected.`],
+          })
+        }
+      }
+      arrayMerge(errors, checkConstraints(roster, `${path}.selections.selection.100000`, group, gameData, true))
+    })
 
-  selection.selections?.selection.forEach((selection, index) => {
-    arrayMerge(errors, validateSelection(roster, `${path}.selections.selection.${index}`, selection, gameData))
-  })
+    entry.selectionEntries?.forEach(selectionEntry => {
+      arrayMerge(errors, checkConstraints(roster, `${path}.selections.selection.100000`, selectionEntry, gameData, true))
+    })
 
-  entry.entryLinks?.forEach(e => {
-    const linkEntry = getEntry(roster, path, e._id, gameData)
-    arrayMerge(errors, checkConstraints(roster, path, linkEntry, gameData))
-  })
+    selection.selections?.selection.forEach((selection, index) => {
+      arrayMerge(errors, validateSelection(roster, `${path}.selections.selection.${index}`, selection, gameData))
+    })
+
+    entry.entryLinks?.forEach(e => {
+      const linkEntry = getEntry(roster, path, e._id, gameData)
+      arrayMerge(errors, checkConstraints(roster, path, linkEntry, gameData))
+    })
+  } catch (e) {
+    e.path = path
+    e.location = selection._name
+    errors[''] = errors[''] || []
+    errors[''].push(e)
+    console.log(e)
+  }
 
   return errors
 }
@@ -180,28 +201,34 @@ const collectGroupIds = (entry, ids = []) => {
 const checkConstraints = (roster, path, entry, gameData, group = false) => {
   const errors = []
 
-  const groupIds = collectGroupIds(entry)
-  if (entry.constraints) {
-    entry.constraints?.forEach(constraint => {
-      const subject = getSubject(roster, path, constraint)
-      const occurances = entry._primary === undefined ? countBy(subject, entry._id, constraint, groupIds) : countByCategory(subject, entry, constraint)
-      const value = constraint._value * (subject._number || 1)
+  try {
+    const groupIds = collectGroupIds(entry)
+    if (entry.constraints) {
+      entry.constraints?.forEach(constraint => {
+        const subject = getSubject(roster, path, constraint)
+        const occurances = entry._primary === undefined ? countBy(subject, entry._id, constraint, groupIds) : countByCategory(subject, entry, constraint)
+        const value = constraint._value * (subject._number || 1)
 
-      if (constraint._type === 'min' && value !== -1 && !entry._hidden && occurances < value) {
-        if (value === 1) {
-          errors.push(`${subject._name} must have ${an(entry._name)}`)
-        } else {
-          errors.push(`${subject._name} must have ${value - occurances} more ${pluralize(entry._name)}`)
+        if (constraint._type === 'min' && value !== -1 && !entry._hidden && occurances < value) {
+          if (value === 1) {
+            errors.push(`${subject._name} must have ${an(entry._name)}`)
+          } else {
+            errors.push(`${subject._name} must have ${value - occurances} more ${pluralize(entry._name)}`)
+          }
         }
-      }
-      if (constraint._type === 'max' && value !== -1 && occurances > value * (subject._number || 1)) {
-        if (value === 0) {
-          errors.push(`${subject._name} cannot have ${an(entry._name)}`)
-        } else {
-          errors.push(`${subject._name} must have ${occurances - value} fewer ${pluralize(entry._name)}`)
+        if (constraint._type === 'max' && value !== -1 && occurances > value * (subject._number || 1)) {
+          if (value === 0) {
+            errors.push(`${subject._name} cannot have ${an(entry._name)}`)
+          } else {
+            errors.push(`${subject._name} must have ${occurances - value} fewer ${pluralize(entry._name)}`)
+          }
         }
-      }
-    })
+      })
+    }
+  } catch (e) {
+    e.path = path
+    e.location = entry._name
+    return {'': [e]}
   }
 
   return errors.length ? {[path]: errors} : {}

@@ -8,6 +8,7 @@ import { useRoster, useSystem, RosterErrorsContext, useConfirm } from './Context
 import CostLimits from './CostLimits'
 import Force from './Force/Force'
 import AddForce from './Force/AddForce'
+import BugReport from './BugReport'
 
 const SelectRoster = () => {
   const [, setRoster] = useRoster()
@@ -79,7 +80,7 @@ const Roster = () => {
   window.errors = errors
 
   return <RosterErrorsContext.Provider value={errors}><article>
-    {errors[''] && <ul className="errors">{errors[''].map(e => <li key={e}>{e}</li>)}</ul>}
+    {errors[''] && <ul className="errors">{errors[''].map(e => <li key={e}>{e instanceof Error ? <BugReport error={e} />: e}</li>)}</ul>}
     <div>
       <CostLimits />
       {roster.forces?.force?.map((force, index) => <Force key={force._id} path={`forces.force.${index}`} />)}
