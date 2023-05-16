@@ -44,8 +44,8 @@ export const textProfile = profiles => {
   return a
 }
 
-export const getMinCount = (entry) => (!entry._hidden && entry.constraints?.find(c => c._type === 'min' && c._scope === 'parent')?._value) || 0
-export const getMaxCount = (entry) => entry.constraints?.find(c => c._type === 'max' && c._scope === 'parent')?._value || -1
+export const getMinCount = (entry) => (!entry._hidden && entry.constraints?.find(c => c._type === 'min' && c._scope === 'parent')?._value) ?? 0
+export const getMaxCount = (entry) => entry.constraints?.find(c => c._type === 'max' && c._scope === 'parent')?._value ?? -1
 export const isCollective = (entry) => entry._collective || entry.selectionEntries?.every(isCollective)
 
 export const addSelection = (base, selectionEntry, gameData, entryGroup, number = 1) => {

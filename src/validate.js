@@ -82,9 +82,17 @@ const validateSelection = (roster, path, selection, gameData) => {
       })
     }
 
-    entry.selectionEntryGroups?.forEach(group => {
+    const handleLink = link => {
+      const linkEntry = getEntry(roster, path, link._id, gameData)
+      arrayMerge(errors, checkConstraints(roster, path, linkEntry, gameData))
+    }
+
+    const handleSelection = selectionEntry => {
+      arrayMerge(errors, checkConstraints(roster, `${path}.selections.selection.100000`, selectionEntry, gameData, true))
+    }
+
+    const handleGroup = group => {
       if (group._hidden) {
-        // BUG
         if (selection.selections?.selection.some(s => s._entryGroupId === group._id)) {
           arrayMerge(errors, {
             [path]: [`${group._name} is hidden and cannot be selected.`],
@@ -92,20 +100,20 @@ const validateSelection = (roster, path, selection, gameData) => {
         }
       }
       arrayMerge(errors, checkConstraints(roster, `${path}.selections.selection.100000`, group, gameData, true))
-    })
 
-    entry.selectionEntries?.forEach(selectionEntry => {
-      arrayMerge(errors, checkConstraints(roster, `${path}.selections.selection.100000`, selectionEntry, gameData, true))
-    })
+      group.entryLinks?.forEach(handleLink)
+      group.selectionEntries?.forEach(handleSelection)
+      group.selectionEntryGroups?.forEach(handleGroup)
+    }
+
+    entry.entryLinks?.forEach(handleLink)
+    entry.selectionEntries?.forEach(handleSelection)
+    entry.selectionEntryGroups?.forEach(handleGroup)
 
     selection.selections?.selection.forEach((selection, index) => {
       arrayMerge(errors, validateSelection(roster, `${path}.selections.selection.${index}`, selection, gameData))
     })
 
-    entry.entryLinks?.forEach(e => {
-      const linkEntry = getEntry(roster, path, e._id, gameData)
-      arrayMerge(errors, checkConstraints(roster, path, linkEntry, gameData))
-    })
   } catch (e) {
     e.path = path
     e.location = selection._name
@@ -128,10 +136,10 @@ const countBy = (subject, entryId, entry, groupIds) => {
   }
 
   if (subject._entryId?.includes(entryId) || subject._entryGroupId?.includes(entryId) || groupIds?.some(groupId => subject._entryGroupId === groupId) || hasCategory(subject, entryId)) {
-    return subject._number || 1
+    return subject._number ?? 1
   }
 
-  let count = subject.forces?.force.filter(force => force._entryId === entryId ).length | 0
+  let count = subject.forces?.force.filter(force => force._entryId === entryId ).length ?? 0
 
   if (subject.forces) {
     if (entry._includeChildForces || entry._shared) {
@@ -156,14 +164,14 @@ const countBy = (subject, entryId, entry, groupIds) => {
 const countByCategory = (subject, category, entry) => {
   const categoryId = _.last(category._id.split('::'))
 
-  let count = (!subject._catalogueId && subject.categories?.category.some(c => c._entryId === categoryId)) | 0
+  let count = (!subject._catalogueId && subject.categories?.category.some(c => c._entryId === categoryId)) ?? 0
 
   if (entry._includeChildSelections && subject.selections) {
     count += _.sum(subject.selections.selection.map(selection => countByCategory(selection, category, entry)))
   } else {
     count += subject.selections?.selection.filter(selection => {
       return selection.categories?.category.some(c => c._entryId === categoryId)
-    }).length | 0
+    }).length ?? 0
   }
 
   return count
@@ -207,7 +215,7 @@ const checkConstraints = (roster, path, entry, gameData, group = false) => {
       entry.constraints?.forEach(constraint => {
         const subject = getSubject(roster, path, constraint)
         const occurances = entry._primary === undefined ? countBy(subject, entry._id, constraint, groupIds) : countByCategory(subject, entry, constraint)
-        const value = constraint._value * (subject._number || 1)
+        const value = constraint._value * (subject._number ?? 1)
 
         if (constraint._type === 'min' && value !== -1 && !entry._hidden && occurances < value) {
           if (value === 1) {
@@ -216,7 +224,7 @@ const checkConstraints = (roster, path, entry, gameData, group = false) => {
             errors.push(`${subject._name} must have ${value - occurances} more ${pluralize(entry._name)}`)
           }
         }
-        if (constraint._type === 'max' && value !== -1 && occurances > value * (subject._number || 1)) {
+        if (constraint._type === 'max' && value !== -1 && occurances > value * (subject._number ?? 1)) {
           if (value === 0) {
             errors.push(`${subject._name} cannot have ${an(entry._name)}`)
           } else {

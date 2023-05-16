@@ -258,6 +258,7 @@ article > article {
 
 #tooltip {
   max-width: 40rem;
+  white-space: break-spaces;
   z-index: 1000;
 }
 
