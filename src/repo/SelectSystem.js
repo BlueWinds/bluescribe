@@ -31,11 +31,15 @@ const SelectSystem = ({setSystemInfo}) => {
     }
   }, [selected, available])
 
+  console.log(selected, systems)
+
   return <div>
     <h2>Select Game System</h2>
     {systems ? <>
-      <select onChange={e => setSelected(e.target.value)}>
-        {Object.keys(systems).map(system => (<option key={system}>{systems[system].description} - {systems[system].version}</option>))}
+      <select onChange={e => {
+        setSelected(e.target.value)
+      }}>
+        {Object.keys(systems).map(system => (<option key={system} value={system}>{systems[system].description} - {systems[system].version}</option>))}
         <option key="add">Add New</option>
       </select>
       {selected === 'Add New' ? <label>
