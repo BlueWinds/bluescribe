@@ -26,7 +26,7 @@ const Selection = ({ path, setSelectedPath }) => {
   return <div className="selection">
     <nav>
       <button className="outline" onClick={() => setSelectedPath(parentPath)} data-tooltip-id="tooltip" data-tooltip-html={parent._name}>^</button>
-      <button className="outline" data-tooltip-id="clickable-tooltip">✍</button>
+      <button className="outline" data-tooltip-id="clickable-tooltip"><span data-tooltip-id="tooltip" data-tooltip-html="Customize">✍</span></button>
       <Tooltip id="clickable-tooltip" openOnClick={true} clickable={true}>
         <label>
           Custom Name

@@ -228,6 +228,10 @@ button[data-tooltip-html] {
   border-bottom: 1px solid;
 }
 
+[role="listbox"] [data-tooltip-html] {
+  border-bottom: none;
+}
+
 input[data-tooltip-html] {
   border-bottom: var(--border-width) solid var(--border-color);
 }

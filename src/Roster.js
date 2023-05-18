@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react'
 import BounceLoader from 'react-spinners/BounceLoader'
 import useStorage from 'squirrel-gill'
 
-import { listRosters, createRoster, loadRoster, importRoster, deleteRoster } from './repo/rosters'
+import { listRosters, loadRoster, importRoster, deleteRoster } from './repo/rosters'
 import { validateRoster } from './validate'
 import { useRoster, useSystem, RosterErrorsContext, useConfirm } from './Context'
 import CostLimits from './CostLimits'
 import Force from './Force/Force'
 import AddForce from './Force/AddForce'
 import BugReport from './BugReport'
+import { createRoster } from './utils'
 
 const SelectRoster = () => {
   const [, setRoster] = useRoster()
@@ -40,6 +41,7 @@ const SelectRoster = () => {
     <p>To import a <code>.rosz</code> file, drop it anywhere on the page, or <span role="link" onClick={() => document.getElementById('import-roster').click()}>click here to select one</span>.</p>
     <input type="file" accept=".rosz" id="import-roster" onChange={async (e) => {
       await importRoster(e.target.files[0])
+      setSelected(e.target.files[0].name)
       setRosters(null)
     }} />
     {rosters ? <>

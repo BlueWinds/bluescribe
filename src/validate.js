@@ -130,12 +130,12 @@ const hasCategory = (subject, categoryId) => {
 }
 
 const countBy = (subject, entryId, entry, groupIds) => {
-  if (!subject) { debugger }
+  if (!subject) { throw new Error('No subject while trying to countBy') }
   if (entry._shared) {
     entryId = _.last(entryId.split('::'))
   }
 
-  if (subject._entryId?.includes(entryId) || subject._entryGroupId?.includes(entryId) || groupIds?.some(groupId => subject._entryGroupId === groupId) || hasCategory(subject, entryId)) {
+  if (subject._entryId?.includes(entryId) || subject._entryGroupId?.includes(entryId) || groupIds?.some(groupId => subject._entryGroupId === groupId) || subject._type === entryId || hasCategory(subject, entryId)) {
     return subject._number ?? 1
   }
 
@@ -157,7 +157,7 @@ const countBy = (subject, entryId, entry, groupIds) => {
     }
   }
 
-  if (_.isNaN(count)) { debugger }
+  if (_.isNaN(count)) { throw new Error('NaN while trying to countBy') }
   return count
 }
 
@@ -263,7 +263,7 @@ const applyModifiers = (roster, path, entry, gameData) => {
 
     const target = entry['_' + modifier._field] !== undefined ? `_${modifier._field}` : `${ids[modifier._field]}._value`.slice(1)
     if (modifier._type === 'set') {
-      if (_.isNaN(modifier._value)) { debugger }
+      if (_.isNaN(modifier._value)) { throw new Error('NaN modifier._value') }
       _.set(entry, target, modifier._value)
     } else if (modifier._type === 'increment' || modifier._type === 'decrement') {
       let times = 1
@@ -281,7 +281,7 @@ const applyModifiers = (roster, path, entry, gameData) => {
 
       _.set(entry, target, _.get(entry, target) + modifier._value * times)
     } else if (modifier._type === 'add') {
-      if (modifier._field !== 'category') { debugger }
+      if (modifier._field !== 'category') { throw new Error("modifier._type === 'add' while modifier._field !== 'category'") }
 
       entry.categoryLinks = entry.categoryLinks || []
       entry.categoryLinks.push({
@@ -292,13 +292,24 @@ const applyModifiers = (roster, path, entry, gameData) => {
         _targetId: modifier._value,
       })
     } else if (modifier._type === 'remove') {
-      if (modifier._field !== 'category') { debugger }
+      if (modifier._field !== 'category') { throw new Error("modifier._type === 'remove' while modifier._field !== 'category'") }
 
       entry.categoryLinks = entry.categoryLinks.filter(link => link._targetId !== modifier._value)
     } else if (modifier._type === 'append') {
       entry[modifier._field] += modifier._value
+    } else if (modifier._type === 'set-primary' || modifier._type === 'unset-primary') {
+      let category = entry.categoryLinks.find(cat => cat._targetId === modifier._value)
+      if (category) {
+        category._primary = modifier._type === 'set-primary'
+      } else { entry.categoryLinks.push({
+        _id: randomId(),
+        _hidden: false,
+        _name: 'New CategoryLink',
+        _primary: modifier._type === 'set-primary',
+        _targetId: modifier._value,
+      })}
     } else {
-      debugger
+      throw new Error(`Unknown modifier._type: ${modifier._type}`)
     }
   }
 
@@ -355,6 +366,9 @@ const getSubject = (roster, path, condition) => {
     case 'ancestor': return pathAncestors(path).map(ancestor => _.get(roster, ancestor))
     case 'primary-catalogue': return { _entryId: _.get(roster, pathToForce(path) || 'forces.force.0')?._catalogueId }
     default: {
+      const directAncestor = pathAncestors(path).find(startingPoint => _.get(roster, startingPoint)?._entryId?.includes(condition._scope))
+      if (directAncestor) { return _.get(roster, directAncestor) }
+
       const startingPoint = condition._shared ? roster : _.get(roster, path)
       return findByEntryId(startingPoint, condition._scope)
     }
@@ -448,7 +462,7 @@ export const getEntry = (roster, path, _id, gameData, ignoreCache) => {
         entry.selectionEntryGroups.push(link)
         return
       }
-      default: debugger
+      default: throw new Error(`Unknown entryLink type: ${link._type}`)
     }
   })
   delete entry.entryLinks
@@ -470,7 +484,7 @@ export const getEntry = (roster, path, _id, gameData, ignoreCache) => {
 
         link.profiles?.forEach(profile => {
           entry.profiles = entry.profiles || []
-          entry.profile.push(profile)
+          entry.profiles.push(profile)
         })
 
         link.rules?.forEach(rule => {
@@ -480,7 +494,7 @@ export const getEntry = (roster, path, _id, gameData, ignoreCache) => {
 
         return
       }
-      default: debugger
+      default: throw new Error(`Unknown infoLink _type: ${link._type}`)
     }
   }
 
@@ -495,7 +509,7 @@ export const getEntry = (roster, path, _id, gameData, ignoreCache) => {
 
   entry.selectionEntryGroups?.forEach((selectionEntryGroup, index) => {
     Object.defineProperty(entry.selectionEntryGroups, index, {
-      get: () => getEntry(roster, path, `${baseId}::${selectionEntryGroup._id}`, gameData, ignoreCache)
+      get: () => getEntry(roster, `${path}.selections.selection.10000`, `${baseId}::${selectionEntryGroup._id}`, gameData, ignoreCache)
     })
   })
 

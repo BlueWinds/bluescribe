@@ -1,6 +1,5 @@
 import FS from '@isomorphic-git/lightning-fs'
 
-import { randomId } from '../utils'
 import { readXML, xmlData } from './'
 
 export const fs = new FS('rosters')
@@ -28,24 +27,6 @@ export const loadRoster = async (file) => {
   roster.__ = {
     filename: file,
     updated: false,
-  }
-
-  return roster
-}
-
-export const createRoster = async (name, gameSystem) => {
-  const roster = {
-    _id: randomId(),
-    _name: name,
-    _battleScribeVersion: "2.03",
-    _gameSystemId: gameSystem._id,
-    _gameSystemName: gameSystem._name,
-    _gameSystemRevision: gameSystem._revision,
-    _xmlns: "http://www.battlescribe.net/schema/rosterSchema",
-    __: {
-      filename: name + '.rosz',
-      updated: true,
-    }
   }
 
   return roster

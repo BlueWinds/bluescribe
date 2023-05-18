@@ -48,6 +48,59 @@ export const getMinCount = (entry) => (!entry._hidden && entry.constraints?.find
 export const getMaxCount = (entry) => entry.constraints?.find(c => c._type === 'max' && c._scope === 'parent')?._value ?? -1
 export const isCollective = (entry) => entry._collective || entry.selectionEntries?.every(isCollective)
 
+export const createRoster = (name, gameSystem) => {
+  const roster = {
+    _id: randomId(),
+    _name: name,
+    _battleScribeVersion: "2.03",
+    _gameSystemId: gameSystem._id,
+    _gameSystemName: gameSystem._name,
+    _gameSystemRevision: gameSystem._revision,
+    _xmlns: "http://www.battlescribe.net/schema/rosterSchema",
+    __: {
+      filename: name + '.rosz',
+      updated: true,
+    }
+  }
+
+  return roster
+}
+
+export const addForce = (roster, forceId, factionId, gameData) => {
+  roster.forces = roster.forces || {force: []}
+  roster.forces.force.push({
+    _id: randomId(),
+    _name: gameData.ids[forceId]._name,
+    _entryId: forceId,
+    _catalogueId: factionId,
+    _catalogueRevision: gameData.ids[factionId]._revision,
+    _catalogueName: gameData.ids[factionId]._name,
+    publications: {
+      publication: [
+        ...(gameData.ids[factionId].publications || []).map(p => _.pick(p, ['_id', '_name'])),
+        ...(gameData.gameSystem.publications || []).map(p => _.pick(p, ['_id', '_name'])),
+        ...(_.flatten(gameData.ids[factionId].catalogueLinks?.map(cl => gameData.ids[cl._targetId].publications || []))).map(p => _.pick(p, ['_id', '_name'])),
+      ]
+    },
+    categories: {
+      category: [
+        {
+          _id: randomId(),
+          _name: "Uncategorised",
+          _entryId: "(No Category)",
+          _primary: "false",
+        },
+        ...gameData.ids[forceId].categoryLinks.map(c => ({
+          _id: c._id,
+          _name: c._name,
+          _entryId: c._targetId,
+          _primary: "false",
+        }))
+      ]
+    }
+  })
+}
+
 export const addSelection = (base, selectionEntry, gameData, entryGroup, number = 1) => {
   base.selections = base.selections || {selection: []}
   const collective = isCollective(selectionEntry)
@@ -166,6 +219,25 @@ export const refreshSelection = (roster, path, selection, gameData) => {
   addRules(selection, selectionEntry, gameData)
 
   selection.selections?.selection.forEach((subSelection, index) => refreshSelection(roster, `${path}.selections.selection.${index}`, subSelection, gameData))
+}
+
+export const refreshRoster = (roster, gameData) => {
+  const newRoster = createRoster(roster._name, gameData.gameSystem)
+  newRoster.__.filename = roster.__.filename
+  newRoster.costLimits = roster.costLimits
+  newRoster.customNotes = roster.customNotes
+
+  roster.forces.force.forEach((force, index) => {
+    addForce(newRoster, force._entryId, force._catalogueId, gameData)
+    newRoster.forces.force[index].selections = {selection: []}
+
+    force.selections.selection.forEach((selection, selectionIndex) => {
+      newRoster.forces.force[index].selections.selection.push(selection)
+      refreshSelection(newRoster, `forces.force.${index}.selections.selection.${selectionIndex}`, selection, gameData)
+    })
+  })
+
+  return newRoster
 }
 
 export const copySelection = (selection) => {

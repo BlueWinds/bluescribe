@@ -38,7 +38,6 @@ const sumDefaultCosts = (entry, costs = {}) => {
 }
 
 const AddUnit = ({ path, setSelectedPath }) => {
-  // TODO: On add, setSelectedPath
   const gameData = useSystem()
   const [roster, setRoster] = useRoster()
   const rosterErrors = useRosterErrors()
@@ -47,15 +46,21 @@ const AddUnit = ({ path, setSelectedPath }) => {
   const force = _.get(roster, path)
 
   const entries = {}
+  const categoryErrors = []
   const parseEntry = entryLink => {
-    const entry = getEntry(roster, path, entryLink._id, gameData)
+    try {
+      const entry = getEntry(roster, path, entryLink._id, gameData)
 
-    if (!entry._hidden) {
-      if (! _.find(entry.categoryLinks, '_primary')) { debugger }
-      const primary = _.find(entry.categoryLinks, '_primary')._targetId
-      entries[primary] = entries[primary] || []
-      entries[primary].push(entry)
-    }
+      if (!entry._hidden) {
+        let primary = _.find(entry.categoryLinks, '_primary')?._targetId
+        if (!primary) {
+          primary = '(No Category)'
+          categoryErrors.push(<li key={entry._name}>Unable to find primary category for {entry._name}</li>)
+        }
+        entries[primary] = entries[primary] || []
+        entries[primary].push(entry)
+      }
+    } catch {}
   }
 
   gameData.ids[force._catalogueId].entryLinks.forEach(parseEntry)
@@ -91,6 +96,7 @@ const AddUnit = ({ path, setSelectedPath }) => {
 
   return <div className="selections">
     <h6>Add Unit</h6>
+    {categoryErrors.length > 0 && <ul className="errors">{categoryErrors}</ul> }
     <table role="grid"><tbody>
       {categories}
     </tbody></table>

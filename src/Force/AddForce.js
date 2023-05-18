@@ -2,7 +2,7 @@ import { useState } from 'react'
 import _ from 'lodash'
 
 import { useRoster, useSystem } from '../Context'
-import { randomId } from '../utils'
+import { addForce } from '../utils'
 
 const AddForce = () => {
   const gameData = useSystem()
@@ -30,38 +30,7 @@ const AddForce = () => {
       <label>
         &nbsp;
         <button onClick={() => {
-          roster.forces = roster.forces || {force: []}
-          roster.forces.force.push({
-            _id: randomId(),
-            _name: gameData.ids[force]._name,
-            _entryId: force,
-            _catalogueId: faction,
-            _catalogueRevision: gameData.ids[faction]._revision,
-            _catalogueName: gameData.ids[faction]._name,
-            publications: {
-              publication: [
-                ...(gameData.ids[faction].publications || []).map(p => _.pick(p, ['_id', '_name'])),
-                ...(gameData.gameSystem.publications || []).map(p => _.pick(p, ['_id', '_name'])),
-                ...(_.flatten(gameData.ids[faction].catalogueLinks?.map(cl => gameData.ids[cl._targetId].publications || []))).map(p => _.pick(p, ['_id', '_name'])),
-              ]
-            },
-            categories: {
-              category: [
-                {
-                  _id: randomId(),
-                  _name: "Uncategorised",
-                  _entryId: "(No Category)",
-                  _primary: "false",
-                },
-                ...gameData.ids[force].categoryLinks.map(c => ({
-                  _id: c._id,
-                  _name: c._name,
-                  _entryId: c._targetId,
-                  _primary: "false",
-                }))
-              ]
-            }
-          })
+          addForce(roster, force, faction, gameData)
           setRoster(roster)
         }}>Add</button>
       </label>
