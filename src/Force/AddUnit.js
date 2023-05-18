@@ -7,7 +7,7 @@ import { costString, addSelection } from '../utils'
 import { getEntry } from '../validate'
 
 const hasMatchingError = (errors, name) => {
-  return errors?.find(e => e.includes(' have ') && (e.includes(name) || e.includes(pluralize(name))))
+  return errors?.find(e => e.includes(' have ') && (e.includes(name) || e.includes(pluralize(name)) || e.includes(pluralize.singular(name))))
 }
 
 const sumDefaultCosts = (entry, costs = {}) => {

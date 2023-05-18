@@ -219,14 +219,14 @@ const checkConstraints = (roster, path, entry, gameData, group = false) => {
 
         if (constraint._type === 'min' && value !== -1 && !entry._hidden && occurances < value) {
           if (value === 1) {
-            errors.push(`${subject._name} must have ${an(entry._name)}`)
+            errors.push(`${subject._name} must have ${an(pluralize.singular(entry._name))} selection`)
           } else {
             errors.push(`${subject._name} must have ${value - occurances} more ${pluralize(entry._name)}`)
           }
         }
         if (constraint._type === 'max' && value !== -1 && occurances > value * (subject._number ?? 1)) {
           if (value === 0) {
-            errors.push(`${subject._name} cannot have ${an(entry._name)}`)
+            errors.push(`${subject._name} cannot have ${an(pluralize.singular(entry._name))} selection`)
           } else {
             errors.push(`${subject._name} must have ${occurances - value} fewer ${pluralize(entry._name)}`)
           }
@@ -360,9 +360,10 @@ const pathAncestors = path => {
 
 const getSubject = (roster, path, condition) => {
   switch (condition._scope) {
-    case 'roster': return roster
-    case 'force': return path.length ? _.get(roster, pathToForce(path)) : roster
+    case 'self': return _.get(roster, path)
     case 'parent': return _.get(roster, pathParent(path))
+    case 'force': return path.length ? _.get(roster, pathToForce(path)) : roster
+    case 'roster': return roster
     case 'ancestor': return pathAncestors(path).map(ancestor => _.get(roster, ancestor))
     case 'primary-catalogue': return { _entryId: _.get(roster, pathToForce(path) || 'forces.force.0')?._catalogueId }
     default: {
@@ -378,10 +379,10 @@ const getSubject = (roster, path, condition) => {
 const getValue = (condition, subject, gameData) => {
   const childId = gameData.ids[condition._childId]?._targetId || condition._childId
 
-  if (!subject) { return 0 }
+  if (!subject) { return NaN }
   switch (condition._field) {
-    case 'selections': return countBy(subject, childId, condition)
-    case 'forces': return countBy(subject, childId, condition)
+    case 'selections': return subject.selections === undefined ? NaN : countBy(subject, childId, condition)
+    case 'forces': return subject.forces === undefined ? NaN : countBy(subject, childId, condition)
     default: {
       let cost = sumCost(subject, condition, childId)
       if (condition._percentValue) {
@@ -509,7 +510,7 @@ export const getEntry = (roster, path, _id, gameData, ignoreCache) => {
 
   entry.selectionEntryGroups?.forEach((selectionEntryGroup, index) => {
     Object.defineProperty(entry.selectionEntryGroups, index, {
-      get: () => getEntry(roster, `${path}.selections.selection.10000`, `${baseId}::${selectionEntryGroup._id}`, gameData, ignoreCache)
+      get: () => getEntry(roster, path, `${baseId}::${selectionEntryGroup._id}`, gameData, ignoreCache)
     })
   })
 
