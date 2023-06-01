@@ -11,8 +11,8 @@ export const listRosters = async (gameSystem) => {
   await Promise.all(files.map(async file => {
     try {
       const roster = (await loadRoster(file))
-      if (roster._gameSystemId === gameSystem._id) {
-        rosters[file] = roster._name
+      if (roster.gameSystemId === gameSystem.id) {
+        rosters[file] = roster.name
       }
     } catch (e) {
       console.log('unlinking', '/' + file)

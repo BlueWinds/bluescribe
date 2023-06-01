@@ -3,7 +3,7 @@ import BounceLoader from 'react-spinners/BounceLoader'
 
 import { listGameSystems, listAvailableGameSystems, addGameSystem, clearGameSystem } from './'
 
-const SelectSystem = ({setSystemInfo}) => {
+const SelectSystem = ({setSystemInfo, setMode}) => {
   const [systems, setSystems] = useState(null)
   const [available, setAvailable] = useState(null)
   const [selectedAvailable, setSelectedAvailable] = useState(0)
@@ -30,8 +30,6 @@ const SelectSystem = ({setSystemInfo}) => {
       })
     }
   }, [selected, available])
-
-  console.log(selected, systems)
 
   return <div>
     <h2>Select Game System</h2>
@@ -63,26 +61,9 @@ const SelectSystem = ({setSystemInfo}) => {
             }}>Clear data</a>
           </p>
         </article>
-        {!updatingSystem && <button onClick={async () => {
-          if (updatingSystem) { return }
-          const queue = await addGameSystem(systems[selected])
-
-          const count = queue.size
-          let done = 0
-          setUpdatingSystem({count, done})
-          queue.start()
-          queue.on('completed', () => {
-            done++
-            setUpdatingSystem({count: queue.size, done})
-          })
-
-          await queue.onIdle()
-
-          setSystems(null)
-          setUpdatingSystem(false)
-        }} className="outline">Update data</button>}
       </>}
       <button disabled={updatingSystem ? true : undefined} onClick={async () => {
+        setMode('editRoster')
         if (selected === 'Add New') {
           if (updatingSystem) { return }
 
@@ -103,6 +84,28 @@ const SelectSystem = ({setSystemInfo}) => {
           setSystemInfo(systems[selected])
         }
       }}>{updatingSystem ? `${updatingSystem.done} files downloaded` : 'Load'}</button>
+      {selected !== 'Add New' && !updatingSystem && <button onClick={async () => {
+        if (updatingSystem) { return }
+        const queue = await addGameSystem(systems[selected])
+
+        const count = queue.size
+        let done = 0
+        setUpdatingSystem({count, done})
+        queue.start()
+        queue.on('completed', () => {
+          done++
+          setUpdatingSystem({count: queue.size, done})
+        })
+
+        await queue.onIdle()
+
+        setSystems(null)
+        setUpdatingSystem(false)
+      }} className="outline">Update data</button>}
+      {selected !== 'Add New' && !updatingSystem && <button onClick={async () => {
+        setMode('editSystem')
+        setSystemInfo(systems[selected])
+      }} className="outline">Edit data</button>}
     </> : <BounceLoader color="#36d7b7" className="loading" />}
   </div>
 }

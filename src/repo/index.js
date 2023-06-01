@@ -12,31 +12,10 @@ import _ from 'lodash'
 import axios from 'axios'
 import PQueue from 'p-queue'
 
+import { parseXML } from 'bsd-schema'
+
 export const fs = new FS("data")
 const pfs = fs.promises
-
-const pluralize = word => word.endsWith('y') ? `${word.slice(0, word.length - 1)}ies` : `${word}s`
-
-const parser = new fxparser.XMLParser({
-  allowBooleanAttributes: true,
-  attributeNamePrefix: '_',
-  ignoreAttributes: false,
-  ignoreDeclaration: true,
-  parseAttributeValue: true,
-  parseTagValue: false,
-  processEntities: false,
-  attributeValueProcessor: (name, val) => _.unescape(val).replace(/&apos;/g, "'"),
-  tagValueProcessor: (name, val) => _.unescape(val).replace(/&apos;/g, "'"),
-  isArray: (name, jpath) => {
-    const pieces = jpath.split('.')
-
-    const last = pluralize(pieces.pop().toLowerCase())
-    const secondLast = pieces.pop()?.toLowerCase()
-
-    // Use match for the case of 'sharedSelectionEntries.selectionEntry'
-    return secondLast && secondLast.endsWith(last)
-  }
-})
 
 export const readXML = async (path, fs) => {
   let buffer = await fs.promises.readFile(path)
@@ -52,11 +31,11 @@ export const readXML = async (path, fs) => {
     await zipReader.close()
   }
 
-  return parser.parse(buffer.toString())
+  return parseXML(buffer.toString())
 }
 
 const builder = new fxparser.XMLBuilder({
-  attributeNamePrefix: '_',
+  attributeNamePrefix: '',
   ignoreAttributes: false,
   format: true,
   indentBy: '  ',
@@ -119,7 +98,6 @@ export const listGameSystems = async () => {
       await clearGameSystem({name: dir})
     }
   }))
-  console.log(systems)
   return systems
 }
 
@@ -163,6 +141,15 @@ export const clearCache = async (dir) => {
   await pfs.unlink(dir + '/cache.json')
 }
 
+export const listFiles = async (dir) => {
+  const files = await pfs.readdir(dir)
+  const paths = files
+    .filter(f => f.endsWith('.cat') || f.endsWith('.gst'))
+    .map(f => dir + '/' + f)
+
+  return paths
+}
+
 export const readFiles = async (dir) => {
   try {
     if (await pfs.stat(dir + '/cache.json')) {
@@ -175,48 +162,43 @@ export const readFiles = async (dir) => {
     }
   } catch {}
 
-  const files = await pfs.readdir(dir)
-  const paths = files
-    .filter(f => f.endsWith('.cat') || f.endsWith('.gst'))
-    .map(f => dir + '/' + f)
-
   const parsed = {
     ids: {},
     catalogues: [],
   }
 
   function index(x) {
-    if (x._id) {
-      parsed.ids[x._id] = x
+    if (x.id) {
+      parsed.ids[x.id] = x
     }
 
-    delete x._import
+    delete x.import
     for (let attr in x) {
-      if (x[attr] === '' && !attr.startsWith('_')) { delete x[attr] }
-      if (typeof x[attr] !== 'object') { continue }
+      if (x[attr] === '') { delete x[attr] }
 
-      const values = Object.values(x[attr])[0]
-      x[attr] = values
-      x[attr].forEach(index)
+      if (x[attr] instanceof Array) {
+        x[attr].forEach(index)
 
-      if (attr.startsWith('shared')) {
-        delete x[attr]
+        if (attr.startsWith('shared')) {
+          delete x[attr]
+        }
       }
     }
   }
 
+  const paths = await listFiles(dir)
   await Promise.all(paths.map(async (path) => {
     const data = await readXML(path, fs)
-    index(Object.values(data)[0])
+    index(data)
 
-    if (data.gameSystem) { parsed.gameSystem = data.gameSystem }
-    else if (data.catalogue) {
-      parsed.catalogues.push(data.catalogue)
+    if (data.type === 'gameSystem') { parsed.gameSystem = data }
+    else if (data.type === 'catalogue') {
+      parsed.catalogues.push(data)
     }
     else { throw new Error('Wut?') }
   }))
 
-  parsed.catalogues = parsed.catalogues.filter(c => !c._library)
+  parsed.catalogues = parsed.catalogues.filter(c => !c.library)
 
   try {
     await pfs.unlink(dir + '/cache.json')
@@ -225,4 +207,23 @@ export const readFiles = async (dir) => {
   await pfs.writeFile(dir + '/cache.json', JSON.stringify(parsed))
 
   return parsed
+}
+
+export const readRawFiles = async (dir) => {
+  const files = {}
+
+  const paths = await listFiles(dir)
+  await Promise.all(paths.map(async (path) => {
+    const data = await readXML(path, fs)
+    const filename = _.last(path.split('/'))
+
+    if (data.gameSystem) {
+      files.gameSystem = filename
+      files[filename] = data.gameSystem
+    } else {
+      files[filename] = data.catalogue
+    }
+  }))
+
+  return files
 }

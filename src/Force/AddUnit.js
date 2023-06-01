@@ -11,24 +11,24 @@ const hasMatchingError = (errors, name) => {
 }
 
 const sumDefaultCosts = (entry, costs = {}) => {
-  entry.costs?.forEach(cost => costs[cost._name] = (costs[cost._name] | 0) + cost._value)
+  entry.costs?.forEach(cost => costs[cost.name] = (costs[cost.name] | 0) + cost.value)
 
   entry.selectionEntries?.forEach(selection => {
-    const count = selection.constraints?.find(c => c._type === 'min' && c._scope === 'parent')?._value | 0
+    const count = selection.constraints?.find(c => c.type === 'min' && c.scope === 'parent')?.value | 0
     selection.costs.forEach(cost => {
-      if (cost._value && count) {
-        costs[cost._name] = (costs[cost._name] | 0) + count * cost._value
+      if (cost.value && count) {
+        costs[cost.name] = (costs[cost.name] | 0) + count * cost.value
       }
     })
   })
 
   entry.selectionEntryGroups?.forEach(selectionGroup => {
-    if (selectionGroup._defaultSelectionEntryId) {
-      const count = selectionGroup.constraints?.find(c => c._type === 'min' && c._scope === 'parent')?._value | 0
-      const defaultEntry = selectionGroup.selectionEntries.find(e => e._id.includes(selectionGroup._defaultSelectionEntryId))
+    if (selectionGroup.defaultSelectionEntryId) {
+      const count = selectionGroup.constraints?.find(c => c.type === 'min' && c.scope === 'parent')?.value | 0
+      const defaultEntry = selectionGroup.selectionEntries.find(e => e.id.includes(selectionGroup.defaultSelectionEntryId))
       defaultEntry.costs.forEach(cost => {
-        if (cost._value && count) {
-          costs[cost._name] = (costs[cost._name] | 0) + count * cost._value
+        if (cost.value && count) {
+          costs[cost.name] = (costs[cost.name] | 0) + count * cost.value
         }
       })
     }
@@ -49,13 +49,13 @@ const AddUnit = ({ path, setSelectedPath }) => {
   const categoryErrors = []
   const parseEntry = entryLink => {
     try {
-      const entry = getEntry(roster, path, entryLink._id, gameData)
+      const entry = getEntry(roster, path, entryLink.id, gameData)
 
-      if (!entry._hidden) {
-        let primary = _.find(entry.categoryLinks, '_primary')?._targetId
+      if (!entry.hidden) {
+        let primary = _.find(entry.categoryLinks, 'primary')?.targetId
         if (!primary) {
           primary = '(No Category)'
-          categoryErrors.push(<li key={entry._name}>Unable to find primary category for {entry._name}</li>)
+          categoryErrors.push(<li key={entry.name}>Unable to find primary category for {entry.name}</li>)
         }
         entries[primary] = entries[primary] || []
         entries[primary].push(entry)
@@ -63,31 +63,31 @@ const AddUnit = ({ path, setSelectedPath }) => {
     } catch {}
   }
 
-  gameData.ids[force._catalogueId].entryLinks.forEach(parseEntry)
+  gameData.ids[force.catalogueId].entryLinks.forEach(parseEntry)
   gameData.gameSystem.entryLinks.forEach(parseEntry)
 
   const categories = force.categories.category.map(category => {
-    if (!entries[category._entryId]) { return null }
+    if (!entries[category.entryId]) { return null }
 
-    const open = openCategories[category._name]
-    const error = hasMatchingError(rosterErrors[path], category._name)
-    return <Fragment key={category._name}>
+    const open = openCategories[category.name]
+    const error = hasMatchingError(rosterErrors[path], category.name)
+    return <Fragment key={category.name}>
       <tr has-error={error} className="category">
         <th colSpan="2"  data-tooltip-id="tooltip" data-tooltip-html={error} open={open} onClick={() => setOpenCategories({
           ...openCategories,
-          [category._name]: !open,
+          [category.name]: !open,
         })}>
-          {category._name}
+          {category.name}
         </th>
       </tr>
-      {open && _.sortBy(entries[category._entryId], '_name').map(entry => {
-        const error = hasMatchingError(rosterErrors[path], entry._name)
-        return <tr has-error={error} key={entry._id} className="add-unit" onClick={() => {
+      {open && _.sortBy(entries[category.entryId], 'name').map(entry => {
+        const error = hasMatchingError(rosterErrors[path], entry.name)
+        return <tr has-error={error} key={entry.id} className="add-unit" onClick={() => {
           addSelection(force, entry, gameData)
           setRoster(roster)
           setSelectedPath(`${path}.selections.selection.${force.selections.selection.length - 1}`)
         }}>
-          <td data-tooltip-id="tooltip" data-tooltip-html={error}>{entry._name}</td>
+          <td data-tooltip-id="tooltip" data-tooltip-html={error}>{entry.name}</td>
           <td className="cost">{costString(sumDefaultCosts(entry))}</td>
         </tr>
       })}

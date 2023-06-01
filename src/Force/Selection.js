@@ -19,13 +19,13 @@ const Selection = ({ path, setSelectedPath }) => {
   const [open, setOpen] = useState(false)
 
   const selection = _.get(roster, path)
-  const selectionEntry = getEntry(roster, path, selection._entryId, gameData)
+  const selectionEntry = getEntry(roster, path, selection.entryId, gameData)
   const parentPath = path.split('.').slice(0, -3).join('.')
   const parent = _.get(roster, parentPath)
 
   return <div className="selection">
     <nav>
-      <button className="outline" onClick={() => setSelectedPath(parentPath)} data-tooltip-id="tooltip" data-tooltip-html={parent._name}>^</button>
+      <button className="outline" onClick={() => setSelectedPath(parentPath)} data-tooltip-id="tooltip" data-tooltip-html={parent.name}>^</button>
       <button className="outline" data-tooltip-id="clickable-tooltip"><span data-tooltip-id="tooltip" data-tooltip-html="Customize">✍</span></button>
       <Tooltip id="clickable-tooltip" openOnClick={true} clickable={true}>
         <label>
@@ -33,9 +33,9 @@ const Selection = ({ path, setSelectedPath }) => {
           <DebounceInput
             minLength={2}
             debounceTimeout={300}
-            value={selection._customName}
+            value={selection.customName}
             onChange={e => {
-              selection._customName = e.target.value
+              selection.customName = e.target.value
               setRoster(roster)
             }}
           />
@@ -60,15 +60,15 @@ const Selection = ({ path, setSelectedPath }) => {
     </nav>
     <h6 onClick={() => setOpen(true)}>{selectionName(selection)}</h6>
     {selectionEntry.selectionEntries && <article>
-      {_.sortBy(selectionEntry.selectionEntries, '_name').map(entry => <Entry key={entry._id} entry={entry} path={path} selection={selection} selectionEntry={selectionEntry} entryGroup={null} />)}
+      {_.sortBy(selectionEntry.selectionEntries, 'name').map(entry => <Entry key={entry.id} entry={entry} path={path} selection={selection} selectionEntry={selectionEntry} entryGroup={null} />)}
     </article>}
-    {selectionEntry.selectionEntryGroups && _.sortBy(selectionEntry.selectionEntryGroups, '_name').map(entryGroup => <EntryGroup key={entryGroup._id} path={path} entryGroup={entryGroup} selection={selection} selectionEntry={selectionEntry} />)}
+    {selectionEntry.selectionEntryGroups && _.sortBy(selectionEntry.selectionEntryGroups, 'name').map(entryGroup => <EntryGroup key={entryGroup.id} path={path} entryGroup={entryGroup} selection={selection} selectionEntry={selectionEntry} />)}
     <SelectionModal open={open} setOpen={setOpen}>
       {open && <><header>
-        <h6>{selection._name}</h6>
+        <h6>{selection.name}</h6>
       </header>
       <Categories categories={collectCategories(selection, gameData)} />
-      <Profiles profiles={collectSelectionProfiles(selection, gameData)} number={selection._number} />
+      <Profiles profiles={collectSelectionProfiles(selection, gameData)} number={selection.number} />
       <Rules rules={collectRules(selection)} /></>}
     </SelectionModal>
   </div>
@@ -85,16 +85,16 @@ const useOnSelect = (path, selection, entryGroup) => {
     selection.selections = selection.selections || {selection: []}
 
     const cs = selection.selections.selection
-    let current = cs.filter(s => s._entryId === option._id)
+    let current = cs.filter(s => s.entryId === option.id)
 
     if (number < current.length) {
       while (current.length > number) {
         cs.splice(cs.indexOf(_.last(current)), 1)
-        current = cs.filter(s => s._entryId === option._id)
+        current = cs.filter(s => s.entryId === option.id)
       }
     } else if (isCollective(option) && current.length) {
-      current[0].selections?.selection.forEach(s => s._number = s._number / current[0]._number * number )
-      current[0]._number = number
+      current[0].selections?.selection.forEach(s => s.number = s.number / current[0].number * number )
+      current[0].number = number
     } else {
       addSelection(selection, option, gameData, entryGroup, number - current.length)
     }
@@ -107,10 +107,10 @@ const useOnSelect = (path, selection, entryGroup) => {
 const Entry = ({ entry, path, selection, selectionEntry, entryGroup }) => {
   const onSelect = useOnSelect(path, selection, entryGroup)
 
-  const min = getMinCount(entry) * selection._number
-  const max = getMaxCount(entry) * selection._number
+  const min = getMinCount(entry) * selection.number
+  const max = getMaxCount(entry) * selection.number
 
-  if (entry._hidden) { return null }
+  if (entry.hidden) { return null }
 
   return max === 1 ? <Checkbox selection={selection} option={entry} onSelect={onSelect} entryGroup={entryGroup} /> : <Count selection={selection} option={entry} onSelect={onSelect} min={min} max={max} entryGroup={entryGroup} />
 }
@@ -119,24 +119,24 @@ const EntryGroup = ({ path, entryGroup, selection, selectionEntry }) => {
   const gameData = useSystem()
   const onSelect = useOnSelect(path, selection, entryGroup)
   const selectionErrors = _.flatten(Object.entries(useRosterErrors()).filter(([key, value]) => key === path || key.startsWith(path + '.')).map(([key, value]) => value))
-  const min = getMinCount(entryGroup) * selection._number
-  const max = getMaxCount(entryGroup) * selection._number
+  const min = getMinCount(entryGroup) * selection.number
+  const max = getMaxCount(entryGroup) * selection.number
 
-  if (entryGroup._hidden || entryGroup.selectionEntries?.filter(e => !e._hidden).length === 0) { return null }
+  if (entryGroup.hidden || entryGroup.selectionEntries?.filter(e => !e.hidden).length === 0) { return null }
 
   return <article>
-    <header data-tooltip-id="tooltip" data-tooltip-html={selectionErrors?.filter(e => e.includes(entryGroup._name) || entryGroup.selectionEntries?.some(se => e.includes(se._name))).join('<br />') || null}>
-      {entryGroup._name}
+    <header data-tooltip-id="tooltip" data-tooltip-html={selectionErrors?.filter(e => e.includes(entryGroup.name) || entryGroup.selectionEntries?.some(se => e.includes(se.name))).join('<br />') || null}>
+      {entryGroup.name}
       {min > 1 && ` - min ${min}`}
       {max > 1 && ` - max ${max}`}
-      {entryGroup._publicationId && <small>{gameData.ids[entryGroup._publicationId]._name}, {entryGroup._page}</small>}
+      {entryGroup.publicationId && <small>{gameData.ids[entryGroup.publicationId].name}, {entryGroup.page}</small>}
     </header>
     {max === 1 && !entryGroup.selectionEntryGroups ?
       <Radio selection={selection} entryGroup={entryGroup} onSelect={onSelect} />
     :
-      _.sortBy(entryGroup.selectionEntries || [], '_name').map(subEntry => <Entry key={subEntry._id} entry={subEntry} path={path} selection={selection} selectionEntry={selectionEntry} entryGroup={entryGroup} />)
+      _.sortBy(entryGroup.selectionEntries || [], 'name').map(subEntry => <Entry key={subEntry.id} entry={subEntry} path={path} selection={selection} selectionEntry={selectionEntry} entryGroup={entryGroup} />)
     }
-    {entryGroup.selectionEntryGroups?.map(subGroup => <EntryGroup key={subGroup._id} path={path} entryGroup={subGroup} selection={selection} selectionEntry={selectionEntry} />)}
+    {entryGroup.selectionEntryGroups?.map(subGroup => <EntryGroup key={subGroup.id} path={path} entryGroup={subGroup} selection={selection} selectionEntry={selectionEntry} />)}
   </article>
 }
 
@@ -146,26 +146,26 @@ const Radio = ({ selection, entryGroup, onSelect }) => {
   const max = getMaxCount(entryGroup)
   const entries = entryGroup.selectionEntries
 
-  const selectedOption = selection.selections?.selection.find(s => s._entryGroupId === entryGroup._id)
+  const selectedOption = selection.selections?.selection.find(s => s.entryGroupId === entryGroup.id)
 
   return <>
     {min === 0 && max === 1 && <label>
-      <input type="radio" name={entryGroup._id} onChange={() => onSelect(entries.find(e => e._id === selectedOption._entryId), 0)} checked={!selectedOption} />
+      <input type="radio" name={entryGroup.id} onChange={() => onSelect(entries.find(e => e.id === selectedOption.entryId), 0)} checked={!selectedOption} />
       (None)
     </label>}
-    {_.sortBy(entries, '_name').map((option, index) => {
+    {_.sortBy(entries, 'name').map((option, index) => {
       const cost = costString(sumCosts(option))
-      const checked = selectedOption?._entryId === option._id
-      if (option._hidden && !checked) { return null }
-      return <label key={option._id}>
+      const checked = selectedOption?.entryId === option.id
+      if (option.hidden && !checked) { return null }
+      return <label key={option.id}>
         <input
           type={max === 1 && entries.length > 1 ? 'radio' : 'checkbox'}
-          name={entryGroup._id}
+          name={entryGroup.id}
           checked={checked}
           onChange={() => onSelect(option, (max !== 1 || entries.length > 1) && checked ? 0 : 1)}
         />
         <span data-tooltip-id="tooltip" data-tooltip-html={textProfile(collectEntryProfiles(option, gameData))}>
-          {option._name}
+          {option.name}
         </span>
         {cost && ` (${cost})`}
       </label>
@@ -177,7 +177,7 @@ const Checkbox = ({ selection, option, onSelect, entryGroup }) => {
   const gameData = useSystem()
 
   const cost = costString(sumCosts(option))
-  const checked = !!selection.selections?.selection.find(s => s._entryId === option._id)
+  const checked = !!selection.selections?.selection.find(s => s.entryId === option.id)
   const min = getMinCount(option)
 
   if (checked && min === 1) { return null }
@@ -190,7 +190,7 @@ const Checkbox = ({ selection, option, onSelect, entryGroup }) => {
       disabled={checked && min === 1}
     />
     <span data-tooltip-id="tooltip" data-tooltip-html={textProfile(collectEntryProfiles(option, gameData))}>
-      {option._name}
+      {option.name}
     </span>
     {cost && ` (${cost})`}
   </label>
@@ -199,12 +199,12 @@ const Checkbox = ({ selection, option, onSelect, entryGroup }) => {
 const Count = ({ selection, option, min, max, onSelect, entryGroup }) => {
   const gameData = useSystem()
 
-  const value = _.sum(selection.selections?.selection.map(s => s._entryId === option._id ? s._number : 0)) || 0
+  const value = _.sum(selection.selections?.selection.map(s => s.entryId === option.id ? s.number : 0)) || 0
   if (value === min && value === max) { return null }
 
   const cost = costString(sumCosts(option))
 
-  const numberTip = min === max ? `${min} ${pluralize(option._name)}` : `${min}-${max} ${pluralize(option._name)}`
+  const numberTip = min === max ? `${min} ${pluralize(option.name)}` : `${min}-${max} ${pluralize(option.name)}`
 
   return <label>
     <input
@@ -218,7 +218,7 @@ const Count = ({ selection, option, min, max, onSelect, entryGroup }) => {
       data-tooltip-html={numberTip}
     />
     <span data-tooltip-id="tooltip" data-tooltip-html={textProfile(collectEntryProfiles(option, gameData))}>
-      {option._name}
+      {option.name}
     </span>
     {cost && ` (${cost})`}
   </label>

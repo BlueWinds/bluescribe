@@ -6,10 +6,10 @@ import { addForce } from '../utils'
 
 const AddForce = () => {
   const gameData = useSystem()
-  const catalogues = _.sortBy(gameData.catalogues, '_name')
+  const catalogues = _.sortBy(gameData.catalogues, 'name')
 
-  const [faction, setFaction] = useState(catalogues[0]._id)
-  const [force, setForce] = useState(_.sortBy(gameData.gameSystem.forceEntries, '_name')[0]._id)
+  const [faction, setFaction] = useState(catalogues[0].id)
+  const [force, setForce] = useState(_.sortBy(gameData.gameSystem.forceEntries, 'name')[0].id)
   const [roster, setRoster] = useRoster()
 
   return <details open={!roster.forces?.force?.length}>
@@ -18,13 +18,13 @@ const AddForce = () => {
       <label>
         Faction
         <select onChange={e => setFaction(e.target.value)}>
-          {catalogues.map((f, index) => <option key={f._id} value={f._id}>{f._name}</option>)}
+          {catalogues.map((f, index) => <option key={f.id} value={f.id}>{f.name}</option>)}
         </select>
       </label>
       <label>
         Detachment
         <select onChange={e => setForce(e.target.value)}>
-          {_.sortBy(gameData.gameSystem.forceEntries, '_name').map((f, index) => <option key={f._id} value={f._id}>{f._name}</option>)}
+          {_.sortBy(gameData.gameSystem.forceEntries, 'name').map((f, index) => <option key={f.id} value={f.id}>{f.name}</option>)}
         </select>
         </label>
       <label>

@@ -6,7 +6,7 @@ const Rules = ({ rules }) => {
   return <>
     {Object.keys(rules).sort().map(name => <details key={name} className="rule">
       <summary>
-        {name}{rules[name]._publicationId ? ` (${gameData.ids[rules[name]._publicationId]._shortName || gameData.ids[rules[name]._publicationId]._name})` : ''}
+        {name}{rules[name].publicationId ? ` (${gameData.ids[rules[name].publicationId].shortName || gameData.ids[rules[name].publicationId].name})` : ''}
       </summary>
       {rules[name].description}
     </details>)}
@@ -16,7 +16,7 @@ const Rules = ({ rules }) => {
 export default Rules
 
 export const collectRules = (entry, rules = {}) => {
-  entry.rules?.rule.forEach(r => rules[r._name] = r)
+  entry.rules?.rule.forEach(r => rules[r.name] = r)
   entry.selections?.selection.forEach(e => collectRules(e, rules))
 
   return rules

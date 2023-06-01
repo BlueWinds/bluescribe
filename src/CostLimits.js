@@ -11,19 +11,19 @@ const CostLimits = () => {
   return <details open={!roster.forces?.force.length}>
     <summary>
       Cost Limits: {roster.costLimits?.costLimit.map((limit) => {
-        return `${limit._value} ${limit._name}`
+        return `${limit.value} ${limit.name}`
       }).join(', ') || 'None'}
       <span>{roster.customNotes?.length > 50 || roster.customNotes?.includes('\n') ? _.first(roster.customNotes.split('\n')).slice(0, 50) + '...' : roster.customNotes}</span>
     </summary>
     <div className="grid">
       {gameData.gameSystem.costTypes.map((type) => {
-        const index = _.findIndex(roster.costLimits?.costLimit, ['_typeId', type._id])
+        const index = _.findIndex(roster.costLimits?.costLimit, ['typeId', type.id])
         if (index !== -1) {
-          return <label key={type._id}>
-            {type._name}
-            <input type="number" min="-1" value={roster.costLimits.costLimit[index]._value} step="1" onChange={e => {
+          return <label key={type.id}>
+            {type.name}
+            <input type="number" min="-1" value={roster.costLimits.costLimit[index].value} step="1" onChange={e => {
               if (e.target.value > -1) {
-                updateRoster(`costLimits.costLimit.${index}._value`, e.target.value)
+                updateRoster(`costLimits.costLimit.${index}.value`, e.target.value)
               } else {
                 roster.costLimits.costLimit.splice(index, 1)
                 setRoster(roster)
@@ -31,14 +31,14 @@ const CostLimits = () => {
             }} />
           </label>
         }
-        return <label key={type._id}>
-          {type._name}
+        return <label key={type.id}>
+          {type.name}
           <input type="number" min="-1" value="-1" step="1" onChange={e => {
             roster.costLimits = roster.costLimits || {costLimit: []}
             roster.costLimits.costLimit.push({
-              _typeId: type._id,
-              _name: type._name,
-              _value: e.target.value,
+              typeId: type.id,
+              name: type.name,
+              value: e.target.value,
             })
             setRoster(roster)
           }} />

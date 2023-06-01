@@ -12,7 +12,7 @@ const Force = ({ path }) => {
   const [roster, setRoster] = useRoster()
   const force = _.get(roster, path)
   window.force = force
-  const confirmDelete = useConfirm(true, `Delete ${force._name}?`)
+  const confirmDelete = useConfirm(true, `Delete ${force.name}?`)
 
   const [selectedPath, setSelectedPath] = useState(path)
 
@@ -22,7 +22,7 @@ const Force = ({ path }) => {
 
   const selections = {}
   const parseSelection = selection => {
-    const primary = _.find(selection.categories.category, '_primary')._entryId
+    const primary = _.find(selection.categories.category, 'primary').entryId
     selections[primary] = selections[primary] || []
     selections[primary].push(selection)
   }
@@ -30,19 +30,19 @@ const Force = ({ path }) => {
   force.selections?.selection.forEach(parseSelection)
 
   const categories = force.categories.category.map(category => {
-    if (!selections[category._entryId]) { return null }
-    const open = openSections[category._name] || openSections[category._name] === undefined
+    if (!selections[category.entryId]) { return null }
+    const open = openSections[category.name] || openSections[category.name] === undefined
 
-    return <Fragment key={category._name}>
+    return <Fragment key={category.name}>
       <tr className="category" onClick={() => setOpenSections({
         ...openSections,
-        [category._name]: !open,
+        [category.name]: !open,
       })}>
-        <th colSpan="3" open={open}>{category._name}</th>
+        <th colSpan="3" open={open}>{category.name}</th>
       </tr>
-      {open && _.sortBy(selections[category._entryId], '_name').map(selection => {
+      {open && _.sortBy(selections[category.entryId], 'name').map(selection => {
         return <ListSelection
-          key={selection._id}
+          key={selection.id}
           indent={1}
           selection={selection}
           selectedPath={selectedPath}
@@ -55,10 +55,10 @@ const Force = ({ path }) => {
 
   const globalErrors = errors?.filter(e => !e.includes('must have'))
 
-  return (<details key={force._id} open>
+  return (<details key={force.id} open>
     <summary>
-      {force._catalogueName}
-      <small>{force._name}</small>
+      {force.catalogueName}
+      <small>{force.name}</small>
       <small>{costString(sumCosts(force))}</small>
       {errors && <span className="errors" data-tooltip-id="tooltip" data-tooltip-html={errors.join('<br />')}>Validation errors</span>}
       <span role="link" className="outline" onClick={() => {

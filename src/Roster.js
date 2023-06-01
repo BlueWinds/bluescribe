@@ -85,7 +85,7 @@ const Roster = () => {
     {errors[''] && <ul className="errors">{errors[''].map(e => <li key={e}>{e instanceof Error ? <BugReport error={e} />: e}</li>)}</ul>}
     <div>
       <CostLimits />
-      {roster.forces?.force?.map((force, index) => <Force key={force._id} path={`forces.force.${index}`} />)}
+      {roster.forces?.force?.map((force, index) => <Force key={force.id} path={`forces.force.${index}`} />)}
       <AddForce />
     </div>
   </article></RosterErrorsContext.Provider>

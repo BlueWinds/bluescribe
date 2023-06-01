@@ -10,8 +10,8 @@ export const randomId = () => {
 
 export const sumCosts = (entry, costs = {}) => {
   (entry.costs?.cost || entry.costs)?.forEach(c => {
-    if (c._value !== 0) {
-      costs[c._name] = (costs[c._name] | 0) + c._value
+    if (c.value !== 0) {
+      costs[c.name] = (costs[c.name] | 0) + c.value
     }
   })
   entry.selections?.selection.forEach(selection => {
@@ -21,7 +21,7 @@ export const sumCosts = (entry, costs = {}) => {
   return costs
 }
 
-export const selectionName = selection => `${selection._customName ? selection._customName + ' - ' : ''}${selection._number > 1 ? `${selection._number}x ` : ''}${selection._name}`
+export const selectionName = selection => `${selection.customName ? selection.customName + ' - ' : ''}${selection.number > 1 ? `${selection.number}x ` : ''}${selection.name}`
 export const costString = costs => Object.keys(costs).filter(c => costs[c]).sort().map(name => `${costs[name]} ${name}`).join(', ')
 
 export const textProfile = profiles => {
@@ -30,11 +30,11 @@ export const textProfile = profiles => {
       <table>
         <thead>
           <th>${name}</th>
-          ${profileList[0][1].characteristics.map(c => `<th>${c._name}</th>`).join('\n')}
+          ${profileList[0][1].characteristics.map(c => `<th>${c.name}</th>`).join('\n')}
         </thead>
         <tbody>
           ${profileList.map(([number, profile]) => `<tr>
-            <td>${number > 1 ? `x${number} ` : ''}${profile._name}</td>
+            <td>${number > 1 ? `x${number} ` : ''}${profile.name}</td>
             ${profile.characteristics.map(c => `<td>${c['#text']}</td>`).join('\n')}
           </tr>`).join('\n')}
         </tbody>
@@ -44,19 +44,19 @@ export const textProfile = profiles => {
   return a
 }
 
-export const getMinCount = (entry) => (!entry._hidden && entry.constraints?.find(c => c._type === 'min' && c._scope === 'parent')?._value) ?? 0
-export const getMaxCount = (entry) => entry.constraints?.find(c => c._type === 'max' && c._scope === 'parent')?._value ?? -1
-export const isCollective = (entry) => entry._collective || entry.selectionEntries?.every(isCollective)
+export const getMinCount = (entry) => (!entry.hidden && entry.constraints?.find(c => c.type === 'min' && c.scope === 'parent')?.value) ?? 0
+export const getMaxCount = (entry) => entry.constraints?.find(c => c.type === 'max' && c.scope === 'parent')?.value ?? -1
+export const isCollective = (entry) => entry.collective || entry.selectionEntries?.every(isCollective)
 
 export const createRoster = (name, gameSystem) => {
   const roster = {
-    _id: randomId(),
-    _name: name,
-    _battleScribeVersion: "2.03",
-    _gameSystemId: gameSystem._id,
-    _gameSystemName: gameSystem._name,
-    _gameSystemRevision: gameSystem._revision,
-    _xmlns: "http://www.battlescribe.net/schema/rosterSchema",
+    id: randomId(),
+    name: name,
+    battleScribeVersion: "2.03",
+    gameSystemId: gameSystem.id,
+    gameSystemName: gameSystem.name,
+    gameSystemRevision: gameSystem.revision,
+    xmlns: "http://www.battlescribe.net/schema/rosterSchema",
     __: {
       filename: name + '.rosz',
       updated: true,
@@ -69,32 +69,32 @@ export const createRoster = (name, gameSystem) => {
 export const addForce = (roster, forceId, factionId, gameData) => {
   roster.forces = roster.forces || {force: []}
   roster.forces.force.push({
-    _id: randomId(),
-    _name: gameData.ids[forceId]._name,
-    _entryId: forceId,
-    _catalogueId: factionId,
-    _catalogueRevision: gameData.ids[factionId]._revision,
-    _catalogueName: gameData.ids[factionId]._name,
+    id: randomId(),
+    name: gameData.ids[forceId].name,
+    entryId: forceId,
+    catalogueId: factionId,
+    catalogueRevision: gameData.ids[factionId].revision,
+    catalogueName: gameData.ids[factionId].name,
     publications: {
       publication: [
-        ...(gameData.ids[factionId].publications || []).map(p => _.pick(p, ['_id', '_name'])),
-        ...(gameData.gameSystem.publications || []).map(p => _.pick(p, ['_id', '_name'])),
-        ...(_.flatten(gameData.ids[factionId].catalogueLinks?.map(cl => gameData.ids[cl._targetId].publications || []))).map(p => _.pick(p, ['_id', '_name'])),
+        ...(gameData.ids[factionId].publications || []).map(p => _.pick(p, ['id', 'name'])),
+        ...(gameData.gameSystem.publications || []).map(p => _.pick(p, ['id', 'name'])),
+        ...(_.flatten(gameData.ids[factionId].catalogueLinks?.map(cl => gameData.ids[cl.targetId].publications || []))).map(p => _.pick(p, ['id', 'name'])),
       ]
     },
     categories: {
       category: [
         {
-          _id: randomId(),
-          _name: "Uncategorised",
-          _entryId: "(No Category)",
-          _primary: "false",
+          id: randomId(),
+          name: "Uncategorised",
+          entryId: "(No Category)",
+          primary: "false",
         },
         ...gameData.ids[forceId].categoryLinks.map(c => ({
-          _id: c._id,
-          _name: c._name,
-          _entryId: c._targetId,
-          _primary: "false",
+          id: c.id,
+          name: c.name,
+          entryId: c.targetId,
+          primary: "false",
         }))
       ]
     }
@@ -106,13 +106,13 @@ export const addSelection = (base, selectionEntry, gameData, entryGroup, number 
   const collective = isCollective(selectionEntry)
 
   const newSelection = _.omitBy({
-    _id: randomId(),
-    _name: selectionEntry._name,
-    _entryId: selectionEntry._id,
-    _number: collective ? number : 1,
-    _page: selectionEntry._page,
-    _publicationId: selectionEntry._publicationId,
-    _type: selectionEntry._type,
+    id: randomId(),
+    name: selectionEntry.name,
+    entryId: selectionEntry.id,
+    number: collective ? number : 1,
+    page: selectionEntry.page,
+    publicationId: selectionEntry.publicationId,
+    type: selectionEntry.type,
     categories: {category: []},
     costs: {cost: _.cloneDeep(selectionEntry.costs)},
     profiles: {profile: []},
@@ -120,15 +120,15 @@ export const addSelection = (base, selectionEntry, gameData, entryGroup, number 
   }, _.isUndefined)
 
   newSelection.costs.cost.forEach(c => {
-    c._value *= newSelection._number
+    c.value *= newSelection.number
   })
 
   if (entryGroup) {
     if (getMaxCount(entryGroup) === 1) {
-      base.selections.selection = base.selections.selection.filter(s => !s._entryGroupId?.endsWith(entryGroup._id))
+      base.selections.selection = base.selections.selection.filter(s => !s.entryGroupId?.endsWith(entryGroup.id))
     }
 
-    newSelection._entryGroupId = entryGroup._id
+    newSelection.entryGroupId = entryGroup.id
   }
 
   addCategories(newSelection, selectionEntry, gameData)
@@ -148,7 +148,7 @@ export const addSelection = (base, selectionEntry, gameData, entryGroup, number 
 
       if (min) {
         addSelection(newSelection, selection, gameData, entryGroup, collective ? min : min * number)
-      } else if (getMinCount(entryGroup) && entryGroup._defaultSelectionEntryId && selection._id.includes(entryGroup._defaultSelectionEntryId)) {
+      } else if (getMinCount(entryGroup) && entryGroup.defaultSelectionEntryId && selection.id.includes(entryGroup.defaultSelectionEntryId)) {
         min = getMinCount(entryGroup)
         addSelection(newSelection, selection, gameData, entryGroup, collective ? min : min * number)
       }
@@ -167,43 +167,43 @@ export const addSelection = (base, selectionEntry, gameData, entryGroup, number 
 
 const addCategories = (selection, selectionEntry, gameData) => {
   selection.categories.category.push(...(selectionEntry.categoryLinks || []).map(c => ({
-    _id: randomId(),
-    _name: gameData.ids[c._targetId]._name,
-    _entryId: c._targetId,
-    _primary: c._primary,
+    id: randomId(),
+    name: gameData.ids[c.targetId].name,
+    entryId: c.targetId,
+    primary: c.primary,
   })))
 }
 
 const addProfiles = (selection, selectionEntry) => {
   selection.profiles.profile.push(...(selectionEntry.profiles || []).map(profile => ({
-    _id: profile._id,
-    _name: profile._name,
-    _hidden: profile._hidden,
-    _typeId: profile._typeId,
-    _typeName: profile._typeName,
-    _publicationId: profile._publicationId,
-    _page: profile._page,
+    id: profile.id,
+    name: profile.name,
+    hidden: profile.hidden,
+    typeId: profile.typeId,
+    typeName: profile.typeName,
+    publicationId: profile.publicationId,
+    page: profile.page,
     characteristics: {characteristic: profile.characteristics},
   })))
 }
 
 const addRules = (selection, selectionEntry) => {
   selection.rules.rule.push(...(selectionEntry.rules || []).map(rule => ({
-    _id: rule._id,
-    _name: rule._name,
-    _hidden: rule._hidden,
-    _publicationId: rule._publicationId,
-    _page: rule._page,
+    id: rule.id,
+    name: rule.name,
+    hidden: rule.hidden,
+    publicationId: rule.publicationId,
+    page: rule.page,
     description: rule.description,
   })))
 }
 
 export const refreshSelection = (roster, path, selection, gameData) => {
-  const selectionEntry = getEntry(roster, path, selection._entryId, gameData, true)
+  const selectionEntry = getEntry(roster, path, selection.entryId, gameData, true)
 
   _.assign(selection, {
-    _name: selectionEntry._name,
-    _type: selectionEntry._type,
+    name: selectionEntry.name,
+    type: selectionEntry.type,
     categories: {category: []},
     costs: {cost: _.cloneDeep(selectionEntry.costs)},
     profiles: {profile: []},
@@ -211,7 +211,7 @@ export const refreshSelection = (roster, path, selection, gameData) => {
   })
 
   selection.costs.cost.forEach(c => {
-    c._value *= selection._number
+    c.value *= selection.number
   })
 
   addCategories(selection, selectionEntry, gameData)
@@ -222,13 +222,13 @@ export const refreshSelection = (roster, path, selection, gameData) => {
 }
 
 export const refreshRoster = (roster, gameData) => {
-  const newRoster = createRoster(roster._name, gameData.gameSystem)
+  const newRoster = createRoster(roster.name, gameData.gameSystem)
   newRoster.__.filename = roster.__.filename
   newRoster.costLimits = roster.costLimits
   newRoster.customNotes = roster.customNotes
 
   roster.forces.force.forEach((force, index) => {
-    addForce(newRoster, force._entryId, force._catalogueId, gameData)
+    addForce(newRoster, force.entryId, force.catalogueId, gameData)
     newRoster.forces.force[index].selections = {selection: []}
 
     force.selections.selection.forEach((selection, selectionIndex) => {
@@ -244,8 +244,8 @@ export const copySelection = (selection) => {
   const copy = _.cloneDeep(selection)
 
   function reId(x) {
-    if (x._id) {
-      x._id = randomId()
+    if (x.id) {
+      x.id = randomId()
     }
 
     for (let attr in x) {

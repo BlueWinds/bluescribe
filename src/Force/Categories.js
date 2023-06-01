@@ -11,7 +11,7 @@ const Categories = ({ categories }) => {
 export default Categories
 
 export const collectCategories = (entry, gameData, categories = {}) => {
-  entry.categories?.category.forEach(c => categories[gameData.ids[c._entryId]._name] = true)
+  entry.categories?.category.forEach(c => categories[gameData.ids[c.entryId].name] = true)
   entry.selections?.selection.forEach(e => collectCategories(e, gameData, categories))
 
   return categories

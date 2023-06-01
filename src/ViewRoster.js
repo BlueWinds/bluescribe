@@ -29,44 +29,44 @@ const ViewRoster = () => {
       </label>
     </fieldset>
     {type === 'text' && <code className="text-roster">
-      +++ {roster._name} ({roster._gameSystemName}) [{costString(sumCosts(roster))}] +++
+      +++ {roster.name} ({roster.gameSystemName}) [{costString(sumCosts(roster))}] +++
       {roster.forces?.force.map(force => {
         const selections = {}
         const parseSelection = selection => {
-          const primary = _.find(selection.categories.category, '_primary')._entryId
+          const primary = _.find(selection.categories.category, 'primary').entryId
           selections[primary] = selections[primary] || []
           selections[primary].push(selection)
         }
 
         force.selections?.selection.forEach(parseSelection)
 
-        return <Fragment key={force._id}>
+        return <Fragment key={force.id}>
           {'\n\n'}
-          {'++ '}{force._name} ({force._catalogueName}) [{costString(sumCosts(force))}] ++
+          {'++ '}{force.name} ({force.catalogueName}) [{costString(sumCosts(force))}] ++
           {force.categories?.category.map(category => {
-            if (!selections[category._entryId]) { return null }
+            if (!selections[category.entryId]) { return null }
 
-            return <Fragment key={category._id}>
+            return <Fragment key={category.id}>
               {'\n\n'}
-              {'  + '}{category._name} [{costString(sumCosts({selections: { selection: selections[category._entryId]}}))}] +
+              {'  + '}{category.name} [{costString(sumCosts({selections: { selection: selections[category.entryId]}}))}] +
               {'\n\n'}
-              {_.sortBy(selections[category._entryId], '_name').map(s => '    ' + viewSelectionText(s, 6)).join('\n\n')}
+              {_.sortBy(selections[category.entryId], 'name').map(s => '    ' + viewSelectionText(s, 6)).join('\n\n')}
             </Fragment>
           })}
         </Fragment>
       })}
     </code>}
     {type === 'full' && <div className="view-roster">
-      <h4>{roster._name} ({roster._gameSystemName}) [{costString(sumCosts(roster))}]</h4>
-      {roster.forces?.force.map(force => <ViewForce force={force} key={force._id} />)}
+      <h4>{roster.name} ({roster.gameSystemName}) [{costString(sumCosts(roster))}]</h4>
+      {roster.forces?.force.map(force => <ViewForce force={force} key={force.id} />)}
     </div>}
   </>
 }
 
 const ViewForce = ({ force }) => {
   return <>
-    <h5>{force._name} ({force._catalogueName}) [{costString(sumCosts(force))}]</h5>
-    {force.selections?.selection.map(selection => <ViewSelection selection={selection} id={selection._id} />)}
+    <h5>{force.name} ({force.catalogueName}) [{costString(sumCosts(force))}]</h5>
+    {force.selections?.selection.map(selection => <ViewSelection selection={selection} id={selection.id} />)}
   </>
 }
 
@@ -75,10 +75,10 @@ const ViewSelection = ({ selection }) => {
 
   return <article>
     <header>
-      <h6>{selection._name}</h6>
+      <h6>{selection.name}</h6>
     </header>
     <Categories categories={collectCategories(selection, gameData)} />
-    <Profiles profiles={collectSelectionProfiles(selection, gameData)} number={selection._number} />
+    <Profiles profiles={collectSelectionProfiles(selection, gameData)} number={selection.number} />
     <Rules rules={collectRules(selection)} />
   </article>
 }
@@ -86,7 +86,7 @@ const ViewSelection = ({ selection }) => {
 const viewSelectionText = (selection, indent) => {
   const cost = costString(sumCosts(selection))
   return [
-    `${selection._name}${cost && ' [' + cost + ']'}`,
+    `${selection.name}${cost && ' [' + cost + ']'}`,
     ...(selection.selections?.selection.map(s => viewSelectionText(s, indent + 2)) || []),
   ].join('\n' + _.repeat(' ', indent))
 }

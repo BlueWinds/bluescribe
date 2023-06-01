@@ -38,8 +38,8 @@ const ListSelection = ({ indent, path, selection, selectedPath, setSelectedPath 
         e.preventDefault()
       }}><span role="link">x</span></td>
     </tr>
-    {_.sortBy(selection.selections?.selection, '_name').filter((s, i) => s.selections || rosterErrors[`${path}.selections.selection.${selection.selections.selection.indexOf(s)}`]).map(subSelection =>  <ListSelection
-      key={subSelection._id}
+    {_.sortBy(selection.selections?.selection, 'name').filter((s, i) => s.selections || rosterErrors[`${path}.selections.selection.${selection.selections.selection.indexOf(s)}`]).map(subSelection =>  <ListSelection
+      key={subSelection.id}
       indent={indent + 1}
       selection={subSelection}
       path={`${path}.selections.selection.${selection.selections.selection.indexOf(subSelection)}`}
