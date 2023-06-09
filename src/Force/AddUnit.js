@@ -55,7 +55,6 @@ const AddUnit = ({ path, setSelectedPath }) => {
         let primary = _.find(entry.categoryLinks, 'primary')?.targetId
         if (!primary) {
           primary = '(No Category)'
-          categoryErrors.push(<li key={entry.name}>Unable to find primary category for {entry.name}</li>)
         }
         entries[primary] = entries[primary] || []
         entries[primary].push(entry)
@@ -63,8 +62,10 @@ const AddUnit = ({ path, setSelectedPath }) => {
     } catch {}
   }
 
-  gameData.ids[force.catalogueId].entryLinks.forEach(parseEntry)
-  gameData.gameSystem.entryLinks.forEach(parseEntry)
+  gameData.ids[force.catalogueId].entryLinks?.forEach(parseEntry)
+  gameData.ids[force.catalogueId].selectionEntries?.forEach(parseEntry)
+  gameData.gameSystem.entryLinks?.forEach(parseEntry)
+  gameData.gameSystem.selectionEntries?.forEach(parseEntry)
 
   const categories = force.categories.category.map(category => {
     if (!entries[category.entryId]) { return null }

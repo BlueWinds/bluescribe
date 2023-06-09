@@ -147,10 +147,10 @@ export const addSelection = (base, selectionEntry, gameData, entryGroup, number 
       let min = getMinCount(selection)
 
       if (min) {
-        addSelection(newSelection, selection, gameData, entryGroup, collective ? min : min * number)
+        addSelection(newSelection, selection, gameData, entryGroup, collective ? min * number : min)
       } else if (getMinCount(entryGroup) && entryGroup.defaultSelectionEntryId && selection.id.includes(entryGroup.defaultSelectionEntryId)) {
         min = getMinCount(entryGroup)
-        addSelection(newSelection, selection, gameData, entryGroup, collective ? min : min * number)
+        addSelection(newSelection, selection, gameData, entryGroup, collective ? min * number : min)
       }
     })
 

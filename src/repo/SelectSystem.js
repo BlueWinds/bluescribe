@@ -102,7 +102,7 @@ const SelectSystem = ({setSystemInfo, setMode}) => {
         setSystems(null)
         setUpdatingSystem(false)
       }} className="outline">Update data</button>}
-      {selected !== 'Add New' && !updatingSystem && <button onClick={async () => {
+      {false && selected !== 'Add New' && !updatingSystem && <button onClick={async () => {
         setMode('editSystem')
         setSystemInfo(systems[selected])
       }} className="outline">Edit data</button>}

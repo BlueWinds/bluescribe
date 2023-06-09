@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import BounceLoader from 'react-spinners/BounceLoader'
 import useStorage from 'squirrel-gill'
+import { FileDrop } from 'react-file-drop'
 
 import { listRosters, loadRoster, importRoster, deleteRoster } from './repo/rosters'
 import { validateRoster } from './validate'
@@ -38,15 +39,24 @@ const SelectRoster = () => {
 
   return <>
     <h2>Select Roster</h2>
-    <p>To import a <code>.rosz</code> file, drop it anywhere on the page, or <span role="link" onClick={() => document.getElementById('import-roster').click()}>click here to select one</span>.</p>
-    <input type="file" accept=".rosz" id="import-roster" onChange={async (e) => {
-      await importRoster(e.target.files[0])
-      setSelected(e.target.files[0].name)
-      setRosters(null)
-    }} />
+    <FileDrop onFrameDrop={async (event) => {
+        if (event.dataTransfer?.items[0]?.kind === 'file') {
+          const file = event.dataTransfer.items[0].getAsFile()
+          await importRoster(file)
+          setSelected(file.name)
+          setRosters(null)
+        }
+      }} >
+      <p>To import a <code>.rosz</code> file, drop it anywhere on the page, or <span role="link" onClick={() => document.getElementById('import-roster').click()}>click here to select one</span>.</p>
+      <input type="file" accept=".rosz" id="import-roster" onChange={async (e) => {
+        await importRoster(e.target.files[0])
+        setSelected(e.target.files[0].name)
+        setRosters(null)
+      }} />
+    </FileDrop>
     {rosters ? <>
       <select onChange={e => setSelected(e.target.value)} value={selected}>
-        {Object.entries(rosters).map(([roster, name]) => (<option key={roster} value={roster}>{roster} - {name}</option>))}
+        {Object.entries(rosters).map(([roster, name]) => <option key={roster} value={roster}>{roster} - {typeof name === 'string' ? name : 'Error'}</option>)}
         <option key="new" value="New">New</option>
       </select>
       {selected === 'New' ? <>
@@ -59,7 +69,8 @@ const SelectRoster = () => {
           setRoster(roster)
         }}>Create <code>{newName}.rosz</code></button>
       </>: <>
-        <button onClick={async () => { setRoster(await loadRoster(selected), false) }}>Load</button>
+        {typeof rosters[selected] !== 'string' && <ul>BlueScribe is having trouble parsing <code>{selected}</code>. It may not be a valid roster file, or this could be a bug.</ul>}
+        <button disabled={typeof rosters[selected] !== 'string'} onClick={async () => { setRoster(await loadRoster(selected), false) }}>Load</button>
         <button className="secondary outline" onClick={() => confirmDelete(async () => {
           await deleteRoster(selected)
           setRosters(null)
@@ -82,7 +93,7 @@ const Roster = () => {
   window.errors = errors
 
   return <RosterErrorsContext.Provider value={errors}><article>
-    {errors[''] && <ul className="errors">{errors[''].map(e => <li key={e}>{e instanceof Error ? <BugReport error={e} />: e}</li>)}</ul>}
+    {errors[''] && <ul className="errors">{errors[''].map((e, i) => <li key={i}>{e instanceof Error ? <BugReport error={e} />: e}</li>)}</ul>}
     <div>
       <CostLimits />
       {roster.forces?.force?.map((force, index) => <Force key={force.id} path={`forces.force.${index}`} />)}

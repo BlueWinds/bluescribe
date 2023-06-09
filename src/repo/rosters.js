@@ -15,15 +15,14 @@ export const listRosters = async (gameSystem) => {
         rosters[file] = roster.name
       }
     } catch (e) {
-      console.log('unlinking', '/' + file)
-      await pfs.unlink('/' + file)
+      rosters[file] = e
     }
   }))
   return rosters
 }
 
 export const loadRoster = async (file) => {
-  const {roster} = await readXML('/' + file, fs)
+  const roster = await readXML('/' + file, fs)
   roster.__ = {
     filename: file,
     updated: false,

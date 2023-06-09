@@ -9,7 +9,6 @@ const order = {
 }
 
 const Profiles = ({ profiles, number }) => {
-  console.log(profiles)
   return <>
     {_.sortBy(Object.keys(profiles), p => order[p] || p).map(type => <table className="profile" key={type}>
       <thead>

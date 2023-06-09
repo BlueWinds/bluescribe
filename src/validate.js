@@ -41,13 +41,21 @@ const validateForce = (roster, path, force, gameData) => {
   const errors = {}
 
   try {
-    gameData.gameSystem.entryLinks.forEach(entryLink => {
+    gameData.gameSystem.entryLinks?.forEach(entryLink => {
+      const entry = getEntry(roster, path, entryLink.id, gameData)
+      arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
+    })
+    gameData.gameSystem.selectionEntries?.forEach(entryLink => {
       const entry = getEntry(roster, path, entryLink.id, gameData)
       arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
     })
 
     const catalogue = gameData.ids[force.catalogueId]
     catalogue.entryLinks?.forEach(selectionEntry => {
+      const entry = getEntry(roster, path, selectionEntry.id, gameData)
+      arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
+    })
+    catalogue.selectionEntries?.forEach(selectionEntry => {
       const entry = getEntry(roster, path, selectionEntry.id, gameData)
       arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
     })
@@ -77,6 +85,7 @@ const validateSelection = (roster, path, selection, gameData) => {
 
   try {
     if (entry.hidden) {
+      if (entry.name === "Arks of Omen Compulsory Type") { debugger }
       arrayMerge(errors, {
         [path]: [`${selection.name} is hidden and cannot be selected.`],
       })
@@ -130,7 +139,7 @@ const hasCategory = (subject, categoryId) => {
 }
 
 const countBy = (subject, entryId, entry, groupIds) => {
-  if (!subject) { debugger; throw new Error('No subject while trying to countBy') }
+  if (!subject) { return 0 }
   if (entry.shared) {
     entryId = _.last(entryId.split('::'))
   }
@@ -215,16 +224,17 @@ const checkConstraints = (roster, path, entry, gameData, group = false) => {
       entry.constraints?.forEach(constraint => {
         const subject = getSubject(roster, path, constraint)
         const occurances = entry.primary === undefined ? countBy(subject, entry.id, constraint, groupIds) : countByCategory(subject, entry, constraint)
-        const value = constraint.value * (subject.number ?? 1)
+        const value = constraint.value * getConstraintValue(constraint, subject, gameData)
 
         if (constraint.type === 'min' && value !== -1 && !entry.hidden && occurances < value) {
           if (value === 1) {
             errors.push(`${subject.name} must have ${an(pluralize.singular(entry.name))} selection`)
           } else {
+            debugger
             errors.push(`${subject.name} must have ${value - occurances} more ${pluralize(entry.name)}`)
           }
         }
-        if (constraint.type === 'max' && value !== -1 && occurances > value * (subject.number ?? 1)) {
+        if (constraint.type === 'max' && value !== -1 && occurances > value * (subject?.number ?? 1)) {
           if (value === 0) {
             errors.push(`${subject.name} cannot have ${an(pluralize.singular(entry.name))} selection`)
           } else {
@@ -272,7 +282,7 @@ const applyModifiers = (roster, path, entry, gameData) => {
         if (modifier.type === 'decrement') { repeat *= -1 }
 
         const subject = getSubject(roster, path, modifier.repeats[0])
-        const value = subject ? countBy(subject, modifier.repeats[0].childId, modifier.repeats[0]) : 0
+        const value = countBy(subject, modifier.repeats[0].childId, modifier.repeats[0])
         const round = modifier.repeats[0].roundUp ? Math.ceil : Math.floor
 
         times = repeat * round(value / modifier.repeats[0].value)
@@ -389,6 +399,23 @@ const getValue = (condition, subject, gameData) => {
       let cost = sumCost(subject, condition, childId)
       if (condition.percentValue) {
         cost /= sumCost(subject, condition, false)
+      }
+
+      return cost
+    }
+  }
+}
+
+const getConstraintValue = (constraint, subject, gameData) => {
+  if (!subject) { return NaN }
+  switch (constraint.field) {
+    case 'selections': return subject.selections?.length
+    case 'forces': return subject.forces?.length
+    default: {
+      let cost = constraint.field.startsWith('limit::') ? (subject.costLimits?.costLimit.find(cl => `limit::${cl.id}` === constraint.field) ?? -1) : sumCost(subject, constraint, false)
+      if (constraint.percentValue) {
+        cost /= sumCost(subject, constraint, false)
+        if (!Number.isFinite(cost)) { cost = 0 }
       }
 
       return cost

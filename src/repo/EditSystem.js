@@ -3,17 +3,67 @@ import BounceLoader from 'react-spinners/BounceLoader'
 import { Tooltip } from 'react-tooltip'
 import _ from 'lodash'
 
+import containerTags from 'bsd-schema/containerTags.json'
+
 import { readRawFiles } from './index'
+import EditFile from './EditFile'
 
 export const SystemContext = createContext(null)
-export const useSystem = () => { useContext(SystemContext) }
+export const SetSystemContext = createContext(null)
+export const useSystem = () => useContext(SystemContext)
+export const useSetSystem = () => useContext(SetSystemContext)
+
+export const useFile = (filename) => {
+  const gameData = useSystem()
+  const setGameData = useSetSystem()
+  return [
+    gameData[filename],
+    () => {
+      gameData[filename].__updated = true
+      setGameData({...gameData})
+    },
+  ]
+}
 
 const AddFile = () => {
   return null
 }
 
-const EditFile = ({ filename }) => {
-  return null
+const buildIndex = (gameData) => {
+  const ids = {}
+
+  function coallate(x, file) {
+    if (x.id) {
+      ids[x.id] = x
+      file.ids = file.ids || {}
+      file.ids[x.id] = x
+    }
+
+    for (let attr in x) {
+      if (x[attr] instanceof Array) {
+        x[attr].forEach(x => {
+          x.__type = containerTags[attr]
+          coallate(x, file)
+        })
+      }
+    }
+  }
+
+  Object.values(_.omit(gameData, ['gameSystem', 'ids'])).forEach(x => coallate(x, x))
+
+  return ids
+}
+
+export const gatherFiles = (file, gameData, files = [gameData[gameData.gameSystem]]) => {
+  if (files.includes(file)) { return files }
+
+  files.push(file)
+
+  file.catalogueLinks?.forEach(link => {
+    gatherFiles(gameData.ids[link.targetId], gameData, files)
+  })
+
+  return files
 }
 
 const EditSystem = ({ systemInfo, setSystemInfo }) => {
@@ -23,23 +73,24 @@ const EditSystem = ({ systemInfo, setSystemInfo }) => {
   useEffect(() => {
     if (!gameData) {
       readRawFiles('/' + systemInfo.name).then(data => {
+        data.ids = buildIndex(data)
         setGameData(data)
         setSelectedFile(data.gameSystem)
       })
     }
   }, [systemInfo, gameData])
 
-  return <SystemContext.Provider value={gameData}><div className='container'>
+  return <SystemContext.Provider value={gameData}><SetSystemContext.Provider value={setGameData}><div className='container'>
     <Tooltip id="tooltip" />
     <header>
       <nav>
         <ul>
           <li><strong>BlueScribe</strong></li>
           {gameData && <li>
-            <select>
-              <option value={gameData.gameSystem}>{gameData[gameData.gameSystem].name}</option>
+            <select onChange={e => setSelectedFile(e.target.value)} defaultValue={selectedFile}>
+              <option value={gameData.gameSystem}>{gameData[gameData.gameSystem].name}{gameData[gameData.gameSystem].__updated && ' *'}</option>
+              {Object.keys(_.omit(gameData, ['gameSystem', gameData.gameSystem, 'ids'])).sort().map(filename => <option key={filename} value={filename}>&nbsp;&nbsp;&nbsp;&nbsp;{gameData[filename].name}{gameData[filename].__updated && ' *'}</option>)}
               <option value="addNew">Add New Catalogue</option>
-              {Object.keys(_.omit(gameData, ['gameSystem', gameData.gameSystem])).sort().map(filename => <option key={filename}>&nbsp;&nbsp;&nbsp;&nbsp;{gameData[filename].name}</option>)}
             </select>
           </li>}
         </ul>
@@ -55,8 +106,8 @@ const EditSystem = ({ systemInfo, setSystemInfo }) => {
         </ul>
       </nav>
     </header>
-    {!gameData ? <BounceLoader color="#36d7b7" className='loading' /> : (selectedFile === 'addNew' ? <AddFile /> : <EditFile filename={selectedFile} />)}
-  </div></SystemContext.Provider>
+    {!gameData ? <BounceLoader color="#36d7b7" className='loading' /> : (selectedFile === 'addNew' ? <AddFile /> : <EditFile filename={selectedFile} setSelectedFile={setSelectedFile} />)}
+  </div></SetSystemContext.Provider></SystemContext.Provider>
 }
 
 export default EditSystem

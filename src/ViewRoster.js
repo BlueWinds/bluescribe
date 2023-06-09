@@ -12,17 +12,17 @@ const ViewRoster = () => {
   const [roster] = useRoster()
   const [type, setType] = useStorage(localStorage, 'viewRosterType', 'text')
 
+      // <label>
+      //   <input type="radio" checked={type === 'text'} onChange={() => setType('text')} />
+      //   Text
+      // </label>
+      // <label>
+      //   <input type="radio" checked={type === 'compact'} onChange={() => setType('compact')} />
+      //   Compact
+      // </label>
   return <>
     <fieldset>
       <span>View roster as</span>
-      <label>
-        <input type="radio" checked={type === 'text'} onChange={() => setType('text')} />
-        Text
-      </label>
-      <label>
-        <input type="radio" checked={type === 'compact'} onChange={() => setType('compact')} />
-        Compact
-      </label>
       <label>
         <input type="radio" checked={type === 'full'} onChange={() => setType('full')} />
         Full

@@ -8,7 +8,6 @@ import ListSelection from './ListSelection'
 import { costString, sumCosts } from '../utils'
 
 const Force = ({ path }) => {
-
   const [roster, setRoster] = useRoster()
   const force = _.get(roster, path)
   window.force = force
@@ -22,7 +21,7 @@ const Force = ({ path }) => {
 
   const selections = {}
   const parseSelection = selection => {
-    const primary = _.find(selection.categories.category, 'primary').entryId
+    const primary = _.find(selection.categories.category, 'primary')?.entryId || '(No Category)'
     selections[primary] = selections[primary] || []
     selections[primary].push(selection)
   }

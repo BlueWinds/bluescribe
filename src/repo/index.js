@@ -150,19 +150,25 @@ export const listFiles = async (dir) => {
   return paths
 }
 
+const cacheVersion = 2
+
 export const readFiles = async (dir) => {
   try {
     if (await pfs.stat(dir + '/cache.json')) {
-      console.log('Loading from cache')
+      console.log('Leading cache')
       const cache = JSON.parse(await pfs.readFile(dir + '/cache.json'))
-      if (cache.gameSystem) {
-        console.log('Cache looks valid')
+      if (cache.gameSystem && cache.version === cacheVersion) {
+        console.log(`Cache v${cacheVersion} looks valid`)
         return cache
       }
+      console.log(`Found cache v${cache.version || 1}, wanted v${cacheVersion}. Reparsing raw files`)
     }
-  } catch {}
+  } catch {
+    console.log("No cache found. Reparsing raw files.")
+  }
 
   const parsed = {
+    version: cacheVersion,
     ids: {},
     catalogues: [],
   }
@@ -217,11 +223,10 @@ export const readRawFiles = async (dir) => {
     const data = await readXML(path, fs)
     const filename = _.last(path.split('/'))
 
-    if (data.gameSystem) {
+    files[filename] = data
+
+    if (data.type === 'gameSystem') {
       files.gameSystem = filename
-      files[filename] = data.gameSystem
-    } else {
-      files[filename] = data.catalogue
     }
   }))
 

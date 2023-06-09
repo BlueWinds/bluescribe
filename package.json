@@ -1,6 +1,6 @@
 {
   "name": "bluescribe",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://bluewinds.github.io/bluescribe/",
   "private": true,
   "author": "Blue Frauenglass",
@@ -20,7 +20,9 @@
     "react": "^18.2.0",
     "react-debounce-input": "^3.3.0",
     "react-dom": "^18.2.0",
+    "react-file-drop": "^3.1.6",
     "react-scripts": "5.0.1",
+    "react-select": "^5.7.3",
     "react-spinners": "^0.13.8",
     "react-tooltip": "^5.11.1",
     "squirrel-gill": "^1.0.5",

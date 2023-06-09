@@ -63,7 +63,7 @@ h4 + h6 {
   margin-top: -1.5em;
 }
 
-.selections, .selection {
+.selections, .selection, .edit-entry {
   max-height: 75vh;
   overflow: auto;
 }
@@ -82,16 +82,16 @@ h4 + h6 {
   cursor: pointer;
 }
 
-.selections [data-indent="2"] td:first-child {
+[data-indent="2"] td:first-child {
   padding-left: calc(var(--spacing)* 2);
 }
-.selections [data-indent="3"] td:first-child {
+[data-indent="3"] td:first-child {
   padding-left: calc(var(--spacing)* 3);
 }
-.selections [data-indent="4"] td:first-child {
+[data-indent="4"] td:first-child {
   padding-left: calc(var(--spacing)* 4);
 }
-.selections [data-indent="5"] td:first-child {
+[data-indent="5"] td:first-child {
   padding-left: calc(var(--spacing)* 5);
 }
 
@@ -168,7 +168,7 @@ summary {
   border-left: 0px;
 }
 
-.selections .selected td:first-child {
+.selections .selected td:first-child, .selections .selected th:first-child {
   font-weight: 700;
   text-decoration: underline;
 }
@@ -331,4 +331,81 @@ input[type="file"] {
 
 dialog article article {
   max-height: inherit;
+}
+
+.refresh-id {
+  float: right;
+  width: auto;
+}
+
+.add-entry {
+  float: right;
+  width: auto;
+  margin-left: var(--spacing);
+  --form-element-spacing-vertical: 0.1rem;
+  --form-element-spacing-horizontal: 0.25rem;
+  --line-height: 1;
+}
+
+.edit-file input[disabled] {
+  width: calc(100% - 3rem);
+}
+
+.edit-file {
+  --spacing: 0.5rem;
+  --form-element-spacing-horizontal: 0.5rem;
+  --form-element-spacing-vertical: 0.25rem;
+}
+
+.edit-file input, .edit-file select {
+  margin-bottom: 0;
+}
+
+.edit-file label {
+  display: inline;
+}
+
+.react-select__placeholder, .react-select__single-value {
+  padding: 0 var(--form-element-spacing-horizontal);
+}
+
+.react-select__indicators {
+  margin-right: var(--form-element-spacing-horizontal);
+}
+
+.react-select__control {
+  background: var(--form-element-background-color);
+  border: 1px solid var(--form-element-border-color);
+  border-radius: var(--border-radius);
+}
+
+.react-select__control--menu-is-open {
+  border-bottom: none;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.react-select input {
+  position: relative;
+  left: var(--form-element-spacing-horizontal);
+  --box-shadow: none !important;
+}
+
+.react-select__menu-list {
+  background: var(--form-element-background-color);
+  border: 1px solid var(--form-element-border-color);
+  border-top: none;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.react-select__option {
+  padding: var(--form-element-spacing-vertical) var(--form-element-spacing-horizontal);
+}
+
+.publication {
+  width: calc(100% - 5rem);
+}
+
+input.page {
+  float: right;
+  width: 4.5rem;
 }
