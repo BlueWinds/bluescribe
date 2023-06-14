@@ -102,6 +102,35 @@ const htmlDecode = (str) => {
   return doc.documentElement.textContent
 }
 
+export const addLocalGameSystem = async (files, fs) => {
+  const system = {
+    name: files[0].webkitRelativePath.split(/\\|\//)[0],
+    description: files[0].webkitRelativePath.split(/\\|\//)[0],
+    lastUpdated: (new Date()).toISOString(),
+    lastUpdateDescription: "Updated locally",
+    version: "v0.0.0",
+  }
+
+  const dirs = await fs.promises.readdir('/')
+  if (dirs.indexOf(system.name) !== -1) {
+    const files = await fs.promises.readdir('/' + system.name)
+    await Promise.all(files.map(f => fs.promises.unlink('/' + system.name + '/' + f)))
+    await fs.promises.rmdir('/' + system.name)
+  }
+
+  await fs.promises.mkdir('/' + system.name)
+  await fs.promises.writeFile('/' + system.name + '/system.json', JSON.stringify(system))
+
+  await Promise.all(files.map(async file => {
+    const filename = _.last(file.name.split(/\\|\//))
+    const data = await file.arrayBuffer()
+    console.log('Writing /' + system.name + '/' + filename, data)
+    await fs.promises.writeFile('/' + system.name + '/' + filename, data)
+  }))
+
+  return system
+}
+
 export const addGameSystem = async (system, fs) => {
   const dirs = await fs.promises.readdir('/')
   if (dirs.indexOf(system.name) !== -1) {
@@ -136,13 +165,13 @@ export const clearGameSystem = async (system, fs) => {
 const listFiles = async (dir, fs) => {
   const files = await fs.promises.readdir(dir)
   const paths = files
-    .filter(f => f.endsWith('.cat') || f.endsWith('.gst'))
+    .filter(f => f.endsWith('.cat') || f.endsWith('.gst') || f.endsWith('.catz') || f.endsWith('.gstz'))
     .map(f => dir + '/' + f)
 
   return paths
 }
 
-const cacheVersion = 3
+const cacheVersion = 4
 
 export const readFiles = async (dir, fs) => {
   try {
@@ -163,7 +192,6 @@ export const readFiles = async (dir, fs) => {
     version: cacheVersion,
     catalogues: {},
   }
-
 
   const paths = await listFiles(dir, fs)
   await Promise.all(paths.map(async (path) => {

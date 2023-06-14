@@ -81,7 +81,8 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [gameData, setGameData] = useState(null)
 
-  const [systemInfo, setInfo] = useState((JSON.parse(localStorage.system || '{}')))
+  const [systemInfo, setInfo] = useState(JSON.parse(localStorage.system || '{}'))
+
   const setSystemInfo = (info) => { localStorage.system = JSON.stringify(info); setInfo(info) }
   const [mode, setMode] = useStorage(localStorage, 'dataMode', 'editRoster')
 
@@ -93,6 +94,7 @@ function App() {
       if (mode === 'editRoster') {
         setLoading(true)
         try {
+          console.log(systemInfo.name)
           setGameData(await readFiles('/' + systemInfo.name, fs))
         } catch (e) {
           setInfo({})

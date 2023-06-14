@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import BounceLoader from 'react-spinners/BounceLoader'
+import _ from 'lodash'
 
-import { listGameSystems, listAvailableGameSystems, addGameSystem, clearGameSystem } from './'
+import { listGameSystems, listAvailableGameSystems, addGameSystem, addLocalGameSystem, clearGameSystem } from './'
 import fs from '../fs'
 
 const SelectSystem = ({setSystemInfo, setMode}) => {
@@ -38,11 +39,16 @@ const SelectSystem = ({setSystemInfo, setMode}) => {
       <select onChange={e => {
         setSelected(e.target.value)
       }}>
-        {Object.keys(systems).map(system => (<option key={system} value={system}>{systems[system].description} - {systems[system].version}</option>))}
+        {_.reverse(_.sortBy(Object.values(systems), 'lastUpdated')).map(system => (<option key={system.name} value={system.name}>{system.description} - {system.version}</option>))}
         <option key="add">Add New</option>
       </select>
       {selected === 'Add New' ? <label>
         {available ? <>
+          <p>Select a game system to download data, or <span role="link" onClick={() => document.getElementById('import-system').click()}>click here to select a folder</span> containing a <code>.gst</code> and <code>.cat</code> files.</p>
+          <input type="file" id="import-system" webkitdirectory="true" onChange={async (e) => {
+            const system = await addLocalGameSystem([...e.target.files], fs)
+            setSystemInfo(system)
+          }} />
           <select onChange={e => setSelectedAvailable(e.target.value)}>
             {available.map((system, index) => (<option key={system.name} value={index}>{system.description}</option>))}
           </select>
