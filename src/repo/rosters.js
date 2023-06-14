@@ -1,16 +1,13 @@
-import FS from '@isomorphic-git/lightning-fs'
+import containerTags from 'bsd-schema/containerTags.json'
 
 import { readXML, xmlData } from './'
 
-export const fs = new FS('rosters')
-const pfs = fs.promises
-
-export const listRosters = async (gameSystem) => {
+export const listRosters = async (gameSystem, fs) => {
   const rosters = {}
-  const files = await pfs.readdir('/')
+  const files = await fs.promises.readdir('/')
   await Promise.all(files.map(async file => {
     try {
-      const roster = (await loadRoster(file))
+      const roster = (await loadRoster('/' + file, fs))
       if (roster.gameSystemId === gameSystem.id) {
         rosters[file] = roster.name
       }
@@ -21,24 +18,36 @@ export const listRosters = async (gameSystem) => {
   return rosters
 }
 
-export const loadRoster = async (file) => {
-  const roster = await readXML('/' + file, fs)
+export const loadRoster = async (file, fs) => {
+  const roster = await readXML(file, fs)
   roster.__ = {
     filename: file,
     updated: false,
   }
 
+  function normalize(x) {
+    for (let attr in x) {
+      if (x[attr] === '') {
+        delete x[attr]
+      } else if (containerTags[attr] && x[attr][containerTags[attr]]) {
+        x[attr][containerTags[attr]].forEach(normalize)
+      }
+    }
+  }
+
+  normalize(roster)
+
   return roster
 }
 
-export const saveRoster = async (roster) => {
+export const saveRoster = async (roster, fs) => {
   const {__: {filename}, ...contents} = roster
 
   const data = await xmlData({roster: contents}, filename)
   await fs.promises.writeFile('/' + filename, data)
 }
 
-export const importRoster = async (file) => {
+export const importRoster = async (file, fs) => {
   const data = await file.arrayBuffer()
   console.log('writing', '/' + file.name)
   await fs.promises.writeFile('/' + file.name, data)
@@ -61,6 +70,6 @@ export const downloadRoster = async (roster) => {
   URL.revokeObjectURL(url)
 }
 
-export const deleteRoster = async (file) => {
-  await pfs.unlink('/' + file)
+export const deleteRoster = async (file, fs) => {
+  await fs.promises.unlink('/' + file)
 }

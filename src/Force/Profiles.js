@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-import { getMinCount } from '../utils'
+import { findId, getMinCount } from '../utils'
 
 const order = {
   Unit: 1,
@@ -45,11 +45,11 @@ export const collectSelectionProfiles = (selection, gameData, profiles = {}) => 
   return profiles
 }
 
-export const collectEntryProfiles = (entry, gameData, profiles = {}, baseNumber) => {
+export const collectEntryProfiles = (entry, gameData, catalogue, profiles = {}, baseNumber) => {
   const number = getMinCount(entry) * (baseNumber || 1)
   entry.infoLinks?.forEach(infoLink => {
     if (infoLink.type !== 'profile') { return }
-    const profile = gameData.ids[infoLink.targetId]
+    const profile = findId(gameData, catalogue, infoLink.targetId)
     profiles[profile.typeName] = profiles[profile.typeName] || []
     profiles[profile.typeName].push([number, profile])
   })
@@ -59,8 +59,8 @@ export const collectEntryProfiles = (entry, gameData, profiles = {}, baseNumber)
     profiles[profile.typeName].push([number, profile])
   })
 
-  entry.selectionEntries?.forEach(selection => collectEntryProfiles(selection, gameData, profiles, number))
-  entry.selectionEntryGroups?.forEach(selection => collectEntryProfiles(selection, gameData, profiles, number))
+  entry.selectionEntries?.forEach(selection => collectEntryProfiles(selection, gameData, catalogue, profiles, number))
+  entry.selectionEntryGroups?.forEach(selection => collectEntryProfiles(selection, gameData, catalogue, profiles, number))
 
   return profiles
 }

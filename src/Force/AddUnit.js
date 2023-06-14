@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import pluralize from 'pluralize'
 
 import { useRoster, useRosterErrors, useSystem, useOpenCategories } from '../Context'
-import { costString, addSelection } from '../utils'
+import { costString, addSelection, getCatalogue } from '../utils'
 import { getEntry } from '../validate'
 
 const hasMatchingError = (errors, name) => {
@@ -44,6 +44,7 @@ const AddUnit = ({ path, setSelectedPath }) => {
   const [openCategories, setOpenCategories] = useOpenCategories()
 
   const force = _.get(roster, path)
+  const catalogue = getCatalogue(roster, path, gameData)
 
   const entries = {}
   const categoryErrors = []
@@ -62,8 +63,8 @@ const AddUnit = ({ path, setSelectedPath }) => {
     } catch {}
   }
 
-  gameData.ids[force.catalogueId].entryLinks?.forEach(parseEntry)
-  gameData.ids[force.catalogueId].selectionEntries?.forEach(parseEntry)
+  catalogue.entryLinks?.forEach(parseEntry)
+  catalogue.selectionEntries?.forEach(parseEntry)
   gameData.gameSystem.entryLinks?.forEach(parseEntry)
   gameData.gameSystem.selectionEntries?.forEach(parseEntry)
 
@@ -84,7 +85,7 @@ const AddUnit = ({ path, setSelectedPath }) => {
       {open && _.sortBy(entries[category.entryId], 'name').map(entry => {
         const error = hasMatchingError(rosterErrors[path], entry.name)
         return <tr has-error={error} key={entry.id} className="add-unit" onClick={() => {
-          addSelection(force, entry, gameData)
+          addSelection(force, entry, gameData, null, catalogue)
           setRoster(roster)
           setSelectedPath(`${path}.selections.selection.${force.selections.selection.length - 1}`)
         }}>

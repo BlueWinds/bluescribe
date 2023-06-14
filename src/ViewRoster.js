@@ -64,22 +64,23 @@ const ViewRoster = () => {
 }
 
 const ViewForce = ({ force }) => {
+  const gameData = useSystem()
   return <>
     <h5>{force.name} ({force.catalogueName}) [{costString(sumCosts(force))}]</h5>
-    {force.selections?.selection.map(selection => <ViewSelection selection={selection} id={selection.id} />)}
+    {force.selections?.selection.map(selection => <ViewSelection selection={selection} catalogue={gameData.catalogues[force.catalogueId]} />)}
   </>
 }
 
-const ViewSelection = ({ selection }) => {
+const ViewSelection = ({ catalogue, selection }) => {
   const gameData = useSystem()
 
   return <article>
     <header>
       <h6>{selection.name}</h6>
     </header>
-    <Categories categories={collectCategories(selection, gameData)} />
+    <Categories categories={collectCategories(selection, gameData, catalogue)} />
     <Profiles profiles={collectSelectionProfiles(selection, gameData)} number={selection.number} />
-    <Rules rules={collectRules(selection)} />
+    <Rules catalogue={catalogue} rules={collectRules(selection)} />
   </article>
 }
 

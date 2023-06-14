@@ -1,12 +1,13 @@
+import { findId } from '../utils'
 import { useSystem } from '../Context'
 
-const Rules = ({ rules }) => {
+const Rules = ({ catalogue, rules }) => {
   const gameData = useSystem()
 
   return <>
     {Object.keys(rules).sort().map(name => <details key={name} className="rule">
       <summary>
-        {name}{rules[name].publicationId ? ` (${gameData.ids[rules[name].publicationId].shortName || gameData.ids[rules[name].publicationId].name})` : ''}
+        {name}{rules[name].publicationId ? ` (${findId(gameData, catalogue, rules[name].publicationId).shortName || findId(gameData, catalogue, rules[name].publicationId).name})` : ''}
       </summary>
       {rules[name].description}
     </details>)}

@@ -2,7 +2,7 @@ import _ from 'lodash'
 import an from 'indefinite'
 import pluralize from 'pluralize'
 
-import { randomId } from './utils'
+import { findId, getCatalogue, randomId } from './utils'
 
 const arrayMerge = (dest, source) => {
   Object.entries(source).forEach(([key, value]) => {
@@ -19,6 +19,14 @@ export const validateRoster = (roster, gameData) => {
       errors[''] = ['A roster requires at least one Force.']
       return errors
     }
+
+    roster.costLimits?.costLimit.forEach(cl => {
+      const cost = roster.costs.cost.find(c => c.typeId === cl.typeId)
+      if (cost && cl.value !== -1 && cost.value > cl.value) {
+        errors[''] = errors[''] || []
+        errors[''].push(`${roster.name} has ${cost.value}${cost.name}, more than the limit of ${cl.value}${cl.name}`)
+      }
+    })
 
     gameData.gameSystem.categoryEntries.forEach(categoryEntry => {
       const entry = getEntry(roster, '', categoryEntry.id, gameData)
@@ -37,30 +45,29 @@ export const validateRoster = (roster, gameData) => {
   return errors
 }
 
+const validateCatalogueAgainstForce = (roster, path, force, catalogue, gameData, errors) => {
+  catalogue.entryLinks?.forEach(selectionEntry => {
+    const entry = getEntry(roster, path, selectionEntry.id, gameData)
+    arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
+  })
+  catalogue.selectionEntries?.forEach(selectionEntry => {
+    const entry = getEntry(roster, path, selectionEntry.id, gameData)
+    arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
+  })
+
+  catalogue.catalogueLinks?.forEach(cl => {
+    validateCatalogueAgainstForce(roster, path, force, gameData.catalogues[cl.targetId], gameData, errors)
+  })
+}
+
 const validateForce = (roster, path, force, gameData) => {
   const errors = {}
 
   try {
-    gameData.gameSystem.entryLinks?.forEach(entryLink => {
-      const entry = getEntry(roster, path, entryLink.id, gameData)
-      arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
-    })
-    gameData.gameSystem.selectionEntries?.forEach(entryLink => {
-      const entry = getEntry(roster, path, entryLink.id, gameData)
-      arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
-    })
+    validateCatalogueAgainstForce(roster, path, force, gameData.gameSystem, gameData, errors)
+    validateCatalogueAgainstForce(roster, path, force, gameData.catalogues[force.catalogueId], gameData, errors)
 
-    const catalogue = gameData.ids[force.catalogueId]
-    catalogue.entryLinks?.forEach(selectionEntry => {
-      const entry = getEntry(roster, path, selectionEntry.id, gameData)
-      arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
-    })
-    catalogue.selectionEntries?.forEach(selectionEntry => {
-      const entry = getEntry(roster, path, selectionEntry.id, gameData)
-      arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
-    })
-
-    const f = gameData.ids[force.entryId]
+    const f = findId(gameData, getCatalogue(roster, path, gameData), force.entryId)
     f.categoryLinks?.forEach(categoryLink => {
       const entry = getEntry(roster, path, categoryLink.id, gameData)
       arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
@@ -83,9 +90,16 @@ const validateSelection = (roster, path, selection, gameData) => {
   const errors = {}
   const entry = getEntry(roster, path, selection.entryId, gameData)
 
+  if (!entry) {
+    arrayMerge(errors, {
+      [path]: [`${selection.name} does not exist in the game data. It may have been removed in a data update.`],
+    })
+
+    return errors
+  }
+
   try {
     if (entry.hidden) {
-      if (entry.name === "Arks of Omen Compulsory Type") { debugger }
       arrayMerge(errors, {
         [path]: [`${selection.name} is hidden and cannot be selected.`],
       })
@@ -224,13 +238,12 @@ const checkConstraints = (roster, path, entry, gameData, group = false) => {
       entry.constraints?.forEach(constraint => {
         const subject = getSubject(roster, path, constraint)
         const occurances = entry.primary === undefined ? countBy(subject, entry.id, constraint, groupIds) : countByCategory(subject, entry, constraint)
-        const value = constraint.value * getConstraintValue(constraint, subject, gameData)
+        const value = constraint.value * getConstraintValue(constraint, entry.id, subject, gameData)
 
         if (constraint.type === 'min' && value !== -1 && !entry.hidden && occurances < value) {
           if (value === 1) {
             errors.push(`${subject.name} must have ${an(pluralize.singular(entry.name))} selection`)
           } else {
-            debugger
             errors.push(`${subject.name} must have ${value - occurances} more ${pluralize(entry.name)}`)
           }
         }
@@ -388,13 +401,13 @@ const getSubject = (roster, path, condition) => {
   }
 }
 
-const getValue = (condition, subject, gameData) => {
-  const childId = gameData.ids[condition.childId]?.targetId || condition.childId
+const getValue = (condition, subject, gameData, catalogue) => {
+  const childId = findId(gameData, catalogue, condition.childId)?.targetId || condition.childId
 
   if (!subject) { return NaN }
   switch (condition.field) {
-    case 'selections': return subject.selections === undefined ? NaN : countBy(subject, childId, condition)
-    case 'forces': return subject.forces === undefined ? NaN : countBy(subject, childId, condition)
+    case 'selections': return countBy(subject, childId, condition)
+    case 'forces': return countBy(subject, childId, condition)
     default: {
       let cost = sumCost(subject, condition, childId)
       if (condition.percentValue) {
@@ -406,11 +419,10 @@ const getValue = (condition, subject, gameData) => {
   }
 }
 
-const getConstraintValue = (constraint, subject, gameData) => {
-  if (!subject) { return NaN }
+const getConstraintValue = (constraint, entryId, subject, gameData) => {
   switch (constraint.field) {
-    case 'selections': return subject.selections?.length
-    case 'forces': return subject.forces?.length
+    case 'selections': return 1
+    case 'forces': return 1
     default: {
       let cost = constraint.field.startsWith('limit::') ? (subject.costLimits?.costLimit.find(cl => `limit::${cl.id}` === constraint.field) ?? -1) : sumCost(subject, constraint, false)
       if (constraint.percentValue) {
@@ -425,14 +437,15 @@ const getConstraintValue = (constraint, subject, gameData) => {
 
 const checkCondition = (roster, path, condition, gameData) => {
   const subject = getSubject(roster, path, condition)
+  const catalogue = getCatalogue(roster, path, gameData)
 
   switch (condition.type) {
-    case 'greaterThan': return getValue(condition, subject, gameData) > condition.value
-    case 'lessThan': return getValue(condition, subject, gameData) < condition.value
-    case 'atMost': return getValue(condition, subject, gameData) <= condition.value
-    case 'atLeast': return getValue(condition, subject, gameData) >= condition.value
-    case 'equalTo': return getValue(condition, subject, gameData) === condition.value
-    case 'notEqualTo': return getValue(condition, subject, gameData) !== condition.value
+    case 'greaterThan': return getValue(condition, subject, gameData, catalogue) > condition.value
+    case 'lessThan': return getValue(condition, subject, gameData, catalogue) < condition.value
+    case 'atMost': return getValue(condition, subject, gameData, catalogue) <= condition.value
+    case 'atLeast': return getValue(condition, subject, gameData, catalogue) >= condition.value
+    case 'equalTo': return getValue(condition, subject, gameData, catalogue) === condition.value
+    case 'notEqualTo': return getValue(condition, subject, gameData, catalogue) !== condition.value
     case 'instanceOf': return [].concat(subject).filter(Boolean).some(s => s.entryId?.endsWith(condition.childId) || hasCategory(s, condition.childId))
     case 'notInstanceOf': return !([].concat(subject).filter(Boolean).some(s => s.entryId?.endsWith(condition.childId) || hasCategory(s, condition.childId)))
     default: { debugger; throw new Error('Unknown condition.type: ' + condition.type) }
@@ -445,6 +458,8 @@ window.cacheHits = 0
 window.cacheMisses = 0
 
 export const getEntry = (roster, path, id, gameData, ignoreCache) => {
+  if (id[0] === ':') { id = id.slice(2) }
+
   const cachePath = `${path}-${id}`
   if (roster !== lastRoster) {
     cache = {}
@@ -454,7 +469,10 @@ export const getEntry = (roster, path, id, gameData, ignoreCache) => {
     return cache[cachePath]
   }
 
-  const entry = _.cloneDeep(gameData.ids[_.last(id.split('::'))])
+  const catalogue = getCatalogue(roster, path, gameData)
+  const entry = _.cloneDeep(findId(gameData, catalogue, _.last(id.split('::'))))
+
+  if (!entry) { return null }
 
   if (entry.targetId) {
     return getEntry(roster, path, `${id}::${entry.targetId}`, gameData, ignoreCache)
@@ -462,7 +480,7 @@ export const getEntry = (roster, path, id, gameData, ignoreCache) => {
 
   const baseId = id.split('::').slice(0, -1).join('::')
 
-  const base = gameData.ids[_.last(baseId.split('::'))]
+  const base = findId(gameData, catalogue, _.last(baseId.split('::')))
   if (base?.targetId === entry.id) {
     Object.keys(base).forEach(key => {
       if (entry[key] === undefined) {
@@ -529,6 +547,7 @@ export const getEntry = (roster, path, id, gameData, ignoreCache) => {
     }
   }
 
+
   entry.infoLinks?.forEach(handleLink)
   delete entry.infoLinks
 
@@ -557,7 +576,7 @@ export const getEntry = (roster, path, id, gameData, ignoreCache) => {
   })
 
   cache[cachePath] = entry
-
   window.cacheMisses++
+
   return entry
 }

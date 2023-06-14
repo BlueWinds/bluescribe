@@ -1,7 +1,7 @@
 import Select from 'react-select'
 import _ from 'lodash'
 
-import { randomId } from '../../utils'
+import { findId, randomId } from '../../utils'
 import { useFile, useSystem } from '../EditSystem'
 import Profile from './Profile'
 import Modifier from './Modifier'
@@ -73,7 +73,7 @@ export const Publication = ({ file, entry, updateFile, ...props }) => {
   const options = [
     ...(file.publications || []),
     ...(gameData[gameData.gameSystem].publications || []),
-    ...file.catalogueLinks?.map(link => gameData.ids[link.targetId].publications) || []
+    ...file.catalogueLinks?.map(link => gameData.catalogues[link.targetId].publications) || []
   ]
 
   return <tr {...props} >
@@ -81,7 +81,7 @@ export const Publication = ({ file, entry, updateFile, ...props }) => {
     <td>
       <input className="page" value={entry.page} name="page" placeholder="Page" onChange={e => { entry.page = e.target.value; updateFile() }} />
       <ReferenceSelect
-        value={gameData.ids[entry.publicationId]}
+        value={findId(gameData, file, entry.publicationId)}
         options={options}
         onChange={publication => {
           entry.publicationId = publication?.id
@@ -154,6 +154,7 @@ export const Conditions = () => {
 }
 
 export const Repeats = ({ entry, filename, modifier, updateFile, ...props }) => {
+  const [file] = useFile(filename)
   const gameData = useSystem()
   return <>
     <tr {...props}>
@@ -170,7 +171,7 @@ export const Repeats = ({ entry, filename, modifier, updateFile, ...props }) => 
           }
           updateFile()
         }} data-tooltip-id="tooltip" data-tooltip-html="Make modifier repeatable">{entry.repeats ? '-' : '+'}</button>
-        {entry.repeats ? repeatToString(entry.repeats[0], gameData) : 'Does not repeat'}
+        {entry.repeats ? repeatToString(entry.repeats[0], gameData, file) : 'Does not repeat'}
       </th>
     </tr>
     {entry.repeats?.length && <Repeat entry={entry} filename={filename} modifier={modifier} {...props} />}

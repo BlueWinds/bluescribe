@@ -3,6 +3,7 @@ import BounceLoader from 'react-spinners/BounceLoader'
 import useStorage from 'squirrel-gill'
 import { FileDrop } from 'react-file-drop'
 
+import { rosterFs } from './fs'
 import { listRosters, loadRoster, importRoster, deleteRoster } from './repo/rosters'
 import { validateRoster } from './validate'
 import { useRoster, useSystem, RosterErrorsContext, useConfirm } from './Context'
@@ -22,7 +23,7 @@ const SelectRoster = () => {
 
   useEffect(() => {
     const load = async () => {
-      const r = await listRosters(gameData.gameSystem)
+      const r = await listRosters(gameData.gameSystem, rosterFs)
       setRosters(r)
       if (!r[selected]) { setSelected(Object.keys(r)[0] || 'New') }
       if (r[newName]) {
@@ -42,14 +43,14 @@ const SelectRoster = () => {
     <FileDrop onFrameDrop={async (event) => {
         if (event.dataTransfer?.items[0]?.kind === 'file') {
           const file = event.dataTransfer.items[0].getAsFile()
-          await importRoster(file)
+          await importRoster(file, rosterFs)
           setSelected(file.name)
           setRosters(null)
         }
       }} >
       <p>To import a <code>.rosz</code> file, drop it anywhere on the page, or <span role="link" onClick={() => document.getElementById('import-roster').click()}>click here to select one</span>.</p>
-      <input type="file" accept=".rosz" id="import-roster" onChange={async (e) => {
-        await importRoster(e.target.files[0])
+      <input type="file" accept=".rosz,.ros" id="import-roster" onChange={async (e) => {
+        await importRoster(e.target.files[0], rosterFs)
         setSelected(e.target.files[0].name)
         setRosters(null)
       }} />
@@ -70,9 +71,9 @@ const SelectRoster = () => {
         }}>Create <code>{newName}.rosz</code></button>
       </>: <>
         {typeof rosters[selected] !== 'string' && <ul>BlueScribe is having trouble parsing <code>{selected}</code>. It may not be a valid roster file, or this could be a bug.</ul>}
-        <button disabled={typeof rosters[selected] !== 'string'} onClick={async () => { setRoster(await loadRoster(selected), false) }}>Load</button>
+        <button disabled={typeof rosters[selected] !== 'string'} onClick={async () => { setRoster(await loadRoster('/' + selected, rosterFs), false) }}>Load</button>
         <button className="secondary outline" onClick={() => confirmDelete(async () => {
-          await deleteRoster(selected)
+          await deleteRoster(selected, rosterFs)
           setRosters(null)
         })}>Delete</button>
       </>}

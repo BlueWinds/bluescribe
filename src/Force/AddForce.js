@@ -6,7 +6,7 @@ import { addForce } from '../utils'
 
 const AddForce = () => {
   const gameData = useSystem()
-  const catalogues = _.sortBy(gameData.catalogues, 'name')
+  const catalogues = _.sortBy(gameData.catalogues, 'name').filter(c => !c.library)
 
   const [faction, setFaction] = useState(catalogues[0].id)
   const [force, setForce] = useState(_.sortBy(gameData.gameSystem.forceEntries, 'name')[0].id)

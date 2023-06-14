@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import BounceLoader from 'react-spinners/BounceLoader'
 
 import { listGameSystems, listAvailableGameSystems, addGameSystem, clearGameSystem } from './'
+import fs from '../fs'
 
 const SelectSystem = ({setSystemInfo, setMode}) => {
   const [systems, setSystems] = useState(null)
@@ -12,7 +13,7 @@ const SelectSystem = ({setSystemInfo, setMode}) => {
 
   useEffect(() => {
     const load = async () => {
-      const s = await listGameSystems()
+      const s = await listGameSystems(fs)
       setSystems(s)
       setSelected(Object.keys(s)[0] || 'Add New')
     }
@@ -55,7 +56,7 @@ const SelectSystem = ({setSystemInfo, setMode}) => {
             {' '}<a target="_blank" rel="noreferrer" href={systems[selected].bugTrackerUrl}>Repository</a>
             {' | '}<a target="_blank" rel="noreferrer" href={systems[selected].reportBugUrl}>Report a bug</a>
             {' | '}<a href="/#" onClick={() => {
-              clearGameSystem(systems[selected]).then(() => {
+              clearGameSystem(systems[selected], fs).then(() => {
                 setSystems(null)
               })
             }}>Clear data</a>
@@ -67,7 +68,7 @@ const SelectSystem = ({setSystemInfo, setMode}) => {
         if (selected === 'Add New') {
           if (updatingSystem) { return }
 
-          const queue = await addGameSystem(available[selectedAvailable])
+          const queue = await addGameSystem(available[selectedAvailable], fs)
           let done = 0
           setUpdatingSystem({done})
           queue.start()
@@ -86,7 +87,7 @@ const SelectSystem = ({setSystemInfo, setMode}) => {
       }}>{updatingSystem ? `${updatingSystem.done} files downloaded` : 'Load'}</button>
       {selected !== 'Add New' && !updatingSystem && <button onClick={async () => {
         if (updatingSystem) { return }
-        const queue = await addGameSystem(systems[selected])
+        const queue = await addGameSystem(systems[selected], fs)
 
         const count = queue.size
         let done = 0

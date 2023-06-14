@@ -1,0 +1,19 @@
+{
+  "catalogue": {
+    "id": "b22d-a2e6-b4a2-410d",
+    "name": "Orcs",
+    "revision": 1,
+    "battleScribeVersion": 2.03,
+    "library": false,
+    "gameSystemId": "67a7-84c5-c09f-52de",
+    "gameSystemRevision": 1,
+    "xmlns": "http://www.battlescribe.net/schema/catalogueSchema"
+  },
+  "playable": true,
+  "id": 1729049986,
+  "include": [1000],
+  "name": "Orcs",
+  "short": "orcs",
+  "version": 2.03,
+  "nrversion": 1
+}

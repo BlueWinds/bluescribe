@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<roster id="9b73-1ef4-761c-0070" name="New Roster" battleScribeVersion="2.03" gameSystemId="67a7-84c5-c09f-52de" gameSystemName="TGS2" gameSystemRevision="3" xmlns="http://www.battlescribe.net/schema/rosterSchema">
+  <costs>
+    <cost name="core" typeId="26c8-6d11-7d4f-d546" value="1.0"/>
+    <cost name="pt" typeId="8e89-22f9-7df2-714e" value="212.0"/>
+  </costs>
+  <forces>
+    <force id="e51e-0685-0281-ee6a" name="Auxilliary Force" entryId="d924-5f46-21b1-02b8" catalogueId="b22d-a2e6-b4a2-410d" catalogueRevision="1" catalogueName="Orcs">
+      <selections>
+        <selection id="55c2-cfba-860a-30fe" name="Dummy Auxiliary" entryId="c964-023f-b3c2-cccd" number="1" type="upgrade">
+          <costs>
+            <cost name="core" typeId="26c8-6d11-7d4f-d546" value="0.0"/>
+            <cost name="pt" typeId="8e89-22f9-7df2-714e" value="0.0"/>
+            <cost name="cp" typeId="32fb-7c82-f261-08ff" value="0.0"/>
+            <cost name="archers" typeId="941e-f7f9-c326-7c2e" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="d38c-1122-50eb-bba2" name="Auxilliary Units" entryId="e9fd-9292-e4fd-381c" primary="true"/>
+            <category id="983a-de6e-58ca-8e97" name="Test" entryId="095b-7d2e-7a31-76b5" primary="false"/>
+          </categories>
+        </selection>
+      </selections>
+      <categories>
+        <category id="cca0-5a10-7b83-6406" name="Uncategorised" entryId="(No Category)" primary="false"/>
+        <category id="e0dc-52ec-e137-165c" name="Auxilliary Units" entryId="e9fd-9292-e4fd-381c" primary="false"/>
+        <category id="06af-19e6-48b2-0160" name="Ambushers" entryId="81c2-fda3-e821-388a" primary="false"/>
+      </categories>
+    </force>
+    <force id="7870-64d3-0df6-3b69" name="Main Force" entryId="7d96-73fc-b5bd-73dc" catalogueId="b22d-a2e6-b4a2-410d" catalogueRevision="1" catalogueName="Orcs">
+      <selections>
+        <selection id="067f-d276-8d40-4f92" name="Dummy Auxiliary" entryId="c964-023f-b3c2-cccd" number="1" type="upgrade">
+          <costs>
+            <cost name="core" typeId="26c8-6d11-7d4f-d546" value="0.0"/>
+            <cost name="pt" typeId="8e89-22f9-7df2-714e" value="0.0"/>
+            <cost name="cp" typeId="32fb-7c82-f261-08ff" value="0.0"/>
+            <cost name="archers" typeId="941e-f7f9-c326-7c2e" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="5c77-6987-013e-8234" name="Auxilliary Units" entryId="e9fd-9292-e4fd-381c" primary="true"/>
+            <category id="8096-a186-4355-4c97" name="Test" entryId="095b-7d2e-7a31-76b5" primary="false"/>
+          </categories>
+        </selection>
+        <selection id="4df3-2a59-ca34-93e1" name="Unit Modifiers" entryId="0007-6d66-3aed-e088" number="1" type="upgrade">
+          <costs>
+            <cost name="pt" typeId="8e89-22f9-7df2-714e" value="0.0"/>
+            <cost name="cp" typeId="32fb-7c82-f261-08ff" value="0.0"/>
+            <cost name="core" typeId="26c8-6d11-7d4f-d546" value="1.0"/>
+            <cost name="archers" typeId="941e-f7f9-c326-7c2e" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="d760-7d2c-4b86-5672" name="Modifiers" entryId="2409-9638-000d-a594" primary="true"/>
+          </categories>
+        </selection>
+        <selection id="93ae-916d-8ca6-09de" name="Orc Warlord" entryId="cc78-085f-b159-030a" number="1" type="unit">
+          <selections>
+            <selection id="477b-45d9-0058-6c10" name="Big Sword" entryId="11e6-6772-dfec-366a" number="1" type="upgrade">
+              <costs>
+                <cost name="pt" typeId="8e89-22f9-7df2-714e" value="10.0"/>
+                <cost name="core" typeId="26c8-6d11-7d4f-d546" value="0.0"/>
+                <cost name="archers" typeId="941e-f7f9-c326-7c2e" value="0.0"/>
+                <cost name="cp" typeId="32fb-7c82-f261-08ff" value="0.0"/>
+              </costs>
+            </selection>
+            <selection id="2e56-fc94-2f3b-d58f" name="Heavy Armour" entryId="9560-a4e0-ccdf-8521" entryGroupId="a09c-5727-0d72-c80c" number="1" type="upgrade">
+              <costs>
+                <cost name="pt" typeId="8e89-22f9-7df2-714e" value="2.0"/>
+                <cost name="core" typeId="26c8-6d11-7d4f-d546" value="0.0"/>
+                <cost name="archers" typeId="941e-f7f9-c326-7c2e" value="0.0"/>
+                <cost name="cp" typeId="32fb-7c82-f261-08ff" value="0.0"/>
+              </costs>
+            </selection>
+            <selection id="4660-479c-2aa5-15a8" name="Hide Armour" entryId="4680-d573-915c-40f8" number="1" type="upgrade">
+              <costs>
+                <cost name="core" typeId="26c8-6d11-7d4f-d546" value="0.0"/>
+                <cost name="archers" typeId="941e-f7f9-c326-7c2e" value="0.0"/>
+                <cost name="pt" typeId="8e89-22f9-7df2-714e" value="0.0"/>
+                <cost name="cp" typeId="32fb-7c82-f261-08ff" value="0.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name="pt" typeId="8e89-22f9-7df2-714e" value="200.0"/>
+            <cost name="cp" typeId="32fb-7c82-f261-08ff" value="0.0"/>
+            <cost name="core" typeId="26c8-6d11-7d4f-d546" value="0.0"/>
+            <cost name="archers" typeId="941e-f7f9-c326-7c2e" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="3492-629d-4cdf-daeb" name="Core Units" entryId="a3c9-979e-385a-9979" primary="true"/>
+            <category id="da25-90a8-c5f0-6b51" name="Test" entryId="095b-7d2e-7a31-76b5" primary="false"/>
+          </categories>
+        </selection>
+      </selections>
+      <categories>
+        <category id="3dfc-e74b-8d9a-1888" name="Uncategorised" entryId="(No Category)" primary="false"/>
+        <category id="eb04-44fa-d6fc-e8c8" name="Core Units" entryId="a3c9-979e-385a-9979" primary="false"/>
+        <category id="504e-0351-3047-544e" name="Special Units" entryId="e050-4ba9-bb13-a197" primary="false"/>
+        <category id="1599-09fa-fce9-53b2" name="Auxilliary Units" entryId="e9fd-9292-e4fd-381c" primary="false"/>
+        <category id="7df2-60c3-1933-4ec8" name="Modifiers" entryId="2409-9638-000d-a594" primary="false"/>
+      </categories>
+    </force>
+  </forces>
+</roster>

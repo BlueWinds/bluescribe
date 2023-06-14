@@ -1,5 +1,6 @@
 import _ from 'lodash'
 
+import { findId } from '../../utils'
 import { Comment, Hidden, Id, Modifiers, Name, Publication, ReferenceSelect } from './fields'
 import { useFile, useSystem, gatherFiles } from '../EditSystem'
 
@@ -10,7 +11,7 @@ const Profile = ({ filename, on, profile }) => {
   const options = []
   gatherFiles(file, gameData).forEach(file => options.push(...(file.profileTypes || [])))
 
-  const type = gameData.ids[profile.typeId]
+  const type = findId(gameData, file, profile.typeId)
 
   return <details>
     <summary>{profile.name || profile.typeName}</summary>
@@ -32,7 +33,7 @@ const Profile = ({ filename, on, profile }) => {
         <td>
           <ReferenceSelect
             isClearable={false}
-            value={gameData.ids[profile.typeId]}
+            value={findId(gameData, file, profile.typeId)}
             options={options}
             onChange={profileType => {
               profile.typeId = profileType.id

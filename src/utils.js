@@ -8,6 +8,25 @@ export const randomId = () => {
   return `${hex4()}-${hex4()}-${hex4()}-${hex4()}`
 }
 
+export const getCatalogue = (roster, path, gameData) => {
+  const force = _.get(roster, path.replace(/forces.force.(\d+).*/, 'forces.force.$1'))
+  if (!force) { return gameData.gameSystem }
+  return gameData.catalogues[force.catalogueId]
+}
+
+export const findId = (gameData, catalogue, id) => {
+  if (gameData.gameSystem.ids[id]) {
+    return gameData.gameSystem.ids[id]
+  } else if (catalogue.ids[id]) {
+    return catalogue.ids[id]
+  } else {
+    for (let cl of catalogue.catalogueLinks || []) {
+      const found = findId(gameData, gameData.catalogues[cl.targetId], id)
+      if (found) { return found }
+    }
+  }
+}
+
 export const sumCosts = (entry, costs = {}) => {
   (entry.costs?.cost || entry.costs)?.forEach(c => {
     if (c.value !== 0) {
@@ -67,19 +86,20 @@ export const createRoster = (name, gameSystem) => {
 }
 
 export const addForce = (roster, forceId, factionId, gameData) => {
+  const entry = findId(gameData, gameData.catalogues[factionId], forceId)
   roster.forces = roster.forces || {force: []}
   roster.forces.force.push({
     id: randomId(),
-    name: gameData.ids[forceId].name,
+    name: entry.name,
     entryId: forceId,
     catalogueId: factionId,
-    catalogueRevision: gameData.ids[factionId].revision,
-    catalogueName: gameData.ids[factionId].name,
+    catalogueRevision: gameData.catalogues[factionId].revision,
+    catalogueName: gameData.catalogues[factionId].name,
     publications: {
       publication: [
-        ...(gameData.ids[factionId].publications || []).map(p => _.pick(p, ['id', 'name'])),
+        ...(gameData.catalogues[factionId].publications || []).map(p => _.pick(p, ['id', 'name'])),
         ...(gameData.gameSystem.publications || []).map(p => _.pick(p, ['id', 'name'])),
-        ...(_.flatten(gameData.ids[factionId].catalogueLinks?.map(cl => gameData.ids[cl.targetId].publications || []))).map(p => _.pick(p, ['id', 'name'])),
+        ...(_.flatten(gameData.catalogues[factionId].catalogueLinks?.map(cl => gameData.catalogues[cl.targetId].publications || []))).map(p => _.pick(p, ['id', 'name'])),
       ]
     },
     categories: {
@@ -90,7 +110,7 @@ export const addForce = (roster, forceId, factionId, gameData) => {
           entryId: "(No Category)",
           primary: "false",
         },
-        ...gameData.ids[forceId].categoryLinks.map(c => ({
+        ...entry.categoryLinks.map(c => ({
           id: c.id,
           name: c.name,
           entryId: c.targetId,
@@ -101,7 +121,7 @@ export const addForce = (roster, forceId, factionId, gameData) => {
   })
 }
 
-export const addSelection = (base, selectionEntry, gameData, entryGroup, number = 1) => {
+export const addSelection = (base, selectionEntry, gameData, entryGroup, catalogue, number = 1) => {
   base.selections = base.selections || {selection: []}
   const collective = isCollective(selectionEntry)
 
@@ -131,14 +151,14 @@ export const addSelection = (base, selectionEntry, gameData, entryGroup, number 
     newSelection.entryGroupId = entryGroup.id
   }
 
-  addCategories(newSelection, selectionEntry, gameData)
+  addCategories(newSelection, selectionEntry, gameData, catalogue)
   addProfiles(newSelection, selectionEntry)
   addRules(newSelection, selectionEntry)
 
   selectionEntry.selectionEntries?.forEach(selection => {
     const min = getMinCount(selection)
     if (min) {
-      addSelection(newSelection, selection, gameData, null, collective ? min * number : min)
+      addSelection(newSelection, selection, gameData, null, catalogue, collective ? min * number : min)
     }
   })
 
@@ -147,10 +167,10 @@ export const addSelection = (base, selectionEntry, gameData, entryGroup, number 
       let min = getMinCount(selection)
 
       if (min) {
-        addSelection(newSelection, selection, gameData, entryGroup, collective ? min * number : min)
+        addSelection(newSelection, selection, gameData, entryGroup, catalogue, collective ? min * number : min)
       } else if (getMinCount(entryGroup) && entryGroup.defaultSelectionEntryId && selection.id.includes(entryGroup.defaultSelectionEntryId)) {
         min = getMinCount(entryGroup)
-        addSelection(newSelection, selection, gameData, entryGroup, collective ? min * number : min)
+        addSelection(newSelection, selection, gameData, entryGroup, catalogue, collective ? min * number : min)
       }
     })
 
@@ -161,14 +181,14 @@ export const addSelection = (base, selectionEntry, gameData, entryGroup, number 
 
   base.selections.selection.push(newSelection)
   if (!collective && number > 1) {
-    addSelection(base, selectionEntry, gameData, entryGroup, number - 1)
+    addSelection(base, selectionEntry, gameData, entryGroup, catalogue, number - 1)
   }
 }
 
-const addCategories = (selection, selectionEntry, gameData) => {
+const addCategories = (selection, selectionEntry, gameData, catalogue) => {
   selection.categories.category.push(...(selectionEntry.categoryLinks || []).map(c => ({
     id: randomId(),
-    name: gameData.ids[c.targetId].name,
+    name: findId(gameData, catalogue, c.targetId).name,
     entryId: c.targetId,
     primary: c.primary,
   })))
@@ -214,7 +234,7 @@ export const refreshSelection = (roster, path, selection, gameData) => {
     c.value *= selection.number
   })
 
-  addCategories(selection, selectionEntry, gameData)
+  addCategories(selection, selectionEntry, gameData, getCatalogue(roster, path, gameData))
   addProfiles(selection, selectionEntry, gameData)
   addRules(selection, selectionEntry, gameData)
 

@@ -5,6 +5,7 @@ import _ from 'lodash'
 
 import containerTags from 'bsd-schema/containerTags.json'
 
+import fs from '../fs'
 import { readRawFiles } from './index'
 import EditFile from './EditFile'
 
@@ -60,7 +61,7 @@ export const gatherFiles = (file, gameData, files = [gameData[gameData.gameSyste
   files.push(file)
 
   file.catalogueLinks?.forEach(link => {
-    gatherFiles(gameData.ids[link.targetId], gameData, files)
+    gatherFiles(gameData.catalogues[link.targetId], gameData, files)
   })
 
   return files
@@ -72,7 +73,7 @@ const EditSystem = ({ systemInfo, setSystemInfo }) => {
 
   useEffect(() => {
     if (!gameData) {
-      readRawFiles('/' + systemInfo.name).then(data => {
+      readRawFiles('/' + systemInfo.name, fs).then(data => {
         data.ids = buildIndex(data)
         setGameData(data)
         setSelectedFile(data.gameSystem)

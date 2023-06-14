@@ -1,0 +1,1686 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<roster id="9632-ac71-a9c7-a971" name="Ulthwe test warp" battleScribeVersion="2.03" gameSystemId="28ec-711c-d87f-3aeb" gameSystemName="Warhammer 40,000 9th Edition" gameSystemRevision="210" xmlns="http://www.battlescribe.net/schema/rosterSchema">
+  <costs>
+    <cost name=" PL" typeId="e356-c769-5920-6e14" value="158.0"/>
+    <cost name="pts" typeId="points" value="3240.0"/>
+  </costs>
+  <forces>
+    <force id="ebd2-9a99-add8-fceb" name="Battalion Detachment -3CP" entryId="564e-55d5-79bc-a4d7" catalogueId="30b2-6f64-b85e-b4dc" catalogueRevision="156" catalogueName="Aeldari - Craftworlds">
+      <selections>
+        <selection id="6b2c-e59c-aac2-e98e" name="Avatar of Khaine" entryId="16a8-9cfe-8cb2-56d6::65c6-8cd9-0a8b-0f0c" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="model">
+          <rules>
+            <rule id="16a8-9cfe-8cb2-56d6::3b85-6599-ea13-453d::d861-e9f8-5a9c-7595" name="Battle Focus" publicationId="1f62-db93-63f4-4dc7" hidden="false">
+              <description>This unit is eligible to shoot in a turn in which it Advanced, but if it does so, then until the end of the phase, models in this unit can only make attacks with Assault or Pistol weapons they are equipped with, and when resolving those attacks, this unit is treated as having Remained Stationary.
+In your Shooting phase, after this unit has finished making its attacks, unless it Fell Back or Advanced this turn, this unit can make a Battle Focus move. When it does so, roll one D6: each model in this unit can make a Normal Move of up to the distance in inches equal to the result, as if it were your Movement phase. A unit that makes a Battle Focus move cannot embark within a TRANSPORT model at the end of that move, and until the end of the turn, such a unit is not eligible to declare a charge. A unit cannot make a Battle Focus move if it arrived as Reinforcements this turn, and a unit cannot make more than one Battle Focus move per turn.
+NOTE: Battle Focus Moves Through Area Terrain
+If a unit makes a Battle Focus move and any of its models wish to move over any part of an Area Terrain feature, subtract 3&quot; from the distance models in that unit can move when making that Battle Focus move (to a minimum of 0). This penalty applies even if every part of that Area Terrain feature is 1&quot; or less in height, but is not cumulative with any other penalties that Area Terrain feature may impose (e.g. the Difficult Ground terrain trait).</description>
+            </rule>
+            <rule id="16a8-9cfe-8cb2-56d6::6e36-9712-345a-0bea::f5cf-ac08-7c58-c76d" name="Strands of Fate" hidden="false">
+              <description>Refer to your Codex for details.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="16a8-9cfe-8cb2-56d6::d337-70e9-25cf-0d73" name="1. Avatar of Khaine (8+ wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">10&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">2+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">7</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::703c-feec-20ff-1a57" name="Khaine Awakened (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 12&quot; of this model, each time a Combat Attrition test is taken for that nit, you can ignore any or all modifiers.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0ba5-fb8b-2a84-97ab" name="Molten Form" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model has a 4+ invulnerable save. Each time an attack is allocated to this model, halve the Damage characteristic of that attack (rounding up).</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::e460-0c15-200c-d5e5" name="2. Avatar of Khaine (4-7 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">9&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">3+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">N/A</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">6</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::b649-b96d-9f65-2e40" name="3. Avatar of Khaine (1-3 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">8&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">4+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">5</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0b0f-4023-c457-3210" name="Avatar of the Bloody-Handed God" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model can never have a Relic or a Warlord Trait.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::c4ed-2954-435a-cd10" name="The Bloody-Handed (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 6&quot; of this model, you can re-roll charge rolls made for that unit.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::17e7-4804-8e8e-7420" name="Burning Demise" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">When this model is destroyed, roll one D6 before removing it from play. On a 6 it explodes, and each unit within D6&quot; suffers D3 mortal wounds.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="62ca-137e-2eac-5f0c" name="Wailing Doom" entryId="16a8-9cfe-8cb2-56d6::dd6e-3e2d-52f7-3e3b" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="upgrade">
+              <profiles>
+                <profile id="16a8-9cfe-8cb2-56d6::77ac-cb09-5ef3-22c7" name="Wailing Doom (shooting)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">12&quot;</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Assault 1</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">12</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-4</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this wepaon, if a hit is scored, draw a straight line between the closest point of the bearer&apos;s base (or hull) and that of the closest model in the target unit. Make one wound roll against the target unit, and ech other unit this line passes over.</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::fe15-6359-8083-eb5e" name="Wailing Doom (Piercing Strike)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">x2</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-5</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::e8fb-1cdb-1d9c-3323" name="Wailing Doom (Sweeping Blow)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this weapon profile, make 2 hit rolls instead of 1.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="14.0"/>
+            <cost name="pts" typeId="points" value="270.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="be7d-15a3-8b4b-c166" name="Faction: Aeldari" entryId="05e9-e880-b1fb-ce90" primary="false"/>
+            <category id="fc14-ff4c-6795-7eea" name="Avatar of Khaine" entryId="e5a8-8df6-27a7-136e" primary="false"/>
+            <category id="772a-b236-0b1b-5f96" name="Character" entryId="ef18-746a-369f-43a4" primary="false"/>
+            <category id="98ef-eb54-ec65-3608" name="Daemon" entryId="fab8-a652-e9d1-88f1" primary="false"/>
+            <category id="bc6e-e799-a859-47c8" name="HQ" entryId="848a6ff2-0def-4c72-8433-ff7da70e6bc7" primary="true"/>
+            <category id="3291-3f4e-5ac4-11c5" name="Monster" entryId="3b77-decb-d468-6bcc" primary="false"/>
+            <category id="52ca-0b92-a2c3-7c5b" name="Faction: Asuryani" entryId="20fc-5c6e-4a04-320f" primary="false"/>
+            <category id="4b10-ee48-74c2-6a9f" name="Faction: &lt;Craftworld&gt;" entryId="fb5a-2f35-6253-b891" primary="false"/>
+          </categories>
+        </selection>
+        <selection id="dcb9-0f47-66eb-a093" name="Avatar of Khaine" entryId="16a8-9cfe-8cb2-56d6::65c6-8cd9-0a8b-0f0c" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="model">
+          <rules>
+            <rule id="16a8-9cfe-8cb2-56d6::3b85-6599-ea13-453d::d861-e9f8-5a9c-7595" name="Battle Focus" publicationId="1f62-db93-63f4-4dc7" hidden="false">
+              <description>This unit is eligible to shoot in a turn in which it Advanced, but if it does so, then until the end of the phase, models in this unit can only make attacks with Assault or Pistol weapons they are equipped with, and when resolving those attacks, this unit is treated as having Remained Stationary.
+In your Shooting phase, after this unit has finished making its attacks, unless it Fell Back or Advanced this turn, this unit can make a Battle Focus move. When it does so, roll one D6: each model in this unit can make a Normal Move of up to the distance in inches equal to the result, as if it were your Movement phase. A unit that makes a Battle Focus move cannot embark within a TRANSPORT model at the end of that move, and until the end of the turn, such a unit is not eligible to declare a charge. A unit cannot make a Battle Focus move if it arrived as Reinforcements this turn, and a unit cannot make more than one Battle Focus move per turn.
+NOTE: Battle Focus Moves Through Area Terrain
+If a unit makes a Battle Focus move and any of its models wish to move over any part of an Area Terrain feature, subtract 3&quot; from the distance models in that unit can move when making that Battle Focus move (to a minimum of 0). This penalty applies even if every part of that Area Terrain feature is 1&quot; or less in height, but is not cumulative with any other penalties that Area Terrain feature may impose (e.g. the Difficult Ground terrain trait).</description>
+            </rule>
+            <rule id="16a8-9cfe-8cb2-56d6::6e36-9712-345a-0bea::f5cf-ac08-7c58-c76d" name="Strands of Fate" hidden="false">
+              <description>Refer to your Codex for details.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="16a8-9cfe-8cb2-56d6::d337-70e9-25cf-0d73" name="1. Avatar of Khaine (8+ wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">10&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">2+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">7</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::703c-feec-20ff-1a57" name="Khaine Awakened (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 12&quot; of this model, each time a Combat Attrition test is taken for that nit, you can ignore any or all modifiers.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0ba5-fb8b-2a84-97ab" name="Molten Form" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model has a 4+ invulnerable save. Each time an attack is allocated to this model, halve the Damage characteristic of that attack (rounding up).</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::e460-0c15-200c-d5e5" name="2. Avatar of Khaine (4-7 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">9&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">3+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">N/A</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">6</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::b649-b96d-9f65-2e40" name="3. Avatar of Khaine (1-3 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">8&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">4+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">5</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0b0f-4023-c457-3210" name="Avatar of the Bloody-Handed God" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model can never have a Relic or a Warlord Trait.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::c4ed-2954-435a-cd10" name="The Bloody-Handed (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 6&quot; of this model, you can re-roll charge rolls made for that unit.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::17e7-4804-8e8e-7420" name="Burning Demise" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">When this model is destroyed, roll one D6 before removing it from play. On a 6 it explodes, and each unit within D6&quot; suffers D3 mortal wounds.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="a62b-0ac4-70cf-9b00" name="Wailing Doom" entryId="16a8-9cfe-8cb2-56d6::dd6e-3e2d-52f7-3e3b" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="upgrade">
+              <profiles>
+                <profile id="16a8-9cfe-8cb2-56d6::77ac-cb09-5ef3-22c7" name="Wailing Doom (shooting)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">12&quot;</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Assault 1</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">12</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-4</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this wepaon, if a hit is scored, draw a straight line between the closest point of the bearer&apos;s base (or hull) and that of the closest model in the target unit. Make one wound roll against the target unit, and ech other unit this line passes over.</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::fe15-6359-8083-eb5e" name="Wailing Doom (Piercing Strike)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">x2</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-5</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::e8fb-1cdb-1d9c-3323" name="Wailing Doom (Sweeping Blow)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this weapon profile, make 2 hit rolls instead of 1.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="14.0"/>
+            <cost name="pts" typeId="points" value="270.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="2e94-7c3c-c138-b4b0" name="Faction: Aeldari" entryId="05e9-e880-b1fb-ce90" primary="false"/>
+            <category id="69c4-457d-57cf-b96b" name="Avatar of Khaine" entryId="e5a8-8df6-27a7-136e" primary="false"/>
+            <category id="061c-7dfb-764a-20b0" name="Character" entryId="ef18-746a-369f-43a4" primary="false"/>
+            <category id="aed3-6183-d1d8-af10" name="Daemon" entryId="fab8-a652-e9d1-88f1" primary="false"/>
+            <category id="fb78-77a6-1469-2e32" name="HQ" entryId="848a6ff2-0def-4c72-8433-ff7da70e6bc7" primary="true"/>
+            <category id="54a7-0721-36c3-1d2b" name="Monster" entryId="3b77-decb-d468-6bcc" primary="false"/>
+            <category id="a401-5a22-8f43-c107" name="Faction: Asuryani" entryId="20fc-5c6e-4a04-320f" primary="false"/>
+            <category id="a14b-06b8-1d19-22e6" name="Faction: &lt;Craftworld&gt;" entryId="fb5a-2f35-6253-b891" primary="false"/>
+          </categories>
+        </selection>
+        <selection id="dc1d-976e-2657-6469" name="Avatar of Khaine" entryId="16a8-9cfe-8cb2-56d6::65c6-8cd9-0a8b-0f0c" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="model">
+          <rules>
+            <rule id="16a8-9cfe-8cb2-56d6::3b85-6599-ea13-453d::d861-e9f8-5a9c-7595" name="Battle Focus" publicationId="1f62-db93-63f4-4dc7" hidden="false">
+              <description>This unit is eligible to shoot in a turn in which it Advanced, but if it does so, then until the end of the phase, models in this unit can only make attacks with Assault or Pistol weapons they are equipped with, and when resolving those attacks, this unit is treated as having Remained Stationary.
+In your Shooting phase, after this unit has finished making its attacks, unless it Fell Back or Advanced this turn, this unit can make a Battle Focus move. When it does so, roll one D6: each model in this unit can make a Normal Move of up to the distance in inches equal to the result, as if it were your Movement phase. A unit that makes a Battle Focus move cannot embark within a TRANSPORT model at the end of that move, and until the end of the turn, such a unit is not eligible to declare a charge. A unit cannot make a Battle Focus move if it arrived as Reinforcements this turn, and a unit cannot make more than one Battle Focus move per turn.
+NOTE: Battle Focus Moves Through Area Terrain
+If a unit makes a Battle Focus move and any of its models wish to move over any part of an Area Terrain feature, subtract 3&quot; from the distance models in that unit can move when making that Battle Focus move (to a minimum of 0). This penalty applies even if every part of that Area Terrain feature is 1&quot; or less in height, but is not cumulative with any other penalties that Area Terrain feature may impose (e.g. the Difficult Ground terrain trait).</description>
+            </rule>
+            <rule id="16a8-9cfe-8cb2-56d6::6e36-9712-345a-0bea::f5cf-ac08-7c58-c76d" name="Strands of Fate" hidden="false">
+              <description>Refer to your Codex for details.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="16a8-9cfe-8cb2-56d6::d337-70e9-25cf-0d73" name="1. Avatar of Khaine (8+ wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">10&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">2+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">7</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::703c-feec-20ff-1a57" name="Khaine Awakened (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 12&quot; of this model, each time a Combat Attrition test is taken for that nit, you can ignore any or all modifiers.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0ba5-fb8b-2a84-97ab" name="Molten Form" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model has a 4+ invulnerable save. Each time an attack is allocated to this model, halve the Damage characteristic of that attack (rounding up).</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::e460-0c15-200c-d5e5" name="2. Avatar of Khaine (4-7 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">9&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">3+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">N/A</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">6</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::b649-b96d-9f65-2e40" name="3. Avatar of Khaine (1-3 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">8&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">4+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">5</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0b0f-4023-c457-3210" name="Avatar of the Bloody-Handed God" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model can never have a Relic or a Warlord Trait.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::c4ed-2954-435a-cd10" name="The Bloody-Handed (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 6&quot; of this model, you can re-roll charge rolls made for that unit.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::17e7-4804-8e8e-7420" name="Burning Demise" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">When this model is destroyed, roll one D6 before removing it from play. On a 6 it explodes, and each unit within D6&quot; suffers D3 mortal wounds.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="f1eb-c156-6b79-0867" name="Wailing Doom" entryId="16a8-9cfe-8cb2-56d6::dd6e-3e2d-52f7-3e3b" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="upgrade">
+              <profiles>
+                <profile id="16a8-9cfe-8cb2-56d6::77ac-cb09-5ef3-22c7" name="Wailing Doom (shooting)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">12&quot;</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Assault 1</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">12</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-4</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this wepaon, if a hit is scored, draw a straight line between the closest point of the bearer&apos;s base (or hull) and that of the closest model in the target unit. Make one wound roll against the target unit, and ech other unit this line passes over.</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::fe15-6359-8083-eb5e" name="Wailing Doom (Piercing Strike)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">x2</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-5</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::e8fb-1cdb-1d9c-3323" name="Wailing Doom (Sweeping Blow)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this weapon profile, make 2 hit rolls instead of 1.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="14.0"/>
+            <cost name="pts" typeId="points" value="270.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="cd7e-adfb-8c5e-ddb3" name="Faction: Aeldari" entryId="05e9-e880-b1fb-ce90" primary="false"/>
+            <category id="47ec-924b-b0f5-54c9" name="Avatar of Khaine" entryId="e5a8-8df6-27a7-136e" primary="false"/>
+            <category id="837e-d69a-1111-fe2a" name="Character" entryId="ef18-746a-369f-43a4" primary="false"/>
+            <category id="4107-178c-5c88-015f" name="Daemon" entryId="fab8-a652-e9d1-88f1" primary="false"/>
+            <category id="016d-9825-f056-270a" name="HQ" entryId="848a6ff2-0def-4c72-8433-ff7da70e6bc7" primary="true"/>
+            <category id="ae06-407c-5dc3-47da" name="Monster" entryId="3b77-decb-d468-6bcc" primary="false"/>
+            <category id="7052-d240-3721-5b23" name="Faction: Asuryani" entryId="20fc-5c6e-4a04-320f" primary="false"/>
+            <category id="7348-b688-80fa-7127" name="Faction: &lt;Craftworld&gt;" entryId="fb5a-2f35-6253-b891" primary="false"/>
+          </categories>
+        </selection>
+        <selection id="e687-4659-c6f5-3d2b" name="Avatar of Khaine" entryId="16a8-9cfe-8cb2-56d6::65c6-8cd9-0a8b-0f0c" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="model">
+          <rules>
+            <rule id="16a8-9cfe-8cb2-56d6::3b85-6599-ea13-453d::d861-e9f8-5a9c-7595" name="Battle Focus" publicationId="1f62-db93-63f4-4dc7" hidden="false">
+              <description>This unit is eligible to shoot in a turn in which it Advanced, but if it does so, then until the end of the phase, models in this unit can only make attacks with Assault or Pistol weapons they are equipped with, and when resolving those attacks, this unit is treated as having Remained Stationary.
+In your Shooting phase, after this unit has finished making its attacks, unless it Fell Back or Advanced this turn, this unit can make a Battle Focus move. When it does so, roll one D6: each model in this unit can make a Normal Move of up to the distance in inches equal to the result, as if it were your Movement phase. A unit that makes a Battle Focus move cannot embark within a TRANSPORT model at the end of that move, and until the end of the turn, such a unit is not eligible to declare a charge. A unit cannot make a Battle Focus move if it arrived as Reinforcements this turn, and a unit cannot make more than one Battle Focus move per turn.
+NOTE: Battle Focus Moves Through Area Terrain
+If a unit makes a Battle Focus move and any of its models wish to move over any part of an Area Terrain feature, subtract 3&quot; from the distance models in that unit can move when making that Battle Focus move (to a minimum of 0). This penalty applies even if every part of that Area Terrain feature is 1&quot; or less in height, but is not cumulative with any other penalties that Area Terrain feature may impose (e.g. the Difficult Ground terrain trait).</description>
+            </rule>
+            <rule id="16a8-9cfe-8cb2-56d6::6e36-9712-345a-0bea::f5cf-ac08-7c58-c76d" name="Strands of Fate" hidden="false">
+              <description>Refer to your Codex for details.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="16a8-9cfe-8cb2-56d6::d337-70e9-25cf-0d73" name="1. Avatar of Khaine (8+ wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">10&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">2+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">7</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::703c-feec-20ff-1a57" name="Khaine Awakened (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 12&quot; of this model, each time a Combat Attrition test is taken for that nit, you can ignore any or all modifiers.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0ba5-fb8b-2a84-97ab" name="Molten Form" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model has a 4+ invulnerable save. Each time an attack is allocated to this model, halve the Damage characteristic of that attack (rounding up).</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::e460-0c15-200c-d5e5" name="2. Avatar of Khaine (4-7 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">9&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">3+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">N/A</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">6</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::b649-b96d-9f65-2e40" name="3. Avatar of Khaine (1-3 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">8&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">4+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">5</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0b0f-4023-c457-3210" name="Avatar of the Bloody-Handed God" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model can never have a Relic or a Warlord Trait.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::c4ed-2954-435a-cd10" name="The Bloody-Handed (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 6&quot; of this model, you can re-roll charge rolls made for that unit.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::17e7-4804-8e8e-7420" name="Burning Demise" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">When this model is destroyed, roll one D6 before removing it from play. On a 6 it explodes, and each unit within D6&quot; suffers D3 mortal wounds.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="7787-a310-9f2e-92f2" name="Wailing Doom" entryId="16a8-9cfe-8cb2-56d6::dd6e-3e2d-52f7-3e3b" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="upgrade">
+              <profiles>
+                <profile id="16a8-9cfe-8cb2-56d6::77ac-cb09-5ef3-22c7" name="Wailing Doom (shooting)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">12&quot;</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Assault 1</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">12</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-4</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this wepaon, if a hit is scored, draw a straight line between the closest point of the bearer&apos;s base (or hull) and that of the closest model in the target unit. Make one wound roll against the target unit, and ech other unit this line passes over.</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::fe15-6359-8083-eb5e" name="Wailing Doom (Piercing Strike)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">x2</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-5</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::e8fb-1cdb-1d9c-3323" name="Wailing Doom (Sweeping Blow)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this weapon profile, make 2 hit rolls instead of 1.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="14.0"/>
+            <cost name="pts" typeId="points" value="270.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="8959-af21-3a36-3a62" name="Faction: Aeldari" entryId="05e9-e880-b1fb-ce90" primary="false"/>
+            <category id="d1db-2524-a094-df17" name="Avatar of Khaine" entryId="e5a8-8df6-27a7-136e" primary="false"/>
+            <category id="787a-3bb7-94a5-704f" name="Character" entryId="ef18-746a-369f-43a4" primary="false"/>
+            <category id="7067-c260-ba19-f082" name="Daemon" entryId="fab8-a652-e9d1-88f1" primary="false"/>
+            <category id="a4fa-7ae4-5a69-15c7" name="HQ" entryId="848a6ff2-0def-4c72-8433-ff7da70e6bc7" primary="true"/>
+            <category id="f112-54ef-6127-6ca0" name="Monster" entryId="3b77-decb-d468-6bcc" primary="false"/>
+            <category id="5790-8af1-fed5-50a7" name="Faction: Asuryani" entryId="20fc-5c6e-4a04-320f" primary="false"/>
+            <category id="6855-4891-1934-62e8" name="Faction: &lt;Craftworld&gt;" entryId="fb5a-2f35-6253-b891" primary="false"/>
+          </categories>
+        </selection>
+        <selection id="ce82-fd69-7d2d-8dc0" name="Avatar of Khaine" entryId="16a8-9cfe-8cb2-56d6::65c6-8cd9-0a8b-0f0c" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="model">
+          <rules>
+            <rule id="16a8-9cfe-8cb2-56d6::3b85-6599-ea13-453d::d861-e9f8-5a9c-7595" name="Battle Focus" publicationId="1f62-db93-63f4-4dc7" hidden="false">
+              <description>This unit is eligible to shoot in a turn in which it Advanced, but if it does so, then until the end of the phase, models in this unit can only make attacks with Assault or Pistol weapons they are equipped with, and when resolving those attacks, this unit is treated as having Remained Stationary.
+In your Shooting phase, after this unit has finished making its attacks, unless it Fell Back or Advanced this turn, this unit can make a Battle Focus move. When it does so, roll one D6: each model in this unit can make a Normal Move of up to the distance in inches equal to the result, as if it were your Movement phase. A unit that makes a Battle Focus move cannot embark within a TRANSPORT model at the end of that move, and until the end of the turn, such a unit is not eligible to declare a charge. A unit cannot make a Battle Focus move if it arrived as Reinforcements this turn, and a unit cannot make more than one Battle Focus move per turn.
+NOTE: Battle Focus Moves Through Area Terrain
+If a unit makes a Battle Focus move and any of its models wish to move over any part of an Area Terrain feature, subtract 3&quot; from the distance models in that unit can move when making that Battle Focus move (to a minimum of 0). This penalty applies even if every part of that Area Terrain feature is 1&quot; or less in height, but is not cumulative with any other penalties that Area Terrain feature may impose (e.g. the Difficult Ground terrain trait).</description>
+            </rule>
+            <rule id="16a8-9cfe-8cb2-56d6::6e36-9712-345a-0bea::f5cf-ac08-7c58-c76d" name="Strands of Fate" hidden="false">
+              <description>Refer to your Codex for details.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="16a8-9cfe-8cb2-56d6::d337-70e9-25cf-0d73" name="1. Avatar of Khaine (8+ wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">10&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">2+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">7</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::703c-feec-20ff-1a57" name="Khaine Awakened (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 12&quot; of this model, each time a Combat Attrition test is taken for that nit, you can ignore any or all modifiers.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0ba5-fb8b-2a84-97ab" name="Molten Form" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model has a 4+ invulnerable save. Each time an attack is allocated to this model, halve the Damage characteristic of that attack (rounding up).</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::e460-0c15-200c-d5e5" name="2. Avatar of Khaine (4-7 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">9&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">3+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">N/A</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">6</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::b649-b96d-9f65-2e40" name="3. Avatar of Khaine (1-3 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">8&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">4+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">5</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0b0f-4023-c457-3210" name="Avatar of the Bloody-Handed God" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model can never have a Relic or a Warlord Trait.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::c4ed-2954-435a-cd10" name="The Bloody-Handed (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 6&quot; of this model, you can re-roll charge rolls made for that unit.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::17e7-4804-8e8e-7420" name="Burning Demise" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">When this model is destroyed, roll one D6 before removing it from play. On a 6 it explodes, and each unit within D6&quot; suffers D3 mortal wounds.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="710b-42e1-9393-6db2" name="Wailing Doom" entryId="16a8-9cfe-8cb2-56d6::dd6e-3e2d-52f7-3e3b" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="upgrade">
+              <profiles>
+                <profile id="16a8-9cfe-8cb2-56d6::77ac-cb09-5ef3-22c7" name="Wailing Doom (shooting)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">12&quot;</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Assault 1</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">12</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-4</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this wepaon, if a hit is scored, draw a straight line between the closest point of the bearer&apos;s base (or hull) and that of the closest model in the target unit. Make one wound roll against the target unit, and ech other unit this line passes over.</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::fe15-6359-8083-eb5e" name="Wailing Doom (Piercing Strike)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">x2</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-5</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::e8fb-1cdb-1d9c-3323" name="Wailing Doom (Sweeping Blow)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this weapon profile, make 2 hit rolls instead of 1.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="14.0"/>
+            <cost name="pts" typeId="points" value="270.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="905c-61d3-f2c3-4b6f" name="Faction: Aeldari" entryId="05e9-e880-b1fb-ce90" primary="false"/>
+            <category id="c70c-e2ef-a719-f038" name="Avatar of Khaine" entryId="e5a8-8df6-27a7-136e" primary="false"/>
+            <category id="c114-f9d5-cab8-1642" name="Character" entryId="ef18-746a-369f-43a4" primary="false"/>
+            <category id="9043-1449-bbc9-051d" name="Daemon" entryId="fab8-a652-e9d1-88f1" primary="false"/>
+            <category id="89fa-85cf-d16b-21aa" name="HQ" entryId="848a6ff2-0def-4c72-8433-ff7da70e6bc7" primary="true"/>
+            <category id="017b-b08e-71bb-1c72" name="Monster" entryId="3b77-decb-d468-6bcc" primary="false"/>
+            <category id="0a97-68f3-476b-cb06" name="Faction: Asuryani" entryId="20fc-5c6e-4a04-320f" primary="false"/>
+            <category id="2a71-16b1-f6dd-ccb7" name="Faction: &lt;Craftworld&gt;" entryId="fb5a-2f35-6253-b891" primary="false"/>
+          </categories>
+        </selection>
+        <selection id="4f98-df8d-ff83-eb3f" name="Avatar of Khaine" entryId="16a8-9cfe-8cb2-56d6::65c6-8cd9-0a8b-0f0c" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="model">
+          <rules>
+            <rule id="16a8-9cfe-8cb2-56d6::3b85-6599-ea13-453d::d861-e9f8-5a9c-7595" name="Battle Focus" publicationId="1f62-db93-63f4-4dc7" hidden="false">
+              <description>This unit is eligible to shoot in a turn in which it Advanced, but if it does so, then until the end of the phase, models in this unit can only make attacks with Assault or Pistol weapons they are equipped with, and when resolving those attacks, this unit is treated as having Remained Stationary.
+In your Shooting phase, after this unit has finished making its attacks, unless it Fell Back or Advanced this turn, this unit can make a Battle Focus move. When it does so, roll one D6: each model in this unit can make a Normal Move of up to the distance in inches equal to the result, as if it were your Movement phase. A unit that makes a Battle Focus move cannot embark within a TRANSPORT model at the end of that move, and until the end of the turn, such a unit is not eligible to declare a charge. A unit cannot make a Battle Focus move if it arrived as Reinforcements this turn, and a unit cannot make more than one Battle Focus move per turn.
+NOTE: Battle Focus Moves Through Area Terrain
+If a unit makes a Battle Focus move and any of its models wish to move over any part of an Area Terrain feature, subtract 3&quot; from the distance models in that unit can move when making that Battle Focus move (to a minimum of 0). This penalty applies even if every part of that Area Terrain feature is 1&quot; or less in height, but is not cumulative with any other penalties that Area Terrain feature may impose (e.g. the Difficult Ground terrain trait).</description>
+            </rule>
+            <rule id="16a8-9cfe-8cb2-56d6::6e36-9712-345a-0bea::f5cf-ac08-7c58-c76d" name="Strands of Fate" hidden="false">
+              <description>Refer to your Codex for details.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="16a8-9cfe-8cb2-56d6::d337-70e9-25cf-0d73" name="1. Avatar of Khaine (8+ wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">10&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">2+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">7</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::703c-feec-20ff-1a57" name="Khaine Awakened (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 12&quot; of this model, each time a Combat Attrition test is taken for that nit, you can ignore any or all modifiers.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0ba5-fb8b-2a84-97ab" name="Molten Form" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model has a 4+ invulnerable save. Each time an attack is allocated to this model, halve the Damage characteristic of that attack (rounding up).</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::e460-0c15-200c-d5e5" name="2. Avatar of Khaine (4-7 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">9&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">3+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">N/A</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">6</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::b649-b96d-9f65-2e40" name="3. Avatar of Khaine (1-3 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">8&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">4+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">5</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0b0f-4023-c457-3210" name="Avatar of the Bloody-Handed God" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model can never have a Relic or a Warlord Trait.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::c4ed-2954-435a-cd10" name="The Bloody-Handed (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 6&quot; of this model, you can re-roll charge rolls made for that unit.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::17e7-4804-8e8e-7420" name="Burning Demise" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">When this model is destroyed, roll one D6 before removing it from play. On a 6 it explodes, and each unit within D6&quot; suffers D3 mortal wounds.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="df52-48bf-feec-5ef3" name="Wailing Doom" entryId="16a8-9cfe-8cb2-56d6::dd6e-3e2d-52f7-3e3b" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="upgrade">
+              <profiles>
+                <profile id="16a8-9cfe-8cb2-56d6::77ac-cb09-5ef3-22c7" name="Wailing Doom (shooting)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">12&quot;</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Assault 1</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">12</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-4</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this wepaon, if a hit is scored, draw a straight line between the closest point of the bearer&apos;s base (or hull) and that of the closest model in the target unit. Make one wound roll against the target unit, and ech other unit this line passes over.</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::fe15-6359-8083-eb5e" name="Wailing Doom (Piercing Strike)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">x2</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-5</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::e8fb-1cdb-1d9c-3323" name="Wailing Doom (Sweeping Blow)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this weapon profile, make 2 hit rolls instead of 1.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="14.0"/>
+            <cost name="pts" typeId="points" value="270.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="d13d-3bd6-34c4-e197" name="Faction: Aeldari" entryId="05e9-e880-b1fb-ce90" primary="false"/>
+            <category id="4fa4-6d63-6525-41d0" name="Avatar of Khaine" entryId="e5a8-8df6-27a7-136e" primary="false"/>
+            <category id="f6cc-1d4e-9dee-228d" name="Character" entryId="ef18-746a-369f-43a4" primary="false"/>
+            <category id="591d-a57f-3c0b-f816" name="Daemon" entryId="fab8-a652-e9d1-88f1" primary="false"/>
+            <category id="7e57-eb34-215d-6980" name="HQ" entryId="848a6ff2-0def-4c72-8433-ff7da70e6bc7" primary="true"/>
+            <category id="fd3d-63cb-258a-84db" name="Monster" entryId="3b77-decb-d468-6bcc" primary="false"/>
+            <category id="a277-c439-7f78-ba41" name="Faction: Asuryani" entryId="20fc-5c6e-4a04-320f" primary="false"/>
+            <category id="cd93-cce2-b166-d3d8" name="Faction: &lt;Craftworld&gt;" entryId="fb5a-2f35-6253-b891" primary="false"/>
+          </categories>
+        </selection>
+        <selection id="e5f0-b618-2eb1-a305" name="Avatar of Khaine" entryId="16a8-9cfe-8cb2-56d6::65c6-8cd9-0a8b-0f0c" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="model">
+          <rules>
+            <rule id="16a8-9cfe-8cb2-56d6::3b85-6599-ea13-453d::d861-e9f8-5a9c-7595" name="Battle Focus" publicationId="1f62-db93-63f4-4dc7" hidden="false">
+              <description>This unit is eligible to shoot in a turn in which it Advanced, but if it does so, then until the end of the phase, models in this unit can only make attacks with Assault or Pistol weapons they are equipped with, and when resolving those attacks, this unit is treated as having Remained Stationary.
+In your Shooting phase, after this unit has finished making its attacks, unless it Fell Back or Advanced this turn, this unit can make a Battle Focus move. When it does so, roll one D6: each model in this unit can make a Normal Move of up to the distance in inches equal to the result, as if it were your Movement phase. A unit that makes a Battle Focus move cannot embark within a TRANSPORT model at the end of that move, and until the end of the turn, such a unit is not eligible to declare a charge. A unit cannot make a Battle Focus move if it arrived as Reinforcements this turn, and a unit cannot make more than one Battle Focus move per turn.
+NOTE: Battle Focus Moves Through Area Terrain
+If a unit makes a Battle Focus move and any of its models wish to move over any part of an Area Terrain feature, subtract 3&quot; from the distance models in that unit can move when making that Battle Focus move (to a minimum of 0). This penalty applies even if every part of that Area Terrain feature is 1&quot; or less in height, but is not cumulative with any other penalties that Area Terrain feature may impose (e.g. the Difficult Ground terrain trait).</description>
+            </rule>
+            <rule id="16a8-9cfe-8cb2-56d6::6e36-9712-345a-0bea::f5cf-ac08-7c58-c76d" name="Strands of Fate" hidden="false">
+              <description>Refer to your Codex for details.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="16a8-9cfe-8cb2-56d6::d337-70e9-25cf-0d73" name="1. Avatar of Khaine (8+ wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">10&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">2+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">7</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::703c-feec-20ff-1a57" name="Khaine Awakened (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 12&quot; of this model, each time a Combat Attrition test is taken for that nit, you can ignore any or all modifiers.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0ba5-fb8b-2a84-97ab" name="Molten Form" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model has a 4+ invulnerable save. Each time an attack is allocated to this model, halve the Damage characteristic of that attack (rounding up).</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::e460-0c15-200c-d5e5" name="2. Avatar of Khaine (4-7 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">9&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">3+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">N/A</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">6</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::b649-b96d-9f65-2e40" name="3. Avatar of Khaine (1-3 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">8&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">4+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">5</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0b0f-4023-c457-3210" name="Avatar of the Bloody-Handed God" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model can never have a Relic or a Warlord Trait.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::c4ed-2954-435a-cd10" name="The Bloody-Handed (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 6&quot; of this model, you can re-roll charge rolls made for that unit.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::17e7-4804-8e8e-7420" name="Burning Demise" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">When this model is destroyed, roll one D6 before removing it from play. On a 6 it explodes, and each unit within D6&quot; suffers D3 mortal wounds.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="3f79-587f-f118-e8e0" name="Wailing Doom" entryId="16a8-9cfe-8cb2-56d6::dd6e-3e2d-52f7-3e3b" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="upgrade">
+              <profiles>
+                <profile id="16a8-9cfe-8cb2-56d6::77ac-cb09-5ef3-22c7" name="Wailing Doom (shooting)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">12&quot;</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Assault 1</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">12</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-4</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this wepaon, if a hit is scored, draw a straight line between the closest point of the bearer&apos;s base (or hull) and that of the closest model in the target unit. Make one wound roll against the target unit, and ech other unit this line passes over.</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::fe15-6359-8083-eb5e" name="Wailing Doom (Piercing Strike)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">x2</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-5</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::e8fb-1cdb-1d9c-3323" name="Wailing Doom (Sweeping Blow)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this weapon profile, make 2 hit rolls instead of 1.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="14.0"/>
+            <cost name="pts" typeId="points" value="270.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="548f-614c-52e5-57ed" name="Faction: Aeldari" entryId="05e9-e880-b1fb-ce90" primary="false"/>
+            <category id="49f6-ef63-79de-0429" name="Avatar of Khaine" entryId="e5a8-8df6-27a7-136e" primary="false"/>
+            <category id="d445-6a4a-4b4c-d4a9" name="Character" entryId="ef18-746a-369f-43a4" primary="false"/>
+            <category id="a46d-31c3-b512-faba" name="Daemon" entryId="fab8-a652-e9d1-88f1" primary="false"/>
+            <category id="efe7-e6f5-9123-6471" name="HQ" entryId="848a6ff2-0def-4c72-8433-ff7da70e6bc7" primary="true"/>
+            <category id="eea2-ba50-8ead-d35f" name="Monster" entryId="3b77-decb-d468-6bcc" primary="false"/>
+            <category id="308c-5261-9510-c4eb" name="Faction: Asuryani" entryId="20fc-5c6e-4a04-320f" primary="false"/>
+            <category id="ffe7-4155-c5ab-94f0" name="Faction: &lt;Craftworld&gt;" entryId="fb5a-2f35-6253-b891" primary="false"/>
+          </categories>
+        </selection>
+        <selection id="d869-41f9-9c21-11d4" name="Avatar of Khaine" entryId="16a8-9cfe-8cb2-56d6::65c6-8cd9-0a8b-0f0c" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="model">
+          <rules>
+            <rule id="16a8-9cfe-8cb2-56d6::3b85-6599-ea13-453d::d861-e9f8-5a9c-7595" name="Battle Focus" publicationId="1f62-db93-63f4-4dc7" hidden="false">
+              <description>This unit is eligible to shoot in a turn in which it Advanced, but if it does so, then until the end of the phase, models in this unit can only make attacks with Assault or Pistol weapons they are equipped with, and when resolving those attacks, this unit is treated as having Remained Stationary.
+In your Shooting phase, after this unit has finished making its attacks, unless it Fell Back or Advanced this turn, this unit can make a Battle Focus move. When it does so, roll one D6: each model in this unit can make a Normal Move of up to the distance in inches equal to the result, as if it were your Movement phase. A unit that makes a Battle Focus move cannot embark within a TRANSPORT model at the end of that move, and until the end of the turn, such a unit is not eligible to declare a charge. A unit cannot make a Battle Focus move if it arrived as Reinforcements this turn, and a unit cannot make more than one Battle Focus move per turn.
+NOTE: Battle Focus Moves Through Area Terrain
+If a unit makes a Battle Focus move and any of its models wish to move over any part of an Area Terrain feature, subtract 3&quot; from the distance models in that unit can move when making that Battle Focus move (to a minimum of 0). This penalty applies even if every part of that Area Terrain feature is 1&quot; or less in height, but is not cumulative with any other penalties that Area Terrain feature may impose (e.g. the Difficult Ground terrain trait).</description>
+            </rule>
+            <rule id="16a8-9cfe-8cb2-56d6::6e36-9712-345a-0bea::f5cf-ac08-7c58-c76d" name="Strands of Fate" hidden="false">
+              <description>Refer to your Codex for details.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="16a8-9cfe-8cb2-56d6::d337-70e9-25cf-0d73" name="1. Avatar of Khaine (8+ wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">10&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">2+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">7</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::703c-feec-20ff-1a57" name="Khaine Awakened (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 12&quot; of this model, each time a Combat Attrition test is taken for that nit, you can ignore any or all modifiers.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0ba5-fb8b-2a84-97ab" name="Molten Form" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model has a 4+ invulnerable save. Each time an attack is allocated to this model, halve the Damage characteristic of that attack (rounding up).</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::e460-0c15-200c-d5e5" name="2. Avatar of Khaine (4-7 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">9&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">3+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">N/A</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">6</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::b649-b96d-9f65-2e40" name="3. Avatar of Khaine (1-3 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">8&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">4+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">5</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0b0f-4023-c457-3210" name="Avatar of the Bloody-Handed God" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model can never have a Relic or a Warlord Trait.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::c4ed-2954-435a-cd10" name="The Bloody-Handed (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 6&quot; of this model, you can re-roll charge rolls made for that unit.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::17e7-4804-8e8e-7420" name="Burning Demise" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">When this model is destroyed, roll one D6 before removing it from play. On a 6 it explodes, and each unit within D6&quot; suffers D3 mortal wounds.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="064d-807f-a1f6-ac95" name="Wailing Doom" entryId="16a8-9cfe-8cb2-56d6::dd6e-3e2d-52f7-3e3b" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="upgrade">
+              <profiles>
+                <profile id="16a8-9cfe-8cb2-56d6::77ac-cb09-5ef3-22c7" name="Wailing Doom (shooting)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">12&quot;</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Assault 1</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">12</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-4</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this wepaon, if a hit is scored, draw a straight line between the closest point of the bearer&apos;s base (or hull) and that of the closest model in the target unit. Make one wound roll against the target unit, and ech other unit this line passes over.</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::fe15-6359-8083-eb5e" name="Wailing Doom (Piercing Strike)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">x2</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-5</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::e8fb-1cdb-1d9c-3323" name="Wailing Doom (Sweeping Blow)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this weapon profile, make 2 hit rolls instead of 1.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="14.0"/>
+            <cost name="pts" typeId="points" value="270.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="ef28-a468-71f1-bb21" name="Faction: Aeldari" entryId="05e9-e880-b1fb-ce90" primary="false"/>
+            <category id="8105-1e5a-f245-f01f" name="Avatar of Khaine" entryId="e5a8-8df6-27a7-136e" primary="false"/>
+            <category id="11e2-d9bf-34ac-7f86" name="Character" entryId="ef18-746a-369f-43a4" primary="false"/>
+            <category id="3164-aafc-8866-5bee" name="Daemon" entryId="fab8-a652-e9d1-88f1" primary="false"/>
+            <category id="fb56-20c6-d13c-6fc8" name="HQ" entryId="848a6ff2-0def-4c72-8433-ff7da70e6bc7" primary="true"/>
+            <category id="a745-46dd-231e-95ec" name="Monster" entryId="3b77-decb-d468-6bcc" primary="false"/>
+            <category id="07a8-d635-48af-0537" name="Faction: Asuryani" entryId="20fc-5c6e-4a04-320f" primary="false"/>
+            <category id="8311-618c-e603-67ab" name="Faction: &lt;Craftworld&gt;" entryId="fb5a-2f35-6253-b891" primary="false"/>
+          </categories>
+        </selection>
+        <selection id="57df-5d67-73cd-7795" name="Avatar of Khaine" entryId="16a8-9cfe-8cb2-56d6::65c6-8cd9-0a8b-0f0c" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="model">
+          <rules>
+            <rule id="16a8-9cfe-8cb2-56d6::3b85-6599-ea13-453d::d861-e9f8-5a9c-7595" name="Battle Focus" publicationId="1f62-db93-63f4-4dc7" hidden="false">
+              <description>This unit is eligible to shoot in a turn in which it Advanced, but if it does so, then until the end of the phase, models in this unit can only make attacks with Assault or Pistol weapons they are equipped with, and when resolving those attacks, this unit is treated as having Remained Stationary.
+In your Shooting phase, after this unit has finished making its attacks, unless it Fell Back or Advanced this turn, this unit can make a Battle Focus move. When it does so, roll one D6: each model in this unit can make a Normal Move of up to the distance in inches equal to the result, as if it were your Movement phase. A unit that makes a Battle Focus move cannot embark within a TRANSPORT model at the end of that move, and until the end of the turn, such a unit is not eligible to declare a charge. A unit cannot make a Battle Focus move if it arrived as Reinforcements this turn, and a unit cannot make more than one Battle Focus move per turn.
+NOTE: Battle Focus Moves Through Area Terrain
+If a unit makes a Battle Focus move and any of its models wish to move over any part of an Area Terrain feature, subtract 3&quot; from the distance models in that unit can move when making that Battle Focus move (to a minimum of 0). This penalty applies even if every part of that Area Terrain feature is 1&quot; or less in height, but is not cumulative with any other penalties that Area Terrain feature may impose (e.g. the Difficult Ground terrain trait).</description>
+            </rule>
+            <rule id="16a8-9cfe-8cb2-56d6::6e36-9712-345a-0bea::f5cf-ac08-7c58-c76d" name="Strands of Fate" hidden="false">
+              <description>Refer to your Codex for details.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="16a8-9cfe-8cb2-56d6::d337-70e9-25cf-0d73" name="1. Avatar of Khaine (8+ wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">10&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">2+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">7</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::703c-feec-20ff-1a57" name="Khaine Awakened (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 12&quot; of this model, each time a Combat Attrition test is taken for that nit, you can ignore any or all modifiers.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0ba5-fb8b-2a84-97ab" name="Molten Form" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model has a 4+ invulnerable save. Each time an attack is allocated to this model, halve the Damage characteristic of that attack (rounding up).</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::e460-0c15-200c-d5e5" name="2. Avatar of Khaine (4-7 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">9&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">3+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">N/A</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">6</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::b649-b96d-9f65-2e40" name="3. Avatar of Khaine (1-3 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">8&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">4+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">5</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0b0f-4023-c457-3210" name="Avatar of the Bloody-Handed God" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model can never have a Relic or a Warlord Trait.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::c4ed-2954-435a-cd10" name="The Bloody-Handed (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 6&quot; of this model, you can re-roll charge rolls made for that unit.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::17e7-4804-8e8e-7420" name="Burning Demise" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">When this model is destroyed, roll one D6 before removing it from play. On a 6 it explodes, and each unit within D6&quot; suffers D3 mortal wounds.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="1a14-4f2a-2a7b-e25a" name="Wailing Doom" entryId="16a8-9cfe-8cb2-56d6::dd6e-3e2d-52f7-3e3b" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="upgrade">
+              <profiles>
+                <profile id="16a8-9cfe-8cb2-56d6::77ac-cb09-5ef3-22c7" name="Wailing Doom (shooting)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">12&quot;</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Assault 1</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">12</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-4</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this wepaon, if a hit is scored, draw a straight line between the closest point of the bearer&apos;s base (or hull) and that of the closest model in the target unit. Make one wound roll against the target unit, and ech other unit this line passes over.</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::fe15-6359-8083-eb5e" name="Wailing Doom (Piercing Strike)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">x2</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-5</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::e8fb-1cdb-1d9c-3323" name="Wailing Doom (Sweeping Blow)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this weapon profile, make 2 hit rolls instead of 1.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="14.0"/>
+            <cost name="pts" typeId="points" value="270.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="cd82-ea2e-8807-5dcb" name="Faction: Aeldari" entryId="05e9-e880-b1fb-ce90" primary="false"/>
+            <category id="4c03-f08f-c983-9609" name="Avatar of Khaine" entryId="e5a8-8df6-27a7-136e" primary="false"/>
+            <category id="3b69-1b67-d42f-9d1a" name="Character" entryId="ef18-746a-369f-43a4" primary="false"/>
+            <category id="f2ac-a0d0-7776-0a51" name="Daemon" entryId="fab8-a652-e9d1-88f1" primary="false"/>
+            <category id="9403-b369-2b73-09bf" name="HQ" entryId="848a6ff2-0def-4c72-8433-ff7da70e6bc7" primary="true"/>
+            <category id="4413-e419-f589-9840" name="Monster" entryId="3b77-decb-d468-6bcc" primary="false"/>
+            <category id="3e2f-141f-e135-12fd" name="Faction: Asuryani" entryId="20fc-5c6e-4a04-320f" primary="false"/>
+            <category id="6e72-b474-bb59-3f69" name="Faction: &lt;Craftworld&gt;" entryId="fb5a-2f35-6253-b891" primary="false"/>
+          </categories>
+        </selection>
+        <selection id="f217-7061-ead1-6343" name="Avatar of Khaine" entryId="16a8-9cfe-8cb2-56d6::65c6-8cd9-0a8b-0f0c" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="model">
+          <rules>
+            <rule id="16a8-9cfe-8cb2-56d6::3b85-6599-ea13-453d::d861-e9f8-5a9c-7595" name="Battle Focus" publicationId="1f62-db93-63f4-4dc7" hidden="false">
+              <description>This unit is eligible to shoot in a turn in which it Advanced, but if it does so, then until the end of the phase, models in this unit can only make attacks with Assault or Pistol weapons they are equipped with, and when resolving those attacks, this unit is treated as having Remained Stationary.
+In your Shooting phase, after this unit has finished making its attacks, unless it Fell Back or Advanced this turn, this unit can make a Battle Focus move. When it does so, roll one D6: each model in this unit can make a Normal Move of up to the distance in inches equal to the result, as if it were your Movement phase. A unit that makes a Battle Focus move cannot embark within a TRANSPORT model at the end of that move, and until the end of the turn, such a unit is not eligible to declare a charge. A unit cannot make a Battle Focus move if it arrived as Reinforcements this turn, and a unit cannot make more than one Battle Focus move per turn.
+NOTE: Battle Focus Moves Through Area Terrain
+If a unit makes a Battle Focus move and any of its models wish to move over any part of an Area Terrain feature, subtract 3&quot; from the distance models in that unit can move when making that Battle Focus move (to a minimum of 0). This penalty applies even if every part of that Area Terrain feature is 1&quot; or less in height, but is not cumulative with any other penalties that Area Terrain feature may impose (e.g. the Difficult Ground terrain trait).</description>
+            </rule>
+            <rule id="16a8-9cfe-8cb2-56d6::6e36-9712-345a-0bea::f5cf-ac08-7c58-c76d" name="Strands of Fate" hidden="false">
+              <description>Refer to your Codex for details.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="16a8-9cfe-8cb2-56d6::d337-70e9-25cf-0d73" name="1. Avatar of Khaine (8+ wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">10&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">2+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">7</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::703c-feec-20ff-1a57" name="Khaine Awakened (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 12&quot; of this model, each time a Combat Attrition test is taken for that nit, you can ignore any or all modifiers.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0ba5-fb8b-2a84-97ab" name="Molten Form" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model has a 4+ invulnerable save. Each time an attack is allocated to this model, halve the Damage characteristic of that attack (rounding up).</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::e460-0c15-200c-d5e5" name="2. Avatar of Khaine (4-7 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">9&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">3+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">N/A</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">6</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::b649-b96d-9f65-2e40" name="3. Avatar of Khaine (1-3 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">8&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">4+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">5</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0b0f-4023-c457-3210" name="Avatar of the Bloody-Handed God" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model can never have a Relic or a Warlord Trait.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::c4ed-2954-435a-cd10" name="The Bloody-Handed (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 6&quot; of this model, you can re-roll charge rolls made for that unit.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::17e7-4804-8e8e-7420" name="Burning Demise" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">When this model is destroyed, roll one D6 before removing it from play. On a 6 it explodes, and each unit within D6&quot; suffers D3 mortal wounds.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="b646-662b-45ec-0575" name="Wailing Doom" entryId="16a8-9cfe-8cb2-56d6::dd6e-3e2d-52f7-3e3b" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="upgrade">
+              <profiles>
+                <profile id="16a8-9cfe-8cb2-56d6::77ac-cb09-5ef3-22c7" name="Wailing Doom (shooting)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">12&quot;</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Assault 1</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">12</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-4</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this wepaon, if a hit is scored, draw a straight line between the closest point of the bearer&apos;s base (or hull) and that of the closest model in the target unit. Make one wound roll against the target unit, and ech other unit this line passes over.</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::fe15-6359-8083-eb5e" name="Wailing Doom (Piercing Strike)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">x2</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-5</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::e8fb-1cdb-1d9c-3323" name="Wailing Doom (Sweeping Blow)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this weapon profile, make 2 hit rolls instead of 1.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="14.0"/>
+            <cost name="pts" typeId="points" value="270.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="5818-7429-dcc8-59b6" name="Faction: Aeldari" entryId="05e9-e880-b1fb-ce90" primary="false"/>
+            <category id="16d8-8884-fa3d-69a5" name="Avatar of Khaine" entryId="e5a8-8df6-27a7-136e" primary="false"/>
+            <category id="fea7-9cb9-50ab-6ee6" name="Character" entryId="ef18-746a-369f-43a4" primary="false"/>
+            <category id="652b-7d39-cd28-736e" name="Daemon" entryId="fab8-a652-e9d1-88f1" primary="false"/>
+            <category id="44e3-58e1-738c-3944" name="HQ" entryId="848a6ff2-0def-4c72-8433-ff7da70e6bc7" primary="true"/>
+            <category id="da4c-2a77-bf21-be50" name="Monster" entryId="3b77-decb-d468-6bcc" primary="false"/>
+            <category id="e93d-8ba2-c0d0-daca" name="Faction: Asuryani" entryId="20fc-5c6e-4a04-320f" primary="false"/>
+            <category id="ba66-f180-9736-a8e7" name="Faction: &lt;Craftworld&gt;" entryId="fb5a-2f35-6253-b891" primary="false"/>
+          </categories>
+        </selection>
+        <selection id="dbf9-0043-79a4-7c4a" name="Avatar of Khaine" entryId="16a8-9cfe-8cb2-56d6::65c6-8cd9-0a8b-0f0c" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="model">
+          <rules>
+            <rule id="16a8-9cfe-8cb2-56d6::3b85-6599-ea13-453d::d861-e9f8-5a9c-7595" name="Battle Focus" publicationId="1f62-db93-63f4-4dc7" hidden="false">
+              <description>This unit is eligible to shoot in a turn in which it Advanced, but if it does so, then until the end of the phase, models in this unit can only make attacks with Assault or Pistol weapons they are equipped with, and when resolving those attacks, this unit is treated as having Remained Stationary.
+In your Shooting phase, after this unit has finished making its attacks, unless it Fell Back or Advanced this turn, this unit can make a Battle Focus move. When it does so, roll one D6: each model in this unit can make a Normal Move of up to the distance in inches equal to the result, as if it were your Movement phase. A unit that makes a Battle Focus move cannot embark within a TRANSPORT model at the end of that move, and until the end of the turn, such a unit is not eligible to declare a charge. A unit cannot make a Battle Focus move if it arrived as Reinforcements this turn, and a unit cannot make more than one Battle Focus move per turn.
+NOTE: Battle Focus Moves Through Area Terrain
+If a unit makes a Battle Focus move and any of its models wish to move over any part of an Area Terrain feature, subtract 3&quot; from the distance models in that unit can move when making that Battle Focus move (to a minimum of 0). This penalty applies even if every part of that Area Terrain feature is 1&quot; or less in height, but is not cumulative with any other penalties that Area Terrain feature may impose (e.g. the Difficult Ground terrain trait).</description>
+            </rule>
+            <rule id="16a8-9cfe-8cb2-56d6::6e36-9712-345a-0bea::f5cf-ac08-7c58-c76d" name="Strands of Fate" hidden="false">
+              <description>Refer to your Codex for details.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="16a8-9cfe-8cb2-56d6::d337-70e9-25cf-0d73" name="1. Avatar of Khaine (8+ wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">10&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">2+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">7</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::703c-feec-20ff-1a57" name="Khaine Awakened (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 12&quot; of this model, each time a Combat Attrition test is taken for that nit, you can ignore any or all modifiers.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0ba5-fb8b-2a84-97ab" name="Molten Form" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model has a 4+ invulnerable save. Each time an attack is allocated to this model, halve the Damage characteristic of that attack (rounding up).</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::e460-0c15-200c-d5e5" name="2. Avatar of Khaine (4-7 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">9&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">3+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">N/A</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">6</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::b649-b96d-9f65-2e40" name="3. Avatar of Khaine (1-3 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">8&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">4+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">5</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0b0f-4023-c457-3210" name="Avatar of the Bloody-Handed God" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model can never have a Relic or a Warlord Trait.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::c4ed-2954-435a-cd10" name="The Bloody-Handed (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 6&quot; of this model, you can re-roll charge rolls made for that unit.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::17e7-4804-8e8e-7420" name="Burning Demise" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">When this model is destroyed, roll one D6 before removing it from play. On a 6 it explodes, and each unit within D6&quot; suffers D3 mortal wounds.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="1e93-05df-5b83-0835" name="Wailing Doom" entryId="16a8-9cfe-8cb2-56d6::dd6e-3e2d-52f7-3e3b" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="upgrade">
+              <profiles>
+                <profile id="16a8-9cfe-8cb2-56d6::77ac-cb09-5ef3-22c7" name="Wailing Doom (shooting)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">12&quot;</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Assault 1</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">12</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-4</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this wepaon, if a hit is scored, draw a straight line between the closest point of the bearer&apos;s base (or hull) and that of the closest model in the target unit. Make one wound roll against the target unit, and ech other unit this line passes over.</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::fe15-6359-8083-eb5e" name="Wailing Doom (Piercing Strike)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">x2</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-5</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::e8fb-1cdb-1d9c-3323" name="Wailing Doom (Sweeping Blow)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this weapon profile, make 2 hit rolls instead of 1.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="14.0"/>
+            <cost name="pts" typeId="points" value="270.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="f0d1-8f27-8a8c-7e2b" name="Faction: Aeldari" entryId="05e9-e880-b1fb-ce90" primary="false"/>
+            <category id="53a1-d54f-a0e6-0b00" name="Avatar of Khaine" entryId="e5a8-8df6-27a7-136e" primary="false"/>
+            <category id="730f-94e7-3325-ab81" name="Character" entryId="ef18-746a-369f-43a4" primary="false"/>
+            <category id="6fc6-1628-b86e-3fe0" name="Daemon" entryId="fab8-a652-e9d1-88f1" primary="false"/>
+            <category id="0a63-3bb4-38fd-a2ca" name="HQ" entryId="848a6ff2-0def-4c72-8433-ff7da70e6bc7" primary="true"/>
+            <category id="cd8a-db07-3a6f-5bbc" name="Monster" entryId="3b77-decb-d468-6bcc" primary="false"/>
+            <category id="90c8-75dc-5af2-c1e4" name="Faction: Asuryani" entryId="20fc-5c6e-4a04-320f" primary="false"/>
+            <category id="9489-2cc1-96d7-e4e9" name="Faction: &lt;Craftworld&gt;" entryId="fb5a-2f35-6253-b891" primary="false"/>
+          </categories>
+        </selection>
+        <selection id="8f47-5fde-ba5d-130f" name="Avatar of Khaine" entryId="16a8-9cfe-8cb2-56d6::65c6-8cd9-0a8b-0f0c" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="model">
+          <rules>
+            <rule id="16a8-9cfe-8cb2-56d6::3b85-6599-ea13-453d::d861-e9f8-5a9c-7595" name="Battle Focus" publicationId="1f62-db93-63f4-4dc7" hidden="false">
+              <description>This unit is eligible to shoot in a turn in which it Advanced, but if it does so, then until the end of the phase, models in this unit can only make attacks with Assault or Pistol weapons they are equipped with, and when resolving those attacks, this unit is treated as having Remained Stationary.
+In your Shooting phase, after this unit has finished making its attacks, unless it Fell Back or Advanced this turn, this unit can make a Battle Focus move. When it does so, roll one D6: each model in this unit can make a Normal Move of up to the distance in inches equal to the result, as if it were your Movement phase. A unit that makes a Battle Focus move cannot embark within a TRANSPORT model at the end of that move, and until the end of the turn, such a unit is not eligible to declare a charge. A unit cannot make a Battle Focus move if it arrived as Reinforcements this turn, and a unit cannot make more than one Battle Focus move per turn.
+NOTE: Battle Focus Moves Through Area Terrain
+If a unit makes a Battle Focus move and any of its models wish to move over any part of an Area Terrain feature, subtract 3&quot; from the distance models in that unit can move when making that Battle Focus move (to a minimum of 0). This penalty applies even if every part of that Area Terrain feature is 1&quot; or less in height, but is not cumulative with any other penalties that Area Terrain feature may impose (e.g. the Difficult Ground terrain trait).</description>
+            </rule>
+            <rule id="16a8-9cfe-8cb2-56d6::6e36-9712-345a-0bea::f5cf-ac08-7c58-c76d" name="Strands of Fate" hidden="false">
+              <description>Refer to your Codex for details.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="16a8-9cfe-8cb2-56d6::d337-70e9-25cf-0d73" name="1. Avatar of Khaine (8+ wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">10&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">2+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">7</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::703c-feec-20ff-1a57" name="Khaine Awakened (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 12&quot; of this model, each time a Combat Attrition test is taken for that nit, you can ignore any or all modifiers.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0ba5-fb8b-2a84-97ab" name="Molten Form" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model has a 4+ invulnerable save. Each time an attack is allocated to this model, halve the Damage characteristic of that attack (rounding up).</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::e460-0c15-200c-d5e5" name="2. Avatar of Khaine (4-7 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">9&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">3+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">N/A</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">6</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::b649-b96d-9f65-2e40" name="3. Avatar of Khaine (1-3 wounds remaining)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">8&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">4+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">7</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">8</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">14</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">5</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::0b0f-4023-c457-3210" name="Avatar of the Bloody-Handed God" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model can never have a Relic or a Warlord Trait.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::c4ed-2954-435a-cd10" name="The Bloody-Handed (Aura)" publicationId="1f62-db93-63f4-4dc7" page="145" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly ASURYANI CORE unit is within 6&quot; of this model, you can re-roll charge rolls made for that unit.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="16a8-9cfe-8cb2-56d6::17e7-4804-8e8e-7420" name="Burning Demise" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">When this model is destroyed, roll one D6 before removing it from play. On a 6 it explodes, and each unit within D6&quot; suffers D3 mortal wounds.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="aee9-0d73-4f6d-098e" name="Wailing Doom" entryId="16a8-9cfe-8cb2-56d6::dd6e-3e2d-52f7-3e3b" publicationId="1f62-db93-63f4-4dc7" page="145" number="1" type="upgrade">
+              <profiles>
+                <profile id="16a8-9cfe-8cb2-56d6::77ac-cb09-5ef3-22c7" name="Wailing Doom (shooting)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">12&quot;</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Assault 1</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">12</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-4</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this wepaon, if a hit is scored, draw a straight line between the closest point of the bearer&apos;s base (or hull) and that of the closest model in the target unit. Make one wound roll against the target unit, and ech other unit this line passes over.</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::fe15-6359-8083-eb5e" name="Wailing Doom (Piercing Strike)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">x2</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-5</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">D6+2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="16a8-9cfe-8cb2-56d6::e8fb-1cdb-1d9c-3323" name="Wailing Doom (Sweeping Blow)" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">2</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this weapon profile, make 2 hit rolls instead of 1.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="14.0"/>
+            <cost name="pts" typeId="points" value="270.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="095b-26f1-8092-2b36" name="Faction: Aeldari" entryId="05e9-e880-b1fb-ce90" primary="false"/>
+            <category id="5530-67f4-af12-4c61" name="Avatar of Khaine" entryId="e5a8-8df6-27a7-136e" primary="false"/>
+            <category id="da60-95d6-bd3b-b926" name="Character" entryId="ef18-746a-369f-43a4" primary="false"/>
+            <category id="4c20-1416-57d7-6c7f" name="Daemon" entryId="fab8-a652-e9d1-88f1" primary="false"/>
+            <category id="c54b-ed1e-b99c-ca0d" name="HQ" entryId="848a6ff2-0def-4c72-8433-ff7da70e6bc7" primary="true"/>
+            <category id="4ebc-bf55-4f25-882d" name="Monster" entryId="3b77-decb-d468-6bcc" primary="false"/>
+            <category id="5cbe-88f7-0b44-975a" name="Faction: Asuryani" entryId="20fc-5c6e-4a04-320f" primary="false"/>
+            <category id="fcf8-1803-b740-9fe7" name="Faction: &lt;Craftworld&gt;" entryId="fb5a-2f35-6253-b891" primary="false"/>
+          </categories>
+        </selection>
+      </selections>
+      <publications>
+        <publication id="85df-1155-c986-4d71" name="Psychic Awakening IX: Pariah"/>
+        <publication id="c9fe-4431-b76d-267a" name="Psychic Awakening VIII: War of the Spider"/>
+        <publication id="ecea-8b62-fefb-9f8e" name="Psychic Awakening VII: Engine War"/>
+        <publication id="30b2-6f64-pubN137513" name="Codex: Craftworlds"/>
+        <publication id="28ec-711c-pubN118139" name="Index: Xenos 2"/>
+        <publication id="5c2d-db9f-58ca-e7b2" name="Psychic Awakening IV: Ritual of the Damned"/>
+        <publication id="6a4d-2a41-5e6b-c57a" name="White Dwarf May 2019"/>
+        <publication id="7d24-b92f-pubN65537" name="Codex: Harlequins"/>
+        <publication id="d36f-0c87-284a-7055" name="Warhammer Legends - Drukhari"/>
+        <publication id="fd38-751e-4164-fbdd" name="White Dwarf 473"/>
+        <publication id="0865-ee21-d1f1-ed38" name="War Zone Charadon, Act I: The Book of Rust"/>
+        <publication id="28ec-711c-pubN72690" name="Warhammer 40,000 Core Book"/>
+        <publication id="28ec-711c-pubN78977" name="Index: Imperium 1"/>
+        <publication id="28ec-711c-pubN98266" name="Imperium Nihilus: Vigilus Defiant"/>
+        <publication id="52c4-39c0-ae97-d4dc" name="Psychic Awakening VI: Saga of the Beast"/>
+        <publication id="b854-bcb5-5746-e0d3" name="War Zone Charadon, Act II: The Book of Fire"/>
+        <publication id="28ec-711c-pubN77581" name="Index: Imperium 2"/>
+        <publication id="1f62-db93-63f4-4dc7" name="Codex: Aeldari"/>
+        <publication id="5093-9448-d8cc-5327" name="Psychic Awakening II: Faith and Fury"/>
+        <publication id="255d-c624-9fcb-ca23" name="War Zone Octarius, Book 2: Critical Mass"/>
+        <publication id="e0a4-2172-pubN65537" name="Codex: Drukhari"/>
+        <publication id="28ec-711c-pubN76527" name="Index: Xenos 1"/>
+        <publication id="5b08-09e5-a80a-fd67" name="Psychic Awakening I: Phoenix Rising"/>
+        <publication id="977a-446b-737a-b571" name="Chapter Approved 2021"/>
+        <publication id="ce40-ec9e-21e2-2e42" name="Warhammer Quest: Blackstone Fortress"/>
+        <publication id="28ec-711c-pubN99666" name="Index: Chaos"/>
+        <publication id="f000-7b0c-01bf-7630" name="Psychic Awakening III: Blood of Baal"/>
+        <publication id="7573-8d1b-acdf-2de8" name="Imperial Armour: Compendium"/>
+        <publication id="b652-8bab-1453-da20" name="Warhammer Legends"/>
+        <publication id="4a3e-a6d9-b5f8-3e3d" name="Shadow Throne"/>
+        <publication id="e056-7215-247f-0a20" name="War Zone Octarius, Book 1: Rising Tide"/>
+        <publication id="4593-a2f0-546a-d6f2" name="Psychic Awakening V: The Greater Good"/>
+        <publication id="2ec0-6d53-e36b-9895" name="Chapter Approved 2018"/>
+        <publication id="28ec-711c-pubN73170" name="Chapter Approved 2017"/>
+      </publications>
+      <categories>
+        <category id="f285-cb69-6434-4b43" name="Uncategorised" entryId="(No Category)" primary="false"/>
+        <category id="cb36-29e5-6ece-cc3a" name="Configuration" entryId="fcff-0f21-93e6-1ddc" primary="false"/>
+        <category id="8ce2-20a2-2ee9-688f" name="Stratagems" entryId="c845-c72c-6afe-3fc2" primary="false"/>
+        <category id="4aff-a8f3-78b6-2600" name="No Force Org Slot" entryId="ff36a6f3-19bf-4f48-8956-adacfd28fe74" primary="false"/>
+        <category id="8043-b2b5-9227-7d32" name="Agents of the Imperium" entryId="0f35-2c34-ba6a-8105" primary="false"/>
+        <category id="070f-5001-9627-4f19" name="HQ" entryId="848a6ff2-0def-4c72-8433-ff7da70e6bc7" primary="false"/>
+        <category id="1095-c6ae-fa7b-bd7e" name="Troops" entryId="5d76b6f5-20ae-4d70-8f59-ade72a2add3a" primary="false"/>
+        <category id="d0aa-db43-a295-bf1e" name="Elites" entryId="638d74c6-bd97-4de5-b65a-6aaa24e9f4b2" primary="false"/>
+        <category id="5170-f83c-144b-328b" name="Fast Attack" entryId="c274d0b0-5866-44bc-9810-91c136ae7438" primary="false"/>
+        <category id="dc8a-e8b4-6ef7-bb12" name="Heavy Support" entryId="abf5fd55-9ac7-4263-8bc1-a9fb0a8fa6a6" primary="false"/>
+        <category id="08e4-7410-c76c-f731" name="Flyer" entryId="e888-1504-aa61-95ff" primary="false"/>
+        <category id="9314-926c-9aa7-747a" name="Dedicated Transport" entryId="1b66-3f5f-6705-079a" primary="false"/>
+        <category id="24be-5481-8321-efac" name="Relic Elites" entryId="8d86-9490-0f7d-a5b5" primary="false"/>
+        <category id="6be4-2ec8-2120-ed36" name="Relic Heavy Support" entryId="6c4c-a416-b8cb-c380" primary="false"/>
+        <category id="d784-abe5-d979-f4fe" name="Relic HQ" entryId="655f-e142-dfa9-11a4" primary="false"/>
+      </categories>
+    </force>
+  </forces>
+</roster>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<roster id="2689-fca9-880d-454b" name="Test Shared w/ scope Roster" battleScribeVersion="2.03" gameSystemId="67a7-84c5-c09f-52de" gameSystemName="TGS2" gameSystemRevision="3" xmlns="http://www.battlescribe.net/schema/rosterSchema">
+  <forces>
+    <force id="0bc6-e12f-3c3f-50c8" name="Main Force" entryId="7d96-73fc-b5bd-73dc" catalogueId="b22d-a2e6-b4a2-410d" catalogueRevision="1" catalogueName="Orcs">
+      <selections>
+        <selection id="7340-3a46-97f6-893c" name="Dummy Auxiliary" entryId="c964-023f-b3c2-cccd" number="1" type="upgrade">
+        </selection>
+        <selection id="8efa-b210-c239-f98c" name="Unit Modifiers" entryId="0007-6d66-3aed-e088" number="1" type="upgrade">
+        </selection>
+        <selection id="d356-9da1-4653-d451" name="Berserkers" entryId="f487-1015-def1-13b7" number="1" type="unit">
+          <selections>
+            <selection id="e249-cc89-3710-6a06" name="Axe" entryId="3a99-e88d-f2ee-c71e::9a07-186e-cb4b-ecea" entryGroupId="3a99-e88d-f2ee-c71e::3bb7-37b7-a165-18a6" number="1" type="upgrade">
+            </selection>
+            <selection id="f34e-75cf-79c1-679e" name="Axe" entryId="0385-0ca1-73d6-0953::9a07-186e-cb4b-ecea" entryGroupId="0385-0ca1-73d6-0953::3bb7-37b7-a165-18a6" number="1" type="upgrade">
+            </selection>
+          </selections>
+        </selection>
+      </selections>
+    </force>
+  </forces>
+</roster>

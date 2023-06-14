@@ -1,5 +1,6 @@
 import _ from 'lodash'
 
+import { findId } from '../../utils'
 import { gatherFiles, useFile, useSystem } from '../EditSystem'
 import { Comment, Checkbox, ReferenceSelect, Value } from './fields'
 
@@ -93,14 +94,14 @@ const Repeat = ({ entry, filename, modifier }) => {
 
 export default Repeat
 
-export const repeatToString = (repeat, gameData) => {
+export const repeatToString = (repeat, gameData, file) => {
   const extra = `${repeat.includeChildSelections ? ' including child selections' : ''}${repeat.roundUp ? ', rounding up' : ''}`
 
   if (repeat.percentValue) {
-    const field = repeat.field === 'selections' ? 'selections' : repeat.field === 'forces' ? 'forces' : `${gameData.ids[repeat.field].name}`
-    return `Repeat ${repeat.repeats} times for every ${repeat.value}% of the ${field} in ${gameData.ids[repeat.scope]?.name || repeat.scope} that are ${gameData.ids[repeat.childId].name}${extra}`
+    const field = repeat.field === 'selections' ? 'selections' : repeat.field === 'forces' ? 'forces' : `${findId(gameData, file, repeat.field).name}`
+    return `Repeat ${repeat.repeats} times for every ${repeat.value}% of the ${field} in ${findId(gameData, file, repeat.scope)?.name || repeat.scope} that are ${findId(gameData, file, repeat.childId).name}${extra}`
   } else {
-    const field = repeat.field === 'selections' ? 'selection of' : repeat.field === 'forces' ? 'force matching' : `${gameData.ids[repeat.field].name} of`
-    return `Repeat ${repeat.repeats} times for every ${repeat.value} ${field} ${gameData.ids[repeat.childId]?.name || ''} in ${gameData.ids[repeat.scope]?.name || repeat.scope}${extra}`
+    const field = repeat.field === 'selections' ? 'selection of' : repeat.field === 'forces' ? 'force matching' : `${findId(gameData, file, repeat.field).name} of`
+    return `Repeat ${repeat.repeats} times for every ${repeat.value} ${field} ${findId(gameData, file, repeat.childId)?.name || ''} in ${findId(gameData, file, repeat.scope)?.name || repeat.scope}${extra}`
   }
 }

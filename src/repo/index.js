@@ -1,4 +1,3 @@
-import FS from '@isomorphic-git/lightning-fs'
 import fxparser from 'fast-xml-parser'
 import {
   BlobReader,
@@ -13,9 +12,6 @@ import axios from 'axios'
 import PQueue from 'p-queue'
 
 import { parseXML } from 'bsd-schema'
-
-export const fs = new FS("data")
-const pfs = fs.promises
 
 export const readXML = async (path, fs) => {
   let buffer = await fs.promises.readFile(path)
@@ -50,7 +46,7 @@ const builder = new fxparser.XMLBuilder({
   ],
 })
 
-export const xmlData = async (contents,  filename = '') => {
+export const xmlData = async (contents, filename = '') => {
   contents = _.cloneDeep(contents)
 
   const prune = (target) => {
@@ -88,14 +84,14 @@ export const listAvailableGameSystems = async () => {
   return data.data.repositories
 }
 
-export const listGameSystems = async () => {
+export const listGameSystems = async (fs) => {
   const systems = {}
-  const dirs = await pfs.readdir('/')
+  const dirs = await fs.promises.readdir('/')
   await Promise.all(dirs.map(async dir => {
     try {
-      systems[dir] = (await JSON.parse((await pfs.readFile('/' + dir + '/system.json')).toString()))
+      systems[dir] = (await JSON.parse((await fs.promises.readFile('/' + dir + '/system.json')).toString()))
     } catch {
-      await clearGameSystem({name: dir})
+      await clearGameSystem({name: dir}, fs)
     }
   }))
   return systems
@@ -106,16 +102,16 @@ const htmlDecode = (str) => {
   return doc.documentElement.textContent
 }
 
-export const addGameSystem = async (system) => {
-  const dirs = await pfs.readdir('/')
+export const addGameSystem = async (system, fs) => {
+  const dirs = await fs.promises.readdir('/')
   if (dirs.indexOf(system.name) !== -1) {
-    const files = await pfs.readdir('/' + system.name)
-    await Promise.all(files.map(f => pfs.unlink('/' + system.name + '/' + f)))
-    await pfs.rmdir('/' + system.name)
+    const files = await fs.promises.readdir('/' + system.name)
+    await Promise.all(files.map(f => fs.promises.unlink('/' + system.name + '/' + f)))
+    await fs.promises.rmdir('/' + system.name)
   }
 
-  await pfs.mkdir('/' + system.name)
-  await pfs.writeFile('/' + system.name + '/system.json', JSON.stringify(system))
+  await fs.promises.mkdir('/' + system.name)
+  await fs.promises.writeFile('/' + system.name + '/system.json', JSON.stringify(system))
 
   const index = await axios.get(`https://cdn.jsdelivr.net/gh/BSData/${system.name}@${system.version.replace('v', '')}/`)
 
@@ -125,24 +121,20 @@ export const addGameSystem = async (system) => {
 
   files.forEach(filename => q.add(async () => {
     const file = await axios(`https://cdn.jsdelivr.net${filename}`)
-    await pfs.writeFile('/' + system.name + '/' + _.last(filename.split('/')), file.data)
+    await fs.promises.writeFile('/' + system.name + '/' + _.last(filename.split('/')), file.data)
   }))
 
   return q
 }
 
-export const clearGameSystem = async (system) => {
-  const files = await pfs.readdir('/' + system.name)
-  await Promise.all(files.map(f => pfs.unlink('/' + system.name + '/' + f)))
-  await pfs.rmdir('/' + system.name)
+export const clearGameSystem = async (system, fs) => {
+  const files = await fs.promises.readdir('/' + system.name)
+  await Promise.all(files.map(f => fs.promises.unlink('/' + system.name + '/' + f)))
+  await fs.promises.rmdir('/' + system.name)
 }
 
-export const clearCache = async (dir) => {
-  await pfs.unlink(dir + '/cache.json')
-}
-
-export const listFiles = async (dir) => {
-  const files = await pfs.readdir(dir)
+const listFiles = async (dir, fs) => {
+  const files = await fs.promises.readdir(dir)
   const paths = files
     .filter(f => f.endsWith('.cat') || f.endsWith('.gst'))
     .map(f => dir + '/' + f)
@@ -150,18 +142,18 @@ export const listFiles = async (dir) => {
   return paths
 }
 
-const cacheVersion = 2
+const cacheVersion = 3
 
-export const readFiles = async (dir) => {
+export const readFiles = async (dir, fs) => {
   try {
-    if (await pfs.stat(dir + '/cache.json')) {
-      console.log('Leading cache')
-      const cache = JSON.parse(await pfs.readFile(dir + '/cache.json'))
+    if (await fs.promises.stat(dir + '/cache.json')) {
+      console.log('Loading cache')
+      const cache = JSON.parse(await fs.promises.readFile(dir + '/cache.json'))
       if (cache.gameSystem && cache.version === cacheVersion) {
         console.log(`Cache v${cacheVersion} looks valid`)
         return cache
       }
-      console.log(`Found cache v${cache.version || 1}, wanted v${cacheVersion}. Reparsing raw files`)
+      console.log(cache.version !== cacheVersion ? `Found cache v${cache.version || 1}, wanted v${cacheVersion}. Reparsing raw files` : 'Read cache, but found no gameSystem. Reparsing raw files.')
     }
   } catch {
     console.log("No cache found. Reparsing raw files.")
@@ -169,56 +161,54 @@ export const readFiles = async (dir) => {
 
   const parsed = {
     version: cacheVersion,
-    ids: {},
-    catalogues: [],
+    catalogues: {},
   }
 
-  function index(x) {
-    if (x.id) {
-      parsed.ids[x.id] = x
-    }
 
-    delete x.import
-    for (let attr in x) {
-      if (x[attr] === '') { delete x[attr] }
+  const paths = await listFiles(dir, fs)
+  await Promise.all(paths.map(async (path) => {
+    const data = await readXML(path, fs)
+    data.ids = {}
 
-      if (x[attr] instanceof Array) {
-        x[attr].forEach(index)
+    function index(x) {
+      if (x.id) {
+        data.ids[x.id] = x
+      }
 
-        if (attr.startsWith('shared')) {
-          delete x[attr]
+      delete x.import
+      for (let attr in x) {
+        if (x[attr] === '') { delete x[attr] }
+
+        if (x[attr] instanceof Array) {
+          x[attr].forEach(index)
+
+          if (attr.startsWith('shared')) {
+            delete x[attr]
+          }
         }
       }
     }
-  }
-
-  const paths = await listFiles(dir)
-  await Promise.all(paths.map(async (path) => {
-    const data = await readXML(path, fs)
     index(data)
+    delete data.ids[data.id]
 
     if (data.type === 'gameSystem') { parsed.gameSystem = data }
-    else if (data.type === 'catalogue') {
-      parsed.catalogues.push(data)
-    }
+    else if (data.type === 'catalogue') { parsed.catalogues[data.id] = data }
     else { throw new Error('Wut?') }
   }))
 
-  parsed.catalogues = parsed.catalogues.filter(c => !c.library)
-
   try {
-    await pfs.unlink(dir + '/cache.json')
+    await fs.promises.unlink(dir + '/cache.json')
   } catch {}
 
-  await pfs.writeFile(dir + '/cache.json', JSON.stringify(parsed))
+  await fs.promises.writeFile(dir + '/cache.json', JSON.stringify(parsed))
 
   return parsed
 }
 
-export const readRawFiles = async (dir) => {
+export const readRawFiles = async (dir, fs) => {
   const files = {}
 
-  const paths = await listFiles(dir)
+  const paths = await listFiles(dir, fs)
   await Promise.all(paths.map(async (path) => {
     const data = await readXML(path, fs)
     const filename = _.last(path.split('/'))

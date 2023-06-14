@@ -1,0 +1,1901 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<roster id="714e-141c-095c-11f1" name="New Roster" battleScribeVersion="2.03" gameSystemId="28ec-711c-d87f-3aeb" gameSystemName="Warhammer 40,000 9th Edition" gameSystemRevision="209" xmlns="http://www.battlescribe.net/schema/rosterSchema">
+  <costs>
+    <cost name=" PL" typeId="e356-c769-5920-6e14" value="107.0"/>
+    <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="10.0"/>
+    <cost name="pts" typeId="points" value="2000.0"/>
+  </costs>
+  <forces>
+    <force id="2741-08f7-b537-cc6c" name="Vanguard Detachment -3CP" entryId="41af-75ce-79d2-ddff" catalogueId="61c6-c8c5-a304-ff5f" catalogueRevision="101" catalogueName="Necrons">
+      <rules>
+        <rule id="aafd-7344-f075-8a81" name="Dynastic Agents and Star Gods" publicationId="61c6-c8c5-pubN65537" page="51" hidden="false">
+          <description>DYNASTIC AGENT and C&apos;TAN SHARD units can be included in a NECRONS detachment without preventing other units in that Detachment from gaining a Dynastic Code. DYNASTIC AGENT and C&apos;TAN SHARD units never gain a Dynastic Code.  You can include a maximum of one C&apos;TAN SHARD model in each NECRONS Detachment in your army.</description>
+        </rule>
+        <rule id="71d0-0ae0-afee-02fa" name="The Royal Court" publicationId="61c6-c8c5-pubN65537" page="51" hidden="false">
+          <description>When mustering your army, if it contains THE SILENT KING model, that model must be selected as your WARLORD. Otherwise, if your army contains a PHAERON model, that model must be selected as your WARLORD. Otherwise, if your army contains an OVERLORD model, that model must be selected as your WARLORD. Otherwise, if your army contains a LORD model, that model must be selected as your WARLORD. If your army contains none of the listed models, select your WARLORD as normal.</description>
+        </rule>
+      </rules>
+      <selections>
+        <selection id="07cf-5698-c575-da17" name="Dynasty Choice" entryId="fb30-1514-c892-86b5::56f2-f7e2-4231-f2da" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+          <selections>
+            <selection id="5a27-9c0f-86d6-b0f5" name="Dynasty: &lt;Custom&gt;" entryId="fb30-1514-c892-86b5::5677-1510-fb17-82b3::ab70-10fa-c94b-736a::56dd-f1e1-5dcb-f538" entryGroupId="fb30-1514-c892-86b5::5677-1510-fb17-82b3::c084-1fe3-9662-2308" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+              </costs>
+            </selection>
+            <selection id="3518-131b-bf67-3cad" name="Circumstance of Awakening: Relentlessly Expansionist" entryId="fb30-1514-c892-86b5::dbc4-9391-071b-a5be::d492-8b72-6f26-1e8f::b799-c623-b9b5-96b8" entryGroupId="fb30-1514-c892-86b5::dbc4-9391-071b-a5be::1ce4-99b6-4c4d-9c83" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+              <profiles>
+                <profile id="fb30-1514-c892-86b5::dbc4-9391-071b-a5be::d492-8b72-6f26-1e8f::eb35-278c-bc7d-990d" name="Relentlessly Expansionist" publicationId="61c6-c8c5-pubN65537" page="55" hidden="false" typeId="e31c-30b0-b621-edf7" typeName="Dynastic Code">
+                  <characteristics>
+                    <characteristic name="Description" typeId="b1f8-a131-2cef-6c8b">At the start of the first battle round, before the first turn begins, units with this code can make a Normal Move of up to 6&quot;.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+              </costs>
+            </selection>
+            <selection id="8c6c-74a1-107b-aa3e" name="Dynastic Tradition: Eternal Conquerors" entryId="fb30-1514-c892-86b5::18f2-b810-d50f-e542::c506-d9c9-64a2-f2e0::1cd7-3ee7-3fa8-4c28" entryGroupId="fb30-1514-c892-86b5::18f2-b810-d50f-e542::05ab-527d-32b4-fe08" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+              <rules>
+                <rule id="fb30-1514-c892-86b5::18f2-b810-d50f-e542::c506-d9c9-64a2-f2e0::5e68-c807-49bd-2075::e07e-8dbf-0b15-7485" name="Objective Secured" publicationId="28ec-711c-pubN72690" page="237" hidden="false">
+                  <description>A player controls an objective marker if they have any models with this ability within range of that objective marker, even if there are more enemy models within range of that objective marker. If an enemy model within range of an objective marker also has this ability (or a similar ability), then the objective marker is controlled by the player who has the most models within range of that objective marker as normal.</description>
+                </rule>
+              </rules>
+              <profiles>
+                <profile id="fb30-1514-c892-86b5::18f2-b810-d50f-e542::c506-d9c9-64a2-f2e0::d9ee-8a66-940a-5718" name="Eternal Conquerors" publicationId="61c6-c8c5-pubN65537" page="54" hidden="false" typeId="e31c-30b0-b621-edf7" typeName="Dynastic Code">
+                  <characteristics>
+                    <characteristic name="Description" typeId="b1f8-a131-2cef-6c8b">Units with this code have the Objective Secured ability.  If a model in such a unit already has this ability, that model counts as one additional model when determining control of an objective marker.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+            <cost name="pts" typeId="points" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="c939-a786-f0c5-0f7d" name="Configuration" entryId="fcff-0f21-93e6-1ddc" primary="true"/>
+          </categories>
+        </selection>
+        <selection id="a926-074e-81c6-b8b3" name="Detachment Command Cost" entryId="ec87-f19e-eee2-1ba8::9d97-2793-9882-d48a" number="1" type="upgrade">
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="-3.0"/>
+            <cost name="pts" typeId="points" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="44ab-2e5d-57e8-f033" name="Configuration" entryId="fcff-0f21-93e6-1ddc" primary="true"/>
+          </categories>
+        </selection>
+        <selection id="1e8f-b6f2-422b-a1a9" name="Lord" entryId="ea31-1198-5a4a-d906::4d88-448b-d4cd-feb0" publicationId="61c6-c8c5-pubN65537" number="1" type="model">
+          <rules>
+            <rule id="ea31-1198-5a4a-d906::9762-6626-0500-8f18::601f-ad02-3e1f-fcc4" name="Living Metal" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+              <description>At the start of your Command phase, each model in this unit regains 1 lost wound.</description>
+            </rule>
+            <rule id="ea31-1198-5a4a-d906::9c0c-b62b-4539-8e33::aa07-b2de-6de0-3dd9" name="Command Protocols" publicationId="61c6-c8c5-pubN65537" page="81" hidden="false">
+              <description>If every unit from your army (excluding DYNASTIC AGENT, C&apos;TAN SHARD and UNALIGNED units) is from the same dynasty, and you select a NOBLE model to be your WARLORD, this unit is eligible to benefit from this ability and the following rules apply.  
+
+After both sides have deployed, but before you have determined who will have the first turn, you must assign a different one of the command protocols to each of the first five battle rounds, and note this down secretly on your army roster.
+
+At the start of each battle round, if any NOBLE units from your army are on the battlefield, the command protocol that you assigned to that battle round becomes active for your army until the end of that battle round. Each command protocol is made up of two directives. When a command protocol becomes active for your army, reveal it to your opponent and select one of its directives. Until the assigned command protocol stops being active, while a unit that is eligible to benefit from this ability is within 6&quot; of a friendly NECRONS CHARACTER model (excluding C&apos;TAN SHARD models), that unit benefits from the selected directive.
+
+If the battle lasts for more than five battle rounds, then until the end of the battle, whichever command protocol was active in the fifth battle round remains active.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="ea31-1198-5a4a-d906::7127-b55e-cbb4-5e0a" name="Lord" publicationId="61c6-c8c5-pubN65537" page="87" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">6&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">3+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">3+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">5</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">5</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">4</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">3</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">3+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="ea31-1198-5a4a-d906::92c0-b1a7-d02e-33f6" name="The Lord&apos;s Will" publicationId="61c6-c8c5-pubN65537" page="87" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">In your Command phase, you can select one friendly &lt;DYNASTY&gt; CORE unit within 9&quot; of this model. Until the start of your next Command phase, each time a model in that unit makes an attack, re-roll a hit roll of 1.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="ea31-1198-5a4a-d906::1a11-32ad-77e3-94aa::d73e-c37e-6409-5965" name="Relentless March (Aura)" publicationId="61c6-c8c5-pubN65537" page="86" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly &lt;DYNASTY&gt; CORE unit is within 6&quot; of this model, each time that unit is selected to make a Normal Move or Advance, until the end of the phase, add 1&quot; to the Move characteristic of models in that unit.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="cba2-8c57-9690-b465" name="Staff of Light" entryId="ea31-1198-5a4a-d906::3557-831d-9e21-7ce1::c7ae-4085-11c3-5610" entryGroupId="ea31-1198-5a4a-d906::1ca2-6869-348a-7e51" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+              <profiles>
+                <profile id="ea31-1198-5a4a-d906::3557-831d-9e21-7ce1::914c-0019-5336-b418" name="Staff of Light (Shooting)" publicationId="61c6-c8c5-pubN65537" page="113" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">18&quot;</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Assault 3</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">5</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">1</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="ea31-1198-5a4a-d906::3557-831d-9e21-7ce1::c27e-d4e4-ee55-0254" name="Staff of Light (Melee)" publicationId="61c6-c8c5-pubN65537" page="115" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">1</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+              </costs>
+            </selection>
+            <selection id="2dbd-6260-8614-7544" name="Resurrection Orb" entryId="ea31-1198-5a4a-d906::1d52-17ed-23b0-10c5::5805-778a-2219-fd63" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+              <profiles>
+                <profile id="ea31-1198-5a4a-d906::1d52-17ed-23b0-10c5::bef4-2255-3669-ebc4" name="Resurrection Orb" publicationId="61c6-c8c5-pubN65537" page="87" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+                  <characteristics>
+                    <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">Once per battle, in your Command phase, the bearer can use its resurrection orb. If it does, select one friendly &lt;DYNASTY&gt; unit within 6&quot; of the bearer that is not at its Starting Strength and has not had its reanimation protocols enacted this phase. That unit&apos;s reanimation protocols are enacted, and every destroyed model in that unit begins to reassemble.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="30.0"/>
+              </costs>
+            </selection>
+            <selection id="c545-d350-e260-407a" name="Relic: Orb of Eternity" entryId="ea31-1198-5a4a-d906::8dca-654b-51c8-b872::1d84-787f-9350-b37d::0e6e-ffcb-dea9-93f1" entryGroupId="ea31-1198-5a4a-d906::8dca-654b-51c8-b872::745d-ceff-5cb7-abb7" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+              <profiles>
+                <profile id="ea31-1198-5a4a-d906::8dca-654b-51c8-b872::1d84-787f-9350-b37d::c3fa-bcf9-4087-87c7" name="Orb of Eternity" publicationId="61c6-c8c5-pubN65537" page="66" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+                  <characteristics>
+                    <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This relic replaces a resurrection orb.  Once per battle, in your Command phase, the bearer can use this Relic. If it does, select one friendly &lt;DYNASTY&gt; unit within 6&quot; of the bearer that is not at its Starting Strength and has not had its reanimation protocols enacted this phase. That unit&apos;s reanimation protocols are enacted, and every destroyed model in that unit begins to reassemble. Each time a Reanimation Protocol roll is made for those reanimation protocols, add 1 to the result.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="5.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+            <cost name="pts" typeId="points" value="70.0"/>
+          </costs>
+          <categories>
+            <category id="d985-9906-e216-8151" name="Character" entryId="ef18-746a-369f-43a4" primary="false"/>
+            <category id="a688-5268-74f5-45d8" name="Faction: &lt;Dynasty&gt;" entryId="6a37-4c9f-a323-a8f2" primary="false"/>
+            <category id="7ecb-8767-dcfb-bcf8" name="Faction: Necrons" entryId="876e-ea78-1fdf-f250" primary="false"/>
+            <category id="2e0a-b243-1f76-4ccf" name="Infantry" entryId="3d52-fccf-10c0-3fae" primary="false"/>
+            <category id="4bca-77fe-72ae-567e" name="Lord" entryId="53e6-5760-f9fa-6f21" primary="false"/>
+            <category id="91c3-bbe5-f276-1494" name="Noble" entryId="60f3-194a-d96a-689c" primary="false"/>
+            <category id="477e-16a1-2bd6-a07f" name="HQ" entryId="848a6ff2-0def-4c72-8433-ff7da70e6bc7" primary="true"/>
+          </categories>
+        </selection>
+        <selection id="a73a-4a54-67a2-499f" name="Chronomancer" entryId="a11c-4537-cb77-91bf::e4d8-225b-cae1-1f20" publicationId="61c6-c8c5-pubN65537" number="1" type="model">
+          <rules>
+            <rule id="a11c-4537-cb77-91bf::3afb-2f21-2e34-5c90::aa07-b2de-6de0-3dd9" name="Command Protocols" publicationId="61c6-c8c5-pubN65537" page="81" hidden="false">
+              <description>If every unit from your army (excluding DYNASTIC AGENT, C&apos;TAN SHARD and UNALIGNED units) is from the same dynasty, and you select a NOBLE model to be your WARLORD, this unit is eligible to benefit from this ability and the following rules apply.  
+
+After both sides have deployed, but before you have determined who will have the first turn, you must assign a different one of the command protocols to each of the first five battle rounds, and note this down secretly on your army roster.
+
+At the start of each battle round, if any NOBLE units from your army are on the battlefield, the command protocol that you assigned to that battle round becomes active for your army until the end of that battle round. Each command protocol is made up of two directives. When a command protocol becomes active for your army, reveal it to your opponent and select one of its directives. Until the assigned command protocol stops being active, while a unit that is eligible to benefit from this ability is within 6&quot; of a friendly NECRONS CHARACTER model (excluding C&apos;TAN SHARD models), that unit benefits from the selected directive.
+
+If the battle lasts for more than five battle rounds, then until the end of the battle, whichever command protocol was active in the fifth battle round remains active.</description>
+            </rule>
+            <rule id="a11c-4537-cb77-91bf::0447-1f6f-b70b-a85c::601f-ad02-3e1f-fcc4" name="Living Metal" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+              <description>At the start of your Command phase, each model in this unit regains 1 lost wound.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="a11c-4537-cb77-91bf::dbea-3744-5de9-a1bf" name="Chronomancer" publicationId="61c6-c8c5-pubN65537" page="91" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">8&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">3+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">3+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">4</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">4</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">4</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">1</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">4+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="a11c-4537-cb77-91bf::51ad-8b92-5f8d-8a07::ac3d-4098-0cb7-a49c" name="Chronometron" publicationId="61c6-c8c5-pubN65537" page="91" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">In your Command phase, you can select one friendly &lt;DYNASTY&gt; unit within 9&quot; of this model. Until the start of your next Command phase, you can re-roll charge rolls made for that unit and models in that unit have a 5+ invulnerable save.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="a11c-4537-cb77-91bf::c2ec-2f6d-6784-51df::90a7-d474-48a8-47b8" name="Timesplinter Mantle" publicationId="61c6-c8c5-pubN65537" page="91" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model has a 4+ invulnerable save.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="a11c-4537-cb77-91bf::ac3d-cdf5-cfb9-f3c8::8e55-3c95-511b-0bbf" name="Dynastic Advisors" publicationId="61c6-c8c5-pubN65537" page="90" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">If your army is Battle-forged, then for each CRYPTEK unit (excluding DYNASTIC AGENTS units) included in a Detachment that also contains at least one NOBLE unit, a second CRYPTEK unit (excluding DYNASTIC AGENTS units) can be included in that Detachment without taking up an additional Battlefield Role slot. [These are located in the Cryptek Selection under Dynastic Advisor]</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="91c8-6557-16ee-21c5" name="Chronotendrils" entryId="a11c-4537-cb77-91bf::410b-ecd0-4cdf-f7f3::db55-b9bd-d72e-eefc" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+              <profiles>
+                <profile id="a11c-4537-cb77-91bf::410b-ecd0-4cdf-f7f3::15bc-396e-a9d1-7d37" name="Chronotendrils" publicationId="61c6-c8c5-pubN65537" page="113" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">0</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">1</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time the bearer fights, it makes 3 additional attacks with this weapon.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+              </costs>
+            </selection>
+            <selection id="cb6b-3bfc-064a-4ec6" name="Aeonstave" entryId="a11c-4537-cb77-91bf::60c6-6932-eb51-02b2::282a-36bc-148d-ffa2" entryGroupId="a11c-4537-cb77-91bf::14c4-9cf7-c1c8-0d0d" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+              <profiles>
+                <profile id="a11c-4537-cb77-91bf::60c6-6932-eb51-02b2::3618-0120-d606-9d58" name="Aeonstave (Shooting)" publicationId="61c6-c8c5-pubN65537" page="112" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">18&quot;</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Assault D3</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">5</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">1</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Blast. Each time an attack is made with this weapon, invulnerable saving throws cannot be taken against this attack.</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="a11c-4537-cb77-91bf::60c6-6932-eb51-02b2::4ea8-9270-99d3-5a5a" name="Aeonstave (Melee)" publicationId="61c6-c8c5-pubN65537" page="114" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">1</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this weapon, invulnerable saving throws cannot be taken against this attack.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+              </costs>
+            </selection>
+            <selection id="9651-5712-9dde-3fe2" name="Relic: Veil of Darkness" entryId="a11c-4537-cb77-91bf::5039-9db9-77ee-7b62::aa0e-be5e-2d11-907f::1c2b-5398-c5ff-05f1" entryGroupId="a11c-4537-cb77-91bf::5039-9db9-77ee-7b62::745d-ceff-5cb7-abb7" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+              <profiles>
+                <profile id="a11c-4537-cb77-91bf::5039-9db9-77ee-7b62::aa0e-be5e-2d11-907f::6075-e005-187d-88eb" name="Veil of Darkness" publicationId="61c6-c8c5-pubN65537" page="66" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+                  <characteristics>
+                    <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">Once per battle, in your Movement phase, the bearer can use this Relic.  If it does, the bearer&apos;s unit and up to one friendly &lt;DYNASTY&gt; CORE unit within 3&quot; of the bearer can be removed from the battlefield and set back up anywhere on the battlefield that is more than 9&quot; away from any enemy models. If two units are set back up on the battlefield using this Relic, both units must be placed wholly within 6&quot; of each other.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+              </costs>
+            </selection>
+            <selection id="715d-2374-4917-d0aa" name="Dynastic Heirlooms" entryId="a11c-4537-cb77-91bf::5d2b-0000-ec30-a744::7eda-575b-b0da-408e" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="-1.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="5.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+            <cost name="pts" typeId="points" value="80.0"/>
+          </costs>
+          <categories>
+            <category id="1916-582b-458b-ec2d" name="Faction: &lt;Dynasty&gt;" entryId="6a37-4c9f-a323-a8f2" primary="false"/>
+            <category id="1b9e-5bd0-c9be-b976" name="Faction: Necrons" entryId="876e-ea78-1fdf-f250" primary="false"/>
+            <category id="3d02-4434-572a-ec6a" name="Infantry" entryId="3d52-fccf-10c0-3fae" primary="false"/>
+            <category id="720e-9087-f9ce-bfd6" name="Fly" entryId="3117-16d8-fcef-4f56" primary="false"/>
+            <category id="9107-54d7-d507-d6e6" name="Character" entryId="ef18-746a-369f-43a4" primary="false"/>
+            <category id="7d13-faf4-9eea-4bb4" name="Cryptek" entryId="092a-b667-f7aa-1b33" primary="false"/>
+            <category id="8c1b-291d-2f60-4b47" name="Chronomancer" entryId="6e3f-0788-7a38-de1f" primary="false"/>
+            <category id="807d-ec91-d8c4-9c20" name="HQ" entryId="848a6ff2-0def-4c72-8433-ff7da70e6bc7" primary="true"/>
+          </categories>
+        </selection>
+        <selection id="f3ef-f33e-bfe8-3cd9" name="Dynastic Advisor" entryId="a9ab-19bb-9332-66be::7482-b4b9-3bae-6e7e" number="1" type="upgrade">
+          <selections>
+            <selection id="cc37-507b-862d-2852" name="Technomancer" entryId="a9ab-19bb-9332-66be::8a23-eacc-7d10-d483::e5d8-d5a6-55bf-e6fa" entryGroupId="a9ab-19bb-9332-66be::9bc0-eb32-ca8f-dcc1" publicationId="61c6-c8c5-pubN65537" number="1" type="model">
+              <rules>
+                <rule id="a9ab-19bb-9332-66be::8a23-eacc-7d10-d483::9af1-d7ab-f5d5-9ec8::aa07-b2de-6de0-3dd9" name="Command Protocols" publicationId="61c6-c8c5-pubN65537" page="81" hidden="false">
+                  <description>If every unit from your army (excluding DYNASTIC AGENT, C&apos;TAN SHARD and UNALIGNED units) is from the same dynasty, and you select a NOBLE model to be your WARLORD, this unit is eligible to benefit from this ability and the following rules apply.  
+
+After both sides have deployed, but before you have determined who will have the first turn, you must assign a different one of the command protocols to each of the first five battle rounds, and note this down secretly on your army roster.
+
+At the start of each battle round, if any NOBLE units from your army are on the battlefield, the command protocol that you assigned to that battle round becomes active for your army until the end of that battle round. Each command protocol is made up of two directives. When a command protocol becomes active for your army, reveal it to your opponent and select one of its directives. Until the assigned command protocol stops being active, while a unit that is eligible to benefit from this ability is within 6&quot; of a friendly NECRONS CHARACTER model (excluding C&apos;TAN SHARD models), that unit benefits from the selected directive.
+
+If the battle lasts for more than five battle rounds, then until the end of the battle, whichever command protocol was active in the fifth battle round remains active.</description>
+                </rule>
+                <rule id="a9ab-19bb-9332-66be::8a23-eacc-7d10-d483::4e2b-c88d-e163-d6b8::601f-ad02-3e1f-fcc4" name="Living Metal" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+                  <description>At the start of your Command phase, each model in this unit regains 1 lost wound.</description>
+                </rule>
+              </rules>
+              <profiles>
+                <profile id="a9ab-19bb-9332-66be::8a23-eacc-7d10-d483::e2a6-3f47-4bd6-b93c" name="Technomancer" publicationId="61c6-c8c5-pubN65537" page="90" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+                  <characteristics>
+                    <characteristic name="M" typeId="0bdf-a96e-9e38-7779">5&quot;</characteristic>
+                    <characteristic name="WS" typeId="e7f0-1278-0250-df0c">3+</characteristic>
+                    <characteristic name="BS" typeId="381b-eb28-74c3-df5f">3+</characteristic>
+                    <characteristic name="S" typeId="2218-aa3c-265f-2939">4</characteristic>
+                    <characteristic name="T" typeId="9c9f-9774-a358-3a39">4</characteristic>
+                    <characteristic name="W" typeId="f330-5e6e-4110-0978">4</characteristic>
+                    <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">1</characteristic>
+                    <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                    <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">4+</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="a9ab-19bb-9332-66be::8a23-eacc-7d10-d483::c513-fdb4-274a-f257" name="Rites of Reanimation" publicationId="61c6-c8c5-pubN65537" page="84" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+                  <characteristics>
+                    <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">In your Command phase, you can select one friendly &lt;DYNASTY&gt; CORE unit within 6&quot; of this model. One destroyed model from that unit is Reanimated. If the selected unit is a NECRON WARRIORS unit, D3 destroyed models from that unit are Reanimated instead. Each unit can only be selected for this ability once per phase.</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="a9ab-19bb-9332-66be::8a23-eacc-7d10-d483::6338-1c2c-9806-d6af::8e55-3c95-511b-0bbf" name="Dynastic Advisors" publicationId="61c6-c8c5-pubN65537" page="90" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+                  <characteristics>
+                    <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">If your army is Battle-forged, then for each CRYPTEK unit (excluding DYNASTIC AGENTS units) included in a Detachment that also contains at least one NOBLE unit, a second CRYPTEK unit (excluding DYNASTIC AGENTS units) can be included in that Detachment without taking up an additional Battlefield Role slot. [These are located in the Cryptek Selection under Dynastic Advisor]</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <selections>
+                <selection id="8a43-96d7-2994-d935" name="Staff of Light" entryId="a9ab-19bb-9332-66be::8a23-eacc-7d10-d483::e52d-fff1-08f5-7bfb::c7ae-4085-11c3-5610" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+                  <profiles>
+                    <profile id="a9ab-19bb-9332-66be::8a23-eacc-7d10-d483::e52d-fff1-08f5-7bfb::914c-0019-5336-b418" name="Staff of Light (Shooting)" publicationId="61c6-c8c5-pubN65537" page="113" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                      <characteristics>
+                        <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">18&quot;</characteristic>
+                        <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Assault 3</characteristic>
+                        <characteristic name="S" typeId="59b1-319e-ec13-d466">5</characteristic>
+                        <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                        <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">1</characteristic>
+                        <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                      </characteristics>
+                    </profile>
+                    <profile id="a9ab-19bb-9332-66be::8a23-eacc-7d10-d483::e52d-fff1-08f5-7bfb::c27e-d4e4-ee55-0254" name="Staff of Light (Melee)" publicationId="61c6-c8c5-pubN65537" page="115" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                      <characteristics>
+                        <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                        <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                        <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                        <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                        <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">1</characteristic>
+                        <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                      </characteristics>
+                    </profile>
+                  </profiles>
+                  <costs>
+                    <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                    <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                    <cost name="pts" typeId="points" value="0.0"/>
+                  </costs>
+                </selection>
+                <selection id="90c5-ffbd-7034-721e" name="Canoptek Cloak" entryId="a9ab-19bb-9332-66be::8a23-eacc-7d10-d483::1a1a-f815-c21c-f474::b16c-00fe-661a-ffff" entryGroupId="a9ab-19bb-9332-66be::8a23-eacc-7d10-d483::fcc4-b26e-6b56-277b" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+                  <profiles>
+                    <profile id="a9ab-19bb-9332-66be::8a23-eacc-7d10-d483::1a1a-f815-c21c-f474::d7a4-c7c3-66c8-4362" name="Canoptek Cloak" publicationId="61c6-c8c5-pubN65537" page="90" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+                      <characteristics>
+                        <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">The bearer has a Move characteristic of 10&quot; and the FLY keyword. In addition, at the end of your Movement phase, you can repair one friendly &lt;DYNASTY&gt; model within 3&quot; of this model. That model regains up to D3 lost wounds. Each model can only be repaired once per turn.</characteristic>
+                      </characteristics>
+                    </profile>
+                  </profiles>
+                  <costs>
+                    <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                    <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                    <cost name="pts" typeId="points" value="5.0"/>
+                  </costs>
+                  <categories>
+                    <category id="135e-9765-6564-7193" name="Fly" entryId="3117-16d8-fcef-4f56" primary="false"/>
+                  </categories>
+                </selection>
+                <selection id="30f4-aff7-0181-f546" name="Dynastic Heirlooms" entryId="a9ab-19bb-9332-66be::8a23-eacc-7d10-d483::d80a-22b5-9d55-d899::7eda-575b-b0da-408e" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+                  <costs>
+                    <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                    <cost name="pts" typeId="points" value="0.0"/>
+                    <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="-1.0"/>
+                  </costs>
+                </selection>
+                <selection id="a24c-2a4c-a23d-f1d9" name="Relic: Voltaic Staff" entryId="a9ab-19bb-9332-66be::8a23-eacc-7d10-d483::123a-e501-f1df-10f2::0b60-79b9-6bd1-b5c8::dad9-e3f1-5255-baba" entryGroupId="a9ab-19bb-9332-66be::8a23-eacc-7d10-d483::123a-e501-f1df-10f2::745d-ceff-5cb7-abb7" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+                  <profiles>
+                    <profile id="a9ab-19bb-9332-66be::8a23-eacc-7d10-d483::123a-e501-f1df-10f2::0b60-79b9-6bd1-b5c8::6bab-fad6-8041-de32" name="Voltaic Staff (Shooting)" publicationId="61c6-c8c5-pubN65537" page="66" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                      <characteristics>
+                        <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">18&quot;</characteristic>
+                        <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Assault 4</characteristic>
+                        <characteristic name="S" typeId="59b1-319e-ec13-d466">6</characteristic>
+                        <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                        <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">2</characteristic>
+                        <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time an attack is made with this weapon, an unmodified hit roll of 6 scores 2 additional hits. This Relic replaces a staff of light.</characteristic>
+                      </characteristics>
+                    </profile>
+                    <profile id="a9ab-19bb-9332-66be::8a23-eacc-7d10-d483::123a-e501-f1df-10f2::0b60-79b9-6bd1-b5c8::8c43-3d07-a92b-c50a" name="Voltaic Staff (Melee)" publicationId="61c6-c8c5-pubN65537" page="66" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                      <characteristics>
+                        <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                        <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                        <characteristic name="S" typeId="59b1-319e-ec13-d466">+1</characteristic>
+                        <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                        <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">2</characteristic>
+                        <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">This Relic replaces a staff of light.</characteristic>
+                      </characteristics>
+                    </profile>
+                  </profiles>
+                  <costs>
+                    <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                    <cost name="pts" typeId="points" value="0.0"/>
+                    <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                  </costs>
+                </selection>
+              </selections>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="5.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="75.0"/>
+              </costs>
+              <categories>
+                <category id="07ff-d1c6-2c31-5753" name="Character" entryId="ef18-746a-369f-43a4" primary="false"/>
+                <category id="1420-bf57-3d30-dd56" name="Cryptek" entryId="092a-b667-f7aa-1b33" primary="false"/>
+                <category id="1369-dd48-ffb2-91cf" name="Faction: &lt;Dynasty&gt;" entryId="6a37-4c9f-a323-a8f2" primary="false"/>
+                <category id="c244-8d04-4c0c-8c75" name="Faction: Necrons" entryId="876e-ea78-1fdf-f250" primary="false"/>
+                <category id="01ca-08ce-c7ac-4358" name="Infantry" entryId="3d52-fccf-10c0-3fae" primary="false"/>
+                <category id="96e6-10b1-0257-446c" name="Technomancer" entryId="f3a7-2338-cd8d-5e31" primary="false"/>
+                <category id="79b9-9020-a776-9b87" name="Dynastic Advisor" entryId="598f-6101-1273-9dfb" primary="false"/>
+              </categories>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+            <cost name="pts" typeId="points" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="2ef7-3032-9577-2f2f" name="No Force Org Slot" entryId="ff36a6f3-19bf-4f48-8956-adacfd28fe74" primary="true"/>
+          </categories>
+        </selection>
+        <selection id="fdd7-6b00-80df-fd35" name="Flayed Ones" entryId="d8fe-c75f-4b80-6109::96eb-eb3c-9a92-930f" publicationId="61c6-c8c5-pubN65537" number="1" type="unit">
+          <rules>
+            <rule id="d8fe-c75f-4b80-6109::e4c6-5699-2b23-c6a4::aa07-b2de-6de0-3dd9" name="Command Protocols" publicationId="61c6-c8c5-pubN65537" page="81" hidden="false">
+              <description>If every unit from your army (excluding DYNASTIC AGENT, C&apos;TAN SHARD and UNALIGNED units) is from the same dynasty, and you select a NOBLE model to be your WARLORD, this unit is eligible to benefit from this ability and the following rules apply.  
+
+After both sides have deployed, but before you have determined who will have the first turn, you must assign a different one of the command protocols to each of the first five battle rounds, and note this down secretly on your army roster.
+
+At the start of each battle round, if any NOBLE units from your army are on the battlefield, the command protocol that you assigned to that battle round becomes active for your army until the end of that battle round. Each command protocol is made up of two directives. When a command protocol becomes active for your army, reveal it to your opponent and select one of its directives. Until the assigned command protocol stops being active, while a unit that is eligible to benefit from this ability is within 6&quot; of a friendly NECRONS CHARACTER model (excluding C&apos;TAN SHARD models), that unit benefits from the selected directive.
+
+If the battle lasts for more than five battle rounds, then until the end of the battle, whichever command protocol was active in the fifth battle round remains active.</description>
+            </rule>
+            <rule id="d8fe-c75f-4b80-6109::f847-cde8-834c-ae1a::cba7-3427-625e-eb99" name="Reanimation Protocols" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+              <description>Each time an enemy unit shoots or fights, after it makes its attacks, if any models in this unit were destroyed as a result of those attacks but this unit was not destroyed, this unit&apos;s reanimation protocols are enacted and those destroyed models begin to reassemble.
+
+Each time a unit&apos;s reanimation protocols are enacted, make Reanimation Protocol rolls for that unit by rolling a number of D6 equal to the combined Wounds characteristics of all the reassembling models. Each Reanimation Protocol roll of 5+ is put into a pool. A Reanimation Protocol roll can never be modified by more than -1 or +1.
+
+If the number of dice in that pool is greater than or equal to the Wounds characteristic of any of the reassembling models, select one of those models to be Reanimated. A Reanimated model:
+	-Is added back to its unit with its full wounds remaining.
+	-Can only set up within Engagement Range of enemy units that are already within Engagement Range of the Reanimated model&apos;s unit.
+	-Cannot, if it is your Charge phase, be set up closer to any enemy units that are targets of a charge declared by its unit this phase.
+	-No longer counts as having been destroyed for the purposes of Morale tests this turn.
+
+You then reduce the number of dice in that pool by a number equal to the Wounds characteristic of the Reanimated model and repeat this process until either there are no more reassembling models, or the number of dice remaining in the pool is less than the Wounds characteristic of any of the reassembling models. Any models that did not Reanimate fail to reassemble, and any dice remaining in the pool are discarded.</description>
+            </rule>
+            <rule id="d8fe-c75f-4b80-6109::6bf7-a882-b803-9054::3a36-ee53-2240-4170" name="Dimensional Translocation" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+              <description>During deployment, you can set up this unit in a hyperspace dimension instead of setting it up on the battlefield. If you do, then in the Reinforcements step of one of your Movement phases, you can set up this unit anywhere on the battlefield that is more than 9&quot; away from any enemy models.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="d8fe-c75f-4b80-6109::f002-a8cd-246b-2d7d" name="Terrifying Foes (Aura)" publicationId="61c6-c8c5-pubN65537" page="95" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While an enemy unit is within 3&quot; of this unit, subtract 2 from the Leadership characteristic of models in that unit.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="d8fe-c75f-4b80-6109::5a6f-c8fa-fa98-bd2d" name="Flesh Hunger" publicationId="61c6-c8c5-pubN65537" page="95" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">Each time a model in this unit makes a melee attack against an enemy non-VEHICLE unit, an unmodified hit roll of 6 scores 1 additional hit.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="c465-c8fe-e6e8-6761" name="Flayed One" entryId="d8fe-c75f-4b80-6109::937c-b295-75bf-2a71::8d81-d6ab-e943-b42e" publicationId="61c6-c8c5-pubN65537" number="20" type="model">
+              <profiles>
+                <profile id="d8fe-c75f-4b80-6109::937c-b295-75bf-2a71::1d11-fdb6-5cc4-e128" name="Flayed One" publicationId="61c6-c8c5-pubN65537" page="95" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+                  <characteristics>
+                    <characteristic name="M" typeId="0bdf-a96e-9e38-7779">5&quot;</characteristic>
+                    <characteristic name="WS" typeId="e7f0-1278-0250-df0c">3+</characteristic>
+                    <characteristic name="BS" typeId="381b-eb28-74c3-df5f">6+</characteristic>
+                    <characteristic name="S" typeId="2218-aa3c-265f-2939">4</characteristic>
+                    <characteristic name="T" typeId="9c9f-9774-a358-3a39">4</characteristic>
+                    <characteristic name="W" typeId="f330-5e6e-4110-0978">1</characteristic>
+                    <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">3</characteristic>
+                    <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                    <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">4+</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <selections>
+                <selection id="af5f-ec10-7f8a-a19b" name="Flayer Claws" entryId="d8fe-c75f-4b80-6109::937c-b295-75bf-2a71::57c3-5d9b-9e0b-5042::2bfe-b24d-b4bb-4233" publicationId="61c6-c8c5-pubN65537" number="20" type="upgrade">
+                  <profiles>
+                    <profile id="d8fe-c75f-4b80-6109::937c-b295-75bf-2a71::57c3-5d9b-9e0b-5042::2c7c-ae96-bb1e-e7cc" name="Flayer Claws" publicationId="61c6-c8c5-pubN65537" page="114" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                      <characteristics>
+                        <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                        <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                        <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                        <characteristic name="AP" typeId="75aa-a838-b675-6484">-1</characteristic>
+                        <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">1</characteristic>
+                        <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                      </characteristics>
+                    </profile>
+                  </profiles>
+                  <costs>
+                    <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                    <cost name="pts" typeId="points" value="0.0"/>
+                    <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                  </costs>
+                </selection>
+              </selections>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="200.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="8.0"/>
+            <cost name="pts" typeId="points" value="0.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="a137-b788-eaac-942c" name="Faction: &lt;Dynasty&gt;" entryId="6a37-4c9f-a323-a8f2" primary="false"/>
+            <category id="d8e8-1ff2-cbda-ed85" name="Faction: Necrons" entryId="876e-ea78-1fdf-f250" primary="false"/>
+            <category id="6d5b-b409-84f4-ef6e" name="Flayed Ones" entryId="b8dc-c00a-7d30-f4ce" primary="false"/>
+            <category id="6243-f152-1c63-06eb" name="Infantry" entryId="3d52-fccf-10c0-3fae" primary="false"/>
+            <category id="891e-8791-fd68-b108" name="Core" entryId="08f1-d244-eb44-7e01" primary="false"/>
+            <category id="4013-a0bc-ba5b-da65" name="Elites" entryId="638d74c6-bd97-4de5-b65a-6aaa24e9f4b2" primary="true"/>
+          </categories>
+        </selection>
+        <selection id="5582-b141-cc22-5f6e" name="Flayed Ones" entryId="d8fe-c75f-4b80-6109::96eb-eb3c-9a92-930f" publicationId="61c6-c8c5-pubN65537" number="1" type="unit">
+          <rules>
+            <rule id="d8fe-c75f-4b80-6109::e4c6-5699-2b23-c6a4::aa07-b2de-6de0-3dd9" name="Command Protocols" publicationId="61c6-c8c5-pubN65537" page="81" hidden="false">
+              <description>If every unit from your army (excluding DYNASTIC AGENT, C&apos;TAN SHARD and UNALIGNED units) is from the same dynasty, and you select a NOBLE model to be your WARLORD, this unit is eligible to benefit from this ability and the following rules apply.  
+
+After both sides have deployed, but before you have determined who will have the first turn, you must assign a different one of the command protocols to each of the first five battle rounds, and note this down secretly on your army roster.
+
+At the start of each battle round, if any NOBLE units from your army are on the battlefield, the command protocol that you assigned to that battle round becomes active for your army until the end of that battle round. Each command protocol is made up of two directives. When a command protocol becomes active for your army, reveal it to your opponent and select one of its directives. Until the assigned command protocol stops being active, while a unit that is eligible to benefit from this ability is within 6&quot; of a friendly NECRONS CHARACTER model (excluding C&apos;TAN SHARD models), that unit benefits from the selected directive.
+
+If the battle lasts for more than five battle rounds, then until the end of the battle, whichever command protocol was active in the fifth battle round remains active.</description>
+            </rule>
+            <rule id="d8fe-c75f-4b80-6109::f847-cde8-834c-ae1a::cba7-3427-625e-eb99" name="Reanimation Protocols" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+              <description>Each time an enemy unit shoots or fights, after it makes its attacks, if any models in this unit were destroyed as a result of those attacks but this unit was not destroyed, this unit&apos;s reanimation protocols are enacted and those destroyed models begin to reassemble.
+
+Each time a unit&apos;s reanimation protocols are enacted, make Reanimation Protocol rolls for that unit by rolling a number of D6 equal to the combined Wounds characteristics of all the reassembling models. Each Reanimation Protocol roll of 5+ is put into a pool. A Reanimation Protocol roll can never be modified by more than -1 or +1.
+
+If the number of dice in that pool is greater than or equal to the Wounds characteristic of any of the reassembling models, select one of those models to be Reanimated. A Reanimated model:
+	-Is added back to its unit with its full wounds remaining.
+	-Can only set up within Engagement Range of enemy units that are already within Engagement Range of the Reanimated model&apos;s unit.
+	-Cannot, if it is your Charge phase, be set up closer to any enemy units that are targets of a charge declared by its unit this phase.
+	-No longer counts as having been destroyed for the purposes of Morale tests this turn.
+
+You then reduce the number of dice in that pool by a number equal to the Wounds characteristic of the Reanimated model and repeat this process until either there are no more reassembling models, or the number of dice remaining in the pool is less than the Wounds characteristic of any of the reassembling models. Any models that did not Reanimate fail to reassemble, and any dice remaining in the pool are discarded.</description>
+            </rule>
+            <rule id="d8fe-c75f-4b80-6109::6bf7-a882-b803-9054::3a36-ee53-2240-4170" name="Dimensional Translocation" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+              <description>During deployment, you can set up this unit in a hyperspace dimension instead of setting it up on the battlefield. If you do, then in the Reinforcements step of one of your Movement phases, you can set up this unit anywhere on the battlefield that is more than 9&quot; away from any enemy models.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="d8fe-c75f-4b80-6109::f002-a8cd-246b-2d7d" name="Terrifying Foes (Aura)" publicationId="61c6-c8c5-pubN65537" page="95" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While an enemy unit is within 3&quot; of this unit, subtract 2 from the Leadership characteristic of models in that unit.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="d8fe-c75f-4b80-6109::5a6f-c8fa-fa98-bd2d" name="Flesh Hunger" publicationId="61c6-c8c5-pubN65537" page="95" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">Each time a model in this unit makes a melee attack against an enemy non-VEHICLE unit, an unmodified hit roll of 6 scores 1 additional hit.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="c17f-60e0-453f-572b" name="Flayed One" entryId="d8fe-c75f-4b80-6109::937c-b295-75bf-2a71::8d81-d6ab-e943-b42e" publicationId="61c6-c8c5-pubN65537" number="20" type="model">
+              <profiles>
+                <profile id="d8fe-c75f-4b80-6109::937c-b295-75bf-2a71::1d11-fdb6-5cc4-e128" name="Flayed One" publicationId="61c6-c8c5-pubN65537" page="95" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+                  <characteristics>
+                    <characteristic name="M" typeId="0bdf-a96e-9e38-7779">5&quot;</characteristic>
+                    <characteristic name="WS" typeId="e7f0-1278-0250-df0c">3+</characteristic>
+                    <characteristic name="BS" typeId="381b-eb28-74c3-df5f">6+</characteristic>
+                    <characteristic name="S" typeId="2218-aa3c-265f-2939">4</characteristic>
+                    <characteristic name="T" typeId="9c9f-9774-a358-3a39">4</characteristic>
+                    <characteristic name="W" typeId="f330-5e6e-4110-0978">1</characteristic>
+                    <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">3</characteristic>
+                    <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                    <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">4+</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <selections>
+                <selection id="2c39-985f-2ffd-8923" name="Flayer Claws" entryId="d8fe-c75f-4b80-6109::937c-b295-75bf-2a71::57c3-5d9b-9e0b-5042::2bfe-b24d-b4bb-4233" publicationId="61c6-c8c5-pubN65537" number="20" type="upgrade">
+                  <profiles>
+                    <profile id="d8fe-c75f-4b80-6109::937c-b295-75bf-2a71::57c3-5d9b-9e0b-5042::2c7c-ae96-bb1e-e7cc" name="Flayer Claws" publicationId="61c6-c8c5-pubN65537" page="114" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                      <characteristics>
+                        <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                        <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                        <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                        <characteristic name="AP" typeId="75aa-a838-b675-6484">-1</characteristic>
+                        <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">1</characteristic>
+                        <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                      </characteristics>
+                    </profile>
+                  </profiles>
+                  <costs>
+                    <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                    <cost name="pts" typeId="points" value="0.0"/>
+                    <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                  </costs>
+                </selection>
+              </selections>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="200.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="8.0"/>
+            <cost name="pts" typeId="points" value="0.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="3d54-bfeb-5462-8e0d" name="Faction: &lt;Dynasty&gt;" entryId="6a37-4c9f-a323-a8f2" primary="false"/>
+            <category id="da53-65e3-f7ce-983a" name="Faction: Necrons" entryId="876e-ea78-1fdf-f250" primary="false"/>
+            <category id="4205-489f-bade-11d4" name="Flayed Ones" entryId="b8dc-c00a-7d30-f4ce" primary="false"/>
+            <category id="e4bd-1df4-f496-03f2" name="Infantry" entryId="3d52-fccf-10c0-3fae" primary="false"/>
+            <category id="67b8-a90f-02a1-a1fd" name="Core" entryId="08f1-d244-eb44-7e01" primary="false"/>
+            <category id="d99b-24a8-646e-9d0e" name="Elites" entryId="638d74c6-bd97-4de5-b65a-6aaa24e9f4b2" primary="true"/>
+          </categories>
+        </selection>
+        <selection id="c1dd-a776-1ccb-2c5f" name="Flayed Ones" entryId="d8fe-c75f-4b80-6109::96eb-eb3c-9a92-930f" publicationId="61c6-c8c5-pubN65537" number="1" type="unit">
+          <rules>
+            <rule id="d8fe-c75f-4b80-6109::e4c6-5699-2b23-c6a4::aa07-b2de-6de0-3dd9" name="Command Protocols" publicationId="61c6-c8c5-pubN65537" page="81" hidden="false">
+              <description>If every unit from your army (excluding DYNASTIC AGENT, C&apos;TAN SHARD and UNALIGNED units) is from the same dynasty, and you select a NOBLE model to be your WARLORD, this unit is eligible to benefit from this ability and the following rules apply.  
+
+After both sides have deployed, but before you have determined who will have the first turn, you must assign a different one of the command protocols to each of the first five battle rounds, and note this down secretly on your army roster.
+
+At the start of each battle round, if any NOBLE units from your army are on the battlefield, the command protocol that you assigned to that battle round becomes active for your army until the end of that battle round. Each command protocol is made up of two directives. When a command protocol becomes active for your army, reveal it to your opponent and select one of its directives. Until the assigned command protocol stops being active, while a unit that is eligible to benefit from this ability is within 6&quot; of a friendly NECRONS CHARACTER model (excluding C&apos;TAN SHARD models), that unit benefits from the selected directive.
+
+If the battle lasts for more than five battle rounds, then until the end of the battle, whichever command protocol was active in the fifth battle round remains active.</description>
+            </rule>
+            <rule id="d8fe-c75f-4b80-6109::f847-cde8-834c-ae1a::cba7-3427-625e-eb99" name="Reanimation Protocols" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+              <description>Each time an enemy unit shoots or fights, after it makes its attacks, if any models in this unit were destroyed as a result of those attacks but this unit was not destroyed, this unit&apos;s reanimation protocols are enacted and those destroyed models begin to reassemble.
+
+Each time a unit&apos;s reanimation protocols are enacted, make Reanimation Protocol rolls for that unit by rolling a number of D6 equal to the combined Wounds characteristics of all the reassembling models. Each Reanimation Protocol roll of 5+ is put into a pool. A Reanimation Protocol roll can never be modified by more than -1 or +1.
+
+If the number of dice in that pool is greater than or equal to the Wounds characteristic of any of the reassembling models, select one of those models to be Reanimated. A Reanimated model:
+	-Is added back to its unit with its full wounds remaining.
+	-Can only set up within Engagement Range of enemy units that are already within Engagement Range of the Reanimated model&apos;s unit.
+	-Cannot, if it is your Charge phase, be set up closer to any enemy units that are targets of a charge declared by its unit this phase.
+	-No longer counts as having been destroyed for the purposes of Morale tests this turn.
+
+You then reduce the number of dice in that pool by a number equal to the Wounds characteristic of the Reanimated model and repeat this process until either there are no more reassembling models, or the number of dice remaining in the pool is less than the Wounds characteristic of any of the reassembling models. Any models that did not Reanimate fail to reassemble, and any dice remaining in the pool are discarded.</description>
+            </rule>
+            <rule id="d8fe-c75f-4b80-6109::6bf7-a882-b803-9054::3a36-ee53-2240-4170" name="Dimensional Translocation" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+              <description>During deployment, you can set up this unit in a hyperspace dimension instead of setting it up on the battlefield. If you do, then in the Reinforcements step of one of your Movement phases, you can set up this unit anywhere on the battlefield that is more than 9&quot; away from any enemy models.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="d8fe-c75f-4b80-6109::f002-a8cd-246b-2d7d" name="Terrifying Foes (Aura)" publicationId="61c6-c8c5-pubN65537" page="95" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While an enemy unit is within 3&quot; of this unit, subtract 2 from the Leadership characteristic of models in that unit.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="d8fe-c75f-4b80-6109::5a6f-c8fa-fa98-bd2d" name="Flesh Hunger" publicationId="61c6-c8c5-pubN65537" page="95" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">Each time a model in this unit makes a melee attack against an enemy non-VEHICLE unit, an unmodified hit roll of 6 scores 1 additional hit.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="0b0b-f729-11d0-d427" name="Flayed One" entryId="d8fe-c75f-4b80-6109::937c-b295-75bf-2a71::8d81-d6ab-e943-b42e" publicationId="61c6-c8c5-pubN65537" number="17" type="model">
+              <profiles>
+                <profile id="d8fe-c75f-4b80-6109::937c-b295-75bf-2a71::1d11-fdb6-5cc4-e128" name="Flayed One" publicationId="61c6-c8c5-pubN65537" page="95" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+                  <characteristics>
+                    <characteristic name="M" typeId="0bdf-a96e-9e38-7779">5&quot;</characteristic>
+                    <characteristic name="WS" typeId="e7f0-1278-0250-df0c">3+</characteristic>
+                    <characteristic name="BS" typeId="381b-eb28-74c3-df5f">6+</characteristic>
+                    <characteristic name="S" typeId="2218-aa3c-265f-2939">4</characteristic>
+                    <characteristic name="T" typeId="9c9f-9774-a358-3a39">4</characteristic>
+                    <characteristic name="W" typeId="f330-5e6e-4110-0978">1</characteristic>
+                    <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">3</characteristic>
+                    <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                    <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">4+</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <selections>
+                <selection id="d0a0-ee82-2d66-b028" name="Flayer Claws" entryId="d8fe-c75f-4b80-6109::937c-b295-75bf-2a71::57c3-5d9b-9e0b-5042::2bfe-b24d-b4bb-4233" publicationId="61c6-c8c5-pubN65537" number="17" type="upgrade">
+                  <profiles>
+                    <profile id="d8fe-c75f-4b80-6109::937c-b295-75bf-2a71::57c3-5d9b-9e0b-5042::2c7c-ae96-bb1e-e7cc" name="Flayer Claws" publicationId="61c6-c8c5-pubN65537" page="114" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                      <characteristics>
+                        <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                        <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                        <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                        <characteristic name="AP" typeId="75aa-a838-b675-6484">-1</characteristic>
+                        <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">1</characteristic>
+                        <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                      </characteristics>
+                    </profile>
+                  </profiles>
+                  <costs>
+                    <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                    <cost name="pts" typeId="points" value="0.0"/>
+                    <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                  </costs>
+                </selection>
+              </selections>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="170.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="8.0"/>
+            <cost name="pts" typeId="points" value="0.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="9567-196a-86d0-1ec0" name="Faction: &lt;Dynasty&gt;" entryId="6a37-4c9f-a323-a8f2" primary="false"/>
+            <category id="dd7e-d66f-52de-545a" name="Faction: Necrons" entryId="876e-ea78-1fdf-f250" primary="false"/>
+            <category id="ae23-d256-ecc0-97da" name="Flayed Ones" entryId="b8dc-c00a-7d30-f4ce" primary="false"/>
+            <category id="8d02-433d-2fce-22d2" name="Infantry" entryId="3d52-fccf-10c0-3fae" primary="false"/>
+            <category id="8fa7-dc68-850a-71dc" name="Core" entryId="08f1-d244-eb44-7e01" primary="false"/>
+            <category id="77ef-4ea2-1c18-ae69" name="Elites" entryId="638d74c6-bd97-4de5-b65a-6aaa24e9f4b2" primary="true"/>
+          </categories>
+        </selection>
+        <selection id="14fb-c6b1-cb0c-a9e9" name="Canoptek Wraiths" entryId="6ccf-1e6e-4a4d-406f::2ca1-0513-62e6-1e27" publicationId="61c6-c8c5-pubN65537" number="1" type="unit">
+          <rules>
+            <rule id="6ccf-1e6e-4a4d-406f::6977-1ff2-bb25-139f::cba7-3427-625e-eb99" name="Reanimation Protocols" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+              <description>Each time an enemy unit shoots or fights, after it makes its attacks, if any models in this unit were destroyed as a result of those attacks but this unit was not destroyed, this unit&apos;s reanimation protocols are enacted and those destroyed models begin to reassemble.
+
+Each time a unit&apos;s reanimation protocols are enacted, make Reanimation Protocol rolls for that unit by rolling a number of D6 equal to the combined Wounds characteristics of all the reassembling models. Each Reanimation Protocol roll of 5+ is put into a pool. A Reanimation Protocol roll can never be modified by more than -1 or +1.
+
+If the number of dice in that pool is greater than or equal to the Wounds characteristic of any of the reassembling models, select one of those models to be Reanimated. A Reanimated model:
+	-Is added back to its unit with its full wounds remaining.
+	-Can only set up within Engagement Range of enemy units that are already within Engagement Range of the Reanimated model&apos;s unit.
+	-Cannot, if it is your Charge phase, be set up closer to any enemy units that are targets of a charge declared by its unit this phase.
+	-No longer counts as having been destroyed for the purposes of Morale tests this turn.
+
+You then reduce the number of dice in that pool by a number equal to the Wounds characteristic of the Reanimated model and repeat this process until either there are no more reassembling models, or the number of dice remaining in the pool is less than the Wounds characteristic of any of the reassembling models. Any models that did not Reanimate fail to reassemble, and any dice remaining in the pool are discarded.</description>
+            </rule>
+            <rule id="6ccf-1e6e-4a4d-406f::f333-b0a5-28a1-a4c2::aa07-b2de-6de0-3dd9" name="Command Protocols" publicationId="61c6-c8c5-pubN65537" page="81" hidden="false">
+              <description>If every unit from your army (excluding DYNASTIC AGENT, C&apos;TAN SHARD and UNALIGNED units) is from the same dynasty, and you select a NOBLE model to be your WARLORD, this unit is eligible to benefit from this ability and the following rules apply.  
+
+After both sides have deployed, but before you have determined who will have the first turn, you must assign a different one of the command protocols to each of the first five battle rounds, and note this down secretly on your army roster.
+
+At the start of each battle round, if any NOBLE units from your army are on the battlefield, the command protocol that you assigned to that battle round becomes active for your army until the end of that battle round. Each command protocol is made up of two directives. When a command protocol becomes active for your army, reveal it to your opponent and select one of its directives. Until the assigned command protocol stops being active, while a unit that is eligible to benefit from this ability is within 6&quot; of a friendly NECRONS CHARACTER model (excluding C&apos;TAN SHARD models), that unit benefits from the selected directive.
+
+If the battle lasts for more than five battle rounds, then until the end of the battle, whichever command protocol was active in the fifth battle round remains active.</description>
+            </rule>
+            <rule id="6ccf-1e6e-4a4d-406f::b7d2-e05f-3ca6-32d7::601f-ad02-3e1f-fcc4" name="Living Metal" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+              <description>At the start of your Command phase, each model in this unit regains 1 lost wound.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="6ccf-1e6e-4a4d-406f::ac1a-5b53-7f43-3288" name="Wraith Form" publicationId="61c6-c8c5-pubN65537" page="103" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">Models in this unit have a 4+ invulnerable save. In addition, each time this unit makes a Normal Move, Advances, Falls Back or it makes a charge move, until that move is finished, models in this unit can move horizontally through models and terrain features (they cannot finish a move on top of another model, or its base).</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="6ccf-1e6e-4a4d-406f::31a9-fc09-4a82-34bc" name="Slinking Strike" publicationId="61c6-c8c5-pubN65537" page="103" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This unit is eligible to shoot and declare a charge with in a turn in which it Fell Back	</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="69e3-fcb2-38d2-d394" name="Canoptek Wraith (Claws)" entryId="6ccf-1e6e-4a4d-406f::4807-6eee-6e60-6553::b446-4584-d303-09b4" entryGroupId="6ccf-1e6e-4a4d-406f::26ae-96be-61ec-4ec1" publicationId="61c6-c8c5-pubN65537" number="5" type="model">
+              <profiles>
+                <profile id="6ccf-1e6e-4a4d-406f::4807-6eee-6e60-6553::a474-801f-923f-b9fd::a227-cd49-6158-0edd" name="Canoptek Wraith" publicationId="61c6-c8c5-pubN65537" page="103" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+                  <characteristics>
+                    <characteristic name="M" typeId="0bdf-a96e-9e38-7779">12&quot;</characteristic>
+                    <characteristic name="WS" typeId="e7f0-1278-0250-df0c">4+</characteristic>
+                    <characteristic name="BS" typeId="381b-eb28-74c3-df5f">4+</characteristic>
+                    <characteristic name="S" typeId="2218-aa3c-265f-2939">4</characteristic>
+                    <characteristic name="T" typeId="9c9f-9774-a358-3a39">5</characteristic>
+                    <characteristic name="W" typeId="f330-5e6e-4110-0978">3</characteristic>
+                    <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">4</characteristic>
+                    <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                    <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">3+</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <selections>
+                <selection id="e0ed-ea7a-182f-e835" name="Vicious Claws" entryId="6ccf-1e6e-4a4d-406f::4807-6eee-6e60-6553::8cac-4ada-3d46-2a1e::d6a4-0539-7267-45d1" publicationId="61c6-c8c5-pubN65537" number="5" type="upgrade">
+                  <profiles>
+                    <profile id="6ccf-1e6e-4a4d-406f::4807-6eee-6e60-6553::8cac-4ada-3d46-2a1e::bd8d-3e2b-2727-f40a" name="Vicious Claws" publicationId="61c6-c8c5-pubN65537" page="115" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                      <characteristics>
+                        <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                        <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                        <characteristic name="S" typeId="59b1-319e-ec13-d466">+2</characteristic>
+                        <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                        <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">2</characteristic>
+                        <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                      </characteristics>
+                    </profile>
+                  </profiles>
+                  <costs>
+                    <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                    <cost name="pts" typeId="points" value="0.0"/>
+                    <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                  </costs>
+                </selection>
+              </selections>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="175.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="12.0"/>
+            <cost name="pts" typeId="points" value="0.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="815e-6dbd-4544-62b2" name="Beast" entryId="7892-58f7-e769-4d87" primary="false"/>
+            <category id="5776-9734-616a-a83f" name="Canoptek Wraiths" entryId="447e-178b-ec5a-0f87" primary="false"/>
+            <category id="199f-955d-4ae7-df98" name="Faction: &lt;Dynasty&gt;" entryId="6a37-4c9f-a323-a8f2" primary="false"/>
+            <category id="5f4c-0478-3d3e-b70f" name="Faction: Necrons" entryId="876e-ea78-1fdf-f250" primary="false"/>
+            <category id="d51e-8d36-9831-f1e1" name="Faction: Canoptek" entryId="accb-e3d8-1193-10cc" primary="false"/>
+            <category id="63df-c7d2-aad6-8fdb" name="Core" entryId="08f1-d244-eb44-7e01" primary="false"/>
+            <category id="5ad5-8cc5-4422-eb3d" name="Fast Attack" entryId="c274d0b0-5866-44bc-9810-91c136ae7438" primary="true"/>
+          </categories>
+        </selection>
+        <selection id="8892-6208-1e63-e147" name="Canoptek Wraiths" entryId="6ccf-1e6e-4a4d-406f::2ca1-0513-62e6-1e27" publicationId="61c6-c8c5-pubN65537" number="1" type="unit">
+          <rules>
+            <rule id="6ccf-1e6e-4a4d-406f::6977-1ff2-bb25-139f::cba7-3427-625e-eb99" name="Reanimation Protocols" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+              <description>Each time an enemy unit shoots or fights, after it makes its attacks, if any models in this unit were destroyed as a result of those attacks but this unit was not destroyed, this unit&apos;s reanimation protocols are enacted and those destroyed models begin to reassemble.
+
+Each time a unit&apos;s reanimation protocols are enacted, make Reanimation Protocol rolls for that unit by rolling a number of D6 equal to the combined Wounds characteristics of all the reassembling models. Each Reanimation Protocol roll of 5+ is put into a pool. A Reanimation Protocol roll can never be modified by more than -1 or +1.
+
+If the number of dice in that pool is greater than or equal to the Wounds characteristic of any of the reassembling models, select one of those models to be Reanimated. A Reanimated model:
+	-Is added back to its unit with its full wounds remaining.
+	-Can only set up within Engagement Range of enemy units that are already within Engagement Range of the Reanimated model&apos;s unit.
+	-Cannot, if it is your Charge phase, be set up closer to any enemy units that are targets of a charge declared by its unit this phase.
+	-No longer counts as having been destroyed for the purposes of Morale tests this turn.
+
+You then reduce the number of dice in that pool by a number equal to the Wounds characteristic of the Reanimated model and repeat this process until either there are no more reassembling models, or the number of dice remaining in the pool is less than the Wounds characteristic of any of the reassembling models. Any models that did not Reanimate fail to reassemble, and any dice remaining in the pool are discarded.</description>
+            </rule>
+            <rule id="6ccf-1e6e-4a4d-406f::f333-b0a5-28a1-a4c2::aa07-b2de-6de0-3dd9" name="Command Protocols" publicationId="61c6-c8c5-pubN65537" page="81" hidden="false">
+              <description>If every unit from your army (excluding DYNASTIC AGENT, C&apos;TAN SHARD and UNALIGNED units) is from the same dynasty, and you select a NOBLE model to be your WARLORD, this unit is eligible to benefit from this ability and the following rules apply.  
+
+After both sides have deployed, but before you have determined who will have the first turn, you must assign a different one of the command protocols to each of the first five battle rounds, and note this down secretly on your army roster.
+
+At the start of each battle round, if any NOBLE units from your army are on the battlefield, the command protocol that you assigned to that battle round becomes active for your army until the end of that battle round. Each command protocol is made up of two directives. When a command protocol becomes active for your army, reveal it to your opponent and select one of its directives. Until the assigned command protocol stops being active, while a unit that is eligible to benefit from this ability is within 6&quot; of a friendly NECRONS CHARACTER model (excluding C&apos;TAN SHARD models), that unit benefits from the selected directive.
+
+If the battle lasts for more than five battle rounds, then until the end of the battle, whichever command protocol was active in the fifth battle round remains active.</description>
+            </rule>
+            <rule id="6ccf-1e6e-4a4d-406f::b7d2-e05f-3ca6-32d7::601f-ad02-3e1f-fcc4" name="Living Metal" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+              <description>At the start of your Command phase, each model in this unit regains 1 lost wound.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="6ccf-1e6e-4a4d-406f::ac1a-5b53-7f43-3288" name="Wraith Form" publicationId="61c6-c8c5-pubN65537" page="103" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">Models in this unit have a 4+ invulnerable save. In addition, each time this unit makes a Normal Move, Advances, Falls Back or it makes a charge move, until that move is finished, models in this unit can move horizontally through models and terrain features (they cannot finish a move on top of another model, or its base).</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="6ccf-1e6e-4a4d-406f::31a9-fc09-4a82-34bc" name="Slinking Strike" publicationId="61c6-c8c5-pubN65537" page="103" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This unit is eligible to shoot and declare a charge with in a turn in which it Fell Back	</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="fdc3-4f75-37e3-6dfb" name="Canoptek Wraith (Claws)" entryId="6ccf-1e6e-4a4d-406f::4807-6eee-6e60-6553::b446-4584-d303-09b4" entryGroupId="6ccf-1e6e-4a4d-406f::26ae-96be-61ec-4ec1" publicationId="61c6-c8c5-pubN65537" number="5" type="model">
+              <profiles>
+                <profile id="6ccf-1e6e-4a4d-406f::4807-6eee-6e60-6553::a474-801f-923f-b9fd::a227-cd49-6158-0edd" name="Canoptek Wraith" publicationId="61c6-c8c5-pubN65537" page="103" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+                  <characteristics>
+                    <characteristic name="M" typeId="0bdf-a96e-9e38-7779">12&quot;</characteristic>
+                    <characteristic name="WS" typeId="e7f0-1278-0250-df0c">4+</characteristic>
+                    <characteristic name="BS" typeId="381b-eb28-74c3-df5f">4+</characteristic>
+                    <characteristic name="S" typeId="2218-aa3c-265f-2939">4</characteristic>
+                    <characteristic name="T" typeId="9c9f-9774-a358-3a39">5</characteristic>
+                    <characteristic name="W" typeId="f330-5e6e-4110-0978">3</characteristic>
+                    <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">4</characteristic>
+                    <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                    <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">3+</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <selections>
+                <selection id="584c-7d0f-779a-3aa8" name="Vicious Claws" entryId="6ccf-1e6e-4a4d-406f::4807-6eee-6e60-6553::8cac-4ada-3d46-2a1e::d6a4-0539-7267-45d1" publicationId="61c6-c8c5-pubN65537" number="5" type="upgrade">
+                  <profiles>
+                    <profile id="6ccf-1e6e-4a4d-406f::4807-6eee-6e60-6553::8cac-4ada-3d46-2a1e::bd8d-3e2b-2727-f40a" name="Vicious Claws" publicationId="61c6-c8c5-pubN65537" page="115" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                      <characteristics>
+                        <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                        <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                        <characteristic name="S" typeId="59b1-319e-ec13-d466">+2</characteristic>
+                        <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                        <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">2</characteristic>
+                        <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                      </characteristics>
+                    </profile>
+                  </profiles>
+                  <costs>
+                    <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                    <cost name="pts" typeId="points" value="0.0"/>
+                    <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                  </costs>
+                </selection>
+              </selections>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="175.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="12.0"/>
+            <cost name="pts" typeId="points" value="0.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="f1fb-f22d-a465-5623" name="Beast" entryId="7892-58f7-e769-4d87" primary="false"/>
+            <category id="acee-5fdb-a6d9-1d66" name="Canoptek Wraiths" entryId="447e-178b-ec5a-0f87" primary="false"/>
+            <category id="de7a-7d57-67e4-7c35" name="Faction: &lt;Dynasty&gt;" entryId="6a37-4c9f-a323-a8f2" primary="false"/>
+            <category id="555a-5604-23e6-8c5f" name="Faction: Necrons" entryId="876e-ea78-1fdf-f250" primary="false"/>
+            <category id="46f9-cd4a-a842-2354" name="Faction: Canoptek" entryId="accb-e3d8-1193-10cc" primary="false"/>
+            <category id="f33d-586f-146e-8dad" name="Core" entryId="08f1-d244-eb44-7e01" primary="false"/>
+            <category id="7694-3ae2-37d1-6ad1" name="Fast Attack" entryId="c274d0b0-5866-44bc-9810-91c136ae7438" primary="true"/>
+          </categories>
+        </selection>
+        <selection id="1729-8b9d-79fe-7778" name="Lokhust Heavy Destroyers" entryId="26b4-1ec8-7694-6bba::0c81-a7d9-3e6a-1382" publicationId="61c6-c8c5-pubN65537" number="1" type="unit">
+          <rules>
+            <rule id="26b4-1ec8-7694-6bba::3f7b-a2f1-604f-25d2::601f-ad02-3e1f-fcc4" name="Living Metal" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+              <description>At the start of your Command phase, each model in this unit regains 1 lost wound.</description>
+            </rule>
+            <rule id="26b4-1ec8-7694-6bba::2f2d-503a-d6a4-5446::aa07-b2de-6de0-3dd9" name="Command Protocols" publicationId="61c6-c8c5-pubN65537" page="81" hidden="false">
+              <description>If every unit from your army (excluding DYNASTIC AGENT, C&apos;TAN SHARD and UNALIGNED units) is from the same dynasty, and you select a NOBLE model to be your WARLORD, this unit is eligible to benefit from this ability and the following rules apply.  
+
+After both sides have deployed, but before you have determined who will have the first turn, you must assign a different one of the command protocols to each of the first five battle rounds, and note this down secretly on your army roster.
+
+At the start of each battle round, if any NOBLE units from your army are on the battlefield, the command protocol that you assigned to that battle round becomes active for your army until the end of that battle round. Each command protocol is made up of two directives. When a command protocol becomes active for your army, reveal it to your opponent and select one of its directives. Until the assigned command protocol stops being active, while a unit that is eligible to benefit from this ability is within 6&quot; of a friendly NECRONS CHARACTER model (excluding C&apos;TAN SHARD models), that unit benefits from the selected directive.
+
+If the battle lasts for more than five battle rounds, then until the end of the battle, whichever command protocol was active in the fifth battle round remains active.</description>
+            </rule>
+            <rule id="26b4-1ec8-7694-6bba::ab82-e066-0c33-a1e5::cba7-3427-625e-eb99" name="Reanimation Protocols" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+              <description>Each time an enemy unit shoots or fights, after it makes its attacks, if any models in this unit were destroyed as a result of those attacks but this unit was not destroyed, this unit&apos;s reanimation protocols are enacted and those destroyed models begin to reassemble.
+
+Each time a unit&apos;s reanimation protocols are enacted, make Reanimation Protocol rolls for that unit by rolling a number of D6 equal to the combined Wounds characteristics of all the reassembling models. Each Reanimation Protocol roll of 5+ is put into a pool. A Reanimation Protocol roll can never be modified by more than -1 or +1.
+
+If the number of dice in that pool is greater than or equal to the Wounds characteristic of any of the reassembling models, select one of those models to be Reanimated. A Reanimated model:
+	-Is added back to its unit with its full wounds remaining.
+	-Can only set up within Engagement Range of enemy units that are already within Engagement Range of the Reanimated model&apos;s unit.
+	-Cannot, if it is your Charge phase, be set up closer to any enemy units that are targets of a charge declared by its unit this phase.
+	-No longer counts as having been destroyed for the purposes of Morale tests this turn.
+
+You then reduce the number of dice in that pool by a number equal to the Wounds characteristic of the Reanimated model and repeat this process until either there are no more reassembling models, or the number of dice remaining in the pool is less than the Wounds characteristic of any of the reassembling models. Any models that did not Reanimate fail to reassemble, and any dice remaining in the pool are discarded.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="26b4-1ec8-7694-6bba::184a-c001-9e6d-0039::8fc2-276b-299f-abb4" name="Hardwired for Destruction" publicationId="61c6-c8c5-pubN65537" page="86" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">Each time this model makes an attack, re-roll a hit roll of 1.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="26b4-1ec8-7694-6bba::0cd7-10b1-ef64-3921::7ffb-2242-5aaa-7a43" name="Repulsor Platform" publicationId="61c6-c8c5-pubN65537" page="105" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">Models in this unit do not suffer the penalty to hit rolls incurred for firing Heavy weapons in the same turn that their unit has moved.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="dcef-0d1b-0efa-d56a" name="Lokhust Heavy Destroyer (Gauss Destructor)" entryId="26b4-1ec8-7694-6bba::2398-cc3e-20d5-a228::40eb-dd48-4f4d-3086" entryGroupId="26b4-1ec8-7694-6bba::b3b4-e6b2-5d48-1b12" publicationId="61c6-c8c5-pubN65537" number="3" type="model">
+              <profiles>
+                <profile id="26b4-1ec8-7694-6bba::2398-cc3e-20d5-a228::b66e-58ea-7372-44ac::8cd9-b124-ffd8-2029" name="Lokhust Heavy Destroyer" publicationId="61c6-c8c5-pubN65537" page="105" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+                  <characteristics>
+                    <characteristic name="M" typeId="0bdf-a96e-9e38-7779">8&quot;</characteristic>
+                    <characteristic name="WS" typeId="e7f0-1278-0250-df0c">3+</characteristic>
+                    <characteristic name="BS" typeId="381b-eb28-74c3-df5f">3+</characteristic>
+                    <characteristic name="S" typeId="2218-aa3c-265f-2939">4</characteristic>
+                    <characteristic name="T" typeId="9c9f-9774-a358-3a39">5</characteristic>
+                    <characteristic name="W" typeId="f330-5e6e-4110-0978">4</characteristic>
+                    <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">2</characteristic>
+                    <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                    <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">3+</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <selections>
+                <selection id="8861-b457-fb7d-91c8" name="Gauss Destructor" entryId="26b4-1ec8-7694-6bba::2398-cc3e-20d5-a228::b8e2-59b0-b190-3f13::2a0e-eb05-e7aa-1991" publicationId="61c6-c8c5-pubN65537" number="3" type="upgrade">
+                  <profiles>
+                    <profile id="26b4-1ec8-7694-6bba::2398-cc3e-20d5-a228::b8e2-59b0-b190-3f13::afad-b0e5-52b7-7fd9" name="Gauss Destructor" publicationId="61c6-c8c5-pubN65537" page="112" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                      <characteristics>
+                        <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">36&quot;</characteristic>
+                        <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Heavy 1</characteristic>
+                        <characteristic name="S" typeId="59b1-319e-ec13-d466">10</characteristic>
+                        <characteristic name="AP" typeId="75aa-a838-b675-6484">-4</characteristic>
+                        <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">3D3</characteristic>
+                        <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                      </characteristics>
+                    </profile>
+                  </profiles>
+                  <costs>
+                    <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                    <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                    <cost name="pts" typeId="points" value="0.0"/>
+                  </costs>
+                </selection>
+              </selections>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="9.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="165.0"/>
+              </costs>
+              <categories>
+                <category id="f3bf-168f-20b2-bb93" name="Lokhust Heavy Destroyers" entryId="c35b-bfb6-1254-19d5" primary="false"/>
+              </categories>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+            <cost name="pts" typeId="points" value="0.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="6c43-157b-fb20-6a3b" name="Faction: &lt;Dynasty&gt;" entryId="6a37-4c9f-a323-a8f2" primary="false"/>
+            <category id="a429-2eac-a53f-344e" name="Faction: Necrons" entryId="876e-ea78-1fdf-f250" primary="false"/>
+            <category id="6b8b-3a34-9c5b-63c5" name="Fly" entryId="3117-16d8-fcef-4f56" primary="false"/>
+            <category id="09ac-afe0-7872-a2c6" name="Lokhust Heavy Destroyers" entryId="c35b-bfb6-1254-19d5" primary="false"/>
+            <category id="c5cb-a365-cd18-f20a" name="Infantry" entryId="3d52-fccf-10c0-3fae" primary="false"/>
+            <category id="6683-10a1-3908-0116" name="Faction: Destroyer Cult" entryId="0ad7-1f84-c52c-ff8c" primary="false"/>
+            <category id="d0c0-4916-cb5b-a713" name="Core" entryId="08f1-d244-eb44-7e01" primary="false"/>
+            <category id="98f8-8e19-2c69-cc16" name="Heavy Support" entryId="abf5fd55-9ac7-4263-8bc1-a9fb0a8fa6a6" primary="true"/>
+          </categories>
+        </selection>
+        <selection id="891f-9c4a-a5e0-e6a5" name="Skorpekh Destroyers" entryId="f9af-879f-af80-ed23::d299-f0d3-9a93-5bbc" publicationId="61c6-c8c5-pubN65537" number="1" type="unit">
+          <rules>
+            <rule id="f9af-879f-af80-ed23::e517-d1fb-f3b5-2801::601f-ad02-3e1f-fcc4" name="Living Metal" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+              <description>At the start of your Command phase, each model in this unit regains 1 lost wound.</description>
+            </rule>
+            <rule id="f9af-879f-af80-ed23::7b63-2543-37da-4b1a::aa07-b2de-6de0-3dd9" name="Command Protocols" publicationId="61c6-c8c5-pubN65537" page="81" hidden="false">
+              <description>If every unit from your army (excluding DYNASTIC AGENT, C&apos;TAN SHARD and UNALIGNED units) is from the same dynasty, and you select a NOBLE model to be your WARLORD, this unit is eligible to benefit from this ability and the following rules apply.  
+
+After both sides have deployed, but before you have determined who will have the first turn, you must assign a different one of the command protocols to each of the first five battle rounds, and note this down secretly on your army roster.
+
+At the start of each battle round, if any NOBLE units from your army are on the battlefield, the command protocol that you assigned to that battle round becomes active for your army until the end of that battle round. Each command protocol is made up of two directives. When a command protocol becomes active for your army, reveal it to your opponent and select one of its directives. Until the assigned command protocol stops being active, while a unit that is eligible to benefit from this ability is within 6&quot; of a friendly NECRONS CHARACTER model (excluding C&apos;TAN SHARD models), that unit benefits from the selected directive.
+
+If the battle lasts for more than five battle rounds, then until the end of the battle, whichever command protocol was active in the fifth battle round remains active.</description>
+            </rule>
+            <rule id="f9af-879f-af80-ed23::1b10-a90c-75ab-c593::cba7-3427-625e-eb99" name="Reanimation Protocols" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+              <description>Each time an enemy unit shoots or fights, after it makes its attacks, if any models in this unit were destroyed as a result of those attacks but this unit was not destroyed, this unit&apos;s reanimation protocols are enacted and those destroyed models begin to reassemble.
+
+Each time a unit&apos;s reanimation protocols are enacted, make Reanimation Protocol rolls for that unit by rolling a number of D6 equal to the combined Wounds characteristics of all the reassembling models. Each Reanimation Protocol roll of 5+ is put into a pool. A Reanimation Protocol roll can never be modified by more than -1 or +1.
+
+If the number of dice in that pool is greater than or equal to the Wounds characteristic of any of the reassembling models, select one of those models to be Reanimated. A Reanimated model:
+	-Is added back to its unit with its full wounds remaining.
+	-Can only set up within Engagement Range of enemy units that are already within Engagement Range of the Reanimated model&apos;s unit.
+	-Cannot, if it is your Charge phase, be set up closer to any enemy units that are targets of a charge declared by its unit this phase.
+	-No longer counts as having been destroyed for the purposes of Morale tests this turn.
+
+You then reduce the number of dice in that pool by a number equal to the Wounds characteristic of the Reanimated model and repeat this process until either there are no more reassembling models, or the number of dice remaining in the pool is less than the Wounds characteristic of any of the reassembling models. Any models that did not Reanimate fail to reassemble, and any dice remaining in the pool are discarded.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="f9af-879f-af80-ed23::bef5-9155-aa7a-ce5e::8fc2-276b-299f-abb4" name="Hardwired for Destruction" publicationId="61c6-c8c5-pubN65537" page="86" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">Each time this model makes an attack, re-roll a hit roll of 1.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="4586-c79f-0452-6c8c" name="Skorpekh Destroyer (Thresher)" entryId="f9af-879f-af80-ed23::9d9b-6e40-e0ea-0c03::cf4b-b190-c4d2-5064" publicationId="61c6-c8c5-pubN65537" number="3" type="model">
+              <profiles>
+                <profile id="f9af-879f-af80-ed23::9d9b-6e40-e0ea-0c03::dc25-75ed-f455-5537::75b7-5197-8270-4840" name="Skorpekh Destroyer" publicationId="61c6-c8c5-pubN65537" page="96" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+                  <characteristics>
+                    <characteristic name="M" typeId="0bdf-a96e-9e38-7779">8&quot;</characteristic>
+                    <characteristic name="WS" typeId="e7f0-1278-0250-df0c">3+</characteristic>
+                    <characteristic name="BS" typeId="381b-eb28-74c3-df5f">3+</characteristic>
+                    <characteristic name="S" typeId="2218-aa3c-265f-2939">5</characteristic>
+                    <characteristic name="T" typeId="9c9f-9774-a358-3a39">5</characteristic>
+                    <characteristic name="W" typeId="f330-5e6e-4110-0978">3</characteristic>
+                    <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">3</characteristic>
+                    <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                    <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">3+</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <selections>
+                <selection id="7849-7f43-794c-a1d0" name="Hyperphase Threshers" entryId="f9af-879f-af80-ed23::9d9b-6e40-e0ea-0c03::75c2-cfd1-dae8-4d34::0f23-9210-e841-d9d0" publicationId="61c6-c8c5-pubN65537" number="3" type="upgrade">
+                  <profiles>
+                    <profile id="f9af-879f-af80-ed23::9d9b-6e40-e0ea-0c03::75c2-cfd1-dae8-4d34::abc1-8753-e27c-ef6f" name="Hyperphase Threshers" publicationId="61c6-c8c5-pubN65537" page="114" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                      <characteristics>
+                        <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                        <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                        <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                        <characteristic name="AP" typeId="75aa-a838-b675-6484">-3</characteristic>
+                        <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">2</characteristic>
+                        <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time the bearer fights, it makes 1 additional attack with this weapon.</characteristic>
+                      </characteristics>
+                    </profile>
+                  </profiles>
+                  <costs>
+                    <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                    <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                    <cost name="pts" typeId="points" value="0.0"/>
+                  </costs>
+                </selection>
+              </selections>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="90.0"/>
+              </costs>
+            </selection>
+            <selection id="42e2-cbe1-71bf-4d79" name="Skorpekh Destroyer (Reap-Blade)" entryId="f9af-879f-af80-ed23::7134-d8f5-af0e-42c3::9ed9-5392-14a2-28b5" publicationId="61c6-c8c5-pubN65537" number="1" type="model">
+              <profiles>
+                <profile id="f9af-879f-af80-ed23::7134-d8f5-af0e-42c3::c61a-0587-08e4-9385::75b7-5197-8270-4840" name="Skorpekh Destroyer" publicationId="61c6-c8c5-pubN65537" page="96" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+                  <characteristics>
+                    <characteristic name="M" typeId="0bdf-a96e-9e38-7779">8&quot;</characteristic>
+                    <characteristic name="WS" typeId="e7f0-1278-0250-df0c">3+</characteristic>
+                    <characteristic name="BS" typeId="381b-eb28-74c3-df5f">3+</characteristic>
+                    <characteristic name="S" typeId="2218-aa3c-265f-2939">5</characteristic>
+                    <characteristic name="T" typeId="9c9f-9774-a358-3a39">5</characteristic>
+                    <characteristic name="W" typeId="f330-5e6e-4110-0978">3</characteristic>
+                    <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">3</characteristic>
+                    <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                    <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">3+</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <selections>
+                <selection id="2cf0-93a5-d8b5-1243" name="Hyperphase Reap-Blade" entryId="f9af-879f-af80-ed23::7134-d8f5-af0e-42c3::5932-2186-5904-fc06::689c-4178-be79-70a0" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+                  <profiles>
+                    <profile id="f9af-879f-af80-ed23::7134-d8f5-af0e-42c3::5932-2186-5904-fc06::1734-68fb-5975-484c::a149-ad2e-9c6a-40d4" name="Hyperphase Reap-Blade" publicationId="61c6-c8c5-pubN65537" page="114" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                      <characteristics>
+                        <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                        <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                        <characteristic name="S" typeId="59b1-319e-ec13-d466">+2</characteristic>
+                        <characteristic name="AP" typeId="75aa-a838-b675-6484">-4</characteristic>
+                        <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">3</characteristic>
+                        <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                      </characteristics>
+                    </profile>
+                  </profiles>
+                  <costs>
+                    <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                    <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                    <cost name="pts" typeId="points" value="0.0"/>
+                  </costs>
+                </selection>
+              </selections>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="30.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="8.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+            <cost name="pts" typeId="points" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="ba1f-688c-bb50-ed52" name="Faction: &lt;Dynasty&gt;" entryId="6a37-4c9f-a323-a8f2" primary="false"/>
+            <category id="9d32-501a-c59f-5396" name="Faction: Necrons" entryId="876e-ea78-1fdf-f250" primary="false"/>
+            <category id="70a0-1a2b-745a-bd74" name="Faction: Destroyer Cult" entryId="0ad7-1f84-c52c-ff8c" primary="false"/>
+            <category id="ea4f-3146-155d-c4b3" name="Infantry" entryId="3d52-fccf-10c0-3fae" primary="false"/>
+            <category id="bfc2-11d1-21a3-7d19" name="Skorpekh Destroyers" entryId="d4f8-74ea-220c-41f6" primary="false"/>
+            <category id="d887-1df3-24f9-7764" name="Core" entryId="08f1-d244-eb44-7e01" primary="false"/>
+            <category id="d56c-c184-5a15-72d4" name="Elites" entryId="638d74c6-bd97-4de5-b65a-6aaa24e9f4b2" primary="true"/>
+          </categories>
+        </selection>
+        <selection id="cff1-7020-dddd-e5bb" name="Hexmark Destroyer" entryId="2fa4-a3bc-83ea-b58b::f87a-1395-2243-c2c9" publicationId="61c6-c8c5-pubN65537" number="1" type="model">
+          <rules>
+            <rule id="2fa4-a3bc-83ea-b58b::c771-3ddc-7df4-5db0::aa07-b2de-6de0-3dd9" name="Command Protocols" publicationId="61c6-c8c5-pubN65537" page="81" hidden="false">
+              <description>If every unit from your army (excluding DYNASTIC AGENT, C&apos;TAN SHARD and UNALIGNED units) is from the same dynasty, and you select a NOBLE model to be your WARLORD, this unit is eligible to benefit from this ability and the following rules apply.  
+
+After both sides have deployed, but before you have determined who will have the first turn, you must assign a different one of the command protocols to each of the first five battle rounds, and note this down secretly on your army roster.
+
+At the start of each battle round, if any NOBLE units from your army are on the battlefield, the command protocol that you assigned to that battle round becomes active for your army until the end of that battle round. Each command protocol is made up of two directives. When a command protocol becomes active for your army, reveal it to your opponent and select one of its directives. Until the assigned command protocol stops being active, while a unit that is eligible to benefit from this ability is within 6&quot; of a friendly NECRONS CHARACTER model (excluding C&apos;TAN SHARD models), that unit benefits from the selected directive.
+
+If the battle lasts for more than five battle rounds, then until the end of the battle, whichever command protocol was active in the fifth battle round remains active.</description>
+            </rule>
+            <rule id="2fa4-a3bc-83ea-b58b::efa1-fada-5888-9443::3a36-ee53-2240-4170" name="Dimensional Translocation" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+              <description>During deployment, you can set up this unit in a hyperspace dimension instead of setting it up on the battlefield. If you do, then in the Reinforcements step of one of your Movement phases, you can set up this unit anywhere on the battlefield that is more than 9&quot; away from any enemy models.</description>
+            </rule>
+            <rule id="2fa4-a3bc-83ea-b58b::adcc-0421-586b-ff31::601f-ad02-3e1f-fcc4" name="Living Metal" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+              <description>At the start of your Command phase, each model in this unit regains 1 lost wound.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="2fa4-a3bc-83ea-b58b::5e4d-304a-b67b-3e99" name="Multi-Threat Eliminator" publicationId="61c6-c8c5-pubN65537" page="93" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">Each time an enemy model is destroyed by a ranged attack made by this model&apos;s enmitic disintegrator pistols, after this model makes the rest of its attacks, it can shoot with one of its enmitic disintegrator pistols one additional time.  These attacks cannot generate additional attacks.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="2fa4-a3bc-83ea-b58b::3657-784c-5e96-7679" name="Hexmark Destroyer" publicationId="61c6-c8c5-pubN65537" page="93" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">8&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">3+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">2+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">5</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">5</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">5</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">4</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">3+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="2fa4-a3bc-83ea-b58b::2e4c-2989-4b5f-f278" name="Inescapable Death" publicationId="61c6-c8c5-pubN65537" page="93" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">Each time this model makes a ranged attack, you can ignore and or all hit roll and Ballistic Skill modifiers, and the target does not receive the benefits of cover against that attack. In addition, each time this model fires Overwatch, it scores hits on unmodified hit rolls of 2+, instead of 6.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="2fa4-a3bc-83ea-b58b::5104-8ba6-6faf-8515::8fc2-276b-299f-abb4" name="Hardwired for Destruction" publicationId="61c6-c8c5-pubN65537" page="86" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">Each time this model makes an attack, re-roll a hit roll of 1.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="70c1-412e-308a-5a86" name="Enmitic Disintegrator Pistol" entryId="2fa4-a3bc-83ea-b58b::65f1-8388-a199-f8d5::d263-60d5-fd57-9d9d" publicationId="61c6-c8c5-pubN65537" number="6" type="upgrade">
+              <profiles>
+                <profile id="2fa4-a3bc-83ea-b58b::65f1-8388-a199-f8d5::3d9c-23c6-6658-8993" name="Enmitic Disintegrator Pistol" publicationId="61c6-c8c5-pubN65537" page="112" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                  <characteristics>
+                    <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">18&quot;</characteristic>
+                    <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Pistol 1</characteristic>
+                    <characteristic name="S" typeId="59b1-319e-ec13-d466">6</characteristic>
+                    <characteristic name="AP" typeId="75aa-a838-b675-6484">-1</characteristic>
+                    <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">1</characteristic>
+                    <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="4.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+            <cost name="pts" typeId="points" value="75.0"/>
+          </costs>
+          <categories>
+            <category id="7574-a547-0b36-083c" name="Faction: Necrons" entryId="876e-ea78-1fdf-f250" primary="false"/>
+            <category id="869b-778d-3baa-9f20" name="Faction: &lt;Dynasty&gt;" entryId="6a37-4c9f-a323-a8f2" primary="false"/>
+            <category id="ede1-8d4a-b61d-1eb2" name="Faction: Destroyer Cult" entryId="0ad7-1f84-c52c-ff8c" primary="false"/>
+            <category id="4e9f-5a57-c686-553b" name="Infantry" entryId="3d52-fccf-10c0-3fae" primary="false"/>
+            <category id="7eca-d7e1-d959-bf6f" name="Character" entryId="ef18-746a-369f-43a4" primary="false"/>
+            <category id="32ae-55bb-2c61-a202" name="Hyperspace Hunter" entryId="8139-6208-a5ba-0c0e" primary="false"/>
+            <category id="b166-abef-2cbe-b17c" name="Hexmark Destroyer" entryId="c84c-6450-051c-50ca" primary="false"/>
+            <category id="69d1-2676-0908-6a4a" name="Elites" entryId="638d74c6-bd97-4de5-b65a-6aaa24e9f4b2" primary="true"/>
+          </categories>
+        </selection>
+        <selection id="0ec5-0682-e1a4-6665" name="Bound Creation" entryId="7d63-4d79-a732-8f78::e963-9438-acc3-2d9d" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+          <selections>
+            <selection id="0700-dc99-c1e3-7dd3" name="Cryptothralls" entryId="7d63-4d79-a732-8f78::17cf-1b22-6033-63c7::2368-8890-e2af-f17f" publicationId="61c6-c8c5-pubN65537" number="1" type="unit">
+              <rules>
+                <rule id="7d63-4d79-a732-8f78::17cf-1b22-6033-63c7::9b3c-a73e-9c13-eeea::601f-ad02-3e1f-fcc4" name="Living Metal" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+                  <description>At the start of your Command phase, each model in this unit regains 1 lost wound.</description>
+                </rule>
+                <rule id="7d63-4d79-a732-8f78::17cf-1b22-6033-63c7::dc71-7a2f-8b6b-f1ae::cba7-3427-625e-eb99" name="Reanimation Protocols" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+                  <description>Each time an enemy unit shoots or fights, after it makes its attacks, if any models in this unit were destroyed as a result of those attacks but this unit was not destroyed, this unit&apos;s reanimation protocols are enacted and those destroyed models begin to reassemble.
+
+Each time a unit&apos;s reanimation protocols are enacted, make Reanimation Protocol rolls for that unit by rolling a number of D6 equal to the combined Wounds characteristics of all the reassembling models. Each Reanimation Protocol roll of 5+ is put into a pool. A Reanimation Protocol roll can never be modified by more than -1 or +1.
+
+If the number of dice in that pool is greater than or equal to the Wounds characteristic of any of the reassembling models, select one of those models to be Reanimated. A Reanimated model:
+	-Is added back to its unit with its full wounds remaining.
+	-Can only set up within Engagement Range of enemy units that are already within Engagement Range of the Reanimated model&apos;s unit.
+	-Cannot, if it is your Charge phase, be set up closer to any enemy units that are targets of a charge declared by its unit this phase.
+	-No longer counts as having been destroyed for the purposes of Morale tests this turn.
+
+You then reduce the number of dice in that pool by a number equal to the Wounds characteristic of the Reanimated model and repeat this process until either there are no more reassembling models, or the number of dice remaining in the pool is less than the Wounds characteristic of any of the reassembling models. Any models that did not Reanimate fail to reassemble, and any dice remaining in the pool are discarded.</description>
+                </rule>
+                <rule id="7d63-4d79-a732-8f78::17cf-1b22-6033-63c7::dda2-651e-6a32-f110::aa07-b2de-6de0-3dd9" name="Command Protocols" publicationId="61c6-c8c5-pubN65537" page="81" hidden="false">
+                  <description>If every unit from your army (excluding DYNASTIC AGENT, C&apos;TAN SHARD and UNALIGNED units) is from the same dynasty, and you select a NOBLE model to be your WARLORD, this unit is eligible to benefit from this ability and the following rules apply.  
+
+After both sides have deployed, but before you have determined who will have the first turn, you must assign a different one of the command protocols to each of the first five battle rounds, and note this down secretly on your army roster.
+
+At the start of each battle round, if any NOBLE units from your army are on the battlefield, the command protocol that you assigned to that battle round becomes active for your army until the end of that battle round. Each command protocol is made up of two directives. When a command protocol becomes active for your army, reveal it to your opponent and select one of its directives. Until the assigned command protocol stops being active, while a unit that is eligible to benefit from this ability is within 6&quot; of a friendly NECRONS CHARACTER model (excluding C&apos;TAN SHARD models), that unit benefits from the selected directive.
+
+If the battle lasts for more than five battle rounds, then until the end of the battle, whichever command protocol was active in the fifth battle round remains active.</description>
+                </rule>
+              </rules>
+              <profiles>
+                <profile id="7d63-4d79-a732-8f78::17cf-1b22-6033-63c7::82d3-a9a6-e07c-cbd0" name="Bound Creation" publicationId="61c6-c8c5-pubN65537" page="95" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+                  <characteristics>
+                    <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">If your army is Battle-forged, then for each CRYPTEK unit included in a Detachment, one CRYPTOTHRALLS unit can be included in that Detachment without taking up a Battlefield Role slot.</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="7d63-4d79-a732-8f78::17cf-1b22-6033-63c7::7428-83dd-47b5-2107" name="Protectors (Aura)" publicationId="61c6-c8c5-pubN65537" page="95" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+                  <characteristics>
+                    <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly CRYPTEK unit is within 3&quot; of this unit, enemy units cannot target that CRYPTEK unit with ranged weapons.</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="7d63-4d79-a732-8f78::17cf-1b22-6033-63c7::0306-fbc4-b7d4-dedc" name="Systematic Vigour" publicationId="61c6-c8c5-pubN65537" page="95" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+                  <characteristics>
+                    <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While this unit is within 6&quot; of any friendly CRYPTEK units, models in this unit have a Weapon Skill and Ballistic Skill of 3+ and an Attacks characteristic of 6.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <selections>
+                <selection id="aa81-bd0b-df25-5e2e" name="Cryptothrall" entryId="7d63-4d79-a732-8f78::17cf-1b22-6033-63c7::c780-b589-de84-7cef::e2b0-3354-c78f-297a" publicationId="61c6-c8c5-pubN65537" number="2" type="model">
+                  <profiles>
+                    <profile id="7d63-4d79-a732-8f78::17cf-1b22-6033-63c7::c780-b589-de84-7cef::6a87-1ec8-2cf3-e49b" name="Cryptothrall" publicationId="61c6-c8c5-pubN65537" page="95" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+                      <characteristics>
+                        <characteristic name="M" typeId="0bdf-a96e-9e38-7779">5&quot;</characteristic>
+                        <characteristic name="WS" typeId="e7f0-1278-0250-df0c">4+</characteristic>
+                        <characteristic name="BS" typeId="381b-eb28-74c3-df5f">4+</characteristic>
+                        <characteristic name="S" typeId="2218-aa3c-265f-2939">5</characteristic>
+                        <characteristic name="T" typeId="9c9f-9774-a358-3a39">5</characteristic>
+                        <characteristic name="W" typeId="f330-5e6e-4110-0978">2</characteristic>
+                        <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">3</characteristic>
+                        <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                        <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">3+</characteristic>
+                      </characteristics>
+                    </profile>
+                  </profiles>
+                  <selections>
+                    <selection id="6af2-2dfb-20d2-8d14" name="Scythed Limbs" entryId="7d63-4d79-a732-8f78::17cf-1b22-6033-63c7::c780-b589-de84-7cef::6832-923e-32f9-797e::6792-2ab2-13eb-e964" publicationId="61c6-c8c5-pubN65537" number="2" type="upgrade">
+                      <profiles>
+                        <profile id="7d63-4d79-a732-8f78::17cf-1b22-6033-63c7::c780-b589-de84-7cef::6832-923e-32f9-797e::b726-cc10-3e63-606e" name="Scythed Limbs" publicationId="61c6-c8c5-pubN65537" page="115" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                          <characteristics>
+                            <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                            <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                            <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                            <characteristic name="AP" typeId="75aa-a838-b675-6484">-1</characteristic>
+                            <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">1</characteristic>
+                            <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                          </characteristics>
+                        </profile>
+                      </profiles>
+                      <costs>
+                        <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                        <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                        <cost name="pts" typeId="points" value="0.0"/>
+                      </costs>
+                    </selection>
+                    <selection id="6f03-b2f8-68d6-de53" name="Scouring Eye" entryId="7d63-4d79-a732-8f78::17cf-1b22-6033-63c7::c780-b589-de84-7cef::5990-98c1-2733-f37d::8c8f-c403-7548-dbbb" publicationId="61c6-c8c5-pubN65537" number="2" type="upgrade">
+                      <profiles>
+                        <profile id="7d63-4d79-a732-8f78::17cf-1b22-6033-63c7::c780-b589-de84-7cef::5990-98c1-2733-f37d::d0e5-1544-d626-af62" name="Scouring Eye" publicationId="61c6-c8c5-pubN65537" page="112" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                          <characteristics>
+                            <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">12&quot;</characteristic>
+                            <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Pistol 2</characteristic>
+                            <characteristic name="S" typeId="59b1-319e-ec13-d466">5</characteristic>
+                            <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                            <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">1</characteristic>
+                            <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                          </characteristics>
+                        </profile>
+                      </profiles>
+                      <costs>
+                        <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                        <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                        <cost name="pts" typeId="points" value="0.0"/>
+                      </costs>
+                    </selection>
+                  </selections>
+                  <costs>
+                    <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                    <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                    <cost name="pts" typeId="points" value="0.0"/>
+                  </costs>
+                </selection>
+              </selections>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="2.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="40.0"/>
+              </costs>
+              <categories>
+                <category id="8065-0319-2af2-cc4b" name="Cryptothralls" entryId="4aa1-01cf-3c41-def2" primary="false"/>
+                <category id="e768-b203-811b-2d50" name="Faction: &lt;Dynasty&gt;" entryId="6a37-4c9f-a323-a8f2" primary="false"/>
+                <category id="e6b4-d1e4-cc6a-fbe8" name="Faction: Canoptek" entryId="accb-e3d8-1193-10cc" primary="false"/>
+                <category id="acc3-c21f-144a-8331" name="Faction: Necrons" entryId="876e-ea78-1fdf-f250" primary="false"/>
+                <category id="4287-9d22-4f34-67ea" name="Infantry" entryId="3d52-fccf-10c0-3fae" primary="false"/>
+              </categories>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+            <cost name="pts" typeId="points" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="14a2-0c91-88ad-c29c" name="No Force Org Slot" entryId="ff36a6f3-19bf-4f48-8956-adacfd28fe74" primary="true"/>
+          </categories>
+        </selection>
+      </selections>
+      <publications>
+        <publication id="85df-1155-c986-4d71" name="Psychic Awakening IX: Pariah"/>
+        <publication id="c9fe-4431-b76d-267a" name="Psychic Awakening VIII: War of the Spider"/>
+        <publication id="ecea-8b62-fefb-9f8e" name="Psychic Awakening VII: Engine War"/>
+        <publication id="28ec-711c-pubN118139" name="Index: Xenos 2"/>
+        <publication id="5c2d-db9f-58ca-e7b2" name="Psychic Awakening IV: Ritual of the Damned"/>
+        <publication id="0865-ee21-d1f1-ed38" name="War Zone Charadon, Act I: The Book of Rust"/>
+        <publication id="28ec-711c-pubN72690" name="Warhammer 40,000 Core Book"/>
+        <publication id="28ec-711c-pubN78977" name="Index: Imperium 1"/>
+        <publication id="28ec-711c-pubN98266" name="Imperium Nihilus: Vigilus Defiant"/>
+        <publication id="52c4-39c0-ae97-d4dc" name="Psychic Awakening VI: Saga of the Beast"/>
+        <publication id="b854-bcb5-5746-e0d3" name="War Zone Charadon, Act II: The Book of Fire"/>
+        <publication id="28ec-711c-pubN77581" name="Index: Imperium 2"/>
+        <publication id="5093-9448-d8cc-5327" name="Psychic Awakening II: Faith and Fury"/>
+        <publication id="255d-c624-9fcb-ca23" name="War Zone Octarius, Book 2: Critical Mass"/>
+        <publication id="28ec-711c-pubN76527" name="Index: Xenos 1"/>
+        <publication id="5b08-09e5-a80a-fd67" name="Psychic Awakening I: Phoenix Rising"/>
+        <publication id="977a-446b-737a-b571" name="Chapter Approved 2021"/>
+        <publication id="61c6-c8c5-pubN65537" name="Codex: Necrons"/>
+        <publication id="ce40-ec9e-21e2-2e42" name="Warhammer Quest: Blackstone Fortress"/>
+        <publication id="28ec-711c-pubN99666" name="Index: Chaos"/>
+        <publication id="f000-7b0c-01bf-7630" name="Psychic Awakening III: Blood of Baal"/>
+        <publication id="7573-8d1b-acdf-2de8" name="Imperial Armour: Compendium"/>
+        <publication id="b652-8bab-1453-da20" name="Warhammer Legends"/>
+        <publication id="4a3e-a6d9-b5f8-3e3d" name="Shadow Throne"/>
+        <publication id="e056-7215-247f-0a20" name="War Zone Octarius, Book 1: Rising Tide"/>
+        <publication id="4593-a2f0-546a-d6f2" name="Psychic Awakening V: The Greater Good"/>
+        <publication id="2ec0-6d53-e36b-9895" name="Chapter Approved 2018"/>
+        <publication id="28ec-711c-pubN73170" name="Chapter Approved 2017"/>
+      </publications>
+      <categories>
+        <category id="0895-dec0-4b89-8fa9" name="Uncategorised" entryId="(No Category)" primary="false"/>
+        <category id="3f5a-a509-8042-68bb" name="Configuration" entryId="fcff-0f21-93e6-1ddc" primary="false"/>
+        <category id="f1fd-c1e7-eba5-032d" name="Stratagems" entryId="c845-c72c-6afe-3fc2" primary="false"/>
+        <category id="d8d7-7cf3-fe3e-b836" name="No Force Org Slot" entryId="ff36a6f3-19bf-4f48-8956-adacfd28fe74" primary="false"/>
+        <category id="43c0-3de2-2e60-9afc" name="HQ" entryId="848a6ff2-0def-4c72-8433-ff7da70e6bc7" primary="false"/>
+        <category id="2844-a4b3-e9d2-d1c8" name="Troops" entryId="5d76b6f5-20ae-4d70-8f59-ade72a2add3a" primary="false"/>
+        <category id="d8c2-28fb-c36e-085a" name="Elites" entryId="638d74c6-bd97-4de5-b65a-6aaa24e9f4b2" primary="false"/>
+        <category id="a19a-64c2-af4b-09f0" name="Fast Attack" entryId="c274d0b0-5866-44bc-9810-91c136ae7438" primary="false"/>
+        <category id="9210-a07b-9089-4af5" name="Heavy Support" entryId="abf5fd55-9ac7-4263-8bc1-a9fb0a8fa6a6" primary="false"/>
+        <category id="370c-25e7-7b0f-64f5" name="Flyer" entryId="e888-1504-aa61-95ff" primary="false"/>
+        <category id="e4d2-70b6-81a9-66ed" name="Dedicated Transport" entryId="1b66-3f5f-6705-079a" primary="false"/>
+        <category id="dc56-7a7d-a29a-7786" name="Relic Elites" entryId="8d86-9490-0f7d-a5b5" primary="false"/>
+        <category id="874f-2561-d182-e942" name="Relic Heavy Support" entryId="6c4c-a416-b8cb-c380" primary="false"/>
+        <category id="bdc3-8b22-727a-49de" name="Relic HQ" entryId="655f-e142-dfa9-11a4" primary="false"/>
+      </categories>
+    </force>
+    <force id="efbe-170e-50ba-496a" name="Supreme Command Detachment 0CP" entryId="5baf-eed5-bb85-7325" catalogueId="61c6-c8c5-a304-ff5f" catalogueRevision="101" catalogueName="Necrons">
+      <rules>
+        <rule id="aafd-7344-f075-8a81" name="Dynastic Agents and Star Gods" publicationId="61c6-c8c5-pubN65537" page="51" hidden="false">
+          <description>DYNASTIC AGENT and C&apos;TAN SHARD units can be included in a NECRONS detachment without preventing other units in that Detachment from gaining a Dynastic Code. DYNASTIC AGENT and C&apos;TAN SHARD units never gain a Dynastic Code.  You can include a maximum of one C&apos;TAN SHARD model in each NECRONS Detachment in your army.</description>
+        </rule>
+        <rule id="71d0-0ae0-afee-02fa" name="The Royal Court" publicationId="61c6-c8c5-pubN65537" page="51" hidden="false">
+          <description>When mustering your army, if it contains THE SILENT KING model, that model must be selected as your WARLORD. Otherwise, if your army contains a PHAERON model, that model must be selected as your WARLORD. Otherwise, if your army contains an OVERLORD model, that model must be selected as your WARLORD. Otherwise, if your army contains a LORD model, that model must be selected as your WARLORD. If your army contains none of the listed models, select your WARLORD as normal.</description>
+        </rule>
+      </rules>
+      <selections>
+        <selection id="bc90-7690-8494-9629" name="Dynasty Choice" entryId="fb30-1514-c892-86b5::56f2-f7e2-4231-f2da" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+          <selections>
+            <selection id="f51f-e251-6e74-0f97" name="Dynasty: Szarekhan" entryId="fb30-1514-c892-86b5::5677-1510-fb17-82b3::50c2-b873-8275-3ac6::dac7-360f-5fb2-5092" entryGroupId="fb30-1514-c892-86b5::5677-1510-fb17-82b3::c084-1fe3-9662-2308" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+              <profiles>
+                <profile id="fb30-1514-c892-86b5::5677-1510-fb17-82b3::50c2-b873-8275-3ac6::3905-b403-0ea0-7815::ad72-2dd7-4473-8cfd" name="Uncanny Artificers" publicationId="61c6-c8c5-pubN65537" page="53" hidden="false" typeId="e31c-30b0-b621-edf7" typeName="Dynastic Code">
+                  <characteristics>
+                    <characteristic name="Description" typeId="b1f8-a131-2cef-6c8b">Each time a model with this code would lose a wound as the result of a mortal wound, roll one D6; on a 5+ that wound is not lost.  Each time a unit with this code is selected to shoot or fight, you can re-roll one wound roll when making that unit&apos;s attacks.  When the Protocol of the Undying Legions becomes active for your army, if every unit in your army (excluding DYNASTIC AGENT and C&apos;TAN SHARD units) has this code, you can select both of that command protocol&apos;s directives instead of just one.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+            <cost name="pts" typeId="points" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="e965-14f5-f82d-70d5" name="Configuration" entryId="fcff-0f21-93e6-1ddc" primary="true"/>
+          </categories>
+        </selection>
+        <selection id="0b5f-5eea-dcb3-2dca" name="Detachment Command Cost" entryId="ec87-f19e-eee2-1ba8::9d97-2793-9882-d48a" number="1" type="upgrade">
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+            <cost name="pts" typeId="points" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="2188-2920-b500-b414" name="Configuration" entryId="fcff-0f21-93e6-1ddc" primary="true"/>
+          </categories>
+        </selection>
+        <selection id="bb3d-054d-dfa9-6eaa" name="The Silent King" entryId="306e-8777-53cb-db04::4ed9-4e6f-9116-0b00" publicationId="61c6-c8c5-pubN65537" number="1" type="unit">
+          <rules>
+            <rule id="306e-8777-53cb-db04::7195-2642-8006-f542::aa07-b2de-6de0-3dd9" name="Command Protocols" publicationId="61c6-c8c5-pubN65537" page="81" hidden="false">
+              <description>If every unit from your army (excluding DYNASTIC AGENT, C&apos;TAN SHARD and UNALIGNED units) is from the same dynasty, and you select a NOBLE model to be your WARLORD, this unit is eligible to benefit from this ability and the following rules apply.  
+
+After both sides have deployed, but before you have determined who will have the first turn, you must assign a different one of the command protocols to each of the first five battle rounds, and note this down secretly on your army roster.
+
+At the start of each battle round, if any NOBLE units from your army are on the battlefield, the command protocol that you assigned to that battle round becomes active for your army until the end of that battle round. Each command protocol is made up of two directives. When a command protocol becomes active for your army, reveal it to your opponent and select one of its directives. Until the assigned command protocol stops being active, while a unit that is eligible to benefit from this ability is within 6&quot; of a friendly NECRONS CHARACTER model (excluding C&apos;TAN SHARD models), that unit benefits from the selected directive.
+
+If the battle lasts for more than five battle rounds, then until the end of the battle, whichever command protocol was active in the fifth battle round remains active.</description>
+            </rule>
+            <rule id="306e-8777-53cb-db04::b7be-1fac-128f-db20::601f-ad02-3e1f-fcc4" name="Living Metal" publicationId="61c6-c8c5-pubN65537" page="80" hidden="false">
+              <description>At the start of your Command phase, each model in this unit regains 1 lost wound.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="306e-8777-53cb-db04::f6c8-4e85-474f-da7f" name="Noctilith Beacons" publicationId="61c6-c8c5-pubN65537" page="110" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">In your opponent&apos;s Psychic phase, Szarekh can attempt to deny one psychic power as if he were a PSYKER.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="306e-8777-53cb-db04::5de4-fdb9-ab67-ecc9" name="Obeisance Generators" publicationId="61c6-c8c5-pubN65537" page="110" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">At the start of the Fight phase, if there are any enemy units within Engagement Range of Szarekh, then until the end of the phase, those units cannot fight until after all other eligible units from your army have done so.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="306e-8777-53cb-db04::c156-b39e-d1fc-f38f" name="Phaeron of the Stars (Aura)" publicationId="61c6-c8c5-pubN65537" page="110" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly NECRONS CORE unit or TRIARCH PRAETORIANS unit is within 6&quot; of Szarekh, each time a ranged attack is made by a model in that unit, you can re-roll the hit roll.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="306e-8777-53cb-db04::e264-9116-3965-8481" name="Phaeron of the Blades (Aura)" publicationId="61c6-c8c5-pubN65537" page="110" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly NECRONS CORE unit or TRIARCH PRAETORIANS unit is within 6&quot; of Szarekh, each time a melee attack is made by a model in that unit, you can re-roll the wound roll.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="306e-8777-53cb-db04::10e8-7603-9fbf-876d" name="Voice of the Triarch" publicationId="61c6-c8c5-pubN65537" page="110(e)" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">Once per battle, at the start of any battle round, if Szarekh is on the battlefield he can alter your command protocols. If he does, one command protocol that you did not assign to any battle rounds before the battle becomes active for your army for that battle round, instead of the one that you assigned to it.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="306e-8777-53cb-db04::5af0-0167-2800-3920" name="Triarchal Menhir" publicationId="61c6-c8c5-pubN65537" page="110" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While this unit contains any Triarchal Menhirs models, it does not count as a CHARACTER for the purposes of the Look Out, Sir rule and each time an attack successfully wounds this unit, that attack must be allocated to one of those models. The destruction of Triarchal Menhirs is ignored for the purposes of Morale tests. If Szarekh is ever destroyed, any remaining Triarchal Menhirs in this unit are also destroyed.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="306e-8777-53cb-db04::fe6f-e6c0-67d1-adac" name="Preservative Auto-Torpor" publicationId="61c6-c8c5-pubN65537" page="110" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">If Szarekh has 8 or fewer wounds remaining, it cannot make attacks with its Staff of Stars and loses the Phaeron of the Stars ability. If Szarekh has 4 or fewer wounds remaining, it cannot make attacks with its Scythe of Dust and loses the Phaeron of the Blades ability.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="306e-8777-53cb-db04::16f4-472c-5338-09db" name="The Silent King" publicationId="61c6-c8c5-pubN65537" page="110" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">If your army is Battle-forged, Szarekh must be your army&apos;s WARLORD. You receive 3 additional Command points if Szarekh is your WARLORD.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="306e-8777-53cb-db04::ff74-d1a1-89a4-5fc4" name="My Will Be Done (Silent King)" publicationId="61c6-c8c5-pubN65537" page="110" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">In your Command phase, you can select one friendly NECRONS CORE or TRIARCH PRAETORIANS unit within 9&quot; of Szarekh. Until the start of your next Command phase, each time a model in that unit makes an attack, add 1 to that attack&apos;s hit roll. Each unit can only be selected for this ability once per phase.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="306e-8777-53cb-db04::27cb-1ca5-3e18-d334" name="Relentless March (Silent King) (Aura)" publicationId="61c6-c8c5-pubN65537" page="110" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">While a friendly NECRONS CORE or TRIARCH PRAETORIANS unit is within 6&quot; of Szarekh, each time that unit is selected to make a Normal Move or Advance, until the end of the phase, add 1&quot; to the Move characteristic of models in that unit.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="306e-8777-53cb-db04::eba6-69f6-05cb-ca98" name="Transtemporal Force Field (Silent King)" publicationId="61c6-c8c5-pubN65537" page="108" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">Models in this unit have a 4+ invulnerable save.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="306e-8777-53cb-db04::b9d0-455c-a4e0-77c2::58ea-accc-2a5f-76c5" name="Phaeron" publicationId="61c6-c8c5-pubN65537" page="82" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model can use its My Will Be Done one additional time per turn.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="306e-8777-53cb-db04::59b9-eb13-5808-0bbb::289a-b6a6-a745-f341" name="Vengeance of the Enchained" publicationId="61c6-c8c5-pubN65537" page="108" hidden="false" typeId="1c4c-8a58-c471-95e3" typeName="Explosion">
+              <characteristics>
+                <characteristic name="Dice Roll" typeId="b7f3-3402-2a25-e471">4+</characteristic>
+                <characteristic name="Distance" typeId="8d02-35aa-f965-f087">2D6&quot;</characteristic>
+                <characteristic name="Mortal Wounds" typeId="c9af-8cce-c37c-7792">D6</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <selections>
+            <selection id="1e1f-6f4d-8ba6-bcc4" name="Szarekh" entryId="306e-8777-53cb-db04::d76d-52be-98c0-312f" publicationId="61c6-c8c5-pubN65537" number="1" type="model">
+              <profiles>
+                <profile id="306e-8777-53cb-db04::1262-09e1-faba-b867" name="Szarekh [1] (9+ Wounds Remaining)" publicationId="61c6-c8c5-pubN65537" page="110" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+                  <characteristics>
+                    <characteristic name="M" typeId="0bdf-a96e-9e38-7779">8&quot;</characteristic>
+                    <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                    <characteristic name="BS" typeId="381b-eb28-74c3-df5f">2+</characteristic>
+                    <characteristic name="S" typeId="2218-aa3c-265f-2939">5</characteristic>
+                    <characteristic name="T" typeId="9c9f-9774-a358-3a39">7</characteristic>
+                    <characteristic name="W" typeId="f330-5e6e-4110-0978">16</characteristic>
+                    <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">6</characteristic>
+                    <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                    <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">3+</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="306e-8777-53cb-db04::cb5a-dd52-e6b3-5d42" name="Szarekh [2] (5-8 Wounds Remaining)" publicationId="61c6-c8c5-pubN65537" page="110" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+                  <characteristics>
+                    <characteristic name="M" typeId="0bdf-a96e-9e38-7779">6&quot;</characteristic>
+                    <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                    <characteristic name="BS" typeId="381b-eb28-74c3-df5f">2+</characteristic>
+                    <characteristic name="S" typeId="2218-aa3c-265f-2939">5</characteristic>
+                    <characteristic name="T" typeId="9c9f-9774-a358-3a39">7</characteristic>
+                    <characteristic name="W" typeId="f330-5e6e-4110-0978">N/A</characteristic>
+                    <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">4</characteristic>
+                    <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                    <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">3+</characteristic>
+                  </characteristics>
+                </profile>
+                <profile id="306e-8777-53cb-db04::38cb-539e-c0fb-cdcd" name="Szarekh [3] (1-4 Wounds Remaining)" publicationId="61c6-c8c5-pubN65537" page="110" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+                  <characteristics>
+                    <characteristic name="M" typeId="0bdf-a96e-9e38-7779">4&quot;</characteristic>
+                    <characteristic name="WS" typeId="e7f0-1278-0250-df0c">2+</characteristic>
+                    <characteristic name="BS" typeId="381b-eb28-74c3-df5f">2+</characteristic>
+                    <characteristic name="S" typeId="2218-aa3c-265f-2939">5</characteristic>
+                    <characteristic name="T" typeId="9c9f-9774-a358-3a39">7</characteristic>
+                    <characteristic name="W" typeId="f330-5e6e-4110-0978">N/A</characteristic>
+                    <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">2</characteristic>
+                    <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                    <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">3+</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <selections>
+                <selection id="0d60-c64c-affc-e320" name="Scythe of Dust" entryId="306e-8777-53cb-db04::f38f-ad55-97a3-0d4b::1e06-926e-1988-6f8e" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+                  <profiles>
+                    <profile id="306e-8777-53cb-db04::f38f-ad55-97a3-0d4b::354c-7202-364c-2467" name="Scythe of Dust" publicationId="61c6-c8c5-pubN65537" page="115" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                      <characteristics>
+                        <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                        <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                        <characteristic name="S" typeId="59b1-319e-ec13-d466">+3</characteristic>
+                        <characteristic name="AP" typeId="75aa-a838-b675-6484">-4</characteristic>
+                        <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">3</characteristic>
+                        <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time the bearer fights, it makes 4 additional attacks with this weapon and no more than 4 attacks can be made with this weapon.</characteristic>
+                      </characteristics>
+                    </profile>
+                  </profiles>
+                  <costs>
+                    <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                    <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                    <cost name="pts" typeId="points" value="0.0"/>
+                  </costs>
+                </selection>
+                <selection id="c47a-8c2d-a98f-aee2" name="Staff of Stars" entryId="306e-8777-53cb-db04::bfa4-2641-5aef-70ee::c5a3-5063-9486-30c4" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+                  <profiles>
+                    <profile id="306e-8777-53cb-db04::bfa4-2641-5aef-70ee::92fb-ab21-1774-54bb" name="Staff of Stars (Shooting)" publicationId="61c6-c8c5-pubN65537" page="113" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                      <characteristics>
+                        <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">24&quot;</characteristic>
+                        <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Assault 9</characteristic>
+                        <characteristic name="S" typeId="59b1-319e-ec13-d466">6</characteristic>
+                        <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                        <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">1</characteristic>
+                        <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                      </characteristics>
+                    </profile>
+                    <profile id="306e-8777-53cb-db04::bfa4-2641-5aef-70ee::8822-33eb-9946-d36c" name="Staff of Stars (Melee)" publicationId="61c6-c8c5-pubN65537" page="115" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                      <characteristics>
+                        <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                        <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                        <characteristic name="S" typeId="59b1-319e-ec13-d466">User</characteristic>
+                        <characteristic name="AP" typeId="75aa-a838-b675-6484">-2</characteristic>
+                        <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">1</characteristic>
+                        <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">Each time the bearer fights, it makes 3 additional attacks with this weapon and no more than 3 attacks can be made with this weapon.</characteristic>
+                      </characteristics>
+                    </profile>
+                  </profiles>
+                  <costs>
+                    <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                    <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                    <cost name="pts" typeId="points" value="0.0"/>
+                  </costs>
+                </selection>
+                <selection id="232d-857f-0d39-0b72" name="Sceptre of Eternal Glory" entryId="306e-8777-53cb-db04::7ff0-6b21-6aeb-8ee8::0977-644b-013d-0f19" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+                  <profiles>
+                    <profile id="306e-8777-53cb-db04::7ff0-6b21-6aeb-8ee8::ca24-fa58-6744-b110" name="Sceptre of Eternal Glory (Shooting)" publicationId="61c6-c8c5-pubN65537" page="112" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                      <characteristics>
+                        <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">24&quot;</characteristic>
+                        <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Assault 3</characteristic>
+                        <characteristic name="S" typeId="59b1-319e-ec13-d466">8</characteristic>
+                        <characteristic name="AP" typeId="75aa-a838-b675-6484">-3</characteristic>
+                        <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">2</characteristic>
+                        <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                      </characteristics>
+                    </profile>
+                    <profile id="306e-8777-53cb-db04::7ff0-6b21-6aeb-8ee8::8867-e3bc-5f89-411c" name="Sceptre of Eternal Glory (Melee)" publicationId="61c6-c8c5-pubN65537" page="115" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                      <characteristics>
+                        <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">Melee</characteristic>
+                        <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Melee</characteristic>
+                        <characteristic name="S" typeId="59b1-319e-ec13-d466">+4</characteristic>
+                        <characteristic name="AP" typeId="75aa-a838-b675-6484">-3</characteristic>
+                        <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">2</characteristic>
+                        <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                      </characteristics>
+                    </profile>
+                  </profiles>
+                  <costs>
+                    <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                    <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                    <cost name="pts" typeId="points" value="0.0"/>
+                  </costs>
+                </selection>
+              </selections>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+              </costs>
+              <categories>
+                <category id="447b-5ad7-deab-270e" name="Vehicle" entryId="c8fd-783f-3230-493e" primary="false"/>
+                <category id="3639-b8bf-17e2-dc80" name="Character" entryId="ef18-746a-369f-43a4" primary="false"/>
+                <category id="ce80-0d61-3fc0-75a0" name="Fly" entryId="3117-16d8-fcef-4f56" primary="false"/>
+                <category id="85d5-8a4f-1a58-b3e7" name="Supreme Commander" entryId="5750-de0a-589d-eacf" primary="false"/>
+                <category id="56d6-11d3-8a88-7a5d" name="Phaeron" entryId="ca46-815a-cdb2-997d" primary="false"/>
+                <category id="f755-fa99-9437-108a" name="Noble" entryId="60f3-194a-d96a-689c" primary="false"/>
+                <category id="ffce-5894-533d-6c24" name="Dynastic Agent" entryId="cf0e-81bd-95fa-3124" primary="false"/>
+                <category id="2e77-2650-a938-29bd" name="The Silent King" entryId="8050-2dbb-9b2c-66bf" primary="false"/>
+                <category id="881f-8719-9ef6-ff5c" name="Szarekh" entryId="192d-75a4-f4ac-fa61" primary="false"/>
+              </categories>
+            </selection>
+            <selection id="2412-f8fe-c08e-4af9" name="Triarchal Menhir" entryId="306e-8777-53cb-db04::2aa0-ada4-fec1-5165" publicationId="61c6-c8c5-pubN65537" number="2" type="model">
+              <profiles>
+                <profile id="306e-8777-53cb-db04::5496-544d-dcb2-7855" name="Triarchal Menhir" publicationId="61c6-c8c5-pubN65537" page="110" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+                  <characteristics>
+                    <characteristic name="M" typeId="0bdf-a96e-9e38-7779">8&quot;</characteristic>
+                    <characteristic name="WS" typeId="e7f0-1278-0250-df0c">6+</characteristic>
+                    <characteristic name="BS" typeId="381b-eb28-74c3-df5f">2+</characteristic>
+                    <characteristic name="S" typeId="2218-aa3c-265f-2939">5</characteristic>
+                    <characteristic name="T" typeId="9c9f-9774-a358-3a39">7</characteristic>
+                    <characteristic name="W" typeId="f330-5e6e-4110-0978">5</characteristic>
+                    <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">1</characteristic>
+                    <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">10</characteristic>
+                    <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">3+</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+              <selections>
+                <selection id="03c4-f509-0f6f-8899" name="Annihilator Beam" entryId="306e-8777-53cb-db04::efd2-5bba-b611-e57e::f47f-b155-c90f-078e" publicationId="61c6-c8c5-pubN65537" number="2" type="upgrade">
+                  <profiles>
+                    <profile id="306e-8777-53cb-db04::efd2-5bba-b611-e57e::6bcd-1e7a-bbc6-946c" name="Annihilator Beam" publicationId="61c6-c8c5-pubN65537" page="112" hidden="false" typeId="d5f97c0b-9fc9-478d-aa34-a7c414d3ea48" typeName="Weapon">
+                      <characteristics>
+                        <characteristic name="Range" typeId="6fa97fa8-ea74-4a27-a0fb-bc4e5f367464">36&quot;</characteristic>
+                        <characteristic name="Type" typeId="077c342f-d7b9-45c6-b8af-88e97cafd3a2">Heavy 1</characteristic>
+                        <characteristic name="S" typeId="59b1-319e-ec13-d466">12</characteristic>
+                        <characteristic name="AP" typeId="75aa-a838-b675-6484">-4</characteristic>
+                        <characteristic name="D" typeId="ae8a-3137-d65b-4ca7">6</characteristic>
+                        <characteristic name="Abilities" typeId="837d-5e63-aeb7-1410">-</characteristic>
+                      </characteristics>
+                    </profile>
+                  </profiles>
+                  <costs>
+                    <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                    <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                    <cost name="pts" typeId="points" value="0.0"/>
+                  </costs>
+                </selection>
+              </selections>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+              </costs>
+              <categories>
+                <category id="ed95-0dec-b7b5-0368" name="The Silent King" entryId="8050-2dbb-9b2c-66bf" primary="false"/>
+                <category id="f6b0-fa47-25b0-156e" name="Vehicle" entryId="c8fd-783f-3230-493e" primary="false"/>
+                <category id="ddff-875d-b4f2-c6c8" name="Fly" entryId="3117-16d8-fcef-4f56" primary="false"/>
+                <category id="06e8-7a15-8251-5f27" name="Dynastic Agent" entryId="cf0e-81bd-95fa-3124" primary="false"/>
+                <category id="6ea4-9e14-1a7b-0f35" name="Triarchal Menhirs" entryId="2bd7-ecbc-462e-81d7" primary="false"/>
+              </categories>
+            </selection>
+            <selection id="5fc5-fd7a-2974-ed2a" name="Warlord" entryId="306e-8777-53cb-db04::e6c1-3438-58bd-c091::8056-ce75-9ad4-f269" publicationId="28ec-711c-pubN72690" number="1" type="upgrade">
+              <selections>
+                <selection id="b9cb-f651-77ed-6f2f" name="Warlord Trait (Szarekhan): The Triarch&apos;s Will" entryId="306e-8777-53cb-db04::7b6b-192c-7ba9-28f7::190b-890d-034d-7843" publicationId="61c6-c8c5-pubN65537" number="1" type="upgrade">
+                  <profiles>
+                    <profile id="306e-8777-53cb-db04::7b6b-192c-7ba9-28f7::0488-6d11-a0ed-efde::ae83-a45a-20a7-e3f9" name="The Triarch&apos;s Will" publicationId="61c6-c8c5-pubN65537" page="65" hidden="false" typeId="0bb9-43c2-e91f-436e" typeName="Warlord Trait">
+                      <characteristics>
+                        <characteristic name="Description" typeId="4640-d4a2-28b2-5d68">If your WARLORD has this Warlord Trait, then when assigning command protocols for the battle, you can select four command protocols instead of five, and then one of those command protocols can be assigned to two battle rounds instead of one.</characteristic>
+                      </characteristics>
+                    </profile>
+                  </profiles>
+                  <costs>
+                    <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                    <cost name="pts" typeId="points" value="0.0"/>
+                    <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+                  </costs>
+                </selection>
+              </selections>
+              <costs>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+              </costs>
+              <categories>
+                <category id="ea4a-c632-5dd6-d930" name="Warlord" entryId="ae09-117e-a6fa-316b" primary="false"/>
+              </categories>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="21.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="3.0"/>
+            <cost name="pts" typeId="points" value="420.0"/>
+          </costs>
+          <categories>
+            <category id="920f-8700-8652-6fe5" name="Faction: Necrons" entryId="876e-ea78-1fdf-f250" primary="false"/>
+            <category id="efea-b6b8-533b-2c8e" name="Faction: Szarekhan" entryId="626b-b660-555f-6dd9" primary="false"/>
+            <category id="c4d2-774c-0170-3711" name="Primarch | Daemon Primarch | Supreme Commander" entryId="26b0-4bb9-73aa-d3d7" primary="true"/>
+          </categories>
+        </selection>
+        <selection id="8b21-c482-2e29-10fb" name="Battle Size" entryId="44e3-c224-ba82-1b55::f29d-8a5d-18b6-a071" number="1" type="upgrade">
+          <selections>
+            <selection id="a838-7844-f0f2-2050" name="3. Strike Force (101-200 Total PL / 1001-2000 Points) " entryId="44e3-c224-ba82-1b55::09f9-b586-8d63-7635" entryGroupId="44e3-c224-ba82-1b55::2883-57e8-87a6-38e2" number="1" type="upgrade">
+              <costs>
+                <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="12.0"/>
+                <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+                <cost name="pts" typeId="points" value="0.0"/>
+              </costs>
+            </selection>
+          </selections>
+          <costs>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
+            <cost name="pts" typeId="points" value="0.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="4625-3dcb-f1d7-eca3" name="Configuration" entryId="fcff-0f21-93e6-1ddc" primary="true"/>
+          </categories>
+        </selection>
+      </selections>
+      <publications>
+        <publication id="85df-1155-c986-4d71" name="Psychic Awakening IX: Pariah"/>
+        <publication id="c9fe-4431-b76d-267a" name="Psychic Awakening VIII: War of the Spider"/>
+        <publication id="ecea-8b62-fefb-9f8e" name="Psychic Awakening VII: Engine War"/>
+        <publication id="28ec-711c-pubN118139" name="Index: Xenos 2"/>
+        <publication id="5c2d-db9f-58ca-e7b2" name="Psychic Awakening IV: Ritual of the Damned"/>
+        <publication id="0865-ee21-d1f1-ed38" name="War Zone Charadon, Act I: The Book of Rust"/>
+        <publication id="28ec-711c-pubN72690" name="Warhammer 40,000 Core Book"/>
+        <publication id="28ec-711c-pubN78977" name="Index: Imperium 1"/>
+        <publication id="28ec-711c-pubN98266" name="Imperium Nihilus: Vigilus Defiant"/>
+        <publication id="52c4-39c0-ae97-d4dc" name="Psychic Awakening VI: Saga of the Beast"/>
+        <publication id="b854-bcb5-5746-e0d3" name="War Zone Charadon, Act II: The Book of Fire"/>
+        <publication id="28ec-711c-pubN77581" name="Index: Imperium 2"/>
+        <publication id="5093-9448-d8cc-5327" name="Psychic Awakening II: Faith and Fury"/>
+        <publication id="255d-c624-9fcb-ca23" name="War Zone Octarius, Book 2: Critical Mass"/>
+        <publication id="28ec-711c-pubN76527" name="Index: Xenos 1"/>
+        <publication id="5b08-09e5-a80a-fd67" name="Psychic Awakening I: Phoenix Rising"/>
+        <publication id="977a-446b-737a-b571" name="Chapter Approved 2021"/>
+        <publication id="61c6-c8c5-pubN65537" name="Codex: Necrons"/>
+        <publication id="ce40-ec9e-21e2-2e42" name="Warhammer Quest: Blackstone Fortress"/>
+        <publication id="28ec-711c-pubN99666" name="Index: Chaos"/>
+        <publication id="f000-7b0c-01bf-7630" name="Psychic Awakening III: Blood of Baal"/>
+        <publication id="7573-8d1b-acdf-2de8" name="Imperial Armour: Compendium"/>
+        <publication id="b652-8bab-1453-da20" name="Warhammer Legends"/>
+        <publication id="4a3e-a6d9-b5f8-3e3d" name="Shadow Throne"/>
+        <publication id="e056-7215-247f-0a20" name="War Zone Octarius, Book 1: Rising Tide"/>
+        <publication id="4593-a2f0-546a-d6f2" name="Psychic Awakening V: The Greater Good"/>
+        <publication id="2ec0-6d53-e36b-9895" name="Chapter Approved 2018"/>
+        <publication id="28ec-711c-pubN73170" name="Chapter Approved 2017"/>
+      </publications>
+      <categories>
+        <category id="76c5-a5cc-0ecc-98c5" name="Uncategorised" entryId="(No Category)" primary="false"/>
+        <category id="febb-2a0e-1cfc-1442" name="Configuration" entryId="fcff-0f21-93e6-1ddc" primary="false"/>
+        <category id="4616-59d0-632f-8d04" name="Stratagems" entryId="c845-c72c-6afe-3fc2" primary="false"/>
+        <category id="adff-3d8a-897a-fadf" name="No Force Org Slot" entryId="ff36a6f3-19bf-4f48-8956-adacfd28fe74" primary="false"/>
+        <category id="e393-d5a1-a8e1-e7d0" name="Primarch | Daemon Primarch | Supreme Commander" entryId="26b0-4bb9-73aa-d3d7" primary="false"/>
+        <category id="7ffe-073e-107c-e651" name="Warlord" entryId="ae09-117e-a6fa-316b" primary="false"/>
+      </categories>
+    </force>
+  </forces>
+</roster>

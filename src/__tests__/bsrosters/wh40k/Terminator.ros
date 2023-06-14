@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<roster id="57da-4db3-ca1c-0b9d" name="TS_duplicity_ca2022_v1" battleScribeVersion="2.03" gameSystemId="28ec-711c-d87f-3aeb" gameSystemName="Warhammer 40,000 9th Edition" gameSystemRevision="244" xmlns="http://www.battlescribe.net/schema/rosterSchema">
+  <costs>
+    <cost name=" PL" typeId="e356-c769-5920-6e14" value="10.0"/>
+  </costs>
+  <costLimits>
+    <costLimit name="pts" typeId="points" value="2000.0"/>
+  </costLimits>
+  <forces>
+    <force id="ced5-2e38-22e0-a2a1" name="Battalion Detachment -3CP" entryId="564e-55d5-79bc-a4d7" catalogueId="c553-15f3-3890-be39" catalogueRevision="134" catalogueName="Chaos - Thousand Sons">
+      <rules>
+        <rule id="f99c-1a5b-67a7-3806" name="Brotherhood of Sorcerers" hidden="false">
+          <description>If your army is Battle-forged, THOUSAND SONS units in THOUSAND SONS Detachments gain the following abilities
+- Add 1 to Psychic tests taken for this unit.
+- If this unit is ARCANA ASTARTES or TZAANGOR, each model in this unit has a 5+ invulnerable save.</description>
+        </rule>
+      </rules>
+      <selections>
+        <selection id="805f-9718-2b44-7da4" name="Scarab Occult Terminators" entryId="742d-777b-2b31-5e71::c8ba-1df2-c188-f6b8" page="" number="1" type="unit">
+          <rules>
+            <rule id="742d-777b-2b31-5e71::8ea0-adf0-0780-582b::fc0f-8f9c-3bec-4ce7" name="Teleport Strike" hidden="false">
+              <description>During deployment, you can set up this model in a teleportarium chamber instead of placing it on the battlefield. At the end of any of your Movement phases the model can use a teleport strike to arrive on the battlefield - set it up anywhere on the battlefield that is more than 9&quot; away from any enemy models.</description>
+            </rule>
+            <rule id="742d-777b-2b31-5e71::ab9a-e6d5-87cc-feba::d9ac-d486-dd50-eda4" name="Malicious Volleys" hidden="false">
+              <description>Instead of following the normal rules for Rapid Fire weapons, models in this unit shooting Rapid Fire weapons make double the number of attacks if any of the following apply:
+- The shooting model&apos;s unit is within half the weapon&apos;s range.
+- The shooting model is INFANTRY and its unit Remained Stationary in your previous Movement phase.
+- The shooting model is a TERMINATOR.
+
+For the purposes of this ability, a Rapid Fire bolt weapon is any bolt weapon with the Rapid Fire type.</description>
+            </rule>
+            <rule id="742d-777b-2b31-5e71::ba0c-55d2-84c7-e395::9682-c938-7457-e54c" name="Sorcerous Master" hidden="false">
+              <description>Each time a psychic power is manifested by this unit, each time this unit would attempt to perform a psychic action, and each time this unit would Deny the Wtich, measure distances and draw line of sight from this unit&apos;s Aspiring Sorcerer or Scarab Occult Sorcerer model. If enemy units have any abilities that require measuring distance or drawing line of sight to PSYKER units, do so to this unit&apos;s Aspiring Sorcerer or Scarab Occult Sorcerer model.</description>
+            </rule>
+            <rule id="742d-777b-2b31-5e71::fafb-f0fe-5727-a61c::e026-2d35-6641-f898" name="Cabbalistic Rituals" hidden="false">
+              <description>If every unit from your army (excluding UNALIGNED units) has the THOUSAND SONS keyword, your army becomes a Cabal of Sorcerers. At the start of your Psychic phase, generate Cabal points for your army for each mode with this ability that is on the battlefield.
+
+In your Psychic phase, you can spend any Cabal points you have to use Cabbalistic Rituals. Each time you do, reduce the total amount of Cabal points you have by the amount shown. At the end of your Psychic phase, any unspent Cabal points are lost.
+
+In your Psychic phase, unless otherwise specified, you can use each Cabbalistic Ritual once, and each unit from your army can only benefit from one Cabbalistic Ritual. A unit can only benefit from a Cabbalistic Ritual if it has that ability.</description>
+            </rule>
+          </rules>
+          <profiles>
+            <profile id="742d-777b-2b31-5e71::b4e8-d231-34d7-ee57" name="Scarab Occult Terminator" hidden="false" typeId="800f-21d0-4387-c943" typeName="Unit">
+              <characteristics>
+                <characteristic name="M" typeId="0bdf-a96e-9e38-7779">5&quot;</characteristic>
+                <characteristic name="WS" typeId="e7f0-1278-0250-df0c">3+</characteristic>
+                <characteristic name="BS" typeId="381b-eb28-74c3-df5f">3+</characteristic>
+                <characteristic name="S" typeId="2218-aa3c-265f-2939">4</characteristic>
+                <characteristic name="T" typeId="9c9f-9774-a358-3a39">4</characteristic>
+                <characteristic name="W" typeId="f330-5e6e-4110-0978">3</characteristic>
+                <characteristic name="A" typeId="13fc-b29b-31f2-ab9f">3</characteristic>
+                <characteristic name="Ld" typeId="00ca-f8b8-876d-b705">8</characteristic>
+                <characteristic name="Save" typeId="c0df-df94-abd7-e8d3">2+</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="742d-777b-2b31-5e71::6131-6f2a-3c9e-9cba::ed56-a1a0-7f92-a3ec" name="Terminator Armour" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model has a 5+ invulnerable save.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="742d-777b-2b31-5e71::25ca-228c-894f-1ece::d78f-8918-1fed-f16d" name="Arcane Automata" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">Each time a Morale test is taken for this unit, it is automatically passed.</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="742d-777b-2b31-5e71::2be1-ac16-62d4-bc05::b0f4-681f-f44d-27e9" name="All is Dust" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">Each time an attack with a damage characteristic of 1 is allocated to a model in this unit, add 1 to any armour saving throw made against that attack. In addition, models in this unit do not suffer the penalty to hit rolls incurred for firing Heavy weapons in the same turn that their unit has moved.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <costs>
+            <cost name="pts" typeId="points" value="0.0"/>
+            <cost name=" PL" typeId="e356-c769-5920-6e14" value="10.0"/>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
+            <cost name=" Cabal Points" typeId="6a06-928d-a42e-4293" value="0.0"/>
+          </costs>
+          <categories>
+            <category id="0298-2a65-9969-4cf6" name="Elites" entryId="638d74c6-bd97-4de5-b65a-6aaa24e9f4b2" primary="true"/>
+            <category id="d80b-a86c-f319-bef2" name="Infantry" entryId="3d52-fccf-10c0-3fae" primary="false"/>
+            <category id="2773-79cd-1e4f-c378" name="Faction: Heretic Astartes" entryId="ca10-a5dd-f54f-0ed5" primary="false"/>
+            <category id="331c-db76-35c5-4141" name="Psyker" entryId="e691-aad7-d21c-1023" primary="false"/>
+            <category id="210c-8105-6165-098b" name="Terminator" entryId="36b8-cf23-7648-ece9" primary="false"/>
+            <category id="1493-ce70-b424-3bb0" name="Faction: Thousand Sons" entryId="5723-c15a-5882-1f57" primary="false"/>
+            <category id="edaf-1607-d6e3-2bd5" name="Faction: Tzeentch" entryId="012f-abfc-397b-3519" primary="false"/>
+            <category id="623a-84cf-9465-1b0e" name="Scarab Occult Terminators" entryId="a277-8b97-4b35-7475" primary="false"/>
+            <category id="aafd-b0e9-93dc-f6f6" name="Faction: Chaos" entryId="5cf1-acf2-ca3b-c2e5" primary="false"/>
+            <category id="b202-2eca-cd43-f538" name="Faction: Arcana Astartes" entryId="f2f5-9b65-6c31-f63b" primary="false"/>
+            <category id="177c-adec-e744-8972" name="Core" entryId="08f1-d244-eb44-7e01" primary="false"/>
+          </categories>
+        </selection>
+      </selections>
+      <publications>
+        <publication id="85df-1155-c986-4d71" name="Psychic Awakening IX: Pariah"/>
+        <publication id="c9fe-4431-b76d-267a" name="Psychic Awakening VIII: War of the Spider"/>
+        <publication id="ecea-8b62-fefb-9f8e" name="Psychic Awakening VII: Engine War"/>
+        <publication id="28ec-711c-pubN118139" name="Index: Xenos 2"/>
+        <publication id="5c2d-db9f-58ca-e7b2" name="Psychic Awakening IV: Ritual of the Damned"/>
+        <publication id="b805-771c-6a82-7307" name="Codex: Thousand Sons 2021"/>
+        <publication id="0865-ee21-d1f1-ed38" name="War Zone Charadon, Act I: The Book of Rust"/>
+        <publication id="28ec-711c-pubN72690" name="Warhammer 40,000 Core Book"/>
+        <publication id="28ec-711c-pubN78977" name="Index: Imperium 1"/>
+        <publication id="28ec-711c-pubN98266" name="Imperium Nihilus: Vigilus Defiant"/>
+        <publication id="52c4-39c0-ae97-d4dc" name="Psychic Awakening VI: Saga of the Beast"/>
+        <publication id="b854-bcb5-5746-e0d3" name="War Zone Charadon, Act II: The Book of Fire"/>
+        <publication id="28ec-711c-pubN77581" name="Index: Imperium 2"/>
+        <publication id="db16-1a92-fdd3-95a9" name="The Balance Dataslate"/>
+        <publication id="09f4-6657-ccd5-6e61" name="War Zone Nephilim: Grand Tournament"/>
+        <publication id="5093-9448-d8cc-5327" name="Psychic Awakening II: Faith and Fury"/>
+        <publication id="255d-c624-9fcb-ca23" name="War Zone Octarius, Book 2: Critical Mass"/>
+        <publication id="28ec-711c-pubN76527" name="Index: Xenos 1"/>
+        <publication id="5b08-09e5-a80a-fd67" name="Psychic Awakening I: Phoenix Rising"/>
+        <publication id="977a-446b-737a-b571" name="Chapter Approved 2021"/>
+        <publication id="ce40-ec9e-21e2-2e42" name="Warhammer Quest: Blackstone Fortress"/>
+        <publication id="28ec-711c-pubN99666" name="Index: Chaos"/>
+        <publication id="f000-7b0c-01bf-7630" name="Psychic Awakening III: Blood of Baal"/>
+        <publication id="7573-8d1b-acdf-2de8" name="Imperial Armour: Compendium"/>
+        <publication id="b652-8bab-1453-da20" name="Warhammer Legends"/>
+        <publication id="4a3e-a6d9-b5f8-3e3d" name="Shadow Throne"/>
+        <publication id="e056-7215-247f-0a20" name="War Zone Octarius, Book 1: Rising Tide"/>
+        <publication id="4593-a2f0-546a-d6f2" name="Psychic Awakening V: The Greater Good"/>
+        <publication id="2ec0-6d53-e36b-9895" name="Chapter Approved 2018"/>
+        <publication id="28ec-711c-pubN73170" name="Chapter Approved 2017"/>
+      </publications>
+      <categories>
+        <category id="ccef-972d-b59f-c83b" name="Uncategorised" entryId="(No Category)" primary="false"/>
+        <category id="180c-a000-76c1-2a99" name="Configuration" entryId="fcff-0f21-93e6-1ddc" primary="false"/>
+        <category id="f973-61ec-3043-5c00" name="Stratagems" entryId="c845-c72c-6afe-3fc2" primary="false"/>
+        <category id="9e6f-7355-c088-9818" name="No Force Org Slot" entryId="ff36a6f3-19bf-4f48-8956-adacfd28fe74" primary="false"/>
+        <category id="194c-4f27-3365-5acc" name="Agents of the Imperium" entryId="0f35-2c34-ba6a-8105" primary="false"/>
+        <category id="bae5-2efd-eecf-c251" name="HQ" entryId="848a6ff2-0def-4c72-8433-ff7da70e6bc7" primary="false"/>
+        <category id="296f-609c-fbda-7ecf" name="Troops" entryId="5d76b6f5-20ae-4d70-8f59-ade72a2add3a" primary="false"/>
+        <category id="1e1c-4f76-a734-cd87" name="Elites" entryId="638d74c6-bd97-4de5-b65a-6aaa24e9f4b2" primary="false"/>
+        <category id="1d61-0c65-9550-9cd8" name="Fast Attack" entryId="c274d0b0-5866-44bc-9810-91c136ae7438" primary="false"/>
+        <category id="bada-e9c4-c776-7d6b" name="Heavy Support" entryId="abf5fd55-9ac7-4263-8bc1-a9fb0a8fa6a6" primary="false"/>
+        <category id="2d45-b722-4e43-143f" name="Flyer" entryId="e888-1504-aa61-95ff" primary="false"/>
+        <category id="49e7-e9d9-8667-ce84" name="Dedicated Transport" entryId="1b66-3f5f-6705-079a" primary="false"/>
+        <category id="dc9f-25b9-a32d-2cac" name="Relic Elites" entryId="8d86-9490-0f7d-a5b5" primary="false"/>
+        <category id="ab5f-edf9-02a7-f2a0" name="Relic Heavy Support" entryId="6c4c-a416-b8cb-c380" primary="false"/>
+        <category id="fd2f-0a51-bea8-5968" name="Relic HQ" entryId="655f-e142-dfa9-11a4" primary="false"/>
+      </categories>
+    </force>
+  </forces>
+</roster>
