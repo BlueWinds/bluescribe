@@ -21,7 +21,7 @@ export const validateRoster = (roster, gameData) => {
     }
 
     roster.costLimits?.costLimit.forEach(cl => {
-      const cost = roster.costs.cost.find(c => c.typeId === cl.typeId)
+      const cost = roster.costs?.cost.find(c => c.typeId === cl.typeId)
       if (cost && cl.value !== -1 && cost.value > cl.value) {
         errors[''] = errors[''] || []
         errors[''].push(`${roster.name} has ${cost.value}${cost.name}, more than the limit of ${cl.value}${cl.name}`)

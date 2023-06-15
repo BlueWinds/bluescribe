@@ -15,7 +15,7 @@ const sumDefaultCosts = (entry, costs = {}) => {
 
   entry.selectionEntries?.forEach(selection => {
     const count = selection.constraints?.find(c => c.type === 'min' && c.scope === 'parent')?.value | 0
-    selection.costs.forEach(cost => {
+    selection.costs?.forEach(cost => {
       if (cost.value && count) {
         costs[cost.name] = (costs[cost.name] | 0) + count * cost.value
       }
@@ -26,7 +26,7 @@ const sumDefaultCosts = (entry, costs = {}) => {
     if (selectionGroup.defaultSelectionEntryId) {
       const count = selectionGroup.constraints?.find(c => c.type === 'min' && c.scope === 'parent')?.value | 0
       const defaultEntry = selectionGroup.selectionEntries.find(e => e.id.includes(selectionGroup.defaultSelectionEntryId))
-      defaultEntry.costs.forEach(cost => {
+      defaultEntry.costs?.forEach(cost => {
         if (cost.value && count) {
           costs[cost.name] = (costs[cost.name] | 0) + count * cost.value
         }

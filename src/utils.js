@@ -160,7 +160,7 @@ export const addSelection = (base, selectionEntry, gameData, entryGroup, catalog
     publicationId: selectionEntry.publicationId,
     type: selectionEntry.type,
     categories: {category: []},
-    costs: {cost: _.cloneDeep(selectionEntry.costs)},
+    costs: {cost: _.cloneDeep(selectionEntry.costs) || []},
     profiles: {profile: []},
     rules: {rule: []},
   }, _.isUndefined)
@@ -252,7 +252,7 @@ export const refreshSelection = (roster, path, selection, gameData) => {
     name: selectionEntry.name,
     type: selectionEntry.type,
     categories: {category: []},
-    costs: {cost: _.cloneDeep(selectionEntry.costs)},
+    costs: {cost: _.cloneDeep(selectionEntry.costs) || []},
     profiles: {profile: []},
     rules: {rule: []},
   })
