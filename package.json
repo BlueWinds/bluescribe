@@ -54,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "gh-pages": "^5.0.0",
     "react-app-rewired": "^2.2.1",
     "web-streams-polyfill": "^3.2.1"

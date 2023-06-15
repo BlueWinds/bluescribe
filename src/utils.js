@@ -14,6 +14,18 @@ export const getCatalogue = (roster, path, gameData) => {
   return gameData.catalogues[force.catalogueId]
 }
 
+export const gatherCatalogues = (catalogue, gameData, catalogues = [gameData.gameSystem]) => {
+  if (catalogues.includes(catalogue)) { return catalogue }
+
+  catalogues.push(catalogue)
+
+  catalogue.catalogueLinks?.forEach(link => {
+    gatherCatalogues(gameData.catalogues[link.targetId], gameData, catalogues)
+  })
+
+  return catalogues
+}
+
 export const findId = (gameData, catalogue, id) => {
   if (gameData.gameSystem.ids[id]) {
     return gameData.gameSystem.ids[id]
@@ -28,6 +40,13 @@ export const findId = (gameData, catalogue, id) => {
 }
 
 export const sumCosts = (entry, costs = {}) => {
+  if (entry.forces) {
+    entry.forces?.force.forEach(force => {
+      sumCosts(force, costs)
+    })
+    return costs
+  }
+
   (entry.costs?.cost || entry.costs)?.forEach(c => {
     if (c.value !== 0) {
       costs[c.name] = (costs[c.name] | 0) + c.value
@@ -79,6 +98,13 @@ export const createRoster = (name, gameSystem) => {
     __: {
       filename: name + '.rosz',
       updated: true,
+    },
+    costs: {
+      cost: gameSystem.costTypes.map(ct => ({
+        name: ct.name,
+        typeId: ct.id,
+        value: 0,
+      }))
     }
   }
 
@@ -219,6 +245,7 @@ const addRules = (selection, selectionEntry) => {
 }
 
 export const refreshSelection = (roster, path, selection, gameData) => {
+  if (selection.name === 'Master of the Legion') { debugger }
   const selectionEntry = getEntry(roster, path, selection.entryId, gameData, true)
 
   _.assign(selection, {
@@ -256,6 +283,14 @@ export const refreshRoster = (roster, gameData) => {
       refreshSelection(newRoster, `forces.force.${index}.selections.selection.${selectionIndex}`, selection, gameData)
     })
   })
+
+  newRoster.costs = {
+    cost: Object.entries(sumCosts(newRoster)).map(([name, value]) => ({
+      name,
+      value,
+      typeId: gameData.gameSystem.costTypes.find(ct => ct.name === name).id
+    })),
+  }
 
   return newRoster
 }

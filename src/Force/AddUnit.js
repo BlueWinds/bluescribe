@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import pluralize from 'pluralize'
 
 import { useRoster, useRosterErrors, useSystem, useOpenCategories } from '../Context'
-import { costString, addSelection, getCatalogue } from '../utils'
+import { costString, addSelection, gatherCatalogues, getCatalogue, getMaxCount } from '../utils'
 import { getEntry } from '../validate'
 
 const hasMatchingError = (errors, name) => {
@@ -52,7 +52,7 @@ const AddUnit = ({ path, setSelectedPath }) => {
     try {
       const entry = getEntry(roster, path, entryLink.id, gameData)
 
-      if (!entry.hidden) {
+      if (!entry.hidden && getMaxCount(entry) !== 0) {
         let primary = _.find(entry.categoryLinks, 'primary')?.targetId
         if (!primary) {
           primary = '(No Category)'
@@ -63,10 +63,10 @@ const AddUnit = ({ path, setSelectedPath }) => {
     } catch {}
   }
 
-  catalogue.entryLinks?.forEach(parseEntry)
-  catalogue.selectionEntries?.forEach(parseEntry)
-  gameData.gameSystem.entryLinks?.forEach(parseEntry)
-  gameData.gameSystem.selectionEntries?.forEach(parseEntry)
+  gatherCatalogues(catalogue, gameData).forEach(c => {
+    c.entryLinks?.forEach(parseEntry)
+    c.selectionEntries?.forEach(parseEntry)
+  })
 
   const categories = force.categories.category.map(category => {
     if (!entries[category.entryId]) { return null }

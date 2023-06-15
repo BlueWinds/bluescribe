@@ -2,7 +2,7 @@ import _ from 'lodash'
 import an from 'indefinite'
 import pluralize from 'pluralize'
 
-import { findId, getCatalogue, randomId } from './utils'
+import { findId, gatherCatalogues, getCatalogue, randomId } from './utils'
 
 const arrayMerge = (dest, source) => {
   Object.entries(source).forEach(([key, value]) => {
@@ -45,27 +45,21 @@ export const validateRoster = (roster, gameData) => {
   return errors
 }
 
-const validateCatalogueAgainstForce = (roster, path, force, catalogue, gameData, errors) => {
-  catalogue.entryLinks?.forEach(selectionEntry => {
-    const entry = getEntry(roster, path, selectionEntry.id, gameData)
-    arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
-  })
-  catalogue.selectionEntries?.forEach(selectionEntry => {
-    const entry = getEntry(roster, path, selectionEntry.id, gameData)
-    arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
-  })
-
-  catalogue.catalogueLinks?.forEach(cl => {
-    validateCatalogueAgainstForce(roster, path, force, gameData.catalogues[cl.targetId], gameData, errors)
-  })
-}
-
 const validateForce = (roster, path, force, gameData) => {
   const errors = {}
 
   try {
-    validateCatalogueAgainstForce(roster, path, force, gameData.gameSystem, gameData, errors)
-    validateCatalogueAgainstForce(roster, path, force, gameData.catalogues[force.catalogueId], gameData, errors)
+    gatherCatalogues(gameData.catalogues[force.catalogueId], gameData).forEach(catalogue => {
+      catalogue.entryLinks?.forEach(selectionEntry => {
+        const entry = getEntry(roster, path, selectionEntry.id, gameData)
+        arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
+      })
+
+      catalogue.selectionEntries?.forEach(selectionEntry => {
+        const entry = getEntry(roster, path, selectionEntry.id, gameData)
+        arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
+      })
+    })
 
     const f = findId(gameData, getCatalogue(roster, path, gameData), force.entryId)
     f.categoryLinks?.forEach(categoryLink => {
@@ -205,17 +199,17 @@ const sumCost = (subject, entry, filterByCategory) => {
 
   // If we're a top-level roster, don't include the "costs" or we'll end up double-counting.
   if (!subject.gameSystemId) {
-    if (!filterByCategory || subject.categories?.category.some(c => c.entryId === filterByCategory)) {
-      sum += subject.costs?.cost.find(c => c.id === entry.field)?.value
+    if (filterByCategory === 'any' || subject.categories?.category.some(c => c.entryId === filterByCategory)) {
+      sum += subject.costs?.cost.find(c => c.typeId === entry.field)?.value | 0
     }
   }
 
-  if (entry.includeChildForces && subject.forces) {
-    sum += subject.forces.force.map(force => sumCost(force, entry, filterByCategory))
+  if ((entry.includeChildForces || filterByCategory === 'any') && subject.forces) {
+    sum += subject.forces.force.map(force => sumCost(force, entry, filterByCategory)) | 0
   }
 
-  if (entry.includeChildSelections && subject.selections) {
-    sum += subject.selections.selection.map(selection => sumCost(selection, entry, filterByCategory))
+  if ((entry.includeChildSelections || filterByCategory === 'any') && subject.selections) {
+    sum += subject.selections.selection.map(selection => sumCost(selection, entry, filterByCategory)) | 0
   }
 
   return sum
@@ -230,10 +224,11 @@ const collectGroupIds = (entry, ids = []) => {
 }
 
 const checkConstraints = (roster, path, entry, gameData, group = false) => {
-  const errors = []
+  let errors = []
 
   try {
     const groupIds = collectGroupIds(entry)
+    let max = Infinity
     if (entry.constraints) {
       entry.constraints?.forEach(constraint => {
         const subject = getSubject(roster, path, constraint)
@@ -242,19 +237,27 @@ const checkConstraints = (roster, path, entry, gameData, group = false) => {
 
         if (constraint.type === 'min' && value !== -1 && !entry.hidden && occurances < value) {
           if (value === 1) {
-            errors.push(`${subject.name} must have ${an(pluralize.singular(entry.name))} selection`)
+            errors.push(`${subject.name} must have ${an(pluralize.singular(entry.name.replace(/\W+$/, '')))} selection`)
           } else {
-            errors.push(`${subject.name} must have ${value - occurances} more ${pluralize(entry.name)}`)
+            errors.push(`${subject.name} must have ${value - occurances} more ${pluralize(entry.name.replace(/\W+$/, ''))}`)
           }
+        }
+        if (constraint.type === 'max' && value < max) {
+          max = value
         }
         if (constraint.type === 'max' && value !== -1 && occurances > value * (subject?.number ?? 1)) {
           if (value === 0) {
-            errors.push(`${subject.name} cannot have ${an(pluralize.singular(entry.name))} selection`)
+            // if (entry.name === 'Master of the Legion') { debugger }
+            errors.push(`${subject.name} cannot have ${an(pluralize.singular(entry.name.replace(/\W+$/, '')))} selection`)
           } else {
-            errors.push(`${subject.name} must have ${occurances - value} fewer ${pluralize(entry.name)}`)
+            errors.push(`${subject.name} must have ${occurances - value} fewer ${pluralize(entry.name.replace(/\W+$/, ''))}`)
           }
         }
       })
+
+      if (max === 0) {
+        errors = errors.filter(e => !e.match(/must have .* more|must have .* selection/))
+      }
     }
   } catch (e) {
     e.path = path
@@ -265,7 +268,7 @@ const checkConstraints = (roster, path, entry, gameData, group = false) => {
   return errors.length ? {[path]: errors} : {}
 }
 
-const applyModifiers = (roster, path, entry, gameData) => {
+const applyModifiers = (roster, path, entry, gameData, catalogue) => {
   const ids = {}
   function index(x, path = '') {
     if (typeof x == "object") {
@@ -291,15 +294,14 @@ const applyModifiers = (roster, path, entry, gameData) => {
     } else if (modifier.type === 'increment' || modifier.type === 'decrement') {
       let times = 1
       if (modifier.repeats) {
-        let repeat = modifier.repeats[0].repeats
-        if (modifier.type === 'decrement') { repeat *= -1 }
+        const repeat = modifier.repeats[0]
 
-        const subject = getSubject(roster, path, modifier.repeats[0])
-        const value = countBy(subject, modifier.repeats[0].childId, modifier.repeats[0])
-        const round = modifier.repeats[0].roundUp ? Math.ceil : Math.floor
+        const subject = getSubject(roster, path, repeat)
+        const value = getValue(repeat, subject, gameData, catalogue)
+        const round = repeat.roundUp ? Math.ceil : Math.floor
 
-        times = repeat * round(value / modifier.repeats[0].value)
-
+        times = repeat.repeats * round(value / modifier.repeats[0].value)
+        if (modifier.type === 'decrement') { times *= -1 }
       }
 
       _.set(entry, target, _.get(entry, target) + modifier.value * times)
@@ -411,7 +413,7 @@ const getValue = (condition, subject, gameData, catalogue) => {
     default: {
       let cost = sumCost(subject, condition, childId)
       if (condition.percentValue) {
-        cost /= sumCost(subject, condition, false)
+        cost /= sumCost(subject, condition, 'any')
       }
 
       return cost
@@ -426,7 +428,7 @@ const getConstraintValue = (constraint, entryId, subject, gameData) => {
     default: {
       let cost = constraint.field.startsWith('limit::') ? (subject.costLimits?.costLimit.find(cl => `limit::${cl.id}` === constraint.field) ?? -1) : sumCost(subject, constraint, false)
       if (constraint.percentValue) {
-        cost /= sumCost(subject, constraint, false)
+        cost /= sumCost(subject, constraint, 'any')
         if (!Number.isFinite(cost)) { cost = 0 }
       }
 
@@ -494,7 +496,7 @@ export const getEntry = (roster, path, id, gameData, ignoreCache) => {
   }
 
   if (entry.modifiers || entry.modifierGroups) {
-    applyModifiers(roster, path, entry, gameData)
+    applyModifiers(roster, path, entry, gameData, catalogue)
   }
 
   entry.id = id
