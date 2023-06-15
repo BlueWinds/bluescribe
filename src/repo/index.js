@@ -27,7 +27,7 @@ export const readXML = async (path, fs) => {
     await zipReader.close()
   }
 
-  return parseXML(buffer.toString())
+  return parseXML(buffer.toString(), false)
 }
 
 const builder = new fxparser.XMLBuilder({

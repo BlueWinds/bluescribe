@@ -97,6 +97,7 @@ function App() {
           console.log(systemInfo.name)
           setGameData(await readFiles('/' + systemInfo.name, fs))
         } catch (e) {
+          console.log(e)
           setInfo({})
         }
         setLoading(false)
