@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import pluralize from 'pluralize'
 
 import { useRoster, useRosterErrors, useSystem, useOpenCategories } from '../Context'
-import { costString, addSelection, gatherCatalogues, getCatalogue, getMaxCount } from '../utils'
+import { costString, addSelection, findId, gatherCatalogues, getCatalogue, getMaxCount } from '../utils'
 import { getEntry } from '../validate'
 
 const hasMatchingError = (errors, name) => {
@@ -71,6 +71,9 @@ const AddUnit = ({ path, setSelectedPath }) => {
   const categories = force.categories.category.map(category => {
     if (!entries[category.entryId]) { return null }
 
+    const catEntries = _.sortBy(entries[category.entryId], 'name')
+    category = findId(gameData, catalogue, category.entryId) || category
+
     const open = openCategories[category.name]
     const error = hasMatchingError(rosterErrors[path], category.name)
     return <Fragment key={category.name}>
@@ -82,7 +85,7 @@ const AddUnit = ({ path, setSelectedPath }) => {
           {category.name}
         </th>
       </tr>
-      {open && _.sortBy(entries[category.entryId], 'name').map(entry => {
+      {open && catEntries.map(entry => {
         const error = hasMatchingError(rosterErrors[path], entry.name)
         return <tr has-error={error} key={entry.id} className="add-unit" onClick={() => {
           addSelection(force, entry, gameData, null, catalogue)
