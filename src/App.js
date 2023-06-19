@@ -4,6 +4,7 @@ import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
 import { DebounceInput } from 'react-debounce-input'
 import useStorage from 'squirrel-gill'
+import { ErrorBoundary } from 'react-error-boundary'
 
 import '@picocss/pico'
 import './App.css';
@@ -115,7 +116,7 @@ function App() {
     </Body>
   }
 
-  if (!systemInfo.name) {
+  if (!systemInfo?.name) {
     return <Body systemInfo={systemInfo} setSystemInfo={setSystemInfo}>
       <SelectSystem setSystemInfo={setSystemInfo} setMode={setMode} />
     </Body>
@@ -127,8 +128,12 @@ function App() {
 
   return <GameContext.Provider value={gameData}><RosterContext.Provider value={roster}><SetRosterContext.Provider value={setRoster}><OpenCategoriesContext.Provider value={openCategories}><SetOpenCategoriesContext.Provider value={setOpenCategories}>
     <Body systemInfo={systemInfo} setSystemInfo={setSystemInfo}>
-      <Tooltip id="tooltip" />
-      <Roster />
+      <ErrorBoundary fallbackRender={({error, resetErrorBoundary}) => {
+        return <SelectSystem setSystemInfo={i => {resetErrorBoundary(); setSystemInfo(i)}} setMode={setMode} previouslySelected={systemInfo} error={error} />
+      }}>
+        <Tooltip id="tooltip" />
+        <Roster />
+      </ErrorBoundary>
     </Body>
   </SetOpenCategoriesContext.Provider></OpenCategoriesContext.Provider></SetRosterContext.Provider></RosterContext.Provider></GameContext.Provider>
 }

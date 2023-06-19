@@ -1,3 +1,7 @@
+iframe {
+    display: none;
+}
+
 h2 {
   --typography-spacing-vertical: 0.625rem;
 }
@@ -47,6 +51,11 @@ h2 button {
 
 .errors {
   color: #cd3232;
+}
+
+.errors code {
+  white-space: pre-line;
+  line-height: 1.8em;
 }
 
 ul.errors {

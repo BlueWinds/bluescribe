@@ -5,7 +5,7 @@ import _ from 'lodash'
 import { listGameSystems, listAvailableGameSystems, addGameSystem, addLocalGameSystem, clearGameSystem } from './'
 import fs from '../fs'
 
-const SelectSystem = ({setSystemInfo, setMode}) => {
+const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => {
   const [systems, setSystems] = useState(null)
   const [available, setAvailable] = useState(null)
   const [selectedAvailable, setSelectedAvailable] = useState(0)
@@ -16,7 +16,7 @@ const SelectSystem = ({setSystemInfo, setMode}) => {
     const load = async () => {
       const s = await listGameSystems(fs)
       setSystems(s)
-      setSelected(Object.keys(s)[0] || 'Add New')
+      setSelected(previouslySelected?.name || _.reverse(_.sortBy(Object.values(s), 'lastUpdated'))[0].name || 'Add New')
     }
 
     if (!systems) {
@@ -54,6 +54,13 @@ const SelectSystem = ({setSystemInfo, setMode}) => {
           </select>
         </> : <BounceLoader color="#36d7b7" className="loading" />}
       </label> : <>
+        {error && previouslySelected.name === selected && <article className="errors">
+          <p className="errors">BlueScribe is having an issue loading this data. This is a bug; please report it. <span role="link" onClick={() => console.log(error)}>Log error to console.</span></p>
+          <details>
+            <summary>{error.message}</summary>
+            <code>{error.stack}</code>
+          </details>
+        </article>}
         <article>
           <header>{systems[selected].description}</header>
           <p>Version {systems[selected].version} - {systems[selected].lastUpdateDescription}</p>
