@@ -146,7 +146,7 @@ const hasCategory = (subject, categoryId) => {
   return !!subject.categories?.category.some(c => c.entryId.includes(categoryId))
 }
 
-const countBy = (subject, entryId, entry, groupIds) => {
+export const countBy = (subject, entryId, entry, groupIds) => {
   if (!subject) { return 0 }
   if (entry.shared) {
     entryId = _.last(entryId.split('::'))
@@ -189,6 +189,12 @@ const countByCategory = (subject, category, entry) => {
     count += subject.selections?.selection.filter(selection => {
       return selection.categories?.category.some(c => c.entryId === categoryId)
     }).length ?? 0
+  }
+
+  if (subject.forces) {
+    if (entry.includeChildForces || entry.shared) {
+      count += _.sum(subject.forces.force.map(force => countByCategory(force, category, entry)))
+    }
   }
 
   return count

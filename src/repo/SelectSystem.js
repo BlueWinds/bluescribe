@@ -36,7 +36,7 @@ const SelectSystem = ({setSystemInfo, setMode}) => {
   return <div>
     <h2>Select Game System</h2>
     {systems ? <>
-      <select onChange={e => {
+      <select value={selected} onChange={e => {
         setSelected(e.target.value)
       }}>
         {_.reverse(_.sortBy(Object.values(systems), 'lastUpdated')).map(system => (<option key={system.name} value={system.name}>{system.description} - {system.version}</option>))}
@@ -61,11 +61,11 @@ const SelectSystem = ({setSystemInfo, setMode}) => {
             Last updated {new Date(Date.parse(systems[selected].lastUpdated)).toLocaleDateString()}.
             {' '}<a target="_blank" rel="noreferrer" href={systems[selected].bugTrackerUrl}>Repository</a>
             {' | '}<a target="_blank" rel="noreferrer" href={systems[selected].reportBugUrl}>Report a bug</a>
-            {' | '}<a href="/#" onClick={() => {
+            {' | '}<span role="link" onClick={() => {
               clearGameSystem(systems[selected], fs).then(() => {
                 setSystems(null)
               })
-            }}>Clear data</a>
+            }}>Clear data</span>
           </p>
         </article>
       </>}

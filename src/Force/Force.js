@@ -21,7 +21,8 @@ const Force = ({ path }) => {
 
   const selections = {}
   const parseSelection = selection => {
-    const primary = _.find(selection.categories.category, 'primary')?.entryId || '(No Category)'
+    const primary = _.find(selection.categories?.category, 'primary')?.entryId || '(No Category)'
+    if (!primary) { debugger }
     selections[primary] = selections[primary] || []
     selections[primary].push(selection)
   }

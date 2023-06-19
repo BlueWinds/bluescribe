@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-import { getEntry } from './validate'
+import { getEntry, countBy } from './validate'
 
 export const randomId = () => {
   const hex = () => Math.floor(Math.random() * 16).toString(16)
@@ -111,10 +111,13 @@ export const createRoster = (name, gameSystem) => {
   return roster
 }
 
+const getMinForceCount = (entry, roster) => (!entry.hidden && entry.constraints?.find(c => c.type === 'min' && (c.scope === 'force' || (c.scope === 'roster' && countBy(roster, entry.id, entry) < c.value)))?.value) ?? 0
+
 export const addForce = (roster, forceId, factionId, gameData) => {
   const entry = findId(gameData, gameData.catalogues[factionId], forceId)
   roster.forces = roster.forces || {force: []}
-  roster.forces.force.push({
+
+  const force = {
     id: randomId(),
     name: entry.name,
     entryId: forceId,
@@ -144,6 +147,25 @@ export const addForce = (roster, forceId, factionId, gameData) => {
         }))
       ]
     }
+  }
+
+  const path = `forces.force.${roster.forces.force.length}.selections.selection.10000`
+  roster.forces.force.push(force)
+
+  gatherCatalogues(gameData.catalogues[force.catalogueId], gameData).forEach(catalogue => {
+    catalogue.entryLinks?.forEach(selectionEntry => {
+      const entry = getEntry(roster, path, selectionEntry.id, gameData)
+      if (getMinForceCount(entry, roster) === 1) {
+        addSelection(force, entry, gameData, null, catalogue)
+      }
+    })
+
+    catalogue.selectionEntries?.forEach(selectionEntry => {
+      const entry = getEntry(roster, path, selectionEntry.id, gameData)
+      if (getMinForceCount(entry, roster) === 1) {
+        addSelection(force, entry, gameData, null, catalogue)
+      }
+    })
   })
 }
 

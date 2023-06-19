@@ -9,7 +9,7 @@ import { loadRoster } from '../repo/rosters'
 describe('40k', () => {
   let gameData
   beforeAll(async () => {
-    gameData = await readFiles(path.join(__dirname, './bsdata/Warhammer 40,000 9th Edition'), fs)
+    gameData = await readFiles(path.join(__dirname, '../../node_modules/wh40k'), fs)
   })
 
   const rosters = {
