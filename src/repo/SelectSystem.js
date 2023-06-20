@@ -16,7 +16,7 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
     const load = async () => {
       const s = await listGameSystems(fs)
       setSystems(s)
-      setSelected(previouslySelected?.name || _.reverse(_.sortBy(Object.values(s), 'lastUpdated'))[0].name || 'Add New')
+      setSelected(previouslySelected?.name || _.reverse(_.sortBy(Object.values(s), 'lastUpdated'))[0]?.name || 'Add New')
     }
 
     if (!systems) {
@@ -35,7 +35,7 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
 
   return <div>
     <h2>Select Game System</h2>
-    {systems ? <>
+    {systems && _.isEmpty(systems) ? <>
       <select value={selected} onChange={e => {
         setSelected(e.target.value)
       }}>
