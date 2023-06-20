@@ -35,7 +35,7 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
 
   return <div>
     <h2>Select Game System</h2>
-    {systems && _.isEmpty(systems) ? <>
+    {systems ? <>
       <select value={selected} onChange={e => {
         setSelected(e.target.value)
       }}>
