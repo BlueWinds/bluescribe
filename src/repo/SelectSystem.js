@@ -22,7 +22,7 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
     if (!systems) {
       load()
     }
-  }, [systems])
+  }, [systems, previouslySelected])
 
   useEffect(() => {
     if (selected === 'Add New' && !available) {
