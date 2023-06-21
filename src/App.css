@@ -69,10 +69,14 @@ ul.errors {
   padding-right: 2rem;
 }
 
-summary > span,
-summary > a,
-summary > small {
+h6 span,
+h6 a,
+h6 small {
   margin-left: 1.25rem;
+}
+
+h6.left {
+  text-align: left;
 }
 
 h4 + h6 {
@@ -82,7 +86,7 @@ h4 + h6 {
 .selections,
 .selection,
 .edit-entry {
-  max-height: 75vh;
+  max-height: calc(100vh - 7em);
   overflow: auto;
 }
 
@@ -121,23 +125,19 @@ h4 + h6 {
   white-space: nowrap;
 }
 
-article details {
+article section {
   border: 1px solid var(--secondary);
   border-bottom-width: 0;
   margin: 0;
   padding: calc(var(--spacing) / 2);
 }
 
-article details[open]:last-child {
-  padding-bottom: 0;
-}
-
-article details:first-child {
+article section:first-child {
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
 }
 
-article details:last-child {
+article section:last-child {
   border-bottom-width: 1px;
   border-bottom-left-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
@@ -285,6 +285,10 @@ article > article {
   max-width: 40rem;
   white-space: break-spaces;
   z-index: 1000;
+}
+
+#clickable-tooltip input {
+  --box-shadow: 0 0 0 var(--outline-width) var(--form-element-focus-color);
 }
 
 nav ol:first-of-type,

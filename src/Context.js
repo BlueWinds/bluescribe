@@ -4,11 +4,10 @@ import _ from 'lodash'
 import { sumCosts } from './utils'
 
 export const GameContext = createContext(null)
-export const RosterContext = createContext(null)
+export const RosterContext = createContext([])
 export const RosterErrorsContext = createContext([])
-export const SetRosterContext = createContext(null)
-export const OpenCategoriesContext = createContext({})
-export const SetOpenCategoriesContext = createContext(null)
+export const OpenCategoriesContext = createContext([])
+export const PathContext = createContext([])
 
 export const useConfirm = (shouldPrompt, message) => {
   return (callback) => {
@@ -20,8 +19,7 @@ export const useConfirm = (shouldPrompt, message) => {
 }
 
 export const useRoster = () => {
-  const roster = useContext(RosterContext)
-  const setRoster = useContext(SetRosterContext)
+  const [roster, setRoster] = useContext(RosterContext)
   const gameData = useContext(GameContext)
 
   return [
@@ -52,12 +50,6 @@ export const useUpdateRoster = () => {
 }
 
 export const useSystem = () => useContext(GameContext)
-
+export const usePath = () => useContext(PathContext)
 export const useRosterErrors = () => useContext(RosterErrorsContext)
-
-export const useOpenCategories = () => {
-  const openCategories = useContext(OpenCategoriesContext)
-  const setOpenCategories = useContext(SetOpenCategoriesContext)
-
-  return [openCategories, setOpenCategories]
-}
+export const useOpenCategories = () => useContext(OpenCategoriesContext)

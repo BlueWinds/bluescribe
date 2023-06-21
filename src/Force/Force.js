@@ -1,19 +1,20 @@
 import _ from 'lodash'
 import { Fragment, useState } from 'react'
 
-import { useRoster, useRosterErrors, useConfirm } from '../Context'
+import { useRoster, useRosterErrors, useConfirm, usePath } from '../Context'
 import AddUnit from './AddUnit'
 import Selection from './Selection'
 import ListSelection from './ListSelection'
 import { costString, sumCosts } from '../utils'
+import { pathToForce } from '../validate'
 
-const Force = ({ path }) => {
+const Force = () => {
   const [roster, setRoster] = useRoster()
-  const force = _.get(roster, path)
+  const [path, setPath] = usePath()
+  const forcePath = pathToForce(path)
+  const force = _.get(roster, forcePath)
   window.force = force
   const confirmDelete = useConfirm(true, `Delete ${force.name}?`)
-
-  const [selectedPath, setSelectedPath] = useState(path)
 
   const [openSections, setOpenSections] = useState({})
 
@@ -59,9 +60,7 @@ const Force = ({ path }) => {
                 key={selection.id}
                 indent={1}
                 selection={selection}
-                selectedPath={selectedPath}
-                setSelectedPath={setSelectedPath}
-                path={`${path}.selections.selection.${force.selections.selection.indexOf(selection)}`}
+                selectionPath={`${forcePath}.selections.selection.${force.selections.selection.indexOf(selection)}`}
               />
             )
           })}
@@ -72,8 +71,8 @@ const Force = ({ path }) => {
   const globalErrors = errors?.filter((e) => !e.includes('must have'))
 
   return (
-    <details key={force.id} open>
-      <summary>
+    <section>
+      <h6>
         {force.catalogueName}
         <small>{force.name}</small>
         <small>{costString(sumCosts(force))}</small>
@@ -87,14 +86,14 @@ const Force = ({ path }) => {
           className="outline"
           onClick={() => {
             confirmDelete(() => {
-              roster.forces.force.splice(_.last(path.split('.')), 1)
+              roster.forces.force.pull(force)
               setRoster(roster)
             })
           }}
         >
           Remove
         </span>
-      </summary>
+      </h6>
       {!!globalErrors?.length && (
         <ul className="errors">
           {globalErrors.map((e) => (
@@ -107,20 +106,16 @@ const Force = ({ path }) => {
           <h6>Selections</h6>
           <table>
             <tbody>
-              <tr onClick={() => setSelectedPath(path)}>
+              <tr onClick={() => setPath(forcePath)}>
                 <th colSpan="3">Add Unit</th>
               </tr>
               {categories}
             </tbody>
           </table>
         </div>
-        {selectedPath === path ? (
-          <AddUnit path={path} errors={errors} setSelectedPath={setSelectedPath} />
-        ) : (
-          <Selection path={selectedPath} errors={errors} setSelectedPath={setSelectedPath} />
-        )}
+        {path === forcePath ? <AddUnit errors={errors} /> : <Selection errors={errors} />}
       </div>
-    </details>
+    </section>
   )
 }
 

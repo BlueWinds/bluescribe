@@ -434,7 +434,8 @@ const findByEntryId = (subject, entryId) => {
   }
 }
 
-const pathToForce = (path) => path.replace(/forces.force.(\d+).*/, 'forces.force.$1')
+export const pathToForce = (path) => path.replace(/.selections.*/, '')
+
 export const pathParent = (path) => path.replace(/.selections.selection.\d+$/, '')
 const pathAncestors = (path) => {
   const ancestors = [path]

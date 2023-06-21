@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import { DebounceInput } from 'react-debounce-input'
 
 import { useRoster, useSystem, useUpdateRoster } from './Context'
 
@@ -9,20 +8,8 @@ const CostLimits = () => {
   const updateRoster = useUpdateRoster()
 
   return (
-    <details open={!roster.forces?.force.length}>
-      <summary>
-        Cost Limits:{' '}
-        {roster.costLimits?.costLimit
-          .map((limit) => {
-            return `${limit.value} ${limit.name}`
-          })
-          .join(', ') || 'None'}
-        <span>
-          {roster.customNotes?.length > 50 || roster.customNotes?.includes('\n')
-            ? _.first(roster.customNotes.split('\n')).slice(0, 50) + '...'
-            : roster.customNotes}
-        </span>
-      </summary>
+    <>
+      <h6>Cost Limits</h6>
       <div className="grid">
         {gameData.gameSystem.costTypes.map((type) => {
           const index = _.findIndex(roster.costLimits?.costLimit, ['typeId', type.id])
@@ -69,19 +56,7 @@ const CostLimits = () => {
           )
         })}
       </div>
-      <label>
-        Notes
-        <DebounceInput
-          debounceTimeout={300}
-          value={roster.customNotes}
-          element="textarea"
-          onChange={(e) => {
-            roster.customNotes = e.target.value
-            setRoster(roster)
-          }}
-        />
-      </label>
-    </details>
+    </>
   )
 }
 

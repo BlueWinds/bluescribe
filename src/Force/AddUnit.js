@@ -2,7 +2,7 @@ import _ from 'lodash'
 import { Fragment } from 'react'
 import pluralize from 'pluralize'
 
-import { useRoster, useRosterErrors, useSystem, useOpenCategories } from '../Context'
+import { useRoster, useRosterErrors, useSystem, useOpenCategories, usePath } from '../Context'
 import { costString, addSelection, findId, gatherCatalogues, getCatalogue, getMaxCount } from '../utils'
 import { getEntry } from '../validate'
 
@@ -42,9 +42,10 @@ const sumDefaultCosts = (entry, costs = {}) => {
   return costs
 }
 
-const AddUnit = ({ path, setSelectedPath }) => {
+const AddUnit = () => {
   const gameData = useSystem()
   const [roster, setRoster] = useRoster()
+  const [path, setPath] = usePath()
   const rosterErrors = useRosterErrors()
   const [openCategories, setOpenCategories] = useOpenCategories()
 
@@ -112,7 +113,7 @@ const AddUnit = ({ path, setSelectedPath }) => {
                 onClick={() => {
                   addSelection(force, entry, gameData, null, catalogue)
                   setRoster(roster)
-                  setSelectedPath(`${path}.selections.selection.${force.selections.selection.length - 1}`)
+                  setPath(`${path}.selections.selection.${force.selections.selection.length - 1}`)
                 }}
               >
                 <td data-tooltip-id="tooltip" data-tooltip-html={error}>

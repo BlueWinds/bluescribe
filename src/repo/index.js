@@ -67,7 +67,9 @@ export const xmlData = async (contents, filename = '') => {
 }
 
 export const listAvailableGameSystems = async () => {
-  const data = await axios.get('https://corsproxy.io/?https://battlescribedata.appspot.com/repos')
+  const data = await axios.get(
+    'https://api.codetabs.com/v1/proxy?quest=https://github.com/BSData/gallery/releases/download/index-v1/bsdata.catpkg-gallery.json',
+  )
 
   return data.data.repositories
 }

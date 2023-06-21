@@ -15,19 +15,22 @@ import Roster from './Roster'
 import { saveRoster, downloadRoster } from './repo/rosters'
 import {
   GameContext,
-  RosterContext,
-  SetRosterContext,
   OpenCategoriesContext,
-  SetOpenCategoriesContext,
+  PathContext,
+  RosterContext,
+  RosterErrorsContext,
   useConfirm,
   useRoster,
   useUpdateRoster,
   useSystem,
+  usePath,
 } from './Context'
 import SelectionModal from './Force/SelectionModal'
+import SelectForce from './Force/SelectForce'
 import ViewRoster from './ViewRoster'
 import { refreshRoster } from './utils'
 import EditSystem from './repo/EditSystem'
+import { pathToForce, validateRoster } from './validate'
 
 const Body = ({ children, systemInfo, setSystemInfo }) => {
   const [roster, setRoster] = useRoster()
@@ -37,6 +40,7 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
     `${roster?.__.filename} has not been saved. Are you sure you want to close it?`,
   )
   const system = useSystem()
+  const [path, setPath] = usePath()
 
   const [open, setOpen] = useState(false)
 
@@ -49,14 +53,21 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
               <strong>BlueScribe</strong>
             </li>
             {roster && (
-              <li>
-                <DebounceInput
-                  minLength={2}
-                  debounceTimeout={300}
-                  value={roster.name}
-                  onChange={(e) => updateRoster('name', e.target.value)}
-                />
-              </li>
+              <>
+                <li>
+                  <DebounceInput
+                    minLength={2}
+                    debounceTimeout={300}
+                    value={roster.name}
+                    onChange={(e) => updateRoster('name', e.target.value)}
+                  />
+                </li>
+                <li>
+                  <SelectForce value={pathToForce(path)} onChange={setPath}>
+                    <option value="">Manage Roster</option>
+                  </SelectForce>
+                </li>
+              </>
             )}
           </ul>
           {system && (
@@ -169,13 +180,14 @@ function App() {
 
   const [roster, setRoster] = useState(null)
   const [openCategories, setOpenCategories] = useState({})
+  const [currentPath, setCurrentPath] = useState('')
 
   useEffect(() => {
     const load = async () => {
       if (mode === 'editRoster') {
         setLoading(true)
         try {
-          console.log(systemInfo.name)
+          console.log('System: ' + systemInfo.name)
           setGameData(await readFiles('/' + systemInfo.name, fs))
         } catch (e) {
           console.log(e)
@@ -212,12 +224,15 @@ function App() {
     return <EditSystem systemInfo={systemInfo} setSystemInfo={setSystemInfo} />
   }
 
+  const errors = validateRoster(roster, gameData)
+  window.errors = errors
+
   return (
     <GameContext.Provider value={gameData}>
-      <RosterContext.Provider value={roster}>
-        <SetRosterContext.Provider value={setRoster}>
-          <OpenCategoriesContext.Provider value={openCategories}>
-            <SetOpenCategoriesContext.Provider value={setOpenCategories}>
+      <RosterContext.Provider value={[roster, setRoster]}>
+        <RosterErrorsContext.Provider value={errors}>
+          <OpenCategoriesContext.Provider value={[openCategories, setOpenCategories]}>
+            <PathContext.Provider value={[currentPath, setCurrentPath]}>
               <Body systemInfo={systemInfo} setSystemInfo={setSystemInfo}>
                 <ErrorBoundary
                   fallbackRender={({ error, resetErrorBoundary }) => {
@@ -238,9 +253,9 @@ function App() {
                   <Roster />
                 </ErrorBoundary>
               </Body>
-            </SetOpenCategoriesContext.Provider>
+            </PathContext.Provider>
           </OpenCategoriesContext.Provider>
-        </SetRosterContext.Provider>
+        </RosterErrorsContext.Provider>
       </RosterContext.Provider>
     </GameContext.Provider>
   )

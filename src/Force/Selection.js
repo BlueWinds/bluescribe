@@ -4,8 +4,9 @@ import pluralize from 'pluralize'
 import { Tooltip } from 'react-tooltip'
 import { DebounceInput } from 'react-debounce-input'
 
-import { useSystem, useRoster, useRosterErrors } from '../Context'
-import { getEntry } from '../validate'
+import { useSystem, useRoster, useRosterErrors, usePath } from '../Context'
+import { getEntry, pathToForce } from '../validate'
+import SelectForce from './SelectForce'
 import {
   costString,
   findId,
@@ -26,34 +27,60 @@ import Categories, { collectCategories } from './Categories'
 import SelectionModal from './SelectionModal'
 import { pathParent } from '../validate'
 
-const Selection = ({ path, setSelectedPath }) => {
+const Selection = () => {
   const gameData = useSystem()
   const [roster, setRoster] = useRoster()
+  const [path, setPath] = usePath()
   const [open, setOpen] = useState(false)
 
   const catalogue = getCatalogue(roster, path, gameData)
   const selection = _.get(roster, path)
   const selectionEntry = getEntry(roster, path, selection.entryId, gameData)
-  const parentPath = path.split('.').slice(0, -3).join('.')
-  const parent = _.get(roster, parentPath)
+  const forcePath = pathToForce(path)
 
   return (
     <div className="selection">
       <nav>
-        <button
-          className="outline"
-          onClick={() => setSelectedPath(parentPath)}
-          data-tooltip-id="tooltip"
-          data-tooltip-html={parent.name}
-        >
-          ^
+        <Tooltip id="move-tooltip" openOnClick={true} clickable={true}>
+          <label>
+            Move to different force
+            <SelectForce
+              value={forcePath}
+              onChange={(newPath) => {
+                const oldForce = _.get(roster, forcePath)
+                _.pull(oldForce.selections.selection, selection)
+
+                const newForce = _.get(roster, newPath)
+                newForce.selections = newForce.selections || { selection: [] }
+                newForce.selections.selection.push(selection)
+
+                setRoster(roster)
+                setPath(forcePath)
+              }}
+            />
+          </label>
+        </Tooltip>
+        <button className="outline" data-tooltip-id="move-tooltip">
+          <span data-tooltip-id="tooltip" data-tooltip-html="Move to different force">
+            ->
+          </span>
         </button>
-        <button className="outline" data-tooltip-id="clickable-tooltip">
+        <button className="outline" data-tooltip-id="custom-name-tooltip">
           <span data-tooltip-id="tooltip" data-tooltip-html="Customize">
             ✍
           </span>
         </button>
-        <Tooltip id="clickable-tooltip" openOnClick={true} clickable={true}>
+        <Tooltip
+          id="custom-name-tooltip"
+          openOnClick={true}
+          clickable={true}
+          afterShow={(e) => {
+            setTimeout(
+              () => document.getElementById('custom-name-tooltip').getElementsByTagName('input')[0].focus(),
+              10,
+            )
+          }}
+        >
           <label>
             Custom Name
             <DebounceInput
@@ -84,10 +111,10 @@ const Selection = ({ path, setSelectedPath }) => {
           className="outline"
           onClick={(e) => {
             const parent = _.get(roster, pathParent(path))
-            parent.selections.selection.splice(_.last(path.split('.')), 1)
+            _.pull(parent.selections.selection, selection)
             setRoster(roster)
 
-            setSelectedPath(path.split('.').slice(0, -3).join('.'))
+            setPath(pathParent(path))
 
             e.stopPropagation()
             e.preventDefault()
