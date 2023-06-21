@@ -1,3 +1,4 @@
+import React from 'react'
 import _ from 'lodash'
 import { Fragment, useState } from 'react'
 
@@ -6,6 +7,7 @@ import AddUnit from './AddUnit'
 import Selection from './Selection'
 import ListSelection from './ListSelection'
 import { costString, sumCosts } from '../utils'
+import PropTypes from 'prop-types'
 
 const Force = ({ path }) => {
   const [roster, setRoster] = useRoster()
@@ -22,7 +24,7 @@ const Force = ({ path }) => {
   const selections = {}
   const parseSelection = selection => {
     const primary = _.find(selection.categories?.category, 'primary')?.entryId || '(No Category)'
-    if (!primary) { debugger }
+    // if (!primary) { debugger }
     selections[primary] = selections[primary] || []
     selections[primary].push(selection)
   }
@@ -84,6 +86,9 @@ const Force = ({ path }) => {
       )}
     </div>
   </details>)
+}
+Force.propTypes = {
+  path: PropTypes.string.isRequired,
 }
 
 export default Force

@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, React } from 'react'
 import BounceLoader from 'react-spinners/BounceLoader'
 import _ from 'lodash'
 
 import { listGameSystems, listAvailableGameSystems, addGameSystem, addLocalGameSystem, clearGameSystem } from './'
 import fs from '../fs'
+import PropTypes from 'prop-types';
 
 const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => {
   const [systems, setSystems] = useState(null)
@@ -16,13 +17,13 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
     const load = async () => {
       const s = await listGameSystems(fs)
       setSystems(s)
-      setSelected(previouslySelected?.name || _.reverse(_.sortBy(Object.values(s), 'lastUpdated'))[0]?.name || 'Add New')
+      setSelected(previouslySelected?.name || _.reverse(_.sortBy(Object.values(s), 'lastUpdated'))[0].name || 'Add New')
     }
 
     if (!systems) {
       load()
     }
-  }, [systems, previouslySelected])
+  }, [systems])
 
   useEffect(() => {
     if (selected === 'Add New' && !available) {
@@ -35,7 +36,7 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
 
   return <div>
     <h2>Select Game System</h2>
-    {systems ? <>
+    {systems && !Object.keys(systems) > 0 ? <>
       <select value={selected} onChange={e => {
         setSelected(e.target.value)
       }}>
@@ -123,5 +124,12 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
     </> : <BounceLoader color="#36d7b7" className="loading" />}
   </div>
 }
+
+SelectSystem.propTypes = {
+  setSystemInfo: PropTypes.func.isRequired,
+  setMode: PropTypes.func.isRequired,
+  previouslySelected: PropTypes.object,
+  error: PropTypes.error,
+};
 
 export default SelectSystem

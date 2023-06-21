@@ -1,3 +1,4 @@
+import React from 'react'
 import _ from 'lodash'
 import { Fragment } from 'react'
 import pluralize from 'pluralize'
@@ -5,6 +6,7 @@ import pluralize from 'pluralize'
 import { useRoster, useRosterErrors, useSystem, useOpenCategories } from '../Context'
 import { costString, addSelection, findId, gatherCatalogues, getCatalogue, getMaxCount } from '../utils'
 import { getEntry } from '../validate'
+import PropTypes from 'prop-types'
 
 const hasMatchingError = (errors, name) => {
   return errors?.find(e => e.includes(' have ') && (e.includes(name) || e.includes(pluralize(name)) || e.includes(pluralize.singular(name))))
@@ -60,7 +62,9 @@ const AddUnit = ({ path, setSelectedPath }) => {
         entries[primary] = entries[primary] || []
         entries[primary].push(entry)
       }
-    } catch {}
+    } catch {
+      // ignore errors
+    }
   }
 
   gatherCatalogues(catalogue, gameData).forEach(c => {
@@ -77,7 +81,7 @@ const AddUnit = ({ path, setSelectedPath }) => {
     const open = openCategories[category.name]
     const error = hasMatchingError(rosterErrors[path], category.name)
     return <Fragment key={category.name}>
-      <tr has-error={error} className="category">
+      <tr data-has-error={error} className="category">
         <th colSpan="2"  data-tooltip-id="tooltip" data-tooltip-html={error} open={open} onClick={() => setOpenCategories({
           ...openCategories,
           [category.name]: !open,
@@ -87,7 +91,7 @@ const AddUnit = ({ path, setSelectedPath }) => {
       </tr>
       {open && catEntries.map(entry => {
         const error = hasMatchingError(rosterErrors[path], entry.name)
-        return <tr has-error={error} key={entry.id} className="add-unit" onClick={() => {
+        return <tr data-has-error={error} key={entry.id} className="add-unit" onClick={() => {
           addSelection(force, entry, gameData, null, catalogue)
           setRoster(roster)
           setSelectedPath(`${path}.selections.selection.${force.selections.selection.length - 1}`)
@@ -106,6 +110,10 @@ const AddUnit = ({ path, setSelectedPath }) => {
       {categories}
     </tbody></table>
   </div>
+}
+AddUnit.propTypes = {
+  path: PropTypes.string.isRequired,
+  setSelectedPath: PropTypes.func.isRequired,
 }
 
 export default AddUnit

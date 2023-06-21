@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext } from 'react'
+import { useState, useEffect, createContext, useContext, React } from 'react'
 import BounceLoader from 'react-spinners/BounceLoader'
 import { Tooltip } from 'react-tooltip'
 import _ from 'lodash'
@@ -8,6 +8,7 @@ import containerTags from 'bsd-schema/containerTags.json'
 import fs from '../fs'
 import { readRawFiles } from './index'
 import EditFile from './EditFile'
+import PropTypes from 'prop-types'
 
 export const SystemContext = createContext(null)
 export const SetSystemContext = createContext(null)
@@ -109,6 +110,11 @@ const EditSystem = ({ systemInfo, setSystemInfo }) => {
     </header>
     {!gameData ? <BounceLoader color="#36d7b7" className='loading' /> : (selectedFile === 'addNew' ? <AddFile /> : <EditFile filename={selectedFile} setSelectedFile={setSelectedFile} />)}
   </div></SetSystemContext.Provider></SystemContext.Provider>
+}
+
+EditSystem.propTypes = {
+  systemInfo: PropTypes.object.isRequired,
+  setSystemInfo: PropTypes.func.isRequired,
 }
 
 export default EditSystem

@@ -1,7 +1,9 @@
 import _ from 'lodash'
 
+import React from 'react'
 import { useFile } from '../EditSystem'
 import { Comment, Hidden, Id, Modifiers, Name, Profiles, Publication } from './fields'
+import PropTypes from 'prop-types'
 
 const Category = ({ filename, category }) => {
   const [file, updateFile] = useFile(filename)
@@ -35,6 +37,11 @@ const Category = ({ filename, category }) => {
       <Modifiers filename={filename} entry={category} />
     </tbody></table>
   </>
+}
+
+Category.propTypes = {
+  filename: PropTypes.string.isRequired,
+  category: PropTypes.object.isRequired,
 }
 
 export default Category

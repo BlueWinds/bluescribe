@@ -1,8 +1,10 @@
+import React from 'react'
 import _ from 'lodash'
 
 import { findId } from '../../utils'
 import { Comment, Hidden, Id, Modifiers, Name, Publication, ReferenceSelect } from './fields'
 import { useFile, useSystem, gatherFiles } from '../EditSystem'
+import PropTypes from 'prop-types'
 
 const Profile = ({ filename, on, profile }) => {
   const [file, updateFile] = useFile(filename)
@@ -49,7 +51,7 @@ const Profile = ({ filename, on, profile }) => {
       <tr><th colSpan="2">Characteristics</th></tr>
       {type.characteristicTypes.map(ct => {
         const characteristic = profile.characteristics?.find(c => c.typeId === ct.id)
-        return <tr data-indent="2">
+        return <tr data-indent="2" key={ct.id}>
           <td><label data-tooltip-id="tooltip" data-tooltip-html={ct.comment} htmlFor={ct.typeId}>{ct.name}</label></td>
           <td><input value={characteristic ? characteristic['#text'] : ''} name={ct.typeId} onChange={e => {
             if (characteristic) { characteristic['#text'] = e.target.value }
@@ -68,6 +70,11 @@ const Profile = ({ filename, on, profile }) => {
       <Modifiers file={file} entry={profile} updateFile={updateFile} />
     </tbody></table>
   </details>
+}
+Profile.propTypes = {
+  filename: PropTypes.string.isRequired,
+  on: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
 }
 
 export default Profile

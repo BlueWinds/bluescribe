@@ -1,4 +1,6 @@
+import React from 'react'
 import { useRef, useEffect } from 'react'
+import PropTypes from 'prop-types'
 
 const SelectionModal = ({ children, open, setOpen }) => {
   const ref = useRef()
@@ -33,6 +35,11 @@ const SelectionModal = ({ children, open, setOpen }) => {
       {children}
     </article>
   </dialog>
+}
+SelectionModal.propTypes = {
+  children: PropTypes.node.isRequired,
+  open: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func.isRequired,
 }
 
 export default SelectionModal

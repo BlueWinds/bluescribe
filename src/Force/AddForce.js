@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, React } from 'react'
 import _ from 'lodash'
 
 import { useRoster, useSystem } from '../Context'
@@ -18,13 +18,13 @@ const AddForce = () => {
       <label>
         Faction
         <select onChange={e => setFaction(e.target.value)}>
-          {catalogues.map((f, index) => <option key={f.id} value={f.id}>{f.name}</option>)}
+          {catalogues.map((f) => <option key={f.id} value={f.id}>{f.name}</option>)}
         </select>
       </label>
       <label>
         Detachment
         <select onChange={e => setForce(e.target.value)}>
-          {_.sortBy(gameData.gameSystem.forceEntries, 'name').map((f, index) => <option key={f.id} value={f.id}>{f.name}</option>)}
+          {_.sortBy(gameData.gameSystem.forceEntries, 'name').map((f) => <option key={f.id} value={f.id}>{f.name}</option>)}
         </select>
         </label>
       <label>

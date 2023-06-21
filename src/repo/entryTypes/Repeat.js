@@ -1,10 +1,12 @@
+import React from 'react'
 import _ from 'lodash'
 
 import { findId } from '../../utils'
 import { gatherFiles, useFile, useSystem } from '../EditSystem'
 import { Comment, Checkbox, ReferenceSelect, Value } from './fields'
+import PropTypes from 'prop-types'
 
-const Repeat = ({ entry, filename, modifier }) => {
+const Repeat = ({ filename, modifier }) => {
   const [file, updateFile] = useFile(filename)
   const gameData = useSystem()
   const repeat = modifier.repeats[0]
@@ -90,6 +92,10 @@ const Repeat = ({ entry, filename, modifier }) => {
     <Checkbox entry={repeat} field="percentValue" label="Percent" updateFile={updateFile} data-indent="2" />
     <Checkbox entry={repeat} field="roundUp" label="Round up" updateFile={updateFile} data-indent="2" />
   </>
+}
+Repeat.propTypes = {
+  filename: PropTypes.string.isRequired,
+  modifier: PropTypes.object.isRequired,
 }
 
 export default Repeat

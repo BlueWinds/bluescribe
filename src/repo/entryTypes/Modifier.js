@@ -1,7 +1,9 @@
+import React from 'react'
 import _ from 'lodash'
 
 import { Checkbox, Comment, Conditions, Repeats, Text, Value } from './fields'
 import { gatherFiles, useFile, useSystem } from '../EditSystem'
+import PropTypes from 'prop-types'
 
 const types = {
   set: 'Set',
@@ -101,5 +103,10 @@ const Modifier = ({ entry, on, filename, modifier }) => {
     </tbody></table>
   </details>
 }
-
+Modifier.propTypes = {
+  entry: PropTypes.object.isRequired,
+  on: PropTypes.object.isRequired,
+  filename: PropTypes.string.isRequired,
+  modifier: PropTypes.object.isRequired,
+}
 export default Modifier

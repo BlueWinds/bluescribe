@@ -1,3 +1,4 @@
+import React from 'react'
 import Select from 'react-select'
 import _ from 'lodash'
 
@@ -7,6 +8,7 @@ import Profile from './Profile'
 import Modifier from './Modifier'
 import ModifierGroup from './ModifierGroup'
 import Repeat, { repeatToString } from './Repeat'
+import PropTypes from 'prop-types'
 
 export const Checkbox = ({ entry, field, label, updateFile, defaultValue = false, ...props }) => <tr {...props}>
   <td><label htmlFor={field}>{label}</label></td>
@@ -19,11 +21,24 @@ export const Checkbox = ({ entry, field, label, updateFile, defaultValue = false
     updateFile()
   }} /></td>
 </tr>
+Checkbox.propTypes = {
+  entry: PropTypes.object.isRequired,
+  field: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  updateFile: PropTypes.func.isRequired,
+  defaultValue: PropTypes.bool,
+}
 
 export const Text = ({ entry, field, label, updateFile, ...props }) => <tr {...props} >
   <td><label htmlFor={field}>{label}</label></td>
   <td><input value={entry[field] || ''} name={field} onChange={e => { entry[field] = e.target.value; updateFile() }} /></td>
 </tr>
+Text.propTypes = {
+  entry: PropTypes.object.isRequired,
+  field: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  updateFile: PropTypes.func.isRequired,
+}
 
 export const Name = ({ entry, updateFile, children, ...props }) => <tr {...props}>
   <td colSpan="2">
@@ -33,6 +48,11 @@ export const Name = ({ entry, updateFile, children, ...props }) => <tr {...props
     </h6>
   </td>
 </tr>
+Name.propTypes = {
+  entry: PropTypes.object.isRequired,
+  updateFile: PropTypes.func.isRequired,
+  children: PropTypes.node,
+}
 
 export const Id = ({ entry, updateFile, ...props }) => <tr {...props}>
   <td>Id</td>
@@ -41,15 +61,31 @@ export const Id = ({ entry, updateFile, ...props }) => <tr {...props}>
     <input value={entry.id} disabled={true} />
   </td>
 </tr>
+Id.propTypes = {
+  entry: PropTypes.object.isRequired,
+  updateFile: PropTypes.func.isRequired,
+}
 
 export const Hidden = ({ entry, updateFile, ...props }) => <Checkbox entry={entry} field="hidden" label="Hidden" updateFile={updateFile} {...props} />
+Hidden.propTypes = {
+  entry: PropTypes.object.isRequired,
+  updateFile: PropTypes.func.isRequired,
+}
 
 export const Comment = ({ entry, updateFile, ...props }) => <Text field="comment" label="Comment" entry={entry} updateFile={updateFile} {...props} />
+Comment.propTypes = {
+  entry: PropTypes.object.isRequired,
+  updateFile: PropTypes.func.isRequired,
+}
 
 export const Value = ({ entry, updateFile, ...props }) => <tr {...props} >
   <td><label htmlFor="value">Value</label></td>
   <td><input type="number" value={entry.value} name="value" onChange={e => { entry.value = e.target.value; updateFile() }} /></td>
 </tr>
+Value.propTypes = {
+  entry: PropTypes.object.isRequired,
+  updateFile: PropTypes.func.isRequired,
+}
 
 export const ReferenceSelect = ({ value, options, onChange, isClearable = true, isSearchable = true }) => {
   return <Select
@@ -65,6 +101,13 @@ export const ReferenceSelect = ({ value, options, onChange, isClearable = true, 
     name="publication"
     onChange={onChange}
   />
+}
+ReferenceSelect.propTypes = {
+  value: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
+  onChange: PropTypes.func.isRequired,
+  isClearable: PropTypes.bool,
+  isSearchable: PropTypes.bool,
 }
 
 export const Publication = ({ file, entry, updateFile, ...props }) => {
@@ -91,6 +134,11 @@ export const Publication = ({ file, entry, updateFile, ...props }) => {
     </td>
   </tr>
 }
+Publication.propTypes = {
+  file: PropTypes.object.isRequired,
+  entry: PropTypes.object.isRequired,
+  updateFile: PropTypes.func.isRequired,
+}
 
 export const Profiles = ({ filename, entry, updateFile, ...props }) => {
   const gameData = useSystem()
@@ -115,6 +163,11 @@ export const Profiles = ({ filename, entry, updateFile, ...props }) => {
       <td colSpan="2"><Profile profile={profile} filename={filename} on={entry} /></td>
     </tr>)}
   </>
+}
+Profiles.propTypes = {
+  filename: PropTypes.string.isRequired,
+  entry: PropTypes.object.isRequired,
+  updateFile: PropTypes.func.isRequired,
 }
 
 export const Modifiers = ({ filename, entry, on = entry, ...props }) => {
@@ -147,6 +200,11 @@ export const Modifiers = ({ filename, entry, on = entry, ...props }) => {
     </tr>)}
   </>
 }
+Modifiers.propTypes = {
+  filename: PropTypes.string.isRequired,
+  entry: PropTypes.object.isRequired,
+  on: PropTypes.object,
+}
 
 export const Conditions = () => {
   // TODO, conditions and conditionGroups
@@ -176,4 +234,10 @@ export const Repeats = ({ entry, filename, modifier, updateFile, ...props }) => 
     </tr>
     {entry.repeats?.length && <Repeat entry={entry} filename={filename} modifier={modifier} {...props} />}
   </>
+}
+Repeats.propTypes = {
+  entry: PropTypes.object.isRequired,
+  filename: PropTypes.string.isRequired,
+  modifier: PropTypes.object,
+  updateFile: PropTypes.func.isRequired,
 }

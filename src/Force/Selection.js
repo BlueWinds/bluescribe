@@ -1,3 +1,4 @@
+import React from 'react'
 import _ from 'lodash'
 import { useState } from 'react'
 import pluralize from 'pluralize'
@@ -12,6 +13,7 @@ import Rules, { collectRules } from './Rules'
 import Categories, { collectCategories } from './Categories'
 import SelectionModal from './SelectionModal'
 import { pathParent } from '../validate'
+import PropTypes from 'prop-types'
 
 const Selection = ({ path, setSelectedPath }) => {
   const gameData = useSystem()
@@ -76,7 +78,10 @@ const Selection = ({ path, setSelectedPath }) => {
     </> : <>{selectionName(selection)} does not exist in the game data. It may have been removed in a data update.</>}
   </div>
 }
-
+Selection.propTypes = {
+  path: PropTypes.string.isRequired,
+  setSelectedPath: PropTypes.func.isRequired
+}
 export default Selection
 
 
@@ -107,7 +112,7 @@ const useOnSelect = (path, selection, entryGroup) => {
   }
 }
 
-const Entry = ({ catalogue, entry, path, selection, selectionEntry, entryGroup }) => {
+const Entry = ({ catalogue, entry, path, selection, entryGroup }) => {
   const onSelect = useOnSelect(path, selection, entryGroup)
 
   const min = getMinCount(entry) * selection.number
@@ -117,6 +122,13 @@ const Entry = ({ catalogue, entry, path, selection, selectionEntry, entryGroup }
 
   return max === 1 ? <Checkbox selection={selection} option={entry} onSelect={onSelect} entryGroup={entryGroup} catalogue={catalogue} /> : <Count selection={selection} option={entry} onSelect={onSelect} min={min} max={max} entryGroup={entryGroup} catalogue={catalogue} />
 }
+Entry.propTypes = {
+  catalogue: PropTypes.object.isRequired,
+  entry: PropTypes.object.isRequired,
+  path: PropTypes.string.isRequired,
+  selection: PropTypes.object.isRequired,
+  entryGroup: PropTypes.object 
+}
 
 const EntryGroup = ({ path, entryGroup, selection, selectionEntry }) => {
   const gameData = useSystem()
@@ -124,7 +136,7 @@ const EntryGroup = ({ path, entryGroup, selection, selectionEntry }) => {
   const onSelect = useOnSelect(path, selection, entryGroup)
 
   const catalogue = getCatalogue(roster, path, gameData)
-  const selectionErrors = _.flatten(Object.entries(useRosterErrors()).filter(([key, value]) => key === path || key.startsWith(path + '.')).map(([key, value]) => value))
+  const selectionErrors = _.flatten(Object.entries(useRosterErrors()).filter(([key]) => key === path || key.startsWith(path + '.')).map(([value]) => value))
   const min = getMinCount(entryGroup) * selection.number
   const max = getMaxCount(entryGroup) * selection.number
 
@@ -145,6 +157,12 @@ const EntryGroup = ({ path, entryGroup, selection, selectionEntry }) => {
     {entryGroup.selectionEntryGroups?.map(subGroup => <EntryGroup key={subGroup.id} path={path} entryGroup={subGroup} selection={selection} selectionEntry={selectionEntry} />)}
   </article>
 }
+EntryGroup.propTypes = {
+  path: PropTypes.string.isRequired,
+  entryGroup: PropTypes.object.isRequired,
+  selection: PropTypes.object.isRequired,
+  selectionEntry: PropTypes.object,
+}
 
 const Radio = ({ catalogue, selection, entryGroup, onSelect }) => {
   const gameData = useSystem()
@@ -159,7 +177,7 @@ const Radio = ({ catalogue, selection, entryGroup, onSelect }) => {
       <input type="radio" name={entryGroup.id} onChange={() => onSelect(entries.find(e => e.id === selectedOption.entryId), 0)} checked={!selectedOption} />
       (None)
     </label>}
-    {_.sortBy(entries, 'name').map((option, index) => {
+    {_.sortBy(entries, 'name').map((option) => {
       const cost = costString(sumCosts(option))
       const checked = selectedOption?.entryId === option.id
       if (option.hidden && !checked) { return null }
@@ -178,8 +196,14 @@ const Radio = ({ catalogue, selection, entryGroup, onSelect }) => {
     })}
   </>
 }
+Radio.propTypes = {
+  catalogue: PropTypes.object.isRequired,
+  selection: PropTypes.object.isRequired,
+  entryGroup: PropTypes.object.isRequired,
+  onSelect: PropTypes.func.isRequired,
+}
 
-const Checkbox = ({ catalogue, selection, option, onSelect, entryGroup }) => {
+const Checkbox = ({ catalogue, selection, option, onSelect }) => {
   const gameData = useSystem()
 
   const cost = costString(sumCosts(option))
@@ -188,7 +212,7 @@ const Checkbox = ({ catalogue, selection, option, onSelect, entryGroup }) => {
 
   if (checked && min === 1) { return null }
 
-  if (option.name === 'Litany of Hate (Aura)') { debugger }
+  //if (option.name === 'Litany of Hate (Aura)') { debugger }
 
   return <label>
     <input
@@ -203,8 +227,14 @@ const Checkbox = ({ catalogue, selection, option, onSelect, entryGroup }) => {
     {cost && ` (${cost})`}
   </label>
 }
+Checkbox.propTypes = {
+  catalogue: PropTypes.object.isRequired,
+  selection: PropTypes.object.isRequired,
+  option: PropTypes.object.isRequired,
+  onSelect: PropTypes.func.isRequired,
+}
 
-const Count = ({ catalogue, selection, option, min, max, onSelect, entryGroup }) => {
+const Count = ({ catalogue, selection, option, min, max, onSelect }) => {
   const gameData = useSystem()
 
   const value = _.sum(selection.selections?.selection.map(s => s.entryId === option.id ? s.number : 0)) || 0
@@ -230,4 +260,12 @@ const Count = ({ catalogue, selection, option, min, max, onSelect, entryGroup })
     </span>
     {cost && ` (${cost})`}
   </label>
+}
+Count.propTypes = {
+  catalogue: PropTypes.object.isRequired,
+  selection: PropTypes.object.isRequired,
+  option: PropTypes.object.isRequired,
+  min: PropTypes.number.isRequired,
+  max: PropTypes.number.isRequired, 
+  onSelect: PropTypes.func.isRequired,
 }

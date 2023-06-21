@@ -267,7 +267,7 @@ const addRules = (selection, selectionEntry) => {
 }
 
 export const refreshSelection = (roster, path, selection, gameData) => {
-  if (selection.name === 'Master of the Legion') { debugger }
+  //if (selection.name === 'Master of the Legion') { debugger }
   const selectionEntry = getEntry(roster, path, selection.entryId, gameData, true)
 
   _.assign(selection, {

@@ -1,4 +1,6 @@
+import React from 'react'
 import { findId } from '../utils'
+import PropTypes from 'prop-types'
 
 const Categories = ({ categories }) => {
   const string = Object.keys(categories).sort().join(', ')
@@ -9,7 +11,9 @@ const Categories = ({ categories }) => {
     <em>{string}</em>
   </article>
 }
-
+Categories.propTypes = {
+  categories: PropTypes.object.isRequired,
+}
 export default Categories
 
 export const collectCategories = (entry, gameData, catalogue, categories = {}) => {

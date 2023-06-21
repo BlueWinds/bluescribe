@@ -1,11 +1,18 @@
+import React from 'react'
 import { useFile, useSystem, useSetSystem } from './EditSystem'
 import FileContents from './FileContents'
+import PropTypes from 'prop-types'
 
 const EditFile = ({ filename, setSelectedFile }) => {
   return <article>
     <FileDetails filename={filename} setSelectedFile={setSelectedFile} />
     <FileContents filename={filename} />
   </article>
+}
+
+EditFile.propTypes = {
+  filename: PropTypes.string.isRequired,
+  setSelectedFile: PropTypes.func.isRequired,
 }
 
 export default EditFile
@@ -58,4 +65,9 @@ const FileDetails = ({ filename, setSelectedFile }) => {
       </div>
     </div>
   </details>
+}
+
+FileDetails.propTypes = {
+  filename: PropTypes.string.isRequired,
+  setSelectedFile: PropTypes.func.isRequired,
 }

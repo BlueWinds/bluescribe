@@ -174,7 +174,10 @@ export const countBy = (subject, entryId, entry, groupIds) => {
     }
   }
 
-  if (_.isNaN(count)) { debugger; throw new Error('NaN while trying to countBy') }
+  if (_.isNaN(count)) { 
+    //debugger; 
+    throw new Error('NaN while trying to countBy') 
+  }
   return count
 }
 
@@ -229,7 +232,7 @@ const collectGroupIds = (entry, ids = []) => {
   return ids
 }
 
-const checkConstraints = (roster, path, entry, gameData, group = false) => {
+const checkConstraints = (roster, path, entry, gameData) => {
   let errors = []
 
   try {
@@ -295,7 +298,10 @@ const applyModifiers = (roster, path, entry, gameData, catalogue) => {
 
     const target = entry[modifier.field] !== undefined ? modifier.field : `${ids[modifier.field]}.value`.slice(1)
     if (modifier.type === 'set') {
-      if (_.isNaN(modifier.value)) { debugger; throw new Error('NaN modifier.value') }
+      if (_.isNaN(modifier.value)) { 
+        //debugger; 
+        throw new Error('NaN modifier.value') 
+      }
       _.set(entry, target, modifier.value)
     } else if (modifier.type === 'increment' || modifier.type === 'decrement') {
       let times = 1
@@ -314,7 +320,10 @@ const applyModifiers = (roster, path, entry, gameData, catalogue) => {
     } else if (modifier.type === 'append') {
       entry[modifier.field] += modifier.value
     } else if (modifier.type === 'add') {
-      if (modifier.field !== 'category') { debugger; throw new Error("modifier.type === 'add' while modifier.field !== 'category'") }
+      if (modifier.field !== 'category') { 
+        //debugger; 
+        throw new Error("modifier.type === 'add' while modifier.field !== 'category'") 
+      }
 
       entry.categoryLinks = entry.categoryLinks || []
       entry.categoryLinks.push({
@@ -325,11 +334,17 @@ const applyModifiers = (roster, path, entry, gameData, catalogue) => {
         targetId: modifier.value,
       })
     } else if (modifier.type === 'remove') {
-      if (modifier.field !== 'category') { debugger; throw new Error("modifier.type === 'remove' while modifier.field !== 'category'") }
+      if (modifier.field !== 'category') { 
+        //debugger; 
+        throw new Error("modifier.type === 'remove' while modifier.field !== 'category'") 
+      }
 
       entry.categoryLinks = entry.categoryLinks.filter(link => link.targetId !== modifier.value)
     } else if (modifier.type === 'set-primary' || modifier.type === 'unset-primary') {
-      if (modifier.field !== 'category') { debugger; throw new Error(`modifier.type === ${modifier.type} while modifier.field !== 'category'`) }
+      if (modifier.field !== 'category') { 
+        //debugger; 
+        throw new Error(`modifier.type === ${modifier.type} while modifier.field !== 'category'`) 
+      }
       let category = entry.categoryLinks.find(cat => cat.targetId === modifier.value)
       if (category) {
         category.primary = modifier.type === 'set-primary'
@@ -341,7 +356,7 @@ const applyModifiers = (roster, path, entry, gameData, catalogue) => {
         targetId: modifier.value,
       })}
     } else {
-      debugger
+      //debugger
       throw new Error(`Unknown modifier.type: ${modifier.type}`)
     }
   }
@@ -427,7 +442,7 @@ const getValue = (condition, subject, gameData, catalogue) => {
   }
 }
 
-const getConstraintValue = (constraint, entryId, subject, gameData) => {
+const getConstraintValue = (constraint, subject) => {
   switch (constraint.field) {
     case 'selections': return 1
     case 'forces': return 1
@@ -456,7 +471,10 @@ const checkCondition = (roster, path, condition, gameData) => {
     case 'notEqualTo': return getValue(condition, subject, gameData, catalogue) !== condition.value
     case 'instanceOf': return [].concat(subject).filter(Boolean).some(s => s.entryId?.endsWith(condition.childId) || hasCategory(s, condition.childId))
     case 'notInstanceOf': return !([].concat(subject).filter(Boolean).some(s => s.entryId?.endsWith(condition.childId) || hasCategory(s, condition.childId)))
-    default: { debugger; throw new Error('Unknown condition.type: ' + condition.type) }
+    default: { 
+      //debugger; 
+      throw new Error('Unknown condition.type: ' + condition.type) 
+    }
   }
 }
 
@@ -519,7 +537,10 @@ export const getEntry = (roster, path, id, gameData, ignoreCache) => {
         entry.selectionEntryGroups.push(link)
         return
       }
-      default: { debugger; throw new Error(`Unknown entryLink type: ${link.type}`) }
+      default: { 
+        //debugger; 
+        throw new Error(`Unknown entryLink type: ${link.type}`) 
+      }
     }
   })
   delete entry.entryLinks
@@ -551,7 +572,10 @@ export const getEntry = (roster, path, id, gameData, ignoreCache) => {
 
         return
       }
-      default: { debugger; throw new Error(`Unknown infoLink type: ${link.type}`) }
+      default: { 
+        //debugger; 
+        throw new Error(`Unknown infoLink type: ${link.type}`) 
+      }
     }
   }
 

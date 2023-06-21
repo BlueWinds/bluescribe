@@ -1,3 +1,4 @@
+import React from 'react'
 import { Fragment } from 'react'
 import _ from 'lodash'
 import useStorage from 'squirrel-gill'
@@ -7,6 +8,7 @@ import { costString, sumCosts } from './utils'
 import Profiles, { collectSelectionProfiles } from './Force/Profiles'
 import Rules, { collectRules } from './Force/Rules'
 import Categories, { collectCategories } from './Force/Categories'
+import PropTypes from 'prop-types'
 
 const ViewRoster = () => {
   const [roster] = useRoster()
@@ -67,8 +69,11 @@ const ViewForce = ({ force }) => {
   const gameData = useSystem()
   return <>
     <h5>{force.name} ({force.catalogueName}) [{costString(sumCosts(force))}]</h5>
-    {force.selections?.selection.map(selection => <ViewSelection selection={selection} catalogue={gameData.catalogues[force.catalogueId]} />)}
+    {force.selections?.selection.map(selection => <ViewSelection key={selection.id} selection={selection} catalogue={gameData.catalogues[force.catalogueId]} />)}
   </>
+}
+ViewForce.propTypes = {
+  force: PropTypes.object.isRequired,
 }
 
 const ViewSelection = ({ catalogue, selection }) => {
@@ -82,6 +87,10 @@ const ViewSelection = ({ catalogue, selection }) => {
     <Profiles profiles={collectSelectionProfiles(selection, gameData)} number={selection.number} />
     <Rules catalogue={catalogue} rules={collectRules(selection)} />
   </article>
+}
+ViewSelection.propTypes = {
+  catalogue: PropTypes.object.isRequired,
+  selection: PropTypes.object.isRequired,
 }
 
 const viewSelectionText = (selection, indent) => {

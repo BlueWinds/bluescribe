@@ -1,7 +1,9 @@
+import React from 'react'
 import _ from 'lodash'
 
 import { Comment, Conditions, Modifiers, Repeats } from './fields'
 import { useFile } from '../EditSystem'
+import PropTypes from 'prop-types'
 
 const ModifierGroup = ({ entry, on, filename, modifierGroup }) => {
   const [file, updateFile] = useFile(filename)
@@ -25,6 +27,12 @@ const ModifierGroup = ({ entry, on, filename, modifierGroup }) => {
       <Modifiers file={file} entry={entry} on={modifierGroup} />
     </tbody></table>
   </details>
+}
+ModifierGroup.propTypes = {
+  entry: PropTypes.object.isRequired,
+  on: PropTypes.object.isRequired,
+  filename: PropTypes.string.isRequired,
+  modifierGroup: PropTypes.object.isRequired,
 }
 
 export default ModifierGroup

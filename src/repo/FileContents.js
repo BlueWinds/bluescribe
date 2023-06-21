@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState, React } from 'react'
 import _ from 'lodash'
 
 import { useFile } from './EditSystem'
 import Category from './entryTypes/Category'
+import PropTypes from 'prop-types'
 
 const gameSystemTypes = {
   categoryEntries: 'Categories',
@@ -48,7 +49,7 @@ const FileContents = ({ filename }) => {
         </select>
         <table><tbody>
           <tr onClick={() => setSelectedPath(entryType)} className={entryType === selectedPath ? 'selected' : ''} ><th>Add {singular[entryType]}</th></tr>
-          {(file[entryType] || []).map((entry, index) => <tr key={entry.id} onClick={e => setSelectedPath(`${entryType}.${index}`)} className={selectedPath === `${entryType}.${index}` ? 'selected' : ''}><td><span data-tooltip-id="tooltip" data-tooltip-html={entry.comment}>{entry.name}</span></td></tr>)}
+          {(file[entryType] || []).map((entry, index) => <tr key={entry.id} onClick={() => setSelectedPath(`${entryType}.${index}`)} className={selectedPath === `${entryType}.${index}` ? 'selected' : ''}><td><span data-tooltip-id="tooltip" data-tooltip-html={entry.comment}>{entry.name}</span></td></tr>)}
         </tbody></table>
       </div>
       <div className="edit-entry">{entryElement(file, filename, selectedPath)}</div>
@@ -63,6 +64,10 @@ const entryElement = (file, filename, selectedPath) => {
     case 'categoryEntries': return <Category filename={filename} category={entry} />
     default: return `unsupported entryType: ${selectedPath}`
   }
+}
+
+FileContents.propTypes = {
+  filename: PropTypes.string.isRequired,
 }
 
 export default FileContents

@@ -226,7 +226,9 @@ export const readFiles = async (dir, fs) => {
 
   try {
     await fs.promises.unlink(dir + '/cache.json')
-  } catch {}
+  } catch {
+    // ignore error
+  }
 
   await fs.promises.writeFile(dir + '/cache.json', JSON.stringify(parsed))
 

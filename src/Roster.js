@@ -1,3 +1,4 @@
+import React from 'react'
 import { useEffect, useState } from 'react'
 import BounceLoader from 'react-spinners/BounceLoader'
 import useStorage from 'squirrel-gill'

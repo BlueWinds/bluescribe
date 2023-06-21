@@ -1,6 +1,8 @@
+import React from 'react'
 import _ from 'lodash'
 
 import { findId, getMinCount } from '../utils'
+import PropTypes from 'prop-types'
 
 const order = {
   Unit: 1,
@@ -8,7 +10,7 @@ const order = {
   Abilities: 3,
 }
 
-const Profiles = ({ profiles, number }) => {
+const Profiles = ({ profiles }) => {
   return <>
     {_.sortBy(Object.keys(profiles), p => order[p] || p).map(type => <table className="profile" key={type}>
       <thead>
@@ -25,6 +27,9 @@ const Profiles = ({ profiles, number }) => {
       </tbody>
     </table>)}
   </>
+}
+Profiles.propTypes = {
+  profiles: PropTypes.object.isRequired,
 }
 
 export default Profiles
