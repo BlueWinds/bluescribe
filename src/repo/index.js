@@ -1,12 +1,5 @@
 import fxparser from 'fast-xml-parser'
-import {
-  BlobReader,
-  BlobWriter,
-  TextReader,
-  TextWriter,
-  ZipReader,
-  ZipWriter,
-} from '@zip.js/zip.js'
+import { BlobReader, BlobWriter, TextReader, TextWriter, ZipReader, ZipWriter } from '@zip.js/zip.js'
 import _ from 'lodash'
 import axios from 'axios'
 import PQueue from 'p-queue'
@@ -38,12 +31,7 @@ const builder = new fxparser.XMLBuilder({
   processEntities: true,
   suppressBooleanAttributes: false,
   suppressUnpairedNode: false,
-  unpairedTags: [
-    'publication',
-    'category',
-    'cost',
-    'characteristic',
-  ],
+  unpairedTags: ['publication', 'category', 'cost', 'characteristic'],
 })
 
 export const xmlData = async (contents, filename = '') => {
@@ -87,18 +75,20 @@ export const listAvailableGameSystems = async () => {
 export const listGameSystems = async (fs) => {
   const systems = {}
   const dirs = await fs.promises.readdir('/')
-  await Promise.all(dirs.map(async dir => {
-    try {
-      systems[dir] = (await JSON.parse((await fs.promises.readFile('/' + dir + '/system.json')).toString()))
-    } catch {
-      await clearGameSystem({name: dir}, fs)
-    }
-  }))
+  await Promise.all(
+    dirs.map(async (dir) => {
+      try {
+        systems[dir] = await JSON.parse((await fs.promises.readFile('/' + dir + '/system.json')).toString())
+      } catch {
+        await clearGameSystem({ name: dir }, fs)
+      }
+    }),
+  )
   return systems
 }
 
 const htmlDecode = (str) => {
-  const doc = new DOMParser().parseFromString(str, "text/html")
+  const doc = new DOMParser().parseFromString(str, 'text/html')
   return doc.documentElement.textContent
 }
 
@@ -106,27 +96,29 @@ export const addLocalGameSystem = async (files, fs) => {
   const system = {
     name: files[0].webkitRelativePath.split(/\\|\//)[0],
     description: files[0].webkitRelativePath.split(/\\|\//)[0],
-    lastUpdated: (new Date()).toISOString(),
-    lastUpdateDescription: "Updated locally",
-    version: "v0.0.0",
+    lastUpdated: new Date().toISOString(),
+    lastUpdateDescription: 'Updated locally',
+    version: 'v0.0.0',
   }
 
   const dirs = await fs.promises.readdir('/')
   if (dirs.indexOf(system.name) !== -1) {
     const files = await fs.promises.readdir('/' + system.name)
-    await Promise.all(files.map(f => fs.promises.unlink('/' + system.name + '/' + f)))
+    await Promise.all(files.map((f) => fs.promises.unlink('/' + system.name + '/' + f)))
     await fs.promises.rmdir('/' + system.name)
   }
 
   await fs.promises.mkdir('/' + system.name)
   await fs.promises.writeFile('/' + system.name + '/system.json', JSON.stringify(system))
 
-  await Promise.all(files.map(async file => {
-    const filename = _.last(file.name.split(/\\|\//))
-    const data = await file.arrayBuffer()
-    console.log('Writing /' + system.name + '/' + filename, data)
-    await fs.promises.writeFile('/' + system.name + '/' + filename, data)
-  }))
+  await Promise.all(
+    files.map(async (file) => {
+      const filename = _.last(file.name.split(/\\|\//))
+      const data = await file.arrayBuffer()
+      console.log('Writing /' + system.name + '/' + filename, data)
+      await fs.promises.writeFile('/' + system.name + '/' + filename, data)
+    }),
+  )
 
   return system
 }
@@ -135,7 +127,7 @@ export const addGameSystem = async (system, fs) => {
   const dirs = await fs.promises.readdir('/')
   if (dirs.indexOf(system.name) !== -1) {
     const files = await fs.promises.readdir('/' + system.name)
-    await Promise.all(files.map(f => fs.promises.unlink('/' + system.name + '/' + f)))
+    await Promise.all(files.map((f) => fs.promises.unlink('/' + system.name + '/' + f)))
     await fs.promises.rmdir('/' + system.name)
   }
 
@@ -144,29 +136,38 @@ export const addGameSystem = async (system, fs) => {
 
   const index = await axios.get(`https://cdn.jsdelivr.net/gh/BSData/${system.name}@${system.version.replace('v', '')}/`)
 
-  const files = (await index.data).match(/href="(.+\.(?:cat|gst))"/g).map(m => htmlDecode(m.replace('href="', '').slice(0, -1)))
+  const files = (await index.data)
+    .match(/href="(.+\.(?:cat|gst))"/g)
+    .map((m) => htmlDecode(m.replace('href="', '').slice(0, -1)))
 
-  const q = new PQueue({ concurency: 3, throwOnTimeout: true, timeout: 60000, autostart: false })
+  const q = new PQueue({
+    concurency: 3,
+    throwOnTimeout: true,
+    timeout: 60000,
+    autostart: false,
+  })
 
-  files.forEach(filename => q.add(async () => {
-    const file = await axios(`https://cdn.jsdelivr.net${filename}`)
-    await fs.promises.writeFile('/' + system.name + '/' + _.last(filename.split('/')), file.data)
-  }))
+  files.forEach((filename) =>
+    q.add(async () => {
+      const file = await axios(`https://cdn.jsdelivr.net${filename}`)
+      await fs.promises.writeFile('/' + system.name + '/' + _.last(filename.split('/')), file.data)
+    }),
+  )
 
   return q
 }
 
 export const clearGameSystem = async (system, fs) => {
   const files = await fs.promises.readdir('/' + system.name)
-  await Promise.all(files.map(f => fs.promises.unlink('/' + system.name + '/' + f)))
+  await Promise.all(files.map((f) => fs.promises.unlink('/' + system.name + '/' + f)))
   await fs.promises.rmdir('/' + system.name)
 }
 
 const listFiles = async (dir, fs) => {
   const files = await fs.promises.readdir(dir)
   const paths = files
-    .filter(f => f.endsWith('.cat') || f.endsWith('.gst') || f.endsWith('.catz') || f.endsWith('.gstz'))
-    .map(f => dir + '/' + f)
+    .filter((f) => f.endsWith('.cat') || f.endsWith('.gst') || f.endsWith('.catz') || f.endsWith('.gstz'))
+    .map((f) => dir + '/' + f)
 
   return paths
 }
@@ -182,10 +183,14 @@ export const readFiles = async (dir, fs) => {
         console.log(`Cache v${cacheVersion} looks valid`)
         return cache
       }
-      console.log(cache.version !== cacheVersion ? `Found cache v${cache.version || 1}, wanted v${cacheVersion}. Reparsing raw files` : 'Read cache, but found no gameSystem. Reparsing raw files.')
+      console.log(
+        cache.version !== cacheVersion
+          ? `Found cache v${cache.version || 1}, wanted v${cacheVersion}. Reparsing raw files`
+          : 'Read cache, but found no gameSystem. Reparsing raw files.',
+      )
     }
   } catch {
-    console.log("No cache found. Reparsing raw files.")
+    console.log('No cache found. Reparsing raw files.')
   }
 
   const parsed = {
@@ -194,35 +199,43 @@ export const readFiles = async (dir, fs) => {
   }
 
   const paths = await listFiles(dir, fs)
-  await Promise.all(paths.map(async (path) => {
-    const data = await readXML(path, fs)
-    data.ids = {}
+  await Promise.all(
+    paths.map(async (path) => {
+      const data = await readXML(path, fs)
+      data.ids = {}
 
-    function index(x) {
-      if (x.id) {
-        data.ids[x.id] = x
-      }
+      function index(x) {
+        if (x.id) {
+          data.ids[x.id] = x
+        }
 
-      delete x.import
-      for (let attr in x) {
-        if (x[attr] === '') { delete x[attr] }
-
-        if (x[attr] instanceof Array) {
-          x[attr].forEach(index)
-
-          if (attr.startsWith('shared')) {
+        delete x.import
+        for (let attr in x) {
+          if (x[attr] === '') {
             delete x[attr]
+          }
+
+          if (x[attr] instanceof Array) {
+            x[attr].forEach(index)
+
+            if (attr.startsWith('shared')) {
+              delete x[attr]
+            }
           }
         }
       }
-    }
-    index(data)
-    delete data.ids[data.id]
+      index(data)
+      delete data.ids[data.id]
 
-    if (data.type === 'gameSystem') { parsed.gameSystem = data }
-    else if (data.type === 'catalogue') { parsed.catalogues[data.id] = data }
-    else { throw new Error('Wut?') }
-  }))
+      if (data.type === 'gameSystem') {
+        parsed.gameSystem = data
+      } else if (data.type === 'catalogue') {
+        parsed.catalogues[data.id] = data
+      } else {
+        throw new Error('Wut?')
+      }
+    }),
+  )
 
   try {
     await fs.promises.unlink(dir + '/cache.json')
@@ -237,16 +250,18 @@ export const readRawFiles = async (dir, fs) => {
   const files = {}
 
   const paths = await listFiles(dir, fs)
-  await Promise.all(paths.map(async (path) => {
-    const data = await readXML(path, fs)
-    const filename = _.last(path.split('/'))
+  await Promise.all(
+    paths.map(async (path) => {
+      const data = await readXML(path, fs)
+      const filename = _.last(path.split('/'))
 
-    files[filename] = data
+      files[filename] = data
 
-    if (data.type === 'gameSystem') {
-      files.gameSystem = filename
-    }
-  }))
+      if (data.type === 'gameSystem') {
+        files.gameSystem = filename
+      }
+    }),
+  )
 
   return files
 }

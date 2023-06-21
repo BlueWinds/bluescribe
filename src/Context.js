@@ -24,17 +24,23 @@ export const useRoster = () => {
   const setRoster = useContext(SetRosterContext)
   const gameData = useContext(GameContext)
 
-  return [roster, (r, updated = true) => setRoster(r && {
-    ...r,
-    __: {...r.__, updated},
-    costs: {
-      cost: Object.entries(sumCosts(r)).map(([name, value]) => ({
-        name,
-        value,
-        typeId: gameData.gameSystem.costTypes.find(ct => ct.name === name).id
-      })),
-    },
-  })]
+  return [
+    roster,
+    (r, updated = true) =>
+      setRoster(
+        r && {
+          ...r,
+          __: { ...r.__, updated },
+          costs: {
+            cost: Object.entries(sumCosts(r)).map(([name, value]) => ({
+              name,
+              value,
+              typeId: gameData.gameSystem.costTypes.find((ct) => ct.name === name).id,
+            })),
+          },
+        },
+      ),
+  ]
 }
 
 export const useUpdateRoster = () => {

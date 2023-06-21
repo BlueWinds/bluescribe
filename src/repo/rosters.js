@@ -5,16 +5,18 @@ import { readXML, xmlData } from './'
 export const listRosters = async (gameSystem, fs) => {
   const rosters = {}
   const files = await fs.promises.readdir('/')
-  await Promise.all(files.map(async file => {
-    try {
-      const roster = (await loadRoster('/' + file, fs))
-      if (roster.gameSystemId === gameSystem.id) {
-        rosters[file] = roster.name
+  await Promise.all(
+    files.map(async (file) => {
+      try {
+        const roster = await loadRoster('/' + file, fs)
+        if (roster.gameSystemId === gameSystem.id) {
+          rosters[file] = roster.name
+        }
+      } catch (e) {
+        rosters[file] = e
       }
-    } catch (e) {
-      rosters[file] = e
-    }
-  }))
+    }),
+  )
   return rosters
 }
 
@@ -41,9 +43,12 @@ export const loadRoster = async (file, fs) => {
 }
 
 export const saveRoster = async (roster, fs) => {
-  const {__: {filename}, ...contents} = roster
+  const {
+    __: { filename },
+    ...contents
+  } = roster
 
-  const data = await xmlData({roster: contents}, filename)
+  const data = await xmlData({ roster: contents }, filename)
   await fs.promises.writeFile('/' + filename, data)
 }
 
@@ -54,10 +59,13 @@ export const importRoster = async (file, fs) => {
 }
 
 export const downloadRoster = async (roster) => {
-  const {__: {filename}, ...contents} = roster
+  const {
+    __: { filename },
+    ...contents
+  } = roster
 
-  const data = await xmlData({roster: contents}, filename)
-  const blob = new Blob([data], {type: 'application/xml'})
+  const data = await xmlData({ roster: contents }, filename)
+  const blob = new Blob([data], { type: 'application/xml' })
 
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')

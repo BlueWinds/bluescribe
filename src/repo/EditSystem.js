@@ -21,7 +21,7 @@ export const useFile = (filename) => {
     gameData[filename],
     () => {
       gameData[filename].__updated = true
-      setGameData({...gameData})
+      setGameData({ ...gameData })
     },
   ]
 }
@@ -42,7 +42,7 @@ const buildIndex = (gameData) => {
 
     for (let attr in x) {
       if (x[attr] instanceof Array) {
-        x[attr].forEach(x => {
+        x[attr].forEach((x) => {
           x.__type = containerTags[attr]
           coallate(x, file)
         })
@@ -50,17 +50,19 @@ const buildIndex = (gameData) => {
     }
   }
 
-  Object.values(_.omit(gameData, ['gameSystem', 'ids'])).forEach(x => coallate(x, x))
+  Object.values(_.omit(gameData, ['gameSystem', 'ids'])).forEach((x) => coallate(x, x))
 
   return ids
 }
 
 export const gatherFiles = (file, gameData, files = [gameData[gameData.gameSystem]]) => {
-  if (files.includes(file)) { return files }
+  if (files.includes(file)) {
+    return files
+  }
 
   files.push(file)
 
-  file.catalogueLinks?.forEach(link => {
+  file.catalogueLinks?.forEach((link) => {
     gatherFiles(gameData.catalogues[link.targetId], gameData, files)
   })
 
@@ -73,7 +75,7 @@ const EditSystem = ({ systemInfo, setSystemInfo }) => {
 
   useEffect(() => {
     if (!gameData) {
-      readRawFiles('/' + systemInfo.name, fs).then(data => {
+      readRawFiles('/' + systemInfo.name, fs).then((data) => {
         data.ids = buildIndex(data)
         setGameData(data)
         setSelectedFile(data.gameSystem)
@@ -81,34 +83,66 @@ const EditSystem = ({ systemInfo, setSystemInfo }) => {
     }
   }, [systemInfo, gameData])
 
-  return <SystemContext.Provider value={gameData}><SetSystemContext.Provider value={setGameData}><div className='container'>
-    <Tooltip id="tooltip" />
-    <header>
-      <nav>
-        <ul>
-          <li><strong>BlueScribe</strong></li>
-          {gameData && <li>
-            <select onChange={e => setSelectedFile(e.target.value)} defaultValue={selectedFile}>
-              <option value={gameData.gameSystem}>{gameData[gameData.gameSystem].name}{gameData[gameData.gameSystem].__updated && ' *'}</option>
-              {Object.keys(_.omit(gameData, ['gameSystem', gameData.gameSystem, 'ids'])).sort().map(filename => <option key={filename} value={filename}>&nbsp;&nbsp;&nbsp;&nbsp;{gameData[filename].name}{gameData[filename].__updated && ' *'}</option>)}
-              <option value="addNew">Add New Catalogue</option>
-            </select>
-          </li>}
-        </ul>
-        <ul>
-          <li>
-            <details role="list" dir="rtl">
-              <summary aria-haspopup="listbox" role="link">≡</summary>
-              <ul role="listbox">
-                <li data-tooltip-id="tooltip" data-tooltip-html="Change game system"><span role="link" onClick={() => setSystemInfo({})}>{systemInfo.name}</span></li>
+  return (
+    <SystemContext.Provider value={gameData}>
+      <SetSystemContext.Provider value={setGameData}>
+        <div className="container">
+          <Tooltip id="tooltip" />
+          <header>
+            <nav>
+              <ul>
+                <li>
+                  <strong>BlueScribe</strong>
+                </li>
+                {gameData && (
+                  <li>
+                    <select onChange={(e) => setSelectedFile(e.target.value)} defaultValue={selectedFile}>
+                      <option value={gameData.gameSystem}>
+                        {gameData[gameData.gameSystem].name}
+                        {gameData[gameData.gameSystem].__updated && ' *'}
+                      </option>
+                      {Object.keys(_.omit(gameData, ['gameSystem', gameData.gameSystem, 'ids']))
+                        .sort()
+                        .map((filename) => (
+                          <option key={filename} value={filename}>
+                            &nbsp;&nbsp;&nbsp;&nbsp;{gameData[filename].name}
+                            {gameData[filename].__updated && ' *'}
+                          </option>
+                        ))}
+                      <option value="addNew">Add New Catalogue</option>
+                    </select>
+                  </li>
+                )}
               </ul>
-            </details>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    {!gameData ? <BounceLoader color="#36d7b7" className='loading' /> : (selectedFile === 'addNew' ? <AddFile /> : <EditFile filename={selectedFile} setSelectedFile={setSelectedFile} />)}
-  </div></SetSystemContext.Provider></SystemContext.Provider>
+              <ul>
+                <li>
+                  <details role="list" dir="rtl">
+                    <summary aria-haspopup="listbox" role="link">
+                      ≡
+                    </summary>
+                    <ul role="listbox">
+                      <li data-tooltip-id="tooltip" data-tooltip-html="Change game system">
+                        <span role="link" onClick={() => setSystemInfo({})}>
+                          {systemInfo.name}
+                        </span>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </nav>
+          </header>
+          {!gameData ? (
+            <BounceLoader color="#36d7b7" className="loading" />
+          ) : selectedFile === 'addNew' ? (
+            <AddFile />
+          ) : (
+            <EditFile filename={selectedFile} setSelectedFile={setSelectedFile} />
+          )}
+        </div>
+      </SetSystemContext.Provider>
+    </SystemContext.Provider>
+  )
 }
 
 export default EditSystem

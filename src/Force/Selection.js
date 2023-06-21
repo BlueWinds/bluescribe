@@ -6,7 +6,20 @@ import { DebounceInput } from 'react-debounce-input'
 
 import { useSystem, useRoster, useRosterErrors } from '../Context'
 import { getEntry } from '../validate'
-import { costString, findId, getCatalogue, sumCosts, textProfile, addSelection, refreshSelection, getMinCount, getMaxCount, isCollective, selectionName, copySelection } from '../utils'
+import {
+  costString,
+  findId,
+  getCatalogue,
+  sumCosts,
+  textProfile,
+  addSelection,
+  refreshSelection,
+  getMinCount,
+  getMaxCount,
+  isCollective,
+  selectionName,
+  copySelection,
+} from '../utils'
 import Profiles, { collectSelectionProfiles, collectEntryProfiles } from './Profiles'
 import Rules, { collectRules } from './Rules'
 import Categories, { collectCategories } from './Categories'
@@ -24,82 +37,144 @@ const Selection = ({ path, setSelectedPath }) => {
   const parentPath = path.split('.').slice(0, -3).join('.')
   const parent = _.get(roster, parentPath)
 
-  return <div className="selection">
-    <nav>
-      <button className="outline" onClick={() => setSelectedPath(parentPath)} data-tooltip-id="tooltip" data-tooltip-html={parent.name}>^</button>
-      <button className="outline" data-tooltip-id="clickable-tooltip"><span data-tooltip-id="tooltip" data-tooltip-html="Customize">✍</span></button>
-      <Tooltip id="clickable-tooltip" openOnClick={true} clickable={true}>
-        <label>
-          Custom Name
-          <DebounceInput
-            minLength={2}
-            debounceTimeout={300}
-            value={selection.customName}
-            onChange={e => {
-              selection.customName = e.target.value
-              setRoster(roster)
-            }}
-          />
-        </label>
-      </Tooltip>
+  return (
+    <div className="selection">
+      <nav>
+        <button
+          className="outline"
+          onClick={() => setSelectedPath(parentPath)}
+          data-tooltip-id="tooltip"
+          data-tooltip-html={parent.name}
+        >
+          ^
+        </button>
+        <button className="outline" data-tooltip-id="clickable-tooltip">
+          <span data-tooltip-id="tooltip" data-tooltip-html="Customize">
+            ✍
+          </span>
+        </button>
+        <Tooltip id="clickable-tooltip" openOnClick={true} clickable={true}>
+          <label>
+            Custom Name
+            <DebounceInput
+              minLength={2}
+              debounceTimeout={300}
+              value={selection.customName}
+              onChange={(e) => {
+                selection.customName = e.target.value
+                setRoster(roster)
+              }}
+            />
+          </label>
+        </Tooltip>
 
-      <button className="outline" onClick={() => {
-        const parent = _.get(roster, pathParent(path))
-        parent.selections.selection.push(copySelection(selection))
-        setRoster(roster)
-      }} data-tooltip-id="tooltip" data-tooltip-html="Duplicate">⎘</button>
-      <button className="outline" onClick={(e) => {
-        const parent = _.get(roster, pathParent(path))
-        parent.selections.selection.splice(_.last(path.split('.')), 1)
-        setRoster(roster)
+        <button
+          className="outline"
+          onClick={() => {
+            const parent = _.get(roster, pathParent(path))
+            parent.selections.selection.push(copySelection(selection))
+            setRoster(roster)
+          }}
+          data-tooltip-id="tooltip"
+          data-tooltip-html="Duplicate"
+        >
+          ⎘
+        </button>
+        <button
+          className="outline"
+          onClick={(e) => {
+            const parent = _.get(roster, pathParent(path))
+            parent.selections.selection.splice(_.last(path.split('.')), 1)
+            setRoster(roster)
 
-        setSelectedPath(path.split('.').slice(0, -3).join('.'))
+            setSelectedPath(path.split('.').slice(0, -3).join('.'))
 
-        e.stopPropagation()
-        e.preventDefault()
-      }} data-tooltip-id="tooltip" data-tooltip-html="Remove">x</button>
-    </nav>
-    <h6 onClick={() => setOpen(true)}>{selectionName(selection)}</h6>
-    {selectionEntry ? <>
-      {selectionEntry.selectionEntries && <article>
-        {_.sortBy(selectionEntry.selectionEntries, 'name').map(entry => <Entry key={entry.id} entry={entry} path={path} selection={selection} selectionEntry={selectionEntry} entryGroup={null} catalogue={catalogue} />)}
-      </article>}
-      {selectionEntry.selectionEntryGroups && _.sortBy(selectionEntry.selectionEntryGroups, 'name').map(entryGroup => <EntryGroup key={entryGroup.id} path={path} entryGroup={entryGroup} selection={selection} selectionEntry={selectionEntry} />)}
-      <SelectionModal open={open} setOpen={setOpen}>
-        {open && <><header>
-          <h6>{selection.name}</h6>
-        </header>
-        <Categories categories={collectCategories(selection, gameData, catalogue)} />
-        <Profiles profiles={collectSelectionProfiles(selection, gameData)} number={selection.number} />
-        <Rules catalogue={catalogue} rules={collectRules(selection)} /></>}
-      </SelectionModal>
-    </> : <>{selectionName(selection)} does not exist in the game data. It may have been removed in a data update.</>}
-  </div>
+            e.stopPropagation()
+            e.preventDefault()
+          }}
+          data-tooltip-id="tooltip"
+          data-tooltip-html="Remove"
+        >
+          x
+        </button>
+      </nav>
+      <h6 onClick={() => setOpen(true)}>{selectionName(selection)}</h6>
+      {selectionEntry ? (
+        <>
+          {selectionEntry.selectionEntries && (
+            <article>
+              {_.sortBy(selectionEntry.selectionEntries, 'name').map((entry) => (
+                <Entry
+                  key={entry.id}
+                  entry={entry}
+                  path={path}
+                  selection={selection}
+                  selectionEntry={selectionEntry}
+                  entryGroup={null}
+                  catalogue={catalogue}
+                />
+              ))}
+            </article>
+          )}
+          {selectionEntry.selectionEntryGroups &&
+            _.sortBy(selectionEntry.selectionEntryGroups, 'name').map((entryGroup) => (
+              <EntryGroup
+                key={entryGroup.id}
+                path={path}
+                entryGroup={entryGroup}
+                selection={selection}
+                selectionEntry={selectionEntry}
+              />
+            ))}
+          <SelectionModal open={open} setOpen={setOpen}>
+            {open && (
+              <>
+                <header>
+                  <h6>{selection.name}</h6>
+                </header>
+                <Categories categories={collectCategories(selection, gameData, catalogue)} />
+                <Profiles profiles={collectSelectionProfiles(selection, gameData)} number={selection.number} />
+                <Rules catalogue={catalogue} rules={collectRules(selection)} />
+              </>
+            )}
+          </SelectionModal>
+        </>
+      ) : (
+        <>{selectionName(selection)} does not exist in the game data. It may have been removed in a data update.</>
+      )}
+    </div>
+  )
 }
 
 export default Selection
-
 
 const useOnSelect = (path, selection, entryGroup) => {
   const gameData = useSystem()
   const [roster, setRoster] = useRoster()
 
   return (option, number) => {
-    selection.selections = selection.selections || {selection: []}
+    selection.selections = selection.selections || { selection: [] }
 
     const cs = selection.selections.selection
-    let current = cs.filter(s => s.entryId === option.id)
+    let current = cs.filter((s) => s.entryId === option.id)
 
     if (number < current.length) {
       while (current.length > number) {
         cs.splice(cs.indexOf(_.last(current)), 1)
-        current = cs.filter(s => s.entryId === option.id)
+        current = cs.filter((s) => s.entryId === option.id)
       }
     } else if (isCollective(option) && current.length) {
-      current[0].selections?.selection.forEach(s => s.number = s.number / current[0].number * number )
+      current[0].selections?.selection.forEach((s) => (s.number = (s.number / current[0].number) * number))
       current[0].number = number
     } else {
-      addSelection(selection, option, gameData, entryGroup, getCatalogue(roster, path, gameData), number - current.length)
+      addSelection(
+        selection,
+        option,
+        gameData,
+        entryGroup,
+        getCatalogue(roster, path, gameData),
+        number - current.length,
+      )
     }
 
     refreshSelection(roster, path, selection, gameData)
@@ -113,9 +188,23 @@ const Entry = ({ catalogue, entry, path, selection, selectionEntry, entryGroup }
   const min = getMinCount(entry) * selection.number
   const max = getMaxCount(entry) * selection.number
 
-  if (entry.hidden) { return null }
+  if (entry.hidden) {
+    return null
+  }
 
-  return max === 1 ? <Checkbox selection={selection} option={entry} onSelect={onSelect} entryGroup={entryGroup} catalogue={catalogue} /> : <Count selection={selection} option={entry} onSelect={onSelect} min={min} max={max} entryGroup={entryGroup} catalogue={catalogue} />
+  return max === 1 ? (
+    <Checkbox selection={selection} option={entry} onSelect={onSelect} entryGroup={entryGroup} catalogue={catalogue} />
+  ) : (
+    <Count
+      selection={selection}
+      option={entry}
+      onSelect={onSelect}
+      min={min}
+      max={max}
+      entryGroup={entryGroup}
+      catalogue={catalogue}
+    />
+  )
 }
 
 const EntryGroup = ({ path, entryGroup, selection, selectionEntry }) => {
@@ -124,26 +213,65 @@ const EntryGroup = ({ path, entryGroup, selection, selectionEntry }) => {
   const onSelect = useOnSelect(path, selection, entryGroup)
 
   const catalogue = getCatalogue(roster, path, gameData)
-  const selectionErrors = _.flatten(Object.entries(useRosterErrors()).filter(([key, value]) => key === path || key.startsWith(path + '.')).map(([key, value]) => value))
+  const selectionErrors = _.flatten(
+    Object.entries(useRosterErrors())
+      .filter(([key, value]) => key === path || key.startsWith(path + '.'))
+      .map(([key, value]) => value),
+  )
   const min = getMinCount(entryGroup) * selection.number
   const max = getMaxCount(entryGroup) * selection.number
 
-  if (entryGroup.hidden || entryGroup.selectionEntries?.filter(e => !e.hidden).length === 0) { return null }
+  if (entryGroup.hidden || entryGroup.selectionEntries?.filter((e) => !e.hidden).length === 0) {
+    return null
+  }
 
-  return <article>
-    <header data-tooltip-id="tooltip" data-tooltip-html={selectionErrors?.filter(e => e.includes(entryGroup.name) || entryGroup.selectionEntries?.some(se => e.includes(se.name))).join('<br />') || null}>
-      {entryGroup.name}
-      {min > 1 && ` - min ${min}`}
-      {max > 1 && ` - max ${max}`}
-      {entryGroup.publicationId && <small>{findId(gameData, catalogue, entryGroup.publicationId).name}, {entryGroup.page}</small>}
-    </header>
-    {max === 1 && !entryGroup.selectionEntryGroups ?
-      <Radio selection={selection} entryGroup={entryGroup} onSelect={onSelect} catalogue={catalogue} />
-    :
-      _.sortBy(entryGroup.selectionEntries || [], 'name').map(subEntry => <Entry key={subEntry.id} entry={subEntry} path={path} selection={selection} selectionEntry={selectionEntry} entryGroup={entryGroup} catalogue={catalogue} />)
-    }
-    {entryGroup.selectionEntryGroups?.map(subGroup => <EntryGroup key={subGroup.id} path={path} entryGroup={subGroup} selection={selection} selectionEntry={selectionEntry} />)}
-  </article>
+  return (
+    <article>
+      <header
+        data-tooltip-id="tooltip"
+        data-tooltip-html={
+          selectionErrors
+            ?.filter(
+              (e) => e.includes(entryGroup.name) || entryGroup.selectionEntries?.some((se) => e.includes(se.name)),
+            )
+            .join('<br />') || null
+        }
+      >
+        {entryGroup.name}
+        {min > 1 && ` - min ${min}`}
+        {max > 1 && ` - max ${max}`}
+        {entryGroup.publicationId && (
+          <small>
+            {findId(gameData, catalogue, entryGroup.publicationId).name}, {entryGroup.page}
+          </small>
+        )}
+      </header>
+      {max === 1 && !entryGroup.selectionEntryGroups ? (
+        <Radio selection={selection} entryGroup={entryGroup} onSelect={onSelect} catalogue={catalogue} />
+      ) : (
+        _.sortBy(entryGroup.selectionEntries || [], 'name').map((subEntry) => (
+          <Entry
+            key={subEntry.id}
+            entry={subEntry}
+            path={path}
+            selection={selection}
+            selectionEntry={selectionEntry}
+            entryGroup={entryGroup}
+            catalogue={catalogue}
+          />
+        ))
+      )}
+      {entryGroup.selectionEntryGroups?.map((subGroup) => (
+        <EntryGroup
+          key={subGroup.id}
+          path={path}
+          entryGroup={subGroup}
+          selection={selection}
+          selectionEntry={selectionEntry}
+        />
+      ))}
+    </article>
+  )
 }
 
 const Radio = ({ catalogue, selection, entryGroup, onSelect }) => {
@@ -152,82 +280,121 @@ const Radio = ({ catalogue, selection, entryGroup, onSelect }) => {
   const max = getMaxCount(entryGroup)
   const entries = entryGroup.selectionEntries
 
-  const selectedOption = selection.selections?.selection.find(s => s.entryGroupId === entryGroup.id)
+  const selectedOption = selection.selections?.selection.find((s) => s.entryGroupId === entryGroup.id)
 
-  return <>
-    {min === 0 && max === 1 && <label>
-      <input type="radio" name={entryGroup.id} onChange={() => onSelect(entries.find(e => e.id === selectedOption.entryId), 0)} checked={!selectedOption} />
-      (None)
-    </label>}
-    {_.sortBy(entries, 'name').map((option, index) => {
-      const cost = costString(sumCosts(option))
-      const checked = selectedOption?.entryId === option.id
-      if (option.hidden && !checked) { return null }
-      return <label key={option.id}>
-        <input
-          type={max === 1 && entries.length > 1 ? 'radio' : 'checkbox'}
-          name={entryGroup.id}
-          checked={checked}
-          onChange={() => onSelect(option, (max !== 1 || entries.length > 1) && checked ? 0 : 1)}
-        />
-        <span data-tooltip-id="tooltip" data-tooltip-html={textProfile(collectEntryProfiles(option, gameData, catalogue))}>
-          {option.name}
-        </span>
-        {cost && ` (${cost})`}
-      </label>
-    })}
-  </>
+  return (
+    <>
+      {min === 0 && max === 1 && (
+        <label>
+          <input
+            type="radio"
+            name={entryGroup.id}
+            onChange={() =>
+              onSelect(
+                entries.find((e) => e.id === selectedOption.entryId),
+                0,
+              )
+            }
+            checked={!selectedOption}
+          />
+          (None)
+        </label>
+      )}
+      {_.sortBy(entries, 'name').map((option, index) => {
+        const cost = costString(sumCosts(option))
+        const checked = selectedOption?.entryId === option.id
+        if (option.hidden && !checked) {
+          return null
+        }
+        return (
+          <label key={option.id}>
+            <input
+              type={max === 1 && entries.length > 1 ? 'radio' : 'checkbox'}
+              name={entryGroup.id}
+              checked={checked}
+              onChange={() => onSelect(option, (max !== 1 || entries.length > 1) && checked ? 0 : 1)}
+            />
+            <span
+              data-tooltip-id="tooltip"
+              data-tooltip-html={textProfile(collectEntryProfiles(option, gameData, catalogue))}
+            >
+              {option.name}
+            </span>
+            {cost && ` (${cost})`}
+          </label>
+        )
+      })}
+    </>
+  )
 }
 
 const Checkbox = ({ catalogue, selection, option, onSelect, entryGroup }) => {
   const gameData = useSystem()
 
   const cost = costString(sumCosts(option))
-  const checked = !!selection.selections?.selection.find(s => _.last(s.entryId.split('::')) === _.last(option.id.split('::')))
+  const checked = !!selection.selections?.selection.find(
+    (s) => _.last(s.entryId.split('::')) === _.last(option.id.split('::')),
+  )
   const min = getMinCount(option)
 
-  if (checked && min === 1) { return null }
+  if (checked && min === 1) {
+    return null
+  }
 
-  if (option.name === 'Litany of Hate (Aura)') { debugger }
+  if (option.name === 'Litany of Hate (Aura)') {
+    debugger
+  }
 
-  return <label>
-    <input
-      type="checkbox"
-      checked={checked}
-      onChange={() => onSelect(option, checked ? 0 : 1)}
-      disabled={checked && min === 1}
-    />
-    <span data-tooltip-id="tooltip" data-tooltip-html={textProfile(collectEntryProfiles(option, gameData, catalogue))}>
-      {option.name}
-    </span>
-    {cost && ` (${cost})`}
-  </label>
+  return (
+    <label>
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={() => onSelect(option, checked ? 0 : 1)}
+        disabled={checked && min === 1}
+      />
+      <span
+        data-tooltip-id="tooltip"
+        data-tooltip-html={textProfile(collectEntryProfiles(option, gameData, catalogue))}
+      >
+        {option.name}
+      </span>
+      {cost && ` (${cost})`}
+    </label>
+  )
 }
 
 const Count = ({ catalogue, selection, option, min, max, onSelect, entryGroup }) => {
   const gameData = useSystem()
 
-  const value = _.sum(selection.selections?.selection.map(s => s.entryId === option.id ? s.number : 0)) || 0
-  if (value === min && value === max) { return null }
+  const value = _.sum(selection.selections?.selection.map((s) => (s.entryId === option.id ? s.number : 0))) || 0
+  if (value === min && value === max) {
+    return null
+  }
 
   const cost = costString(sumCosts(option))
 
   const numberTip = min === max ? `${min} ${pluralize(option.name)}` : `${min}-${max} ${pluralize(option.name)}`
 
-  return <label>
-    <input
-      type="number"
-      value={value}
-      min={min}
-      max={max === -1 ? 1000 : max}
-      step="1"
-      onChange={(e) => onSelect(option, parseInt(e.target.value, 10))}
-      data-tooltip-id="tooltip"
-      data-tooltip-html={numberTip}
-    />
-    <span data-tooltip-id="tooltip" data-tooltip-html={textProfile(collectEntryProfiles(option, gameData, catalogue))}>
-      {option.name}
-    </span>
-    {cost && ` (${cost})`}
-  </label>
+  return (
+    <label>
+      <input
+        type="number"
+        value={value}
+        min={min}
+        max={max === -1 ? 1000 : max}
+        step="1"
+        onChange={(e) => onSelect(option, parseInt(e.target.value, 10))}
+        data-tooltip-id="tooltip"
+        data-tooltip-html={numberTip}
+      />
+      <span
+        data-tooltip-id="tooltip"
+        data-tooltip-html={textProfile(collectEntryProfiles(option, gameData, catalogue))}
+      >
+        {option.name}
+      </span>
+      {cost && ` (${cost})`}
+    </label>
+  )
 }

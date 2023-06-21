@@ -7,5 +7,6 @@ Try it out at https://bluewinds.github.io/bluescribe/. It loads and runs in a we
 There is no tracking, no subscription, no paid features. BlueScribe is GNU GPL 3.0 licensed; you can freely distribute and modify it yourself, though of course I appreciate notice and pull requests if you have improvements!
 
 # To build and run
+
 `npm install`
 `npm run start`

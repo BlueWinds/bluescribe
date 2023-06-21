@@ -13,26 +13,26 @@ const SelectionModal = ({ children, open, setOpen }) => {
     const listener = (event) => {
       // Do nothing if clicking ref's element or descendent elements
       if (!ref.current || ref.current.contains(event.target)) {
-        return;
+        return
       }
 
       setOpen(false)
     }
 
-    document.addEventListener("mousedown", listener);
-    document.addEventListener("touchstart", listener);
+    document.addEventListener('mousedown', listener)
+    document.addEventListener('touchstart', listener)
 
     return () => {
-      document.removeEventListener("mousedown", listener);
-      document.removeEventListener("touchstart", listener);
-    };
+      document.removeEventListener('mousedown', listener)
+      document.removeEventListener('touchstart', listener)
+    }
   }, [ref, setOpen, open])
 
-  return <dialog open={open}>
-    <article ref={ref}>
-      {children}
-    </article>
-  </dialog>
+  return (
+    <dialog open={open}>
+      <article ref={ref}>{children}</article>
+    </dialog>
+  )
 }
 
 export default SelectionModal

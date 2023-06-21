@@ -20,15 +20,15 @@ export const validateRoster = (roster, gameData) => {
       return errors
     }
 
-    roster.costLimits?.costLimit.forEach(cl => {
-      const cost = roster.costs?.cost.find(c => c.typeId === cl.typeId)
+    roster.costLimits?.costLimit.forEach((cl) => {
+      const cost = roster.costs?.cost.find((c) => c.typeId === cl.typeId)
       if (cost && cl.value !== -1 && cost.value > cl.value) {
         errors[''] = errors[''] || []
         errors[''].push(`${roster.name} has ${cost.value}${cost.name}, more than the limit of ${cl.value}${cl.name}`)
       }
     })
 
-    gameData.gameSystem.categoryEntries.forEach(categoryEntry => {
+    gameData.gameSystem.categoryEntries.forEach((categoryEntry) => {
       const entry = getEntry(roster, '', categoryEntry.id, gameData)
       arrayMerge(errors, checkConstraints(roster, '', entry, gameData))
     })
@@ -49,20 +49,20 @@ const validateForce = (roster, path, force, gameData) => {
   const errors = {}
 
   try {
-    gatherCatalogues(gameData.catalogues[force.catalogueId], gameData).forEach(catalogue => {
-      catalogue.entryLinks?.forEach(selectionEntry => {
+    gatherCatalogues(gameData.catalogues[force.catalogueId], gameData).forEach((catalogue) => {
+      catalogue.entryLinks?.forEach((selectionEntry) => {
         const entry = getEntry(roster, path, selectionEntry.id, gameData)
         arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
       })
 
-      catalogue.selectionEntries?.forEach(selectionEntry => {
+      catalogue.selectionEntries?.forEach((selectionEntry) => {
         const entry = getEntry(roster, path, selectionEntry.id, gameData)
         arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
       })
     })
 
     const f = findId(gameData, getCatalogue(roster, path, gameData), force.entryId)
-    f.categoryLinks?.forEach(categoryLink => {
+    f.categoryLinks?.forEach((categoryLink) => {
       const entry = getEntry(roster, path, categoryLink.id, gameData)
       arrayMerge(errors, checkConstraints(roster, path, entry, gameData))
     })
@@ -99,18 +99,21 @@ const validateSelection = (roster, path, selection, gameData) => {
       })
     }
 
-    const handleLink = link => {
+    const handleLink = (link) => {
       const linkEntry = getEntry(roster, path, link.id, gameData)
       arrayMerge(errors, checkConstraints(roster, path, linkEntry, gameData))
     }
 
-    const handleSelection = selectionEntry => {
-      arrayMerge(errors, checkConstraints(roster, `${path}.selections.selection.100000`, selectionEntry, gameData, true))
+    const handleSelection = (selectionEntry) => {
+      arrayMerge(
+        errors,
+        checkConstraints(roster, `${path}.selections.selection.100000`, selectionEntry, gameData, true),
+      )
     }
 
-    const handleGroup = group => {
+    const handleGroup = (group) => {
       if (group.hidden) {
-        if (selection.selections?.selection.some(s => s.entryGroupId === group.id)) {
+        if (selection.selections?.selection.some((s) => s.entryGroupId === group.id)) {
           arrayMerge(errors, {
             [path]: [`${group.name} is hidden and cannot be selected.`],
           })
@@ -130,7 +133,6 @@ const validateSelection = (roster, path, selection, gameData) => {
     selection.selections?.selection.forEach((selection, index) => {
       arrayMerge(errors, validateSelection(roster, `${path}.selections.selection.${index}`, selection, gameData))
     })
-
   } catch (e) {
     e.path = path
     e.location = selection.name
@@ -143,57 +145,74 @@ const validateSelection = (roster, path, selection, gameData) => {
 }
 
 const hasCategory = (subject, categoryId) => {
-  return !!subject.categories?.category.some(c => c.entryId.includes(categoryId))
+  return !!subject.categories?.category.some((c) => c.entryId.includes(categoryId))
 }
 
 export const countBy = (subject, entryId, entry, groupIds) => {
-  if (!subject) { return 0 }
+  if (!subject) {
+    return 0
+  }
   if (entry.shared) {
     entryId = _.last(entryId.split('::'))
   }
 
-  if (subject.entryId?.includes(entryId) || subject.entryGroupId?.includes(entryId) || groupIds?.some(groupId => subject.entryGroupId === groupId) || subject.type === entryId || hasCategory(subject, entryId)) {
+  if (
+    subject.entryId?.includes(entryId) ||
+    subject.entryGroupId?.includes(entryId) ||
+    groupIds?.some((groupId) => subject.entryGroupId === groupId) ||
+    subject.type === entryId ||
+    hasCategory(subject, entryId)
+  ) {
     return subject.number ?? 1
   }
 
-  let count = subject.forces?.force.filter(force => force.entryId === entryId ).length ?? 0
+  let count = subject.forces?.force.filter((force) => force.entryId === entryId).length ?? 0
 
   if (subject.forces) {
     if (entry.includeChildForces || entry.shared) {
-      count += _.sum(subject.forces.force.map(force => countBy(force, entryId, entry, groupIds)))
+      count += _.sum(subject.forces.force.map((force) => countBy(force, entryId, entry, groupIds)))
     }
   }
 
   if (subject.selections) {
     if (entry.includeChildSelections || entry.shared) {
-      count += _.sum(subject.selections.selection.map(selection => countBy(selection, entryId, entry, groupIds)))
+      count += _.sum(subject.selections.selection.map((selection) => countBy(selection, entryId, entry, groupIds)))
     } else {
-      count += _.sum(_.map(subject.selections.selection.filter(selection => {
-        return selection.entryId.includes(entryId) || selection.entryGroupId?.includes(entryId)
-      }), 'number'))
+      count += _.sum(
+        _.map(
+          subject.selections.selection.filter((selection) => {
+            return selection.entryId.includes(entryId) || selection.entryGroupId?.includes(entryId)
+          }),
+          'number',
+        ),
+      )
     }
   }
 
-  if (_.isNaN(count)) { debugger; throw new Error('NaN while trying to countBy') }
+  if (_.isNaN(count)) {
+    debugger
+    throw new Error('NaN while trying to countBy')
+  }
   return count
 }
 
 const countByCategory = (subject, category, entry) => {
   const categoryId = _.last(category.id.split('::'))
 
-  let count = (!subject.catalogueId && subject.categories?.category.some(c => c.entryId === categoryId)) ?? 0
+  let count = (!subject.catalogueId && subject.categories?.category.some((c) => c.entryId === categoryId)) ?? 0
 
   if (entry.includeChildSelections && subject.selections) {
-    count += _.sum(subject.selections.selection.map(selection => countByCategory(selection, category, entry)))
+    count += _.sum(subject.selections.selection.map((selection) => countByCategory(selection, category, entry)))
   } else {
-    count += subject.selections?.selection.filter(selection => {
-      return selection.categories?.category.some(c => c.entryId === categoryId)
-    }).length ?? 0
+    count +=
+      subject.selections?.selection.filter((selection) => {
+        return selection.categories?.category.some((c) => c.entryId === categoryId)
+      }).length ?? 0
   }
 
   if (subject.forces) {
     if (entry.includeChildForces || entry.shared) {
-      count += _.sum(subject.forces.force.map(force => countByCategory(force, category, entry)))
+      count += _.sum(subject.forces.force.map((force) => countByCategory(force, category, entry)))
     }
   }
 
@@ -205,24 +224,24 @@ const sumCost = (subject, entry, filterByCategory) => {
 
   // If we're a top-level roster, don't include the "costs" or we'll end up double-counting.
   if (!subject.gameSystemId) {
-    if (filterByCategory === 'any' || subject.categories?.category.some(c => c.entryId === filterByCategory)) {
-      sum += subject.costs?.cost.find(c => c.typeId === entry.field)?.value | 0
+    if (filterByCategory === 'any' || subject.categories?.category.some((c) => c.entryId === filterByCategory)) {
+      sum += subject.costs?.cost.find((c) => c.typeId === entry.field)?.value | 0
     }
   }
 
   if ((entry.includeChildForces || filterByCategory === 'any') && subject.forces) {
-    sum += subject.forces.force.map(force => sumCost(force, entry, filterByCategory)) | 0
+    sum += subject.forces.force.map((force) => sumCost(force, entry, filterByCategory)) | 0
   }
 
   if ((entry.includeChildSelections || filterByCategory === 'any') && subject.selections) {
-    sum += subject.selections.selection.map(selection => sumCost(selection, entry, filterByCategory)) | 0
+    sum += subject.selections.selection.map((selection) => sumCost(selection, entry, filterByCategory)) | 0
   }
 
   return sum
 }
 
 const collectGroupIds = (entry, ids = []) => {
-  entry.selectionEntryGroups?.forEach(group => {
+  entry.selectionEntryGroups?.forEach((group) => {
     ids.push(group.id)
     collectGroupIds(group, ids)
   })
@@ -236,16 +255,21 @@ const checkConstraints = (roster, path, entry, gameData, group = false) => {
     const groupIds = collectGroupIds(entry)
     let max = Infinity
     if (entry.constraints) {
-      entry.constraints?.forEach(constraint => {
+      entry.constraints?.forEach((constraint) => {
         const subject = getSubject(roster, path, constraint)
-        const occurances = entry.primary === undefined ? countBy(subject, entry.id, constraint, groupIds) : countByCategory(subject, entry, constraint)
+        const occurances =
+          entry.primary === undefined
+            ? countBy(subject, entry.id, constraint, groupIds)
+            : countByCategory(subject, entry, constraint)
         const value = constraint.value * getConstraintValue(constraint, entry.id, subject, gameData)
 
         if (constraint.type === 'min' && value !== -1 && !entry.hidden && occurances < value) {
           if (value === 1) {
             errors.push(`${subject.name} must have ${an(pluralize.singular(entry.name.replace(/\W+$/, '')))} selection`)
           } else {
-            errors.push(`${subject.name} must have ${value - occurances} more ${pluralize(entry.name.replace(/\W+$/, ''))}`)
+            errors.push(
+              `${subject.name} must have ${value - occurances} more ${pluralize(entry.name.replace(/\W+$/, ''))}`,
+            )
           }
         }
         if (constraint.type === 'max' && value < max) {
@@ -254,30 +278,34 @@ const checkConstraints = (roster, path, entry, gameData, group = false) => {
         if (constraint.type === 'max' && value !== -1 && occurances > value * (subject?.number ?? 1)) {
           if (value === 0) {
             // if (entry.name === 'Master of the Legion') { debugger }
-            errors.push(`${subject.name} cannot have ${an(pluralize.singular(entry.name.replace(/\W+$/, '')))} selection`)
+            errors.push(
+              `${subject.name} cannot have ${an(pluralize.singular(entry.name.replace(/\W+$/, '')))} selection`,
+            )
           } else {
-            errors.push(`${subject.name} must have ${occurances - value} fewer ${pluralize(entry.name.replace(/\W+$/, ''))}`)
+            errors.push(
+              `${subject.name} must have ${occurances - value} fewer ${pluralize(entry.name.replace(/\W+$/, ''))}`,
+            )
           }
         }
       })
 
       if (max === 0) {
-        errors = errors.filter(e => !e.match(/must have .* more|must have .* selection/))
+        errors = errors.filter((e) => !e.match(/must have .* more|must have .* selection/))
       }
     }
   } catch (e) {
     e.path = path
     e.location = entry.name
-    return {'': [e]}
+    return { '': [e] }
   }
 
-  return errors.length ? {[path]: errors} : {}
+  return errors.length ? { [path]: errors } : {}
 }
 
 const applyModifiers = (roster, path, entry, gameData, catalogue) => {
   const ids = {}
   function index(x, path = '') {
-    if (typeof x == "object") {
+    if (typeof x == 'object') {
       if (x.id) {
         ids[x.id] = path
       }
@@ -285,17 +313,24 @@ const applyModifiers = (roster, path, entry, gameData, catalogue) => {
         ids[x.typeId] = path
       }
 
-      for (let attr in x) { index(x[attr], `${path}.${attr}`) }
+      for (let attr in x) {
+        index(x[attr], `${path}.${attr}`)
+      }
     }
   }
   index(entry)
 
   const applyModifier = (modifier) => {
-    if (!checkConditions(roster, path, modifier, gameData)) { return }
+    if (!checkConditions(roster, path, modifier, gameData)) {
+      return
+    }
 
     const target = entry[modifier.field] !== undefined ? modifier.field : `${ids[modifier.field]}.value`.slice(1)
     if (modifier.type === 'set') {
-      if (_.isNaN(modifier.value)) { debugger; throw new Error('NaN modifier.value') }
+      if (_.isNaN(modifier.value)) {
+        debugger
+        throw new Error('NaN modifier.value')
+      }
       _.set(entry, target, modifier.value)
     } else if (modifier.type === 'increment' || modifier.type === 'decrement') {
       let times = 1
@@ -307,14 +342,19 @@ const applyModifiers = (roster, path, entry, gameData, catalogue) => {
         const round = repeat.roundUp ? Math.ceil : Math.floor
 
         times = repeat.repeats * round(value / modifier.repeats[0].value)
-        if (modifier.type === 'decrement') { times *= -1 }
+        if (modifier.type === 'decrement') {
+          times *= -1
+        }
       }
 
       _.set(entry, target, _.get(entry, target) + modifier.value * times)
     } else if (modifier.type === 'append') {
       entry[modifier.field] += modifier.value
     } else if (modifier.type === 'add') {
-      if (modifier.field !== 'category') { debugger; throw new Error("modifier.type === 'add' while modifier.field !== 'category'") }
+      if (modifier.field !== 'category') {
+        debugger
+        throw new Error("modifier.type === 'add' while modifier.field !== 'category'")
+      }
 
       entry.categoryLinks = entry.categoryLinks || []
       entry.categoryLinks.push({
@@ -325,21 +365,29 @@ const applyModifiers = (roster, path, entry, gameData, catalogue) => {
         targetId: modifier.value,
       })
     } else if (modifier.type === 'remove') {
-      if (modifier.field !== 'category') { debugger; throw new Error("modifier.type === 'remove' while modifier.field !== 'category'") }
+      if (modifier.field !== 'category') {
+        debugger
+        throw new Error("modifier.type === 'remove' while modifier.field !== 'category'")
+      }
 
-      entry.categoryLinks = entry.categoryLinks.filter(link => link.targetId !== modifier.value)
+      entry.categoryLinks = entry.categoryLinks.filter((link) => link.targetId !== modifier.value)
     } else if (modifier.type === 'set-primary' || modifier.type === 'unset-primary') {
-      if (modifier.field !== 'category') { debugger; throw new Error(`modifier.type === ${modifier.type} while modifier.field !== 'category'`) }
-      let category = entry.categoryLinks.find(cat => cat.targetId === modifier.value)
+      if (modifier.field !== 'category') {
+        debugger
+        throw new Error(`modifier.type === ${modifier.type} while modifier.field !== 'category'`)
+      }
+      let category = entry.categoryLinks.find((cat) => cat.targetId === modifier.value)
       if (category) {
         category.primary = modifier.type === 'set-primary'
-      } else { entry.categoryLinks.push({
-        id: randomId(),
-        hidden: false,
-        name: 'New CategoryLink',
-        primary: modifier.type === 'set-primary',
-        targetId: modifier.value,
-      })}
+      } else {
+        entry.categoryLinks.push({
+          id: randomId(),
+          hidden: false,
+          name: 'New CategoryLink',
+          primary: modifier.type === 'set-primary',
+          targetId: modifier.value,
+        })
+      }
     } else {
       debugger
       throw new Error(`Unknown modifier.type: ${modifier.type}`)
@@ -347,7 +395,9 @@ const applyModifiers = (roster, path, entry, gameData, catalogue) => {
   }
 
   const applyModifierGroup = (group) => {
-    if (!checkConditions(roster, path, group, gameData)) { return }
+    if (!checkConditions(roster, path, group, gameData)) {
+      return
+    }
     group.modifiers?.forEach(applyModifier)
     group.modifierGroups?.forEach(applyModifierGroup)
   }
@@ -358,8 +408,8 @@ const applyModifiers = (roster, path, entry, gameData, catalogue) => {
 
 const checkConditions = (roster, path, entry, gameData) => {
   const results = [
-    ...(entry.conditions?.map(c => checkCondition(roster, path, c, gameData)) || []),
-    ...(entry.conditionGroups?.map(cg => checkConditions(roster, path, cg, gameData)) || []),
+    ...(entry.conditions?.map((c) => checkCondition(roster, path, c, gameData)) || []),
+    ...(entry.conditionGroups?.map((cg) => checkConditions(roster, path, cg, gameData)) || []),
   ]
 
   if (entry.type === 'or') {
@@ -371,18 +421,22 @@ const checkConditions = (roster, path, entry, gameData) => {
 }
 
 const findByEntryId = (subject, entryId) => {
-  if (typeof subject === "object") {
-    if (subject.entryId?.includes(entryId)) { return subject }
+  if (typeof subject === 'object') {
+    if (subject.entryId?.includes(entryId)) {
+      return subject
+    }
     for (let attr in subject) {
       const found = findByEntryId(subject[attr], entryId)
-      if (found) { return found }
+      if (found) {
+        return found
+      }
     }
   }
 }
 
-const pathToForce = path => path.replace(/forces.force.(\d+).*/, 'forces.force.$1')
-export const pathParent = path => path.replace(/.selections.selection.\d+$/, '')
-const pathAncestors = path => {
+const pathToForce = (path) => path.replace(/forces.force.(\d+).*/, 'forces.force.$1')
+export const pathParent = (path) => path.replace(/.selections.selection.\d+$/, '')
+const pathAncestors = (path) => {
   const ancestors = [path]
   while (pathParent(path) !== path) {
     path = pathParent(path)
@@ -393,15 +447,27 @@ const pathAncestors = path => {
 
 const getSubject = (roster, path, condition) => {
   switch (condition.scope) {
-    case 'self': return _.get(roster, path)
-    case 'parent': return _.get(roster, pathParent(path))
-    case 'force': return path.length ? _.get(roster, pathToForce(path)) : roster
-    case 'roster': return roster
-    case 'ancestor': return pathAncestors(path).map(ancestor => _.get(roster, ancestor))
-    case 'primary-catalogue': return { entryId: _.get(roster, pathToForce(path) || 'forces.force.0')?.catalogueId }
+    case 'self':
+      return _.get(roster, path)
+    case 'parent':
+      return _.get(roster, pathParent(path))
+    case 'force':
+      return path.length ? _.get(roster, pathToForce(path)) : roster
+    case 'roster':
+      return roster
+    case 'ancestor':
+      return pathAncestors(path).map((ancestor) => _.get(roster, ancestor))
+    case 'primary-catalogue':
+      return {
+        entryId: _.get(roster, pathToForce(path) || 'forces.force.0')?.catalogueId,
+      }
     default: {
-      const directAncestor = pathAncestors(path).find(startingPoint => _.get(roster, startingPoint)?.entryId?.includes(condition.scope))
-      if (directAncestor) { return _.get(roster, directAncestor) }
+      const directAncestor = pathAncestors(path).find((startingPoint) =>
+        _.get(roster, startingPoint)?.entryId?.includes(condition.scope),
+      )
+      if (directAncestor) {
+        return _.get(roster, directAncestor)
+      }
 
       const startingPoint = condition.shared ? roster : _.get(roster, path)
       return findByEntryId(startingPoint, condition.scope)
@@ -412,10 +478,14 @@ const getSubject = (roster, path, condition) => {
 const getValue = (condition, subject, gameData, catalogue) => {
   const childId = findId(gameData, catalogue, condition.childId)?.targetId || condition.childId
 
-  if (!subject) { return NaN }
+  if (!subject) {
+    return NaN
+  }
   switch (condition.field) {
-    case 'selections': return countBy(subject, childId, condition)
-    case 'forces': return countBy(subject, childId, condition)
+    case 'selections':
+      return countBy(subject, childId, condition)
+    case 'forces':
+      return countBy(subject, childId, condition)
     default: {
       let cost = sumCost(subject, condition, childId)
       if (condition.percentValue) {
@@ -429,13 +499,19 @@ const getValue = (condition, subject, gameData, catalogue) => {
 
 const getConstraintValue = (constraint, entryId, subject, gameData) => {
   switch (constraint.field) {
-    case 'selections': return 1
-    case 'forces': return 1
+    case 'selections':
+      return 1
+    case 'forces':
+      return 1
     default: {
-      let cost = constraint.field.startsWith('limit::') ? (subject.costLimits?.costLimit.find(cl => `limit::${cl.id}` === constraint.field) ?? -1) : sumCost(subject, constraint, false)
+      let cost = constraint.field.startsWith('limit::')
+        ? subject.costLimits?.costLimit.find((cl) => `limit::${cl.id}` === constraint.field) ?? -1
+        : sumCost(subject, constraint, false)
       if (constraint.percentValue) {
         cost /= sumCost(subject, constraint, 'any')
-        if (!Number.isFinite(cost)) { cost = 0 }
+        if (!Number.isFinite(cost)) {
+          cost = 0
+        }
       }
 
       return cost
@@ -448,15 +524,32 @@ const checkCondition = (roster, path, condition, gameData) => {
   const catalogue = getCatalogue(roster, path, gameData)
 
   switch (condition.type) {
-    case 'greaterThan': return getValue(condition, subject, gameData, catalogue) > condition.value
-    case 'lessThan': return getValue(condition, subject, gameData, catalogue) < condition.value
-    case 'atMost': return getValue(condition, subject, gameData, catalogue) <= condition.value
-    case 'atLeast': return getValue(condition, subject, gameData, catalogue) >= condition.value
-    case 'equalTo': return getValue(condition, subject, gameData, catalogue) === condition.value
-    case 'notEqualTo': return getValue(condition, subject, gameData, catalogue) !== condition.value
-    case 'instanceOf': return [].concat(subject).filter(Boolean).some(s => s.entryId?.endsWith(condition.childId) || hasCategory(s, condition.childId))
-    case 'notInstanceOf': return !([].concat(subject).filter(Boolean).some(s => s.entryId?.endsWith(condition.childId) || hasCategory(s, condition.childId)))
-    default: { debugger; throw new Error('Unknown condition.type: ' + condition.type) }
+    case 'greaterThan':
+      return getValue(condition, subject, gameData, catalogue) > condition.value
+    case 'lessThan':
+      return getValue(condition, subject, gameData, catalogue) < condition.value
+    case 'atMost':
+      return getValue(condition, subject, gameData, catalogue) <= condition.value
+    case 'atLeast':
+      return getValue(condition, subject, gameData, catalogue) >= condition.value
+    case 'equalTo':
+      return getValue(condition, subject, gameData, catalogue) === condition.value
+    case 'notEqualTo':
+      return getValue(condition, subject, gameData, catalogue) !== condition.value
+    case 'instanceOf':
+      return []
+        .concat(subject)
+        .filter(Boolean)
+        .some((s) => s.entryId?.endsWith(condition.childId) || hasCategory(s, condition.childId))
+    case 'notInstanceOf':
+      return ![]
+        .concat(subject)
+        .filter(Boolean)
+        .some((s) => s.entryId?.endsWith(condition.childId) || hasCategory(s, condition.childId))
+    default: {
+      debugger
+      throw new Error('Unknown condition.type: ' + condition.type)
+    }
   }
 }
 
@@ -466,7 +559,9 @@ window.cacheHits = 0
 window.cacheMisses = 0
 
 export const getEntry = (roster, path, id, gameData, ignoreCache) => {
-  if (id[0] === ':') { id = id.slice(2) }
+  if (id[0] === ':') {
+    id = id.slice(2)
+  }
 
   const cachePath = `${path}-${id}`
   if (roster !== lastRoster) {
@@ -480,7 +575,9 @@ export const getEntry = (roster, path, id, gameData, ignoreCache) => {
   const catalogue = getCatalogue(roster, path, gameData)
   const entry = _.cloneDeep(findId(gameData, catalogue, _.last(id.split('::'))))
 
-  if (!entry) { return null }
+  if (!entry) {
+    return null
+  }
 
   if (entry.targetId) {
     return getEntry(roster, path, `${id}::${entry.targetId}`, gameData, ignoreCache)
@@ -490,7 +587,7 @@ export const getEntry = (roster, path, id, gameData, ignoreCache) => {
 
   const base = findId(gameData, catalogue, _.last(baseId.split('::')))
   if (base?.targetId === entry.id) {
-    Object.keys(base).forEach(key => {
+    Object.keys(base).forEach((key) => {
       if (entry[key] === undefined) {
         entry[key] = _.cloneDeep(base[key])
       } else if (entry[key] instanceof Array) {
@@ -507,7 +604,7 @@ export const getEntry = (roster, path, id, gameData, ignoreCache) => {
 
   entry.id = id
 
-  entry.entryLinks?.forEach(link => {
+  entry.entryLinks?.forEach((link) => {
     switch (link.type) {
       case 'selectionEntry': {
         entry.selectionEntries = entry.selectionEntries || []
@@ -519,12 +616,15 @@ export const getEntry = (roster, path, id, gameData, ignoreCache) => {
         entry.selectionEntryGroups.push(link)
         return
       }
-      default: { debugger; throw new Error(`Unknown entryLink type: ${link.type}`) }
+      default: {
+        debugger
+        throw new Error(`Unknown entryLink type: ${link.type}`)
+      }
     }
   })
   delete entry.entryLinks
 
-  const handleLink = link => {
+  const handleLink = (link) => {
     switch (link.type) {
       case 'profile': {
         entry.profiles = entry.profiles || []
@@ -539,47 +639,56 @@ export const getEntry = (roster, path, id, gameData, ignoreCache) => {
       case 'infoGroup': {
         link = getEntry(roster, path, `${baseId}::${link.id}`, gameData)
 
-        link.profiles?.forEach(profile => {
+        link.profiles?.forEach((profile) => {
           entry.profiles = entry.profiles || []
           entry.profiles.push(profile)
         })
 
-        link.rules?.forEach(rule => {
+        link.rules?.forEach((rule) => {
           entry.rules = entry.rules || []
           entry.rules.push(rule)
         })
 
         return
       }
-      default: { debugger; throw new Error(`Unknown infoLink type: ${link.type}`) }
+      default: {
+        debugger
+        throw new Error(`Unknown infoLink type: ${link.type}`)
+      }
     }
   }
-
 
   entry.infoLinks?.forEach(handleLink)
   delete entry.infoLinks
 
   entry.selectionEntries?.forEach((selectionEntry, index) => {
     Object.defineProperty(entry.selectionEntries, index, {
-      get: () => getEntry(roster, `${path}.selections.selection.10000`, `${baseId}::${selectionEntry.id}`, gameData, ignoreCache)
+      get: () =>
+        getEntry(
+          roster,
+          `${path}.selections.selection.10000`,
+          `${baseId}::${selectionEntry.id}`,
+          gameData,
+          ignoreCache,
+        ),
     })
   })
 
   entry.selectionEntryGroups?.forEach((selectionEntryGroup, index) => {
     Object.defineProperty(entry.selectionEntryGroups, index, {
-      get: () => getEntry(roster, path, `${baseId}::${selectionEntryGroup.id}`, gameData, ignoreCache)
+      get: () => getEntry(roster, path, `${baseId}::${selectionEntryGroup.id}`, gameData, ignoreCache),
     })
   })
 
   entry.profiles?.forEach((profile, index) => {
     Object.defineProperty(entry.profiles, index, {
-      get: () => getEntry(roster, path, `${baseId}::${profile.id}`, gameData, ignoreCache)
+      get: () => getEntry(roster, path, `${baseId}::${profile.id}`, gameData, ignoreCache),
     })
   })
 
   entry.rules?.forEach((rule, index) => {
     Object.defineProperty(entry.rules, index, {
-      get: () => getEntry(roster, path, `${baseId}::${rule.id}`, gameData, ignoreCache)
+      get: () => getEntry(roster, path, `${baseId}::${rule.id}`, gameData, ignoreCache),
     })
   })
 

@@ -1,5 +1,5 @@
 iframe {
-    display: none;
+  display: none;
 }
 
 h2 {
@@ -18,7 +18,12 @@ small {
   margin: auto;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   text-align: center;
   position: relative;
 }
@@ -64,7 +69,9 @@ ul.errors {
   padding-right: 2rem;
 }
 
-summary > span, summary > a, summary > small {
+summary > span,
+summary > a,
+summary > small {
   margin-left: 1.25rem;
 }
 
@@ -72,7 +79,9 @@ h4 + h6 {
   margin-top: -1.5em;
 }
 
-.selections, .selection, .edit-entry {
+.selections,
+.selection,
+.edit-entry {
   max-height: 75vh;
   overflow: auto;
 }
@@ -91,17 +100,17 @@ h4 + h6 {
   cursor: pointer;
 }
 
-[data-indent="2"] td:first-child {
-  padding-left: calc(var(--spacing)* 2);
+[data-indent='2'] td:first-child {
+  padding-left: calc(var(--spacing) * 2);
 }
-[data-indent="3"] td:first-child {
-  padding-left: calc(var(--spacing)* 3);
+[data-indent='3'] td:first-child {
+  padding-left: calc(var(--spacing) * 3);
 }
-[data-indent="4"] td:first-child {
-  padding-left: calc(var(--spacing)* 4);
+[data-indent='4'] td:first-child {
+  padding-left: calc(var(--spacing) * 4);
 }
-[data-indent="5"] td:first-child {
-  padding-left: calc(var(--spacing)* 5);
+[data-indent='5'] td:first-child {
+  padding-left: calc(var(--spacing) * 5);
 }
 
 .selections th {
@@ -160,7 +169,8 @@ summary {
   border-collapse: initial;
 }
 
-.selections [has-error] td, .selections [has-error] th {
+.selections [has-error] td,
+.selections [has-error] th {
   border-color: red !important;
   border: 1px dotted;
 }
@@ -177,7 +187,8 @@ summary {
   border-left: 0px;
 }
 
-.selections .selected td:first-child, .selections .selected th:first-child {
+.selections .selected td:first-child,
+.selections .selected th:first-child {
   font-weight: 700;
   text-decoration: underline;
 }
@@ -193,8 +204,8 @@ summary {
 }
 
 .selection nav button {
-  margin: 0 calc(var(--spacing)/ 2);
-  padding: 0 calc(var(--spacing)/ 2);
+  margin: 0 calc(var(--spacing) / 2);
+  padding: 0 calc(var(--spacing) / 2);
   width: auto;
 }
 
@@ -212,16 +223,17 @@ summary {
 }
 
 .selection article + article {
-  margin-top: calc(var(--spacing)* -1.5);
+  margin-top: calc(var(--spacing) * -1.5);
 }
 
 .profile {
   margin-bottom: var(--spacing);
 }
 
-.profile td, .profile th {
-  padding-left: calc(var(--spacing)/ 2);
-  padding-right: calc(var(--spacing)/ 2);
+.profile td,
+.profile th {
+  padding-left: calc(var(--spacing) / 2);
+  padding-right: calc(var(--spacing) / 2);
 }
 
 header[data-tooltip-html] {
@@ -237,7 +249,7 @@ button[data-tooltip-html] {
   border-bottom: 1px solid;
 }
 
-[role="listbox"] [data-tooltip-html] {
+[role='listbox'] [data-tooltip-html] {
   border-bottom: none;
 }
 
@@ -261,7 +273,7 @@ article > article {
   padding: 0;
 }
 
-.selection input[type="number"] {
+.selection input[type='number'] {
   display: inline-block;
   width: 3rem;
   padding: 0.5rem;
@@ -275,7 +287,8 @@ article > article {
   z-index: 1000;
 }
 
-nav ol:first-of-type, nav ul:first-of-type {
+nav ol:first-of-type,
+nav ul:first-of-type {
   margin-left: 0;
 }
 
@@ -299,28 +312,28 @@ div > button {
   display: block;
   width: 1rem;
   height: 1rem;
-  -webkit-margin-start: calc(var(--spacing,1rem) * 0.5);
-  margin-inline-start: calc(var(--spacing,1rem) * .5);
+  -webkit-margin-start: calc(var(--spacing, 1rem) * 0.5);
+  margin-inline-start: calc(var(--spacing, 1rem) * 0.5);
   float: right;
   transform: rotate(-90deg);
   background-image: var(--icon-chevron);
   background-position: right center;
   background-size: 1rem auto;
   background-repeat: no-repeat;
-  content: "";
+  content: '';
   transition: transform var(--transition);
 }
 
-
-.rule, .profile {
+.rule,
+.profile {
   white-space: break-spaces;
 }
 
-[role="link"] {
+[role='link'] {
   cursor: pointer;
 }
 
-input[type="file"] {
+input[type='file'] {
   display: none;
 }
 
@@ -366,7 +379,8 @@ dialog article article {
   --form-element-spacing-vertical: 0.25rem;
 }
 
-.edit-file input, .edit-file select {
+.edit-file input,
+.edit-file select {
   margin-bottom: 0;
 }
 
@@ -374,7 +388,8 @@ dialog article article {
   display: inline;
 }
 
-.react-select__placeholder, .react-select__single-value {
+.react-select__placeholder,
+.react-select__single-value {
   padding: 0 var(--form-element-spacing-horizontal);
 }
 
