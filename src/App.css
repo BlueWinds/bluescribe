@@ -261,6 +261,20 @@ article > article {
   margin-left: calc(var(--block-spacing-horizontal) * -1);
 }
 
+dialog article {
+  width: 100%;
+}
+
+dialog fieldset {
+  text-align: center;
+}
+
+dialog code {
+  margin: auto;
+  display: block;
+  width: fit-content;
+}
+
 @media (min-width: 1200px) {
   dialog article {
     max-width: 1130px;
@@ -300,6 +314,10 @@ nav {
   --nav-link-spacing-vertical: 0.75rem;
   --nav-element-spacing-vertical: 0.75rem;
   --form-element-spacing-vertical: 0.25rem;
+}
+
+nav li {
+  line-height: 1em;
 }
 
 div > button {
