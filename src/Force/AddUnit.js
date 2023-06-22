@@ -59,10 +59,7 @@ const AddUnit = () => {
       const entry = getEntry(roster, path, entryLink.id, gameData)
 
       if (!entry.hidden && getMaxCount(entry) !== 0) {
-        let primary = _.find(entry.categoryLinks, 'primary')?.targetId
-        if (!primary) {
-          primary = '(No Category)'
-        }
+        let primary = _.find(entry.categoryLinks, 'primary')?.targetId || '(No Category)'
         entries[primary] = entries[primary] || []
         entries[primary].push(entry)
       }
