@@ -44,7 +44,6 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
   const [path, setPath] = usePath()
 
   const [open, setOpen] = useState(false)
-  console.log(packageJson.version)
 
   return (
     <div className="container">
