@@ -2,7 +2,14 @@ import { useEffect, useState } from 'react'
 import BounceLoader from 'react-spinners/BounceLoader'
 import _ from 'lodash'
 
-import { listGameSystems, listAvailableGameSystems, addGameSystem, addLocalGameSystem, clearGameSystem } from './'
+import {
+  listGameSystems,
+  listAvailableGameSystems,
+  addGameSystem,
+  addLocalGameSystem,
+  addExternalGameSystem,
+  clearGameSystem,
+} from './'
 import fs from '../fs'
 
 const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => {
@@ -11,6 +18,8 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
   const [selectedAvailable, setSelectedAvailable] = useState(0)
   const [selected, setSelected] = useState(null)
   const [updatingSystem, setUpdatingSystem] = useState(false)
+
+  const isOffline = window.__TAURI__ !== undefined
 
   useEffect(() => {
     const load = async () => {
@@ -64,15 +73,27 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
                     </span>{' '}
                     containing a <code>.gst</code> and <code>.cat</code> files.
                   </p>
-                  <input
-                    type="file"
-                    id="import-system"
-                    webkitdirectory="true"
-                    onChange={async (e) => {
-                      const system = await addLocalGameSystem([...e.target.files], fs)
-                      setSystemInfo(system)
-                    }}
-                  />
+                  {!isOffline ? (
+                    <input
+                      type="file"
+                      id="import-system"
+                      webkitdirectory="true"
+                      onChange={async (e) => {
+                        const system = await addLocalGameSystem([...e.target.files], fs)
+                        setSystemInfo(system)
+                      }}
+                    />
+                  ) : (
+                    <div
+                      id="import-system"
+                      onClick={async (e) => {
+                        const system = await addExternalGameSystem(fs)
+                        if (system) {
+                          setSystemInfo(system)
+                        }
+                      }}
+                    />
+                  )}
                   <select onChange={(e) => setSelectedAvailable(e.target.value)}>
                     {available.map((system, index) => (
                       <option key={system.name} value={index}>

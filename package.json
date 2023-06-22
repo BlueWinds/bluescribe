@@ -11,6 +11,8 @@
     "@picocss/pico": "^1.5.7",
     "@tauri-apps/api": "^2.0.0-alpha.5",
     "@tauri-apps/cli": "^2.0.0-alpha.10",
+    "@tauri-apps/plugin-dialog": "^2.0.0-alpha.0",
+    "@tauri-apps/plugin-fs": "^2.0.0-alpha.0",
     "@zip.js/zip.js": "^2.7.1",
     "axios": "^1.4.0",
     "bsd-schema": "github:BlueWinds/bsd-schema",

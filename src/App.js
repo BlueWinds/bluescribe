@@ -9,7 +9,7 @@ import { ErrorBoundary } from 'react-error-boundary'
 import '@picocss/pico'
 import './App.css'
 import fs, { rosterFs } from './fs'
-import { readFiles } from './repo'
+import { readSystemFiles } from './repo'
 import SelectSystem from './repo/SelectSystem'
 import Roster from './Roster'
 import { saveRoster, downloadRoster } from './repo/rosters'
@@ -188,7 +188,7 @@ function App() {
         setLoading(true)
         try {
           console.log('System: ' + systemInfo.name)
-          setGameData(await readFiles('/' + systemInfo.name, fs))
+          setGameData(await readSystemFiles(systemInfo, fs))
         } catch (e) {
           console.log(e)
           setInfo({})
