@@ -31,6 +31,7 @@ import ViewRoster from './ViewRoster'
 import { refreshRoster } from './utils'
 import EditSystem from './repo/EditSystem'
 import { pathToForce, validateRoster } from './validate'
+import packageJson from '../package.json'
 
 const Body = ({ children, systemInfo, setSystemInfo }) => {
   const [roster, setRoster] = useRoster()
@@ -51,6 +52,7 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
           <ul>
             <li>
               <strong>BlueScribe</strong>
+              <div><small>{packageJson.version}</small></div>
             </li>
             {roster && (
               <>
