@@ -12,6 +12,8 @@ module.exports = {
       }),
     )
 
+    config.devServer = { host: 'local-ipv4' }
+
     return config
   },
   jest: function jest(config) {

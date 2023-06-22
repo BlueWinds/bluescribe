@@ -9,6 +9,8 @@
   "dependencies": {
     "@isomorphic-git/lightning-fs": "^4.6.0",
     "@picocss/pico": "^1.5.7",
+    "@tauri-apps/api": "^2.0.0-alpha.5",
+    "@tauri-apps/cli": "^2.0.0-alpha.10",
     "@zip.js/zip.js": "^2.7.1",
     "axios": "^1.4.0",
     "bsd-schema": "github:BlueWinds/bsd-schema",
@@ -30,14 +32,21 @@
     "stream-browserify": "^3.0.0"
   },
   "scripts": {
-    "postinstall": "mkdir node_modules/wh40k && cd node_modules/wh40k && git init && git remote add origin https://github.com/BSData/wh40k.git && git fetch --depth 1 origin fd0b88293e5f7abacb49639be941eb8098cf785a && git checkout FETCH_HEAD",
+    "postinstall": "run-script-os",
+    "postinstall:linux:darwin": "mkdir node_modules/wh40k && cd node_modules/wh40k && npm run postinstall-init-wh40k",
+    "postinstall:win32": "mkdir node_modules\\wh40k && cd node_modules\\wh40k && npm run postinstall-init-wh40k",
+    "postinstall-init-wh40k": "git init && git remote add origin https://github.com/BSData/wh40k.git && git fetch --depth 1 origin fd0b88293e5f7abacb49639be941eb8098cf785a && git checkout FETCH_HEAD",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "tauri": "tauri",
+    "prep_tauri": "run-script-os",
+    "prep_tauri:linux:darwin": "mv build .build_bluescribe && mkdir build && mv .build_bluescribe build/bluescribe && cp build/bluescribe/index.html build/index.html",
+    "prep_tauri:win32": "move build .build_bluescribe && mkdir build && move .build_bluescribe build\\bluescribe && copy build\\bluescribe\\index.html build\\index.html"
   },
   "eslintConfig": {
     "extends": [
@@ -66,9 +75,11 @@
     "eslint-plugin-prettier": "^4.2.1",
     "gh-pages": "^5.0.0",
     "husky": "^8.0.3",
+    "internal-ip": "^8.0.0",
     "lint-staged": "^13.2.2",
     "prettier": "^2.8.8",
     "react-app-rewired": "^2.2.1",
+    "run-script-os": "^1.1.6",
     "web-streams-polyfill": "^3.2.1"
   },
   "lint-staged": {

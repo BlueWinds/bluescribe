@@ -10,3 +10,5 @@ There is no tracking, no subscription, no paid features. BlueScribe is GNU GPL 3
 
 `npm install`
 `npm run start`
+
+Executables can be built with `npm run tauri build`
