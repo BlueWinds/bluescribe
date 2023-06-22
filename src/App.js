@@ -51,7 +51,8 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
         <nav>
           <ul>
             <li>
-              <strong>BlueScribe</strong> {packageJson.version}
+              <strong>BlueScribe</strong>
+              <div><small>{packageJson.version}</small></div>
             </li>
             {roster && (
               <>
