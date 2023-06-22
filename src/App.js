@@ -31,6 +31,7 @@ import ViewRoster from './ViewRoster'
 import { refreshRoster } from './utils'
 import EditSystem from './repo/EditSystem'
 import { pathToForce, validateRoster } from './validate'
+import packageJson from '../package.json'
 
 const Body = ({ children, systemInfo, setSystemInfo }) => {
   const [roster, setRoster] = useRoster()
@@ -43,6 +44,7 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
   const [path, setPath] = usePath()
 
   const [open, setOpen] = useState(false)
+  console.log(packageJson.version)
 
   return (
     <div className="container">
@@ -50,7 +52,7 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
         <nav>
           <ul>
             <li>
-              <strong>BlueScribe</strong>
+              <strong>BlueScribe</strong> {packageJson.version}
             </li>
             {roster && (
               <>
