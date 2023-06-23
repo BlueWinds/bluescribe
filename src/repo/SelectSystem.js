@@ -210,7 +210,7 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
           {selected !== 'Add New' && !updatingSystem && systems[selected].externalPath && (
             <button
               onClick={async () => {
-                const cacheFile = fs.configDir + '/' + systems[selected].name + '/cache.json'
+                const cacheFile = fs.configDir + systems[selected].name + '/cache.json'
                 await fs.promises.unlink(cacheFile)
               }}
               className="outline"

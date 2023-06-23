@@ -32,10 +32,12 @@ const OfflineFS = {
   },
 }
 
-const configDir = useLocalStorage ? '/' : await join(await appConfigDir(), 'systems')
-
-const fs = useLocalStorage ? new FS('fs') : OfflineFS
-fs.configDir = configDir
+const fs = useLocalStorage ? new FS('fs') : Object.assign({}, OfflineFS)
+fs.configDir = useLocalStorage ? '/' : (await join(await appConfigDir(), 'systems')) + '/'
 export default fs
 
-export const rosterFs = new FS('rosters')
+export const rosterFs = useLocalStorage ? new FS('rosters') : Object.assign({}, OfflineFS)
+rosterFs.configDir = useLocalStorage ? '/' : (await join(await appConfigDir(), 'rosters')) + '/'
+
+console.log('fs.configDir', fs.configDir)
+console.log('rosterFs.configDir', rosterFs.configDir)

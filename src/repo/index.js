@@ -78,25 +78,22 @@ export const listAvailableGameSystems = async () => {
 }
 
 export const listGameSystems = async (fs) => {
-  const systems = {}
-
+  var configStat = null
   try {
-    const configStat = await fs.promises.stat(fs.configDir)
-    if (!configStat.isDirectory()) {
-      throw new Error('Exceptions are code flow control, right?')
+    configStat = await fs.promises.stat(fs.configDir)
+  } finally {
+    if (!configStat || !configStat.isDirectory()) {
+      await fs.promises.mkdir(fs.configDir)
+      return {} // No systems yet
     }
-  } catch {
-    await fs.promises.mkdir(fs.configDir)
-    return {} // No systems yet
   }
 
+  const systems = {}
   const dirs = await fs.promises.readdir(fs.configDir)
   await Promise.all(
     dirs.map(async (dir) => {
       try {
-        systems[dir] = await JSON.parse(
-          (await fs.promises.readFile(fs.configDir + '/' + dir + '/system.json')).toString(),
-        )
+        systems[dir] = await JSON.parse((await fs.promises.readFile(fs.configDir + dir + '/system.json')).toString())
       } catch {
         await clearGameSystem({ name: dir }, fs)
       }
@@ -119,7 +116,7 @@ export const addLocalGameSystem = async (files, fs) => {
     version: 'v0.0.0',
   }
 
-  const systemDir = fs.configDir + '/' + system.name
+  const systemDir = fs.configDir + system.name
   const dirs = await fs.promises.readdir(fs.configDir)
   if (dirs.indexOf(system.name) !== -1) {
     const files = await fs.promises.readdir(systemDir)
@@ -160,7 +157,7 @@ export const addExternalGameSystem = async (fs) => {
     externalPath: externalDir,
   }
 
-  const systemDir = fs.configDir + '/' + system.name
+  const systemDir = fs.configDir + system.name
   await fs.promises.mkdir(systemDir)
   await fs.promises.writeFile(systemDir + '/system.json', JSON.stringify(system))
 
@@ -168,7 +165,7 @@ export const addExternalGameSystem = async (fs) => {
 }
 
 export const addGameSystem = async (system, fs) => {
-  const systemDir = fs.configDir + '/' + system.name
+  const systemDir = fs.configDir + system.name
   const dirs = await fs.promises.readdir(fs.configDir)
   if (dirs.indexOf(system.name) !== -1) {
     const files = await fs.promises.readdir(systemDir)
@@ -203,9 +200,9 @@ export const addGameSystem = async (system, fs) => {
 }
 
 export const clearGameSystem = async (system, fs) => {
-  const files = await fs.promises.readdir(fs.configDir + '/' + system.name)
-  await Promise.all(files.map((f) => fs.promises.unlink(fs.configDir + '/' + system.name + '/' + f)))
-  await fs.promises.rmdir(fs.configDir + '/' + system.name)
+  const files = await fs.promises.readdir(fs.configDir + system.name)
+  await Promise.all(files.map((f) => fs.promises.unlink(fs.configDir + system.name + '/' + f)))
+  await fs.promises.rmdir(fs.configDir + system.name)
 }
 
 const listFiles = async (dir, fs) => {
@@ -219,7 +216,7 @@ const listFiles = async (dir, fs) => {
 
 const cacheVersion = 4
 export const readSystemFiles = async (system, fs) => {
-  const configDir = fs.configDir + '/' + system.name
+  const configDir = fs.configDir + system.name
   const dataDir = system.externalPath || configDir
 
   try {

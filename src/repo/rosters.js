@@ -3,8 +3,18 @@ import containerTags from 'bsd-schema/containerTags.json'
 import { readXML, xmlData } from './'
 
 export const listRosters = async (gameSystem, fs) => {
+  var configStat = null
+  try {
+    configStat = await fs.promises.stat(fs.configDir)
+  } finally {
+    if (!configStat || !configStat.isDirectory()) {
+      await fs.promises.mkdir(fs.configDir)
+      return {} // No rosters yet
+    }
+  }
+
   const rosters = {}
-  const files = await fs.promises.readdir('/')
+  const files = await fs.promises.readdir(fs.configDir)
   await Promise.all(
     files.map(async (file) => {
       try {
@@ -49,13 +59,13 @@ export const saveRoster = async (roster, fs) => {
   } = roster
 
   const data = await xmlData({ roster: contents }, filename)
-  await fs.promises.writeFile('/' + filename, data)
+  await fs.promises.writeFile(fs.configDir + filename, data)
 }
 
 export const importRoster = async (file, fs) => {
   const data = await file.arrayBuffer()
-  console.log('writing', '/' + file.name)
-  await fs.promises.writeFile('/' + file.name, data)
+  console.log('writing', fs.configDir + file.name)
+  await fs.promises.writeFile(fs.configDir + file.name, data)
 }
 
 export const downloadRoster = async (roster) => {
@@ -79,5 +89,5 @@ export const downloadRoster = async (roster) => {
 }
 
 export const deleteRoster = async (file, fs) => {
-  await fs.promises.unlink('/' + file)
+  await fs.promises.unlink(fs.configDir + file)
 }
