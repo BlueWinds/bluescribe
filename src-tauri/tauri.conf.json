@@ -50,5 +50,10 @@
         "width": 800
       }
     ]
+  },
+  "plugins": {
+    "fs": {
+      "scope": ["$APPCONFIG", "$APPCONFIG/systems", "$APPCONFIG/systems/**"]
+    }
   }
 }

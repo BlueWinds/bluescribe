@@ -10,7 +10,7 @@ import { homeDir } from '@tauri-apps/api/path'
 import { parseXML } from 'bsd-schema'
 
 export const readXML = async (path, fs) => {
-  let buffer = await fs.readTextFile(path)
+  let buffer = await fs.promises.readFile(path)
   if (path.endsWith('z')) {
     const blob = new Blob([buffer])
     const zipFileReader = new BlobReader(blob)
@@ -79,11 +79,24 @@ export const listAvailableGameSystems = async () => {
 
 export const listGameSystems = async (fs) => {
   const systems = {}
-  const dirs = await fs.readDir('/')
+
+  try {
+    const configStat = await fs.promises.stat(fs.configDir)
+    if (!configStat.isDirectory()) {
+      throw new Error('Exceptions are code flow control, right?')
+    }
+  } catch {
+    await fs.promises.mkdir(fs.configDir)
+    return {} // No systems yet
+  }
+
+  const dirs = await fs.promises.readdir(fs.configDir)
   await Promise.all(
     dirs.map(async (dir) => {
       try {
-        systems[dir] = await JSON.parse((await fs.readTextFile('/' + dir + '/system.json')).toString())
+        systems[dir] = await JSON.parse(
+          (await fs.promises.readFile(fs.configDir + '/' + dir + '/system.json')).toString(),
+        )
       } catch {
         await clearGameSystem({ name: dir }, fs)
       }
@@ -106,22 +119,23 @@ export const addLocalGameSystem = async (files, fs) => {
     version: 'v0.0.0',
   }
 
-  const dirs = await fs.readDir('/')
+  const systemDir = fs.configDir + '/' + system.name
+  const dirs = await fs.promises.readdir(fs.configDir)
   if (dirs.indexOf(system.name) !== -1) {
-    const files = await fs.readDir('/' + system.name)
-    await Promise.all(files.map((f) => fs.removeFile('/' + system.name + '/' + f)))
-    await fs.removeDir('/' + system.name)
+    const files = await fs.promises.readdir(systemDir)
+    await Promise.all(files.map((f) => fs.promises.unlink(systemDir + '/' + f)))
+    await fs.promises.rmdir(systemDir)
   }
 
-  await fs.createDir('/' + system.name)
-  await fs.writeTextFile('/' + system.name + '/system.json', JSON.stringify(system))
+  await fs.promises.mkdir(systemDir)
+  await fs.promises.writeFile(systemDir + '/system.json', JSON.stringify(system))
 
   await Promise.all(
     files.map(async (file) => {
       const filename = _.last(file.name.split(/\\|\//))
       const data = await file.arrayBuffer()
-      console.log('Writing /' + system.name + '/' + filename, data)
-      await fs.writeTextFile('/' + system.name + '/' + filename, data)
+      console.log('Writing ' + systemDir + '/' + filename, data)
+      await fs.promises.writeFile(systemDir + '/' + filename, data)
     }),
   )
 
@@ -129,39 +143,41 @@ export const addLocalGameSystem = async (files, fs) => {
 }
 
 export const addExternalGameSystem = async (fs) => {
-  const system_dir = await open({
+  const externalDir = await open({
     directory: true,
     defaultPath: await homeDir(),
   })
-  if (system_dir === null) {
+  if (externalDir === null) {
     return null
   }
 
   const system = {
-    name: system_dir.split(/\\|\//).pop(),
-    description: system_dir.split(/\\|\//).pop(),
+    name: externalDir.split(/\\|\//).pop(),
+    description: externalDir.split(/\\|\//).pop(),
     lastUpdated: new Date().toISOString(),
     lastUpdateDescription: 'External Game System',
     version: 'v0.0.0',
-    externalPath: system_dir,
+    externalPath: externalDir,
   }
 
-  await fs.createDir('/' + system.name)
-  await fs.writeTextFile('/' + system.name + '/system.json', JSON.stringify(system))
+  const systemDir = fs.configDir + '/' + system.name
+  await fs.promises.mkdir(systemDir)
+  await fs.promises.writeFile(systemDir + '/system.json', JSON.stringify(system))
 
   return system
 }
 
 export const addGameSystem = async (system, fs) => {
-  const dirs = await fs.readDir('/')
+  const systemDir = fs.configDir + '/' + system.name
+  const dirs = await fs.promises.readdir(fs.configDir)
   if (dirs.indexOf(system.name) !== -1) {
-    const files = await fs.readDir('/' + system.name)
-    await Promise.all(files.map((f) => fs.removeFile('/' + system.name + '/' + f)))
-    await fs.removeDir('/' + system.name)
+    const files = await fs.promises.readdir(systemDir)
+    await Promise.all(files.map((f) => fs.promises.unlink(systemDir + '/' + f)))
+    await fs.promises.rmdir(systemDir)
   }
 
-  await fs.createDir('/' + system.name)
-  await fs.writeTextFile('/' + system.name + '/system.json', JSON.stringify(system))
+  await fs.promises.mkdir(systemDir)
+  await fs.promises.writeFile(systemDir + '/system.json', JSON.stringify(system))
 
   const index = await axios.get(`https://cdn.jsdelivr.net/gh/BSData/${system.name}@${system.version.replace('v', '')}/`)
 
@@ -179,7 +195,7 @@ export const addGameSystem = async (system, fs) => {
   files.forEach((filename) =>
     q.add(async () => {
       const file = await axios(`https://cdn.jsdelivr.net${filename}`)
-      await fs.writeTextFile('/' + system.name + '/' + _.last(filename.split('/')), file.data)
+      await fs.promises.writeFile(systemDir + '/' + _.last(filename.split('/')), file.data)
     }),
   )
 
@@ -187,13 +203,13 @@ export const addGameSystem = async (system, fs) => {
 }
 
 export const clearGameSystem = async (system, fs) => {
-  const files = await fs.readDir('/' + system.name)
-  await Promise.all(files.map((f) => fs.removeFile('/' + system.name + '/' + f)))
-  await fs.removeDir('/' + system.name)
+  const files = await fs.promises.readdir(fs.configDir + '/' + system.name)
+  await Promise.all(files.map((f) => fs.promises.unlink(fs.configDir + '/' + system.name + '/' + f)))
+  await fs.promises.rmdir(fs.configDir + '/' + system.name)
 }
 
 const listFiles = async (dir, fs) => {
-  const files = await fs.readDir(dir)
+  const files = await fs.promises.readdir(dir)
   const paths = files
     .filter((f) => f.endsWith('.cat') || f.endsWith('.gst') || f.endsWith('.catz') || f.endsWith('.gstz'))
     .map((f) => dir + '/' + f)
@@ -203,13 +219,13 @@ const listFiles = async (dir, fs) => {
 
 const cacheVersion = 4
 export const readSystemFiles = async (system, fs) => {
-  const local_dir = '/' + system.name
-  const data_dir = system.externalPath || local_dir
+  const configDir = fs.configDir + '/' + system.name
+  const dataDir = system.externalPath || configDir
 
   try {
-    if (await fs.exists(local_dir + '/cache.json')) {
+    if (await fs.promises.stat(configDir + '/cache.json')) {
       console.log('Loading cache')
-      const cache = JSON.parse(await fs.readTextFile(local_dir + '/cache.json'))
+      const cache = JSON.parse(await fs.promises.readFile(configDir + '/cache.json'))
       if (cache.gameSystem && cache.version === cacheVersion) {
         console.log(`Cache v${cacheVersion} looks valid`)
         return cache
@@ -229,7 +245,7 @@ export const readSystemFiles = async (system, fs) => {
     catalogues: {},
   }
 
-  const paths = await listFiles(data_dir, fs)
+  const paths = await listFiles(dataDir, fs)
   await Promise.all(
     paths.map(async (path) => {
       const data = await readXML(path, fs)
@@ -269,10 +285,10 @@ export const readSystemFiles = async (system, fs) => {
   )
 
   try {
-    await fs.removeFile(local_dir + '/cache.json')
+    await fs.promises.unlink(configDir + '/cache.json')
   } catch {}
 
-  await fs.writeTextFile(local_dir + '/cache.json', JSON.stringify(parsed))
+  await fs.promises.writeFile(configDir + '/cache.json', JSON.stringify(parsed))
 
   return parsed
 }
