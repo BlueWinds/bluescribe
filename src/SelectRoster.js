@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import BounceLoader from 'react-spinners/BounceLoader'
 import useStorage from 'squirrel-gill'
 import { FileDrop } from 'react-file-drop'
+import { open } from '@tauri-apps/plugin-shell'
 
 import { rosterFs } from './fs'
 import { listRosters, loadRoster, importRoster, deleteRoster } from './repo/rosters'
@@ -123,6 +124,16 @@ const SelectRoster = () => {
                 Delete
               </button>
             </>
+          )}
+          {window.__TAURI__ && (
+            <button
+              className="secondary outline"
+              onClick={async () => {
+                await open(rosterFs.configDir)
+              }}
+            >
+              Open roster directory
+            </button>
           )}
         </>
       ) : (
