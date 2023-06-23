@@ -180,7 +180,7 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
           >
             {updatingSystem ? `${updatingSystem.done} files downloaded` : 'Load'}
           </button>
-          {selected !== 'Add New' && !updatingSystem && (
+          {selected !== 'Add New' && !updatingSystem && !systems[selected].externalPath && (
             <button
               onClick={async () => {
                 if (updatingSystem) {
@@ -205,6 +205,17 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
               className="outline"
             >
               Update data
+            </button>
+          )}
+          {selected !== 'Add New' && !updatingSystem && systems[selected].externalPath && (
+            <button
+              onClick={async () => {
+                const cacheFile = fs.configDir + '/' + systems[selected].name + '/cache.json'
+                await fs.promises.unlink(cacheFile)
+              }}
+              className="outline"
+            >
+              Clear cache
             </button>
           )}
           {false && selected !== 'Add New' && !updatingSystem && (

@@ -75,7 +75,8 @@ const EditSystem = ({ systemInfo, setSystemInfo }) => {
 
   useEffect(() => {
     if (!gameData) {
-      readRawFiles('/' + systemInfo.name, fs).then((data) => {
+      var path = systemInfo.externalPath || fs.configDir + '/' + systemInfo.name
+      readRawFiles(path, fs).then((data) => {
         data.ids = buildIndex(data)
         setGameData(data)
         setSelectedFile(data.gameSystem)

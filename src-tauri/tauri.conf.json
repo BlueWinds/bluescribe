@@ -44,16 +44,16 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 800,
         "resizable": true,
         "title": "BlueScribe",
-        "width": 800
+        "width": 1200
       }
     ]
   },
   "plugins": {
     "fs": {
-      "scope": ["$APPCONFIG", "$APPCONFIG/systems", "$APPCONFIG/systems/**"]
+      "scope": ["**"]
     }
   }
 }
