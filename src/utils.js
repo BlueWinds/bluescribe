@@ -1,7 +1,6 @@
 import _ from 'lodash'
 
 import { getEntry, countBy } from './validate'
-import { rosterFs } from './fs'
 
 export const randomId = () => {
   const hex = () => Math.floor(Math.random() * 16).toString(16)
@@ -110,7 +109,7 @@ export const getMaxCount = (entry) =>
   entry.constraints?.find((c) => c.type === 'max' && c.scope === 'parent')?.value ?? -1
 export const isCollective = (entry) => entry.collective || entry.selectionEntries?.every(isCollective)
 
-export const createRoster = (name, gameSystem) => {
+export const createRoster = (configDir, name, gameSystem) => {
   const roster = {
     id: randomId(),
     name: name,
@@ -120,7 +119,7 @@ export const createRoster = (name, gameSystem) => {
     gameSystemRevision: gameSystem.revision,
     xmlns: 'http://www.battlescribe.net/schema/rosterSchema',
     __: {
-      filename: rosterFs.configDir + name + '.rosz',
+      filename: configDir + name + '.rosz',
       updated: true,
     },
     costs: {

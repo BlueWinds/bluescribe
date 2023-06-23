@@ -89,7 +89,7 @@ const SelectRoster = () => {
               </label>
               <button
                 onClick={async () => {
-                  const roster = await createRoster(newName, gameData.gameSystem)
+                  const roster = await createRoster(rosterFs.configDir, newName, gameData.gameSystem)
                   setRoster(roster)
                 }}
               >

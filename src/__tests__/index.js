@@ -3,13 +3,19 @@ import fs from 'fs'
 import 'web-streams-polyfill/es2018'
 
 import { validateRoster } from '../validate'
-import { readFiles } from '../repo'
+import { readSystemFiles } from '../repo'
 import { loadRoster } from '../repo/rosters'
 
 describe('40k', () => {
   let gameData
   beforeAll(async () => {
-    gameData = await readFiles(path.join(__dirname, '../../node_modules/wh40k'), fs)
+    const system = {
+      name: 'wh40k',
+      externalPath: path.join(__dirname, '../../node_modules/wh40k'),
+    }
+    fs.configDir = path.join(__dirname, '../../node_modules/')
+
+    gameData = await readSystemFiles(system, fs)
   })
 
   const rosters = {

@@ -36,9 +36,8 @@
   },
   "scripts": {
     "postinstall": "run-script-os",
-    "postinstall:linux:darwin": "mkdir node_modules/wh40k && cd node_modules/wh40k && npm run postinstall-init-wh40k",
-    "postinstall:win32": "mkdir node_modules\\wh40k && cd node_modules\\wh40k && npm run postinstall-init-wh40k",
-    "postinstall-init-wh40k": "git init && git remote add origin https://github.com/BSData/wh40k.git && git fetch --depth 1 origin fd0b88293e5f7abacb49639be941eb8098cf785a && git checkout FETCH_HEAD",
+    "postinstall:linux:darwin": "mkdir node_modules/wh40k && cd node_modules/wh40k && git init && git remote add origin https://github.com/BSData/wh40k.git && git fetch --depth 1 origin fd0b88293e5f7abacb49639be941eb8098cf785a && git checkout FETCH_HEAD",
+    "postinstall:win32": "mkdir node_modules\\wh40k && cd node_modules\\wh40k && git init && git remote add origin https://github.com/BSData/wh40k.git && git fetch --depth 1 origin fd0b88293e5f7abacb49639be941eb8098cf785a && git checkout FETCH_HEAD",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-app-rewired start",
