@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 import BounceLoader from 'react-spinners/BounceLoader'
 import _ from 'lodash'
 
+import { open } from '@tauri-apps/plugin-dialog'
+import { homeDir } from '@tauri-apps/api/path'
+
 import {
   listGameSystems,
   listAvailableGameSystems,
@@ -87,7 +90,14 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
                     <div
                       id="import-system"
                       onClick={async (e) => {
-                        const system = await addExternalGameSystem(fs)
+                        const externalDir = await open({
+                          directory: true,
+                          defaultPath: await homeDir(),
+                        })
+                        if (externalDir === null) {
+                          return null
+                        }
+                        const system = await addExternalGameSystem(externalDir, fs)
                         if (system) {
                           setSystemInfo(system)
                         }

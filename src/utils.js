@@ -1,6 +1,7 @@
 import _ from 'lodash'
 
 import { getEntry, countBy } from './validate'
+import { rosterFs } from './fs'
 
 export const randomId = () => {
   const hex = () => Math.floor(Math.random() * 16).toString(16)
@@ -119,7 +120,7 @@ export const createRoster = (name, gameSystem) => {
     gameSystemRevision: gameSystem.revision,
     xmlns: 'http://www.battlescribe.net/schema/rosterSchema',
     __: {
-      filename: name + '.rosz',
+      filename: rosterFs.configDir + name + '.rosz',
       updated: true,
     },
     costs: {

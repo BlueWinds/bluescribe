@@ -4,9 +4,6 @@ import _ from 'lodash'
 import axios from 'axios'
 import PQueue from 'p-queue'
 
-import { open } from '@tauri-apps/plugin-dialog'
-import { homeDir } from '@tauri-apps/api/path'
-
 import { parseXML } from 'bsd-schema'
 
 export const readXML = async (path, fs) => {
@@ -139,15 +136,7 @@ export const addLocalGameSystem = async (files, fs) => {
   return system
 }
 
-export const addExternalGameSystem = async (fs) => {
-  const externalDir = await open({
-    directory: true,
-    defaultPath: await homeDir(),
-  })
-  if (externalDir === null) {
-    return null
-  }
-
+export const addExternalGameSystem = async (externalDir, fs) => {
   const system = {
     name: externalDir.split(/\\|\//).pop(),
     description: externalDir.split(/\\|\//).pop(),

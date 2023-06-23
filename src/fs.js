@@ -32,13 +32,11 @@ const OfflineFS = {
     rmdir: removeDir,
     unlink: removeFile,
     async writeFile(path, data) {
-      console.log(typeof data)
       if (typeof data === 'string') {
         data = new TextEncoder().encode(data)
       }
       if (typeof data === 'object') {
         data = Array.from(new Uint8Array(data))
-        console.log(data)
       }
       await invoke('plugin:fs|write_file', {
         path: path,
@@ -55,6 +53,3 @@ export default fs
 
 export const rosterFs = useLocalStorage ? new FS('rosters') : Object.assign({}, OfflineFS)
 rosterFs.configDir = useLocalStorage ? '/' : (await join(await appConfigDir(), 'rosters')) + '/'
-
-console.log('fs.configDir', fs.configDir)
-console.log('rosterFs.configDir', rosterFs.configDir)
