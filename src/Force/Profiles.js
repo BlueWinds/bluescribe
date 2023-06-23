@@ -6,6 +6,8 @@ const order = {
   Unit: 1,
   Weapon: 2,
   Abilities: 3,
+  Psyker: 4,
+  "Psychic Power": 5
 }
 
 const Profiles = ({ profiles, number }) => {
