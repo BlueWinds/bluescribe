@@ -133,7 +133,7 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
                             })
                           }
                         >
-                          {roster.__.filename}
+                          {roster.__.filename.split('/').at(-1)}
                         </span>
                       </li>
                     )}

@@ -106,7 +106,7 @@ const SelectRoster = () => {
               <button
                 disabled={typeof rosters[selected] !== 'string'}
                 onClick={async () => {
-                  setRoster(await loadRoster('/' + selected, rosterFs), false)
+                  setRoster(await loadRoster(rosterFs.configDir + selected, rosterFs), false)
                 }}
               >
                 Load

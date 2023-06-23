@@ -18,7 +18,7 @@ export const listRosters = async (gameSystem, fs) => {
   await Promise.all(
     files.map(async (file) => {
       try {
-        const roster = await loadRoster('/' + file, fs)
+        const roster = await loadRoster(fs.configDir + file, fs)
         if (roster.gameSystemId === gameSystem.id) {
           rosters[file] = roster.name
         }
@@ -59,7 +59,7 @@ export const saveRoster = async (roster, fs) => {
   } = roster
 
   const data = await xmlData({ roster: contents }, filename)
-  await fs.promises.writeFile(fs.configDir + filename, data)
+  await fs.promises.writeFile(filename, data)
 }
 
 export const importRoster = async (file, fs) => {

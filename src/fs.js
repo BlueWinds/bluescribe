@@ -1,6 +1,7 @@
 import FS from '@isomorphic-git/lightning-fs'
 
-import { createDir, metadata, readDir, readTextFile, removeDir, removeFile, writeTextFile } from '@tauri-apps/plugin-fs'
+import { invoke } from '@tauri-apps/api/tauri'
+import { createDir, metadata, readDir, readBinaryFile, removeDir, removeFile } from '@tauri-apps/plugin-fs'
 import { appConfigDir, join } from '@tauri-apps/api/path'
 
 const useLocalStorage = window.__TAURI__ === undefined
@@ -25,10 +26,26 @@ const OfflineFS = {
     async readdir(path) {
       return (await readDir(path)).map((f) => f.name)
     },
-    readFile: readTextFile,
+    async readFile(path) {
+      return Buffer.from(await readBinaryFile(path))
+    },
     rmdir: removeDir,
     unlink: removeFile,
-    writeFile: writeTextFile,
+    async writeFile(path, data) {
+      console.log(typeof data)
+      if (typeof data === 'string') {
+        data = new TextEncoder().encode(data)
+      }
+      if (typeof data === 'object') {
+        data = Array.from(new Uint8Array(data))
+        console.log(data)
+      }
+      await invoke('plugin:fs|write_file', {
+        path: path,
+        contents: data,
+        options: undefined,
+      })
+    },
   },
 }
 
