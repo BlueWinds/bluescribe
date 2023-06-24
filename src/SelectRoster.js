@@ -3,9 +3,8 @@ import BounceLoader from 'react-spinners/BounceLoader'
 import useStorage from 'squirrel-gill'
 import { FileDrop } from 'react-file-drop'
 
-import { rosterFs } from './fs'
 import { listRosters, loadRoster, importRoster, deleteRoster } from './repo/rosters'
-import { useRoster, useSystem, useConfirm } from './Context'
+import { useFs, useRoster, useSystem, useConfirm } from './Context'
 import { createRoster } from './utils'
 
 const SelectRoster = () => {
@@ -15,10 +14,11 @@ const SelectRoster = () => {
   const [newName, setNewFilename] = useState('Roster')
   const gameData = useSystem()
   const confirmDelete = useConfirm(true, `Delete ${selected}?`)
+  const { fs, rosterPath } = useFs()
 
   useEffect(() => {
     const load = async () => {
-      const r = await listRosters(gameData.gameSystem, rosterFs)
+      const r = await listRosters(gameData.gameSystem, fs, rosterPath)
       setRosters(r)
       if (!r[selected]) {
         setSelected(Object.keys(r)[0] || 'New')
@@ -35,7 +35,7 @@ const SelectRoster = () => {
     if (!rosters && gameData) {
       load()
     }
-  }, [rosters, gameData, newName, selected, setSelected])
+  }, [rosters, gameData, newName, selected, setSelected, fs, rosterPath])
 
   return (
     <>
@@ -44,7 +44,7 @@ const SelectRoster = () => {
         onFrameDrop={async (event) => {
           if (event.dataTransfer?.items[0]?.kind === 'file') {
             const file = event.dataTransfer.items[0].getAsFile()
-            await importRoster(file, rosterFs)
+            await importRoster(file, fs, rosterPath)
             setSelected(file.name)
             setRosters(null)
           }
@@ -62,7 +62,7 @@ const SelectRoster = () => {
           accept=".rosz,.ros"
           id="import-roster"
           onChange={async (e) => {
-            await importRoster(e.target.files[0], rosterFs)
+            await importRoster(e.target.files[0], fs, rosterPath)
             setSelected(e.target.files[0].name)
             setRosters(null)
           }}
@@ -106,7 +106,7 @@ const SelectRoster = () => {
               <button
                 disabled={typeof rosters[selected] !== 'string'}
                 onClick={async () => {
-                  setRoster(await loadRoster('/' + selected, rosterFs), false)
+                  setRoster(await loadRoster(selected, fs, rosterPath), false)
                 }}
               >
                 Load
@@ -115,7 +115,7 @@ const SelectRoster = () => {
                 className="secondary outline"
                 onClick={() =>
                   confirmDelete(async () => {
-                    await deleteRoster(selected, rosterFs)
+                    await deleteRoster(selected, fs, rosterPath)
                     setRosters(null)
                   })
                 }

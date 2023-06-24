@@ -253,6 +253,10 @@ button[data-tooltip-html] {
   border-bottom: none;
 }
 
+details[role='list'] summary + ul li {
+  margin-bottom: 0.5em;
+}
+
 input[data-tooltip-html] {
   border-bottom: var(--border-width) solid var(--border-color);
 }

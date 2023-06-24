@@ -1,13 +1,14 @@
 import { useState, useEffect, createContext, useContext } from 'react'
+import path from 'path-browserify'
 import BounceLoader from 'react-spinners/BounceLoader'
 import { Tooltip } from 'react-tooltip'
 import _ from 'lodash'
 
 import containerTags from 'bsd-schema/containerTags.json'
 
-import fs from '../fs'
 import { readRawFiles } from './index'
 import EditFile from './EditFile'
+import { useFs } from '../Context'
 
 export const SystemContext = createContext(null)
 export const SetSystemContext = createContext(null)
@@ -72,16 +73,17 @@ export const gatherFiles = (file, gameData, files = [gameData[gameData.gameSyste
 const EditSystem = ({ systemInfo, setSystemInfo }) => {
   const [gameData, setGameData] = useState(null)
   const [selectedFile, setSelectedFile] = useState(null)
+  const { fs, gameSystemPath } = useFs()
 
   useEffect(() => {
     if (!gameData) {
-      readRawFiles('/' + systemInfo.name, fs).then((data) => {
+      readRawFiles(path.join(gameSystemPath, systemInfo.name), fs).then((data) => {
         data.ids = buildIndex(data)
         setGameData(data)
         setSelectedFile(data.gameSystem)
       })
     }
-  }, [systemInfo, gameData])
+  }, [systemInfo, gameData, fs, gameSystemPath])
 
   return (
     <SystemContext.Provider value={gameData}>

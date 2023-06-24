@@ -3,7 +3,7 @@ import BounceLoader from 'react-spinners/BounceLoader'
 import _ from 'lodash'
 
 import { listGameSystems, listAvailableGameSystems, addGameSystem, addLocalGameSystem, clearGameSystem } from './'
-import fs from '../fs'
+import { useFs } from '../Context'
 
 const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => {
   const [systems, setSystems] = useState(null)
@@ -11,10 +11,11 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
   const [selectedAvailable, setSelectedAvailable] = useState(0)
   const [selected, setSelected] = useState(null)
   const [updatingSystem, setUpdatingSystem] = useState(false)
+  const { fs, gameSystemPath } = useFs()
 
   useEffect(() => {
     const load = async () => {
-      const s = await listGameSystems(fs)
+      const s = await listGameSystems(fs, gameSystemPath)
       setSystems(s)
       setSelected(
         previouslySelected?.name || _.reverse(_.sortBy(Object.values(s), 'lastUpdated'))[0]?.name || 'Add New',
@@ -24,7 +25,7 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
     if (!systems) {
       load()
     }
-  }, [systems, previouslySelected])
+  }, [systems, previouslySelected, fs, gameSystemPath])
 
   useEffect(() => {
     if (selected === 'Add New' && !available) {
@@ -69,7 +70,7 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
                     id="import-system"
                     webkitdirectory="true"
                     onChange={async (e) => {
-                      const system = await addLocalGameSystem([...e.target.files], fs)
+                      const system = await addLocalGameSystem([...e.target.files], fs, gameSystemPath)
                       setSystemInfo(system)
                     }}
                   />
@@ -119,7 +120,7 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
                   <span
                     role="link"
                     onClick={() => {
-                      clearGameSystem(systems[selected], fs).then(() => {
+                      clearGameSystem(systems[selected], fs, gameSystemPath).then(() => {
                         setSystems(null)
                       })
                     }}
@@ -139,7 +140,7 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
                   return
                 }
 
-                const queue = await addGameSystem(available[selectedAvailable], fs)
+                const queue = await addGameSystem(available[selectedAvailable], fs, gameSystemPath)
                 let done = 0
                 setUpdatingSystem({ done })
                 queue.start()
@@ -165,7 +166,7 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
                 if (updatingSystem) {
                   return
                 }
-                const queue = await addGameSystem(systems[selected], fs)
+                const queue = await addGameSystem(systems[selected], fs, gameSystemPath)
 
                 const count = queue.size
                 let done = 0

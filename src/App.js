@@ -5,10 +5,10 @@ import { Tooltip } from 'react-tooltip'
 import { DebounceInput } from 'react-debounce-input'
 import useStorage from 'squirrel-gill'
 import { ErrorBoundary } from 'react-error-boundary'
+import path from 'path-browserify'
 
 import '@picocss/pico'
 import './App.css'
-import fs, { rosterFs } from './fs'
 import { readFiles } from './repo'
 import SelectSystem from './repo/SelectSystem'
 import Roster from './Roster'
@@ -19,11 +19,12 @@ import {
   PathContext,
   RosterContext,
   RosterErrorsContext,
+  useFs,
   useConfirm,
-  useRoster,
-  useUpdateRoster,
-  useSystem,
   usePath,
+  useRoster,
+  useSystem,
+  useUpdateRoster,
 } from './Context'
 import SelectionModal from './Force/SelectionModal'
 import SelectForce from './Force/SelectForce'
@@ -44,6 +45,7 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
   const [path, setPath] = usePath()
 
   const [open, setOpen] = useState(false)
+  const { fs, rosterPath } = useFs()
 
   return (
     <div className="container">
@@ -96,7 +98,7 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
                     className="outline"
                     disabled={!roster.__.updated}
                     onClick={async () => {
-                      await saveRoster(roster, rosterFs)
+                      await saveRoster(roster, fs, rosterPath)
                       setRoster(roster, false)
                     }}
                   >
@@ -187,17 +189,18 @@ function App() {
   const [roster, setRoster] = useState(null)
   const [openCategories, setOpenCategories] = useState({})
   const [currentPath, setCurrentPath] = useState('')
+  const { fs, gameSystemPath } = useFs()
 
   useEffect(() => {
     const load = async () => {
       if (mode === 'editRoster') {
         setLoading(true)
         try {
-          console.log('System: ' + systemInfo.name)
-          setGameData(await readFiles('/' + systemInfo.name, fs))
+          console.log('System: ' + systemInfo.name, gameSystemPath)
+          setGameData(await readFiles(path.join(gameSystemPath, systemInfo.name), fs))
         } catch (e) {
           console.log(e)
-          setInfo({})
+          setSystemInfo({})
         }
         setLoading(false)
       }
@@ -206,7 +209,7 @@ function App() {
     if (systemInfo.name) {
       load()
     }
-  }, [systemInfo, mode])
+  }, [systemInfo, mode, gameSystemPath, fs])
 
   window.gameData = gameData
 
