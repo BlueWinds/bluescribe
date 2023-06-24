@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/src/__tests__/downloadedGameSystems
 /.pnp
 .pnp.js
 

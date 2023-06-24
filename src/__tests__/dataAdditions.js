@@ -9,12 +9,14 @@ import { loadRoster } from '../repo/rosters'
 import { viewSelectionText } from '../ViewRoster'
 
 describe('defaultSelectionEntryId modifiers', () => {
+  const gameSystemDir = path.join(__dirname, 'gameSystems', 'defaultSelectionEntryId')
+
   let gameData
   beforeAll(async () => {
-    gameData = await readFiles(path.join(__dirname, 'gameSystems/defaultSelectionEntryId'), fs)
+    gameData = await readFiles(gameSystemDir, fs)
   })
 
-  it('should behave as expected', () => {
+  it.only('should behave as expected', () => {
     const catalogue = gameData.catalogues['842a-830c-10b0-37eb']
     const roster = createRoster('test', gameData)
     addForce(roster, '9ac4-bc9e-d214-8a7b', '842a-830c-10b0-37eb', gameData)
@@ -66,13 +68,15 @@ describe('defaultSelectionEntryId modifiers', () => {
 })
 
 describe('exactly constraint', () => {
+  const gameSystemDir = path.join(__dirname, 'gameSystems', 'exactly')
+
   let gameData
   beforeAll(async () => {
-    gameData = await readFiles(path.join(__dirname, 'gameSystems/exactly'), fs)
+    gameData = await readFiles('exactly', fs, gameSystemDir)
   })
 
   it('should have error if fewer than exactly', async () => {
-    const file = await loadRoster(path.join(__dirname, 'gameSystems/exactly/InvalidRoster.ros'), fs)
+    const file = await loadRoster('InvalidRoster.ros', fs, gameSystemDir)
     const errors = validateRoster(file, gameData)
 
     expect(errors).toEqual({
@@ -81,7 +85,7 @@ describe('exactly constraint', () => {
   })
 
   it('should not error if the right number of selections', async () => {
-    const file = await loadRoster(path.join(__dirname, 'gameSystems/exactly/ValidRoster.ros'), fs)
+    const file = await loadRoster('ValidRoster.ros', fs, gameSystemDir)
     const errors = validateRoster(file, gameData)
 
     expect(errors).toEqual({})

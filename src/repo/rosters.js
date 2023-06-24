@@ -66,12 +66,12 @@ export const downloadRoster = async (roster) => {
   } = roster
 
   const data = await xmlData({ roster: contents }, filename)
-  const blob = new Blob([data], { type: 'application/xml' })
+  const blob = new Blob([data], { type: 'application/zip' })
 
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.setAttribute('href', url)
-  a.download = filename.replace('.rosz', '.ros').replace('/', '')
+  a.download = filename.replace('/', '')
   a.style.display = 'none'
   document.body.appendChild(a)
   a.click()

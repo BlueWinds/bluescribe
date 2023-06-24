@@ -250,11 +250,14 @@ export const addSelection = (base, selectionEntry, gameData, entryGroup, catalog
 
   const handleGroup = (entryGroup) => {
     let minGroup = getMinCount(entryGroup)
-    _.sortBy(entryGroup.selectionEntries, (e) => e.id === entryGroup.defaultSelectionEntryId).forEach((selection) => {
-      const max = getMaxCount(selection)
+    _.sortBy(entryGroup.selectionEntries, (e) => e.id !== entryGroup.defaultSelectionEntryId).forEach((selection) => {
+      let max = getMaxCount(selection)
+      if (max === -1) {
+        max = 10000000
+      }
       const min = Math.min(max, Math.max(getMinCount(selection), minGroup))
 
-      if (min) {
+      if (min > 0) {
         addSelection(newSelection, selection, gameData, entryGroup, catalogue, collective ? min * number : min)
         minGroup -= min
       }

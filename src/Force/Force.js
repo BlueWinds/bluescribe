@@ -86,8 +86,9 @@ const Force = () => {
           className="outline"
           onClick={() => {
             confirmDelete(() => {
-              roster.forces.force.pull(force)
+              _.pull(roster.forces.force, force)
               setRoster(roster)
+              setPath('')
             })
           }}
         >

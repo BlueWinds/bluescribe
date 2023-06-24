@@ -9,7 +9,7 @@ import { loadRoster } from '../repo/rosters'
 describe('40k', () => {
   let gameData
   beforeAll(async () => {
-    gameData = await readFiles(path.join(__dirname, '../../node_modules/wh40k'), fs)
+    gameData = await readFiles(path.join(__dirname, 'downloadedGameSystems/wh40k'), fs)
   })
 
   const rosters = {
@@ -234,7 +234,7 @@ describe('40k', () => {
 
   Object.entries(rosters).forEach(([roster, expectedErrors]) => {
     it(`should validate ${roster}`, async () => {
-      const file = await loadRoster(path.join(__dirname, './bsrosters/wh40k', roster), fs)
+      const file = await loadRoster(roster, fs, path.join(__dirname, 'bsrosters/wh40k'))
       const errors = validateRoster(file, gameData)
 
       expect(errors).toEqual(expectedErrors)

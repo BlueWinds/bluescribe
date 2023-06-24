@@ -91,6 +91,7 @@ const AddForce = () => {
             onClick={() => {
               addForce(roster, force, faction, gameData)
               setRoster(roster)
+              setPath(`forces.force.${roster.forces.force.length - 1}`)
             }}
           >
             Add

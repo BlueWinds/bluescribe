@@ -32,7 +32,7 @@ const builder = new fxparser.XMLBuilder({
   processEntities: true,
   suppressBooleanAttributes: false,
   suppressUnpairedNode: false,
-  unpairedTags: ['publication', 'category', 'cost', 'characteristic'],
+  unpairedTags: ['publication', 'category', 'cost'],
 })
 
 export const xmlData = async (contents, filename = '') => {
@@ -53,6 +53,10 @@ export const xmlData = async (contents, filename = '') => {
   prune(contents)
 
   let data = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' + builder.build(contents)
+
+  // Working around bug in fast-xml-parser
+  // https://github.com/NaturalIntelligence/fast-xml-parser/issues/590
+  data = data.replace(/#text="(.+?)"(.*?)>/g, '$2>$1')
 
   if (filename.endsWith('z')) {
     const zipFileWriter = new BlobWriter()
