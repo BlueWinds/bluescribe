@@ -211,7 +211,7 @@ describe('40k', () => {
       'forces.force.2.selections.selection.7.selections.selection.9': [
         'Chosen w/ lightning claw does not exist in the game data. It may have been removed in a data update.',
       ],
-      'forces.force.3': ['MBH x EC must have a Game Type selection', 'MBH x EC must have a Warlord selection'],
+      'forces.force.3': ['MBH x EC must have a Game Type selection'],
       'forces.force.3.selections.selection.0.selections.selection.100000': [
         'Mortarion must have a 1. Revoltingly Resilient selection',
         'Mortarion must have a 2. Living Plague selection',

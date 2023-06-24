@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalogue xmlns="http://www.battlescribe.net/schema/catalogueSchema" library="false" id="198e-e521-572a-31ee" name="Default" gameSystemId="sys-3f7d-7aa2-c5dc-14ff" gameSystemRevision="1" revision="1" battleScribeVersion="2.03" type="catalogue">
+  <forceEntries>
+    <forceEntry name="Default" hidden="false" id="13ce-fa7c-7305-3f8a">
+      <categoryLinks>
+        <categoryLink name="Main" hidden="false" id="7cbe-4c5f-cd16-8813" targetId="8961-e618-9bba-5bbd" type="category"/>
+      </categoryLinks>
+    </forceEntry>
+  </forceEntries>
+  <selectionEntries>
+    <selectionEntry type="upgrade" import="true" name="Exactly 2" hidden="false" id="a2d5-ce77-57ab-5acb">
+      <constraints>
+        <constraint type="exactly" value="2" field="selections" scope="roster" shared="true" id="548e-4991-a649-9e95"/>
+      </constraints>
+      <categoryLinks>
+        <categoryLink targetId="8961-e618-9bba-5bbd" id="5fe1-ac46-19b6-8f73" primary="true" name="Main"/>
+      </categoryLinks>
+    </selectionEntry>
+  </selectionEntries>
+  <categoryEntries>
+    <categoryEntry name="Main" hidden="false" id="8961-e618-9bba-5bbd"/>
+  </categoryEntries>
+  <xmlns>http://www.battlescribe.net/schema/catalogueSchema</xmlns>
+</catalogue>

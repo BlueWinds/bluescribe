@@ -70,7 +70,7 @@ export const downloadRoster = async (roster) => {
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.setAttribute('href', url)
-  a.download = filename
+  a.download = filename.replace('.rosz', '.ros').replace('/', '')
   a.style.display = 'none'
   document.body.appendChild(a)
   a.click()

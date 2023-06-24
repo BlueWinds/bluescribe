@@ -18,7 +18,7 @@ const Force = () => {
 
   const [openSections, setOpenSections] = useState({})
 
-  const errors = useRosterErrors()[path]
+  const errors = useRosterErrors()[forcePath]
 
   const selections = {}
   const parseSelection = (selection) => {

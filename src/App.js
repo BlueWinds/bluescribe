@@ -52,7 +52,9 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
           <ul>
             <li>
               <strong>BlueScribe</strong>
-              <div><small>{packageJson.version}</small></div>
+              <div>
+                <small>{packageJson.version}</small>
+              </div>
             </li>
             {roster && (
               <>
@@ -131,6 +133,7 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
                           onClick={() =>
                             confirmLeaveRoster(() => {
                               document.querySelectorAll('details').forEach((d) => d.removeAttribute('open'))
+                              setPath('')
                               setRoster()
                             })
                           }
@@ -145,6 +148,7 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
                         onClick={() =>
                           confirmLeaveRoster(() => {
                             document.querySelectorAll('details').forEach((d) => d.removeAttribute('open'))
+                            setPath('')
                             setRoster()
                             setSystemInfo({})
                           })

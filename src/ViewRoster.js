@@ -126,7 +126,7 @@ const maybeCost = (selection) => {
   return cost && ' [' + cost + ']'
 }
 
-const viewSelectionText = (selection, indent) => {
+export const viewSelectionText = (selection, indent) => {
   return [
     `${selection.name}${maybeCost(selection)}`,
     ...(selection.selections?.selection.map((s) => viewSelectionText(s, indent + 2)) || []),

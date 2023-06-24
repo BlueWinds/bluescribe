@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalogue library="false" id="842a-830c-10b0-37eb" name="New Catalogue" gameSystemId="sys-3fd3-721-8bdb-3572" gameSystemRevision="1" revision="1" battleScribeVersion="2.03" type="catalogue">
+  <forceEntries>
+    <forceEntry name="Default" hidden="false" id="9ac4-bc9e-d214-8a7b">
+      <categoryLinks>
+        <categoryLink name="Main" hidden="false" id="f4e6-f4f9-7f2-b77e" targetId="e5ec-f6dd-ef70-1f98" type="category"/>
+      </categoryLinks>
+    </forceEntry>
+  </forceEntries>
+  <categoryEntries>
+    <categoryEntry name="Main" hidden="false" id="e5ec-f6dd-ef70-1f98"/>
+  </categoryEntries>
+  <selectionEntries>
+    <selectionEntry type="upgrade" import="true" name="Main Entry" hidden="false" id="2796-9085-215b-dfa3">
+      <constraints>
+        <constraint type="min" value="1" field="selections" scope="roster" shared="true" id="dc91-6a58-c1be-eeae"/>
+        <constraint type="max" value="1" field="selections" scope="roster" shared="true" id="e7b6-ead4-2ad6-935e"/>
+      </constraints>
+      <modifiers>
+        <modifier type="increment" value="1" field="e7b6-ead4-2ad6-935e" id="ac3c-3a47-a3b8-a1d8"/>
+      </modifiers>
+      <selectionEntries>
+        <selectionEntry type="upgrade" import="true" name="Should Select Gun If Prefer Gun" hidden="false" id="bae2-d480-4c8d-db17">
+          <selectionEntryGroups>
+            <selectionEntryGroup name="Weapon" hidden="false" id="3df4-9dd2-7ee5-2773" defaultSelectionEntryId="sword">
+              <selectionEntries>
+                <selectionEntry type="upgrade" import="true" name="Sword" hidden="false" id="sword"/>
+                <selectionEntry type="upgrade" import="true" name="Gun" hidden="false" id="gun"/>
+              </selectionEntries>
+              <constraints>
+                <constraint type="max" value="1" field="selections" scope="parent" shared="true" id="5642-6024-a044-44d3"/>
+                <constraint type="min" value="1" field="selections" scope="parent" shared="true" id="8b89-46f8-74ce-28ae"/>
+              </constraints>
+              <modifiers>
+                <modifier type="set" value="gun" field="defaultSelectionEntryId">
+                  <conditions>
+                    <condition type="atLeast" value="1" field="selections" scope="2796-9085-215b-dfa3" childId="fd01-9244-8ca0-c7f7" shared="true" id="9bf8-f06-4531-e520"/>
+                  </conditions>
+                </modifier>
+              </modifiers>
+            </selectionEntryGroup>
+          </selectionEntryGroups>
+        </selectionEntry>
+        <selectionEntry type="upgrade" import="true" name="Should Select Sword" hidden="false" id="95c4-b70-1f96-895d">
+          <selectionEntryGroups>
+            <selectionEntryGroup name="Weapon" hidden="false" id="5005-1d61-aee2-b895" defaultSelectionEntryId="67e2-dbce-dcf7-362d">
+              <selectionEntries>
+                <selectionEntry type="upgrade" import="true" name="Sword" hidden="false" id="67e2-dbce-dcf7-362d"/>
+                <selectionEntry type="upgrade" import="true" name="Gun" hidden="false" id="3d3b-e114-51c1-6b38"/>
+              </selectionEntries>
+              <constraints>
+                <constraint type="max" value="1" field="selections" scope="parent" shared="true" id="5642-6024-a044-44d3"/>
+                <constraint type="min" value="1" field="selections" scope="parent" shared="true" id="8b89-46f8-74ce-28ae"/>
+              </constraints>
+            </selectionEntryGroup>
+          </selectionEntryGroups>
+        </selectionEntry>
+        <selectionEntry type="upgrade" import="true" name="Should Select Gun (Sword with max 0)" hidden="false" id="db2f-787a-1d8a-2f10">
+          <selectionEntryGroups>
+            <selectionEntryGroup name="Weapon" hidden="false" id="4f6f-a145-b969-a0a8" defaultSelectionEntryId="1fe0-10b3-47dc-f795">
+              <selectionEntries>
+                <selectionEntry type="upgrade" import="true" name="Sword" hidden="false" id="1fe0-10b3-47dc-f795">
+                  <constraints>
+                    <constraint type="max" value="0" field="selections" scope="parent" shared="true" id="c4dd-146c-42bb-eda8"/>
+                  </constraints>
+                </selectionEntry>
+                <selectionEntry type="upgrade" import="true" name="Gun" hidden="false" id="db9a-a8-ccc4-79e0"/>
+              </selectionEntries>
+              <constraints>
+                <constraint type="max" value="1" field="selections" scope="parent" shared="true" id="5642-6024-a044-44d3"/>
+                <constraint type="min" value="1" field="selections" scope="parent" shared="true" id="8b89-46f8-74ce-28ae"/>
+              </constraints>
+            </selectionEntryGroup>
+          </selectionEntryGroups>
+        </selectionEntry>
+        <selectionEntry type="upgrade" import="true" name="Prefer Gun" hidden="false" id="fd01-9244-8ca0-c7f7">
+          <constraints>
+            <constraint type="max" value="1" field="selections" scope="parent" shared="true" id="c429-e67a-8ecb-d637"/>
+          </constraints>
+        </selectionEntry>
+      </selectionEntries>
+      <categoryLinks>
+        <categoryLink targetId="e5ec-f6dd-ef70-1f98" id="fa75-ee18-75ed-12a1" primary="true" name="Main"/>
+      </categoryLinks>
+    </selectionEntry>
+  </selectionEntries>
+  <xmlns>http://www.battlescribe.net/schema/catalogueSchema</xmlns>
+</catalogue>

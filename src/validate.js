@@ -28,7 +28,7 @@ export const validateRoster = (roster, gameData) => {
       }
     })
 
-    gameData.gameSystem.categoryEntries.forEach((categoryEntry) => {
+    gameData.gameSystem.categoryEntries?.forEach((categoryEntry) => {
       const entry = getEntry(roster, '', categoryEntry.id, gameData)
       arrayMerge(errors, checkConstraints(roster, '', entry, gameData))
     })
@@ -261,7 +261,7 @@ const checkConstraints = (roster, path, entry, gameData, group = false) => {
           entry.primary === undefined
             ? countBy(subject, entry.id, constraint, groupIds)
             : countByCategory(subject, entry, constraint)
-        const value = constraint.value * getConstraintValue(constraint, entry.id, subject, gameData)
+        const value = getConstraintValue(constraint, entry.id, subject, gameData)
 
         if (constraint.type === 'min' && value !== -1 && !entry.hidden && occurances < value) {
           if (value === 1) {
@@ -286,6 +286,12 @@ const checkConstraints = (roster, path, entry, gameData, group = false) => {
               `${subject.name} must have ${occurances - value} fewer ${pluralize(entry.name.replace(/\W+$/, ''))}`,
             )
           }
+        }
+
+        if (constraint.type === 'exactly' && value !== occurances) {
+          errors.push(
+            `${subject.name} must have ${value} ${pluralize(entry.name.replace(/\W+$/, ''))}, but has ${occurances}`,
+          )
         }
       })
 
@@ -501,9 +507,9 @@ const getValue = (condition, subject, gameData, catalogue) => {
 const getConstraintValue = (constraint, entryId, subject, gameData) => {
   switch (constraint.field) {
     case 'selections':
-      return 1
+      return constraint.value
     case 'forces':
-      return 1
+      return constraint.value
     default: {
       let cost = constraint.field.startsWith('limit::')
         ? subject.costLimits?.costLimit.find((cl) => `limit::${cl.id}` === constraint.field) ?? -1
@@ -515,7 +521,7 @@ const getConstraintValue = (constraint, entryId, subject, gameData) => {
         }
       }
 
-      return cost
+      return cost * constraint.value
     }
   }
 }

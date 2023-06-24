@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<roster id="52b9-785f-ceeb-8ce3" name="Roster" battleScribeVersion="2.03" gameSystemId="sys-3f7d-7aa2-c5dc-14ff" gameSystemName="exactly" gameSystemRevision="1" xmlns="http://www.battlescribe.net/schema/rosterSchema">
+  <forces>
+    <force id="bccb-2cc5-768f-2153" name="Default" entryId="13ce-fa7c-7305-3f8a" catalogueId="198e-e521-572a-31ee" catalogueRevision="1" catalogueName="Default">
+      <categories>
+        <category id="6f54-cf45-bbd1-6a1c" name="Uncategorised" entryId="(No Category)" primary="false"/>
+        <category id="7cbe-4c5f-cd16-8813" name="Main" entryId="8961-e618-9bba-5bbd" primary="false"/>
+      </categories>
+      <selections>
+        <selection id="5f3d-e96c-a66f-6ec8" name="Exactly 2" entryId="a2d5-ce77-57ab-5acb" number="1" type="upgrade">
+          <categories>
+            <category id="56e3-daa8-bddf-6acb" name="Main" entryId="8961-e618-9bba-5bbd" primary="true"/>
+          </categories>
+        </selection>
+      </selections>
+    </force>
+  </forces>
+</roster>

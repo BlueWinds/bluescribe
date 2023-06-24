@@ -2,8 +2,11 @@ import { useState } from 'react'
 import _ from 'lodash'
 
 import { usePath, useRoster, useRosterErrors, useSystem } from '../Context'
-import { addForce, costString, sumCosts } from '../utils'
+import { addForce, costString, gatherCatalogues, sumCosts } from '../utils'
 import { gatherForces } from './SelectForce'
+
+const gatherForceEntries = (faction, gameData) =>
+  _.sortBy(_.flatten(gatherCatalogues(gameData.catalogues[faction], gameData).map((c) => c.forceEntries || [])), 'name')
 
 const AddForce = () => {
   const gameData = useSystem()
@@ -11,7 +14,9 @@ const AddForce = () => {
   const catalogues = _.sortBy(gameData.catalogues, 'name').filter((c) => !c.library)
 
   const [faction, setFaction] = useState(catalogues[0].id)
-  const [force, setForce] = useState(_.sortBy(gameData.gameSystem.forceEntries, 'name')[0].id)
+  const forceEntries = gatherForceEntries(faction, gameData)
+
+  const [force, setForce] = useState(forceEntries[0].id)
   const [roster, setRoster] = useRoster()
   const [, setPath] = usePath()
 
@@ -41,9 +46,11 @@ const AddForce = () => {
                 <small>{force.name}</small>
               </span>
               {forceErrors.length ? (
-                <span className="errors" data-tooltip-id="tooltip" data-tooltip-html={forceErrors.join('<br />')}>
-                  Validation errors
-                </span>
+                <div>
+                  <small className="errors" data-tooltip-id="tooltip" data-tooltip-html={forceErrors.join('<br />')}>
+                    Validation errors
+                  </small>
+                </div>
               ) : (
                 ''
               )}
@@ -55,7 +62,12 @@ const AddForce = () => {
         <h6>Add Force</h6>
         <label>
           Faction
-          <select onChange={(e) => setFaction(e.target.value)}>
+          <select
+            onChange={(e) => {
+              setFaction(e.target.value)
+              setForce(gatherForceEntries(e.target.value, gameData)[0].id)
+            }}
+          >
             {catalogues.map((f, index) => (
               <option key={f.id} value={f.id}>
                 {f.name}
@@ -66,7 +78,7 @@ const AddForce = () => {
         <label>
           Detachment
           <select onChange={(e) => setForce(e.target.value)}>
-            {_.sortBy(gameData.gameSystem.forceEntries, 'name').map((f, index) => (
+            {forceEntries.map((f, index) => (
               <option key={f.id} value={f.id}>
                 {f.name}
               </option>
