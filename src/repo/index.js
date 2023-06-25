@@ -80,16 +80,6 @@ export const listAvailableGameSystems = async () => {
 }
 
 export const listGameSystems = async (fs, gameSystemPath) => {
-  var configStat = null
-  try {
-    configStat = await fs.promises.stat(gameSystemPath)
-  } finally {
-    if (!configStat || !configStat.isDirectory()) {
-      await fs.promises.mkdir(gameSystemPath)
-      return {} // No systems yet
-    }
-  }
-
   const systems = {}
   const dirs = await fs.promises.readdir(gameSystemPath)
   await Promise.all(
@@ -209,10 +199,7 @@ const listFiles = async (dir, fs) => {
 }
 
 const cacheVersion = 4
-export const readSystemFiles = async (system, fs) => {
-  const configDir = fs.configDir + system.name
-  const dataDir = system.externalPath || configDir
-
+export const readFiles = async (dir, fs) => {
   try {
     if (await fs.promises.stat(path.join(dir, 'cache.json'))) {
       console.log('Loading cache')
@@ -230,13 +217,12 @@ export const readSystemFiles = async (system, fs) => {
   } catch {
     console.log('No cache found. Reparsing raw files.')
   }
-
   const parsed = {
     version: cacheVersion,
     catalogues: {},
   }
 
-  const paths = await listFiles(dataDir, fs)
+  const paths = await listFiles(dir, fs)
   await Promise.all(
     paths.map(async (path) => {
       const data = await readXML(path, fs)

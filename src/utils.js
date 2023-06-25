@@ -109,7 +109,7 @@ export const getMaxCount = (entry) =>
   entry.constraints?.find((c) => c.type === 'max' && c.scope === 'parent')?.value ?? -1
 export const isCollective = (entry) => entry.collective || entry.selectionEntries?.every(isCollective)
 
-export const createRoster = (configDir, name, gameSystem) => {
+export const createRoster = (name, gameSystem) => {
   const roster = {
     id: randomId(),
     name: name,
@@ -119,7 +119,7 @@ export const createRoster = (configDir, name, gameSystem) => {
     gameSystemRevision: gameSystem.revision,
     xmlns: 'http://www.battlescribe.net/schema/rosterSchema',
     __: {
-      filename: configDir + name + '.rosz',
+      filename: name + '.rosz',
       updated: true,
     },
     costs: {

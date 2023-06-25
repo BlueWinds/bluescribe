@@ -1,10 +1,6 @@
-import FS from '@isomorphic-git/lightning-fs'
-
 import { invoke } from '@tauri-apps/api/tauri'
 import { createDir, metadata, readDir, readBinaryFile, removeDir, removeFile } from '@tauri-apps/plugin-fs'
 import { appConfigDir, join } from '@tauri-apps/api/path'
-
-const useLocalStorage = window.__TAURI__ === undefined
 
 // Emulate the parts of the metadata object that we use
 class offlineMetadata {
@@ -31,6 +27,9 @@ const OfflineFS = {
     },
     rmdir: removeDir,
     unlink: removeFile,
+    // Workaround for https://github.com/tauri-apps/plugins-workspace/pull/454
+    //   blocks using writeBinaryFile directly, so we essentially reimplement it
+    // writeFile: writeBinaryFile,
     async writeFile(path, data) {
       if (typeof data === 'string') {
         data = new TextEncoder().encode(data)
@@ -47,9 +46,14 @@ const OfflineFS = {
   },
 }
 
-const fs = useLocalStorage ? new FS('fs') : Object.assign({}, OfflineFS)
-fs.configDir = useLocalStorage ? '/' : (await join(await appConfigDir(), 'systems')) + '/'
-export default fs
+const fs = Object.assign({}, OfflineFS)
+const gameSystemPath = await join(await appConfigDir(), 'gameSystems')
+const rosterPath = await join(await appConfigDir(), 'rosters')
 
-export const rosterFs = useLocalStorage ? new FS('rosters') : Object.assign({}, OfflineFS)
-rosterFs.configDir = useLocalStorage ? '/' : (await join(await appConfigDir(), 'rosters')) + '/'
+const Platform = {
+  fs,
+  gameSystemPath,
+  rosterPath,
+}
+
+export default Platform

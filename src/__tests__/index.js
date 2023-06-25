@@ -3,7 +3,7 @@ import fs from 'fs'
 import 'web-streams-polyfill/es2018'
 
 import { validateRoster } from '../validate'
-import { readSystemFiles } from '../repo'
+import { readFiles } from '../repo'
 import { loadRoster } from '../repo/rosters'
 
 describe('40k', () => {

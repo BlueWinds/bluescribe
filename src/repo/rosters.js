@@ -4,16 +4,6 @@ import containerTags from 'bsd-schema/containerTags.json'
 import { readXML, xmlData } from './'
 
 export const listRosters = async (gameSystem, fs, rosterPath) => {
-  var configStat = null
-  try {
-    configStat = await fs.promises.stat(rosterPath)
-  } finally {
-    if (!configStat || !configStat.isDirectory()) {
-      await fs.promises.mkdir(rosterPath)
-      return {} // No rosters yet
-    }
-  }
-
   const rosters = {}
   const files = await fs.promises.readdir(rosterPath)
   await Promise.all(

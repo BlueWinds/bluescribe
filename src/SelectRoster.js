@@ -89,7 +89,7 @@ const SelectRoster = () => {
               </label>
               <button
                 onClick={async () => {
-                  const roster = await createRoster(rosterFs.configDir, newName, gameData.gameSystem)
+                  const roster = await createRoster(newName, gameData.gameSystem)
                   setRoster(roster)
                 }}
               >
@@ -129,7 +129,7 @@ const SelectRoster = () => {
             <button
               className="secondary outline"
               onClick={async () => {
-                await open(rosterFs.configDir)
+                await open(rosterPath)
               }}
             >
               Open roster directory
