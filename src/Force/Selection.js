@@ -401,7 +401,8 @@ const Count = ({ catalogue, selection, option, min, max, onSelect, entryGroup })
 
   const cost = costString(sumCosts(option))
 
-  const numberTip = min === max ? `${min} ${pluralize(option.name)}` : `${min}-${max} ${pluralize(option.name)}`
+  const numberTip =
+    min === max ? `${min} ${pluralize(option.name)}` : max === -1 ? '' : `${min}-${max} ${pluralize(option.name)}`
 
   return (
     <label>

@@ -1,0 +1,118 @@
+{
+  "version": 4,
+  "catalogues": {
+    "198e-e521-572a-31ee": {
+      "type": "catalogue",
+      "forceEntries": [
+        {
+          "categoryLinks": [
+            {
+              "name": "Main",
+              "hidden": false,
+              "id": "7cbe-4c5f-cd16-8813",
+              "targetId": "8961-e618-9bba-5bbd",
+              "type": "category"
+            }
+          ],
+          "name": "Default",
+          "hidden": false,
+          "id": "13ce-fa7c-7305-3f8a"
+        }
+      ],
+      "selectionEntries": [
+        {
+          "constraints": [
+            {
+              "type": "exactly",
+              "value": 2,
+              "field": "selections",
+              "scope": "roster",
+              "shared": true,
+              "id": "548e-4991-a649-9e95"
+            }
+          ],
+          "categoryLinks": [
+            { "targetId": "8961-e618-9bba-5bbd", "id": "5fe1-ac46-19b6-8f73", "primary": true, "name": "Main" }
+          ],
+          "type": "upgrade",
+          "name": "Exactly 2",
+          "hidden": false,
+          "id": "a2d5-ce77-57ab-5acb"
+        }
+      ],
+      "categoryEntries": [{ "name": "Main", "hidden": false, "id": "8961-e618-9bba-5bbd" }],
+      "library": false,
+      "id": "198e-e521-572a-31ee",
+      "name": "Default",
+      "gameSystemId": "sys-3f7d-7aa2-c5dc-14ff",
+      "gameSystemRevision": 1,
+      "revision": 1,
+      "battleScribeVersion": 2.03,
+      "ids": {
+        "13ce-fa7c-7305-3f8a": {
+          "categoryLinks": [
+            {
+              "name": "Main",
+              "hidden": false,
+              "id": "7cbe-4c5f-cd16-8813",
+              "targetId": "8961-e618-9bba-5bbd",
+              "type": "category"
+            }
+          ],
+          "name": "Default",
+          "hidden": false,
+          "id": "13ce-fa7c-7305-3f8a"
+        },
+        "7cbe-4c5f-cd16-8813": {
+          "name": "Main",
+          "hidden": false,
+          "id": "7cbe-4c5f-cd16-8813",
+          "targetId": "8961-e618-9bba-5bbd",
+          "type": "category"
+        },
+        "a2d5-ce77-57ab-5acb": {
+          "constraints": [
+            {
+              "type": "exactly",
+              "value": 2,
+              "field": "selections",
+              "scope": "roster",
+              "shared": true,
+              "id": "548e-4991-a649-9e95"
+            }
+          ],
+          "categoryLinks": [
+            { "targetId": "8961-e618-9bba-5bbd", "id": "5fe1-ac46-19b6-8f73", "primary": true, "name": "Main" }
+          ],
+          "type": "upgrade",
+          "name": "Exactly 2",
+          "hidden": false,
+          "id": "a2d5-ce77-57ab-5acb"
+        },
+        "548e-4991-a649-9e95": {
+          "type": "exactly",
+          "value": 2,
+          "field": "selections",
+          "scope": "roster",
+          "shared": true,
+          "id": "548e-4991-a649-9e95"
+        },
+        "5fe1-ac46-19b6-8f73": {
+          "targetId": "8961-e618-9bba-5bbd",
+          "id": "5fe1-ac46-19b6-8f73",
+          "primary": true,
+          "name": "Main"
+        },
+        "8961-e618-9bba-5bbd": { "name": "Main", "hidden": false, "id": "8961-e618-9bba-5bbd" }
+      }
+    }
+  },
+  "gameSystem": {
+    "type": "gameSystem",
+    "id": "sys-3f7d-7aa2-c5dc-14ff",
+    "name": "exactly",
+    "battleScribeVersion": 2.03,
+    "revision": 1,
+    "ids": {}
+  }
+}

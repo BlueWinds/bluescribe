@@ -1,24 +1,25 @@
+import path from 'path-browserify'
 import containerTags from 'bsd-schema/containerTags.json'
 
 import { readXML, xmlData } from './'
 
-export const listRosters = async (gameSystem, fs) => {
+export const listRosters = async (gameSystem, fs, rosterPath) => {
   var configStat = null
   try {
-    configStat = await fs.promises.stat(fs.configDir)
+    configStat = await fs.promises.stat(rosterPath)
   } finally {
     if (!configStat || !configStat.isDirectory()) {
-      await fs.promises.mkdir(fs.configDir)
+      await fs.promises.mkdir(rosterPath)
       return {} // No rosters yet
     }
   }
 
   const rosters = {}
-  const files = await fs.promises.readdir(fs.configDir)
+  const files = await fs.promises.readdir(rosterPath)
   await Promise.all(
     files.map(async (file) => {
       try {
-        const roster = await loadRoster(fs.configDir + file, fs)
+        const roster = await loadRoster(file, fs, rosterPath)
         if (roster.gameSystemId === gameSystem.id) {
           rosters[file] = roster.name
         }
@@ -30,8 +31,8 @@ export const listRosters = async (gameSystem, fs) => {
   return rosters
 }
 
-export const loadRoster = async (file, fs) => {
-  const roster = await readXML(file, fs)
+export const loadRoster = async (file, fs, rosterPath) => {
+  const roster = await readXML(path.join(rosterPath, file), fs)
   roster.__ = {
     filename: file,
     updated: false,
@@ -52,20 +53,20 @@ export const loadRoster = async (file, fs) => {
   return roster
 }
 
-export const saveRoster = async (roster, fs) => {
+export const saveRoster = async (roster, fs, rosterPath) => {
   const {
     __: { filename },
     ...contents
   } = roster
 
   const data = await xmlData({ roster: contents }, filename)
-  await fs.promises.writeFile(filename, data)
+  await fs.promises.writeFile(path.join(rosterPath, filename), data)
 }
 
-export const importRoster = async (file, fs) => {
+export const importRoster = async (file, fs, rosterPath) => {
   const data = await file.arrayBuffer()
-  console.log('writing', fs.configDir + file.name)
-  await fs.promises.writeFile(fs.configDir + file.name, data)
+  console.log('writing', path.join(rosterPath, file.name))
+  await fs.promises.writeFile(path.join(rosterPath, file.name), data)
 }
 
 export const downloadRoster = async (roster) => {
@@ -75,12 +76,12 @@ export const downloadRoster = async (roster) => {
   } = roster
 
   const data = await xmlData({ roster: contents }, filename)
-  const blob = new Blob([data], { type: 'application/xml' })
+  const blob = new Blob([data], { type: 'application/zip' })
 
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.setAttribute('href', url)
-  a.download = filename
+  a.download = filename.replace('/', '')
   a.style.display = 'none'
   document.body.appendChild(a)
   a.click()
@@ -88,6 +89,6 @@ export const downloadRoster = async (roster) => {
   URL.revokeObjectURL(url)
 }
 
-export const deleteRoster = async (file, fs) => {
-  await fs.promises.unlink(fs.configDir + file)
+export const deleteRoster = async (file, fs, rosterPath) => {
+  await fs.promises.unlink(path.join(rosterPath, file))
 }

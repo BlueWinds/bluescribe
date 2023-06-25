@@ -123,11 +123,12 @@ export const createRoster = (configDir, name, gameSystem) => {
       updated: true,
     },
     costs: {
-      cost: gameSystem.costTypes.map((ct) => ({
-        name: ct.name,
-        typeId: ct.id,
-        value: 0,
-      })),
+      cost:
+        gameSystem.costTypes?.map((ct) => ({
+          name: ct.name,
+          typeId: ct.id,
+          value: 0,
+        })) || [],
     },
   }
 
@@ -248,18 +249,17 @@ export const addSelection = (base, selectionEntry, gameData, entryGroup, catalog
   })
 
   const handleGroup = (entryGroup) => {
-    entryGroup.selectionEntries?.forEach((selection) => {
-      let min = getMinCount(selection)
+    let minGroup = getMinCount(entryGroup)
+    _.sortBy(entryGroup.selectionEntries, (e) => e.id !== entryGroup.defaultSelectionEntryId).forEach((selection) => {
+      let max = getMaxCount(selection)
+      if (max === -1) {
+        max = 10000000
+      }
+      const min = Math.min(max, Math.max(getMinCount(selection), minGroup))
 
-      if (min) {
+      if (min > 0) {
         addSelection(newSelection, selection, gameData, entryGroup, catalogue, collective ? min * number : min)
-      } else if (
-        getMinCount(entryGroup) &&
-        entryGroup.defaultSelectionEntryId &&
-        selection.id.includes(entryGroup.defaultSelectionEntryId)
-      ) {
-        min = getMinCount(entryGroup)
-        addSelection(newSelection, selection, gameData, entryGroup, catalogue, collective ? min * number : min)
+        minGroup -= min
       }
     })
 

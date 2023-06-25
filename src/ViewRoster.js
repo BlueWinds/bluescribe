@@ -10,12 +10,8 @@ import Categories, { collectCategories } from './Force/Categories'
 
 const ViewRoster = () => {
   const [roster] = useRoster()
-  const [type, setType] = useStorage(localStorage, 'viewRosterType', 'text')
+  const [type, setType] = useStorage(localStorage, 'viewRosterType', 'full')
 
-  // <label>
-  //   <input type="radio" checked={type === 'text'} onChange={() => setType('text')} />
-  //   Text
-  // </label>
   // <label>
   //   <input type="radio" checked={type === 'compact'} onChange={() => setType('compact')} />
   //   Compact
@@ -28,52 +24,17 @@ const ViewRoster = () => {
           <input type="radio" checked={type === 'full'} onChange={() => setType('full')} />
           Full
         </label>
+        <label>
+          <input type="radio" checked={type === 'text'} onChange={() => setType('text')} />
+          Text
+        </label>
       </fieldset>
       {type === 'text' && (
         <code className="text-roster">
           +++ {roster.name} ({roster.gameSystemName}) [{costString(sumCosts(roster))}] +++
-          {roster.forces?.force.map((force) => {
-            const selections = {}
-            const parseSelection = (selection) => {
-              const primary = _.find(selection.categories.category, 'primary').entryId
-              selections[primary] = selections[primary] || []
-              selections[primary].push(selection)
-            }
-
-            force.selections?.selection.forEach(parseSelection)
-
-            return (
-              <Fragment key={force.id}>
-                {'\n\n'}
-                {'++ '}
-                {force.name} ({force.catalogueName}) [{costString(sumCosts(force))}] ++
-                {force.categories?.category.map((category) => {
-                  if (!selections[category.entryId]) {
-                    return null
-                  }
-
-                  return (
-                    <Fragment key={category.id}>
-                      {'\n\n'}
-                      {'  + '}
-                      {category.name} [
-                      {costString(
-                        sumCosts({
-                          selections: {
-                            selection: selections[category.entryId],
-                          },
-                        }),
-                      )}
-                      ] +{'\n\n'}
-                      {_.sortBy(selections[category.entryId], 'name')
-                        .map((s) => '    ' + viewSelectionText(s, 6))
-                        .join('\n\n')}
-                    </Fragment>
-                  )
-                })}
-              </Fragment>
-            )
-          })}
+          {roster.forces?.force.map((force) => (
+            <ViewForceText force={force} key={force.id} />
+          ))}
         </code>
       )}
       {type === 'full' && (
@@ -95,7 +56,7 @@ const ViewForce = ({ force }) => {
   return (
     <>
       <h5>
-        {force.name} ({force.catalogueName}) [{costString(sumCosts(force))}]
+        {force.name} ({force.catalogueName}){maybeCost(force)}
       </h5>
       {force.selections?.selection.map((selection) => (
         <ViewSelection selection={selection} catalogue={gameData.catalogues[force.catalogueId]} />
@@ -119,10 +80,55 @@ const ViewSelection = ({ catalogue, selection }) => {
   )
 }
 
-const viewSelectionText = (selection, indent) => {
+const ViewForceText = ({ force }) => {
+  const selections = {}
+  const parseSelection = (selection) => {
+    const primary = _.find(selection.categories?.category, 'primary')?.entryId || '(No Category)'
+    console.log(primary, selection)
+    selections[primary] = selections[primary] || []
+    selections[primary].push(selection)
+  }
+
+  force.selections?.selection.forEach(parseSelection)
+
+  return (
+    <Fragment key={force.id}>
+      {'\n\n'}
+      {'++ '}
+      {force.name} ({force.catalogueName}){maybeCost(force)} ++
+      {force.categories?.category.map((category) => {
+        if (!selections[category.entryId]) {
+          return null
+        }
+
+        const fakeSelection = {
+          selections: { selection: selections[category.entryId] },
+        }
+
+        return (
+          <Fragment key={category.id}>
+            {'\n\n'}
+            {'  + '}
+            {category.name}
+            {maybeCost(fakeSelection)} +{'\n\n'}
+            {_.sortBy(selections[category.entryId], 'name')
+              .map((s) => '    ' + viewSelectionText(s, 6))
+              .join('\n\n')}
+          </Fragment>
+        )
+      })}
+    </Fragment>
+  )
+}
+
+const maybeCost = (selection) => {
   const cost = costString(sumCosts(selection))
+  return cost && ' [' + cost + ']'
+}
+
+export const viewSelectionText = (selection, indent) => {
   return [
-    `${selection.name}${cost && ' [' + cost + ']'}`,
+    `${selection.name}${maybeCost(selection)}`,
     ...(selection.selections?.selection.map((s) => viewSelectionText(s, indent + 2)) || []),
   ].join('\n' + _.repeat(' ', indent))
 }

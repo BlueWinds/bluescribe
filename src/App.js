@@ -5,11 +5,11 @@ import { Tooltip } from 'react-tooltip'
 import { DebounceInput } from 'react-debounce-input'
 import useStorage from 'squirrel-gill'
 import { ErrorBoundary } from 'react-error-boundary'
+import path from 'path-browserify'
 
 import '@picocss/pico'
 import './App.css'
-import fs, { rosterFs } from './fs'
-import { readSystemFiles } from './repo'
+import { readFiles } from './repo'
 import SelectSystem from './repo/SelectSystem'
 import Roster from './Roster'
 import { saveRoster, downloadRoster } from './repo/rosters'
@@ -19,11 +19,12 @@ import {
   PathContext,
   RosterContext,
   RosterErrorsContext,
+  useFs,
   useConfirm,
-  useRoster,
-  useUpdateRoster,
-  useSystem,
   usePath,
+  useRoster,
+  useSystem,
+  useUpdateRoster,
 } from './Context'
 import SelectionModal from './Force/SelectionModal'
 import SelectForce from './Force/SelectForce'
@@ -31,6 +32,7 @@ import ViewRoster from './ViewRoster'
 import { refreshRoster } from './utils'
 import EditSystem from './repo/EditSystem'
 import { pathToForce, validateRoster } from './validate'
+import packageJson from '../package.json'
 
 const Body = ({ children, systemInfo, setSystemInfo }) => {
   const [roster, setRoster] = useRoster()
@@ -43,6 +45,7 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
   const [path, setPath] = usePath()
 
   const [open, setOpen] = useState(false)
+  const { fs, rosterPath } = useFs()
 
   return (
     <div className="container">
@@ -51,6 +54,9 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
           <ul>
             <li>
               <strong>BlueScribe</strong>
+              <div>
+                <small>{packageJson.version}</small>
+              </div>
             </li>
             {roster && (
               <>
@@ -92,7 +98,7 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
                     className="outline"
                     disabled={!roster.__.updated}
                     onClick={async () => {
-                      await saveRoster(roster, rosterFs)
+                      await saveRoster(roster, fs, rosterPath)
                       setRoster(roster, false)
                     }}
                   >
@@ -129,6 +135,7 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
                           onClick={() =>
                             confirmLeaveRoster(() => {
                               document.querySelectorAll('details').forEach((d) => d.removeAttribute('open'))
+                              setPath('')
                               setRoster()
                             })
                           }
@@ -143,6 +150,7 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
                         onClick={() =>
                           confirmLeaveRoster(() => {
                             document.querySelectorAll('details').forEach((d) => d.removeAttribute('open'))
+                            setPath('')
                             setRoster()
                             setSystemInfo({})
                           })
@@ -181,17 +189,18 @@ function App() {
   const [roster, setRoster] = useState(null)
   const [openCategories, setOpenCategories] = useState({})
   const [currentPath, setCurrentPath] = useState('')
+  const { fs, gameSystemPath } = useFs()
 
   useEffect(() => {
     const load = async () => {
       if (mode === 'editRoster') {
         setLoading(true)
         try {
-          console.log('System: ' + systemInfo.name)
-          setGameData(await readSystemFiles(systemInfo, fs))
+          console.log('System: ' + systemInfo.name, gameSystemPath)
+          setGameData(await readFiles(path.join(gameSystemPath, systemInfo.name), fs))
         } catch (e) {
           console.log(e)
-          setInfo({})
+          setSystemInfo({})
         }
         setLoading(false)
       }
@@ -200,7 +209,7 @@ function App() {
     if (systemInfo.name) {
       load()
     }
-  }, [systemInfo, mode])
+  }, [systemInfo, mode, gameSystemPath, fs])
 
   window.gameData = gameData
 

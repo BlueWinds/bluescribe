@@ -18,7 +18,7 @@ const Force = () => {
 
   const [openSections, setOpenSections] = useState({})
 
-  const errors = useRosterErrors()[path]
+  const errors = useRosterErrors()[forcePath]
 
   const selections = {}
   const parseSelection = (selection) => {
@@ -86,8 +86,9 @@ const Force = () => {
           className="outline"
           onClick={() => {
             confirmDelete(() => {
-              roster.forces.force.pull(force)
+              _.pull(roster.forces.force, force)
               setRoster(roster)
+              setPath('')
             })
           }}
         >

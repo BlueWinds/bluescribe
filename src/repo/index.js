@@ -1,3 +1,4 @@
+import path from 'path-browserify'
 import fxparser from 'fast-xml-parser'
 import { BlobReader, BlobWriter, TextReader, TextWriter, ZipReader, ZipWriter } from '@zip.js/zip.js'
 import _ from 'lodash'
@@ -31,7 +32,7 @@ const builder = new fxparser.XMLBuilder({
   processEntities: true,
   suppressBooleanAttributes: false,
   suppressUnpairedNode: false,
-  unpairedTags: ['publication', 'category', 'cost', 'characteristic'],
+  unpairedTags: ['publication', 'category', 'cost'],
 })
 
 export const xmlData = async (contents, filename = '') => {
@@ -52,6 +53,10 @@ export const xmlData = async (contents, filename = '') => {
   prune(contents)
 
   let data = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' + builder.build(contents)
+
+  // Working around bug in fast-xml-parser
+  // https://github.com/NaturalIntelligence/fast-xml-parser/issues/590
+  data = data.replace(/#text="(.+?)"(.*?)>/g, '$2>$1')
 
   if (filename.endsWith('z')) {
     const zipFileWriter = new BlobWriter()
@@ -74,25 +79,27 @@ export const listAvailableGameSystems = async () => {
   return data.data.repositories
 }
 
-export const listGameSystems = async (fs) => {
+export const listGameSystems = async (fs, gameSystemPath) => {
   var configStat = null
   try {
-    configStat = await fs.promises.stat(fs.configDir)
+    configStat = await fs.promises.stat(gameSystemPath)
   } finally {
     if (!configStat || !configStat.isDirectory()) {
-      await fs.promises.mkdir(fs.configDir)
+      await fs.promises.mkdir(gameSystemPath)
       return {} // No systems yet
     }
   }
 
   const systems = {}
-  const dirs = await fs.promises.readdir(fs.configDir)
+  const dirs = await fs.promises.readdir(gameSystemPath)
   await Promise.all(
     dirs.map(async (dir) => {
       try {
-        systems[dir] = await JSON.parse((await fs.promises.readFile(fs.configDir + dir + '/system.json')).toString())
+        systems[dir] = await JSON.parse(
+          (await fs.promises.readFile(path.join(gameSystemPath, dir, 'system.json'))).toString(),
+        )
       } catch {
-        await clearGameSystem({ name: dir }, fs)
+        await clearGameSystem({ name: dir }, fs, gameSystemPath)
       }
     }),
   )
@@ -104,7 +111,7 @@ const htmlDecode = (str) => {
   return doc.documentElement.textContent
 }
 
-export const addLocalGameSystem = async (files, fs) => {
+export const addLocalGameSystem = async (files, fs, gameSystemPath) => {
   const system = {
     name: files[0].webkitRelativePath.split(/\\|\//)[0],
     description: files[0].webkitRelativePath.split(/\\|\//)[0],
@@ -113,23 +120,22 @@ export const addLocalGameSystem = async (files, fs) => {
     version: 'v0.0.0',
   }
 
-  const systemDir = fs.configDir + system.name
-  const dirs = await fs.promises.readdir(fs.configDir)
+  const dirs = await fs.promises.readdir(gameSystemPath)
   if (dirs.indexOf(system.name) !== -1) {
-    const files = await fs.promises.readdir(systemDir)
-    await Promise.all(files.map((f) => fs.promises.unlink(systemDir + '/' + f)))
-    await fs.promises.rmdir(systemDir)
+    const files = await fs.promises.readdir(path.join(gameSystemPath, system.name))
+    await Promise.all(files.map((f) => fs.promises.unlink(path.join(gameSystemPath, system.name, f))))
+    await fs.promises.rmdir(path.join(gameSystemPath, system.name))
   }
 
-  await fs.promises.mkdir(systemDir)
-  await fs.promises.writeFile(systemDir + '/system.json', JSON.stringify(system))
+  await fs.promises.mkdir(path.join(gameSystemPath, system.name))
+  await fs.promises.writeFile(path.join(gameSystemPath, system.name, 'system.json'), JSON.stringify(system))
 
   await Promise.all(
     files.map(async (file) => {
       const filename = _.last(file.name.split(/\\|\//))
       const data = await file.arrayBuffer()
-      console.log('Writing ' + systemDir + '/' + filename, data)
-      await fs.promises.writeFile(systemDir + '/' + filename, data)
+      console.log('Writing ' + path.join(gameSystemPath, system.name, filename), data)
+      await fs.promises.writeFile(path.join(gameSystemPath, system.name, filename), data)
     }),
   )
 
@@ -153,17 +159,16 @@ export const addExternalGameSystem = async (externalDir, fs) => {
   return system
 }
 
-export const addGameSystem = async (system, fs) => {
-  const systemDir = fs.configDir + system.name
-  const dirs = await fs.promises.readdir(fs.configDir)
+export const addGameSystem = async (system, fs, gameSystemPath) => {
+  const dirs = await fs.promises.readdir(gameSystemPath)
   if (dirs.indexOf(system.name) !== -1) {
-    const files = await fs.promises.readdir(systemDir)
-    await Promise.all(files.map((f) => fs.promises.unlink(systemDir + '/' + f)))
-    await fs.promises.rmdir(systemDir)
+    const files = await fs.promises.readdir(path.join(gameSystemPath, system.name))
+    await Promise.all(files.map((f) => fs.promises.unlink(path.join(gameSystemPath, system.name, f))))
+    await fs.promises.rmdir(path.join(gameSystemPath, system.name))
   }
 
-  await fs.promises.mkdir(systemDir)
-  await fs.promises.writeFile(systemDir + '/system.json', JSON.stringify(system))
+  await fs.promises.mkdir(path.join(gameSystemPath, system.name))
+  await fs.promises.writeFile(path.join(gameSystemPath, system.name, 'system.json'), JSON.stringify(system))
 
   const index = await axios.get(`https://cdn.jsdelivr.net/gh/BSData/${system.name}@${system.version.replace('v', '')}/`)
 
@@ -181,24 +186,24 @@ export const addGameSystem = async (system, fs) => {
   files.forEach((filename) =>
     q.add(async () => {
       const file = await axios(`https://cdn.jsdelivr.net${filename}`)
-      await fs.promises.writeFile(systemDir + '/' + _.last(filename.split('/')), file.data)
+      await fs.promises.writeFile(path.join(gameSystemPath, system.name, _.last(filename.split('/'))), file.data)
     }),
   )
 
   return q
 }
 
-export const clearGameSystem = async (system, fs) => {
-  const files = await fs.promises.readdir(fs.configDir + system.name)
-  await Promise.all(files.map((f) => fs.promises.unlink(fs.configDir + system.name + '/' + f)))
-  await fs.promises.rmdir(fs.configDir + system.name)
+export const clearGameSystem = async (system, fs, gameSystemPath) => {
+  const files = await fs.promises.readdir(path.join(gameSystemPath, system.name))
+  await Promise.all(files.map((f) => fs.promises.unlink(path.join(gameSystemPath, system.name, f))))
+  await fs.promises.rmdir(path.join(gameSystemPath, system.name))
 }
 
 const listFiles = async (dir, fs) => {
   const files = await fs.promises.readdir(dir)
   const paths = files
     .filter((f) => f.endsWith('.cat') || f.endsWith('.gst') || f.endsWith('.catz') || f.endsWith('.gstz'))
-    .map((f) => dir + '/' + f)
+    .map((f) => path.join(dir, f))
 
   return paths
 }
@@ -209,9 +214,9 @@ export const readSystemFiles = async (system, fs) => {
   const dataDir = system.externalPath || configDir
 
   try {
-    if (await fs.promises.stat(configDir + '/cache.json')) {
+    if (await fs.promises.stat(path.join(dir, 'cache.json'))) {
       console.log('Loading cache')
-      const cache = JSON.parse(await fs.promises.readFile(configDir + '/cache.json'))
+      const cache = JSON.parse(await fs.promises.readFile(path.join(dir, 'cache.json')))
       if (cache.gameSystem && cache.version === cacheVersion) {
         console.log(`Cache v${cacheVersion} looks valid`)
         return cache
@@ -271,10 +276,10 @@ export const readSystemFiles = async (system, fs) => {
   )
 
   try {
-    await fs.promises.unlink(configDir + '/cache.json')
+    await fs.promises.unlink(path.join(dir, 'cache.json'))
   } catch {}
 
-  await fs.promises.writeFile(configDir + '/cache.json', JSON.stringify(parsed))
+  await fs.promises.writeFile(path.join(dir, 'cache.json'), JSON.stringify(parsed))
 
   return parsed
 }

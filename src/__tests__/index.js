@@ -9,13 +9,7 @@ import { loadRoster } from '../repo/rosters'
 describe('40k', () => {
   let gameData
   beforeAll(async () => {
-    const system = {
-      name: 'wh40k',
-      externalPath: path.join(__dirname, '../../node_modules/wh40k'),
-    }
-    fs.configDir = path.join(__dirname, '../../node_modules/')
-
-    gameData = await readSystemFiles(system, fs)
+    gameData = await readFiles(path.join(__dirname, 'downloadedGameSystems/wh40k'), fs)
   })
 
   const rosters = {
@@ -217,7 +211,7 @@ describe('40k', () => {
       'forces.force.2.selections.selection.7.selections.selection.9': [
         'Chosen w/ lightning claw does not exist in the game data. It may have been removed in a data update.',
       ],
-      'forces.force.3': ['MBH x EC must have a Game Type selection', 'MBH x EC must have a Warlord selection'],
+      'forces.force.3': ['MBH x EC must have a Game Type selection'],
       'forces.force.3.selections.selection.0.selections.selection.100000': [
         'Mortarion must have a 1. Revoltingly Resilient selection',
         'Mortarion must have a 2. Living Plague selection',
@@ -240,7 +234,7 @@ describe('40k', () => {
 
   Object.entries(rosters).forEach(([roster, expectedErrors]) => {
     it(`should validate ${roster}`, async () => {
-      const file = await loadRoster(path.join(__dirname, './bsrosters/wh40k', roster), fs)
+      const file = await loadRoster(roster, fs, path.join(__dirname, 'bsrosters/wh40k'))
       const errors = validateRoster(file, gameData)
 
       expect(errors).toEqual(expectedErrors)

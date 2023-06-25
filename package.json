@@ -1,6 +1,6 @@
 {
   "name": "bluescribe",
-  "version": "0.4.0",
+  "version": "0.5.1",
   "homepage": "https://bluewinds.github.io/bluescribe/",
   "private": true,
   "author": "Blue Frauenglass",
@@ -21,6 +21,7 @@
     "fast-xml-parser": "^4.1.3",
     "indefinite": "^2.4.2",
     "p-queue": "^7.3.4",
+    "path-browserify": "^1.0.1",
     "pluralize": "^8.0.0",
     "react": "^18.2.0",
     "react-debounce-input": "^3.3.0",
@@ -36,8 +37,8 @@
   },
   "scripts": {
     "postinstall": "run-script-os",
-    "postinstall:linux:darwin": "mkdir node_modules/wh40k && cd node_modules/wh40k && git init && git remote add origin https://github.com/BSData/wh40k.git && git fetch --depth 1 origin fd0b88293e5f7abacb49639be941eb8098cf785a && git checkout FETCH_HEAD",
-    "postinstall:win32": "mkdir node_modules\\wh40k && cd node_modules\\wh40k && git init && git remote add origin https://github.com/BSData/wh40k.git && git fetch --depth 1 origin fd0b88293e5f7abacb49639be941eb8098cf785a && git checkout FETCH_HEAD",
+    "postinstall:linux:darwin": "mkdir src/__tests__/node_modules/wh40k && cd node_modules/wh40k && git init && git remote add origin https://github.com/BSData/wh40k.git && git fetch --depth 1 origin fd0b88293e5f7abacb49639be941eb8098cf785a && git checkout FETCH_HEAD",
+    "postinstall:win32": "mkdir src\\__tests__\\node_modules\\wh40k && cd src\\__tests__\\node_modules\\wh40k && git init && git remote add origin https://github.com/BSData/wh40k.git && git fetch --depth 1 origin fd0b88293e5f7abacb49639be941eb8098cf785a && git checkout FETCH_HEAD",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-app-rewired start",

@@ -11,7 +11,7 @@ const CostLimits = () => {
     <>
       <h6>Cost Limits</h6>
       <div className="grid">
-        {gameData.gameSystem.costTypes.map((type) => {
+        {gameData.gameSystem.costTypes?.map((type) => {
           const index = _.findIndex(roster.costLimits?.costLimit, ['typeId', type.id])
           if (index !== -1) {
             return (

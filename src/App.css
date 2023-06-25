@@ -253,12 +253,30 @@ button[data-tooltip-html] {
   border-bottom: none;
 }
 
+details[role='list'] summary + ul li {
+  margin-bottom: 0.5em;
+}
+
 input[data-tooltip-html] {
   border-bottom: var(--border-width) solid var(--border-color);
 }
 
 article > article {
   margin-left: calc(var(--block-spacing-horizontal) * -1);
+}
+
+dialog article {
+  width: 100%;
+}
+
+dialog fieldset {
+  text-align: center;
+}
+
+dialog code {
+  margin: auto;
+  display: block;
+  width: fit-content;
 }
 
 @media (min-width: 1200px) {
@@ -300,6 +318,10 @@ nav {
   --nav-link-spacing-vertical: 0.75rem;
   --nav-element-spacing-vertical: 0.75rem;
   --form-element-spacing-vertical: 0.25rem;
+}
+
+nav li {
+  line-height: 1em;
 }
 
 div > button {
