@@ -6,6 +6,7 @@ import { FileDrop } from 'react-file-drop'
 import { listRosters, loadRoster, importRoster, deleteRoster } from './repo/rosters'
 import { useFs, useRoster, useSystem, useConfirm } from './Context'
 import { createRoster } from './utils'
+import React from 'react'
 
 const SelectRoster = () => {
   const [, setRoster] = useRoster()

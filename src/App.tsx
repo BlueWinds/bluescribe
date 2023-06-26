@@ -33,6 +33,7 @@ import { refreshRoster } from './utils'
 import EditSystem from './repo/EditSystem'
 import { pathToForce, validateRoster } from './validate'
 import packageJson from '../package.json'
+import React from 'react'
 
 const Body = ({ children, systemInfo, setSystemInfo }) => {
   const [roster, setRoster] = useRoster()

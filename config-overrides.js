@@ -6,6 +6,8 @@ module.exports = {
       stream: require.resolve('stream-browserify'),
     }
 
+    config.resolve.extensions = [".js", ".json", ".ts", ".tsx"]
+
     config.plugins.push(
       new webpack.ProvidePlugin({
         Buffer: ['buffer', 'Buffer'],

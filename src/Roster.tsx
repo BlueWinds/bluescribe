@@ -5,6 +5,7 @@ import Force from './Force/Force'
 import AddForce from './Force/AddForce'
 import BugReport from './BugReport'
 import SelectRoster from './SelectRoster'
+import React from 'react'
 
 const Roster = ({ currentForce, setCurrentForce }) => {
   const [roster] = useRoster()
