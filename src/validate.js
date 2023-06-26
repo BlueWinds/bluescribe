@@ -277,7 +277,6 @@ const checkConstraints = (roster, path, entry, gameData, group = false) => {
         }
         if (constraint.type === 'max' && value !== -1 && occurances > value * (subject?.number ?? 1)) {
           if (value === 0) {
-            // if (entry.name === 'Master of the Legion') { debugger }
             errors.push(
               `${subject.name} cannot have ${an(pluralize.singular(entry.name.replace(/\W+$/, '')))} selection`,
             )
@@ -459,7 +458,7 @@ const getSubject = (roster, path, condition) => {
     case 'parent':
       return _.get(roster, pathParent(path))
     case 'force':
-      return path.length ? _.get(roster, pathToForce(path)) : roster
+      return _.get(roster, pathToForce(path))
     case 'roster':
       return roster
     case 'ancestor':

@@ -16,7 +16,7 @@ describe('defaultSelectionEntryId modifiers', () => {
     gameData = await readFiles(gameSystemDir, fs)
   })
 
-  it.only('should behave as expected', () => {
+  it('should behave as expected', () => {
     const catalogue = gameData.catalogues['842a-830c-10b0-37eb']
     const roster = createRoster('test', gameData)
     addForce(roster, '9ac4-bc9e-d214-8a7b', '842a-830c-10b0-37eb', gameData)
@@ -72,7 +72,7 @@ describe('exactly constraint', () => {
 
   let gameData
   beforeAll(async () => {
-    gameData = await readFiles('exactly', fs, gameSystemDir)
+    gameData = await readFiles(gameSystemDir, fs)
   })
 
   it('should have error if fewer than exactly', async () => {
