@@ -20,7 +20,7 @@ const ListSelection = ({ indent, selectionPath, selection }) => {
   const upgrades = (
     selection.selections?.selection.filter((s, i) => {
       const entry = getEntry(roster, `${selectionPath}.selections.selection.${i}`, s.entryId, gameData)
-      return !entry.selectionEntries && !entry.selectionEntryGroups && !s.selections
+      return entry && !entry.selectionEntries && !entry.selectionEntryGroups && !s.selections
     }) || []
   )
     .map(selectionName)
@@ -68,10 +68,11 @@ const ListSelection = ({ indent, selectionPath, selection }) => {
         .filter((s, i) => {
           const entry = getEntry(roster, `${selectionPath}.selections.selection.${i}`, s.entryId, gameData)
           return (
-            entry.selectionEntries ||
-            entry.selectionEntryGroups ||
-            s.selections ||
-            rosterErrors[`${selectionPath}.selections.selection.${selection.selections.selection.indexOf(s)}`]
+            entry &&
+            (entry.selectionEntries ||
+              entry.selectionEntryGroups ||
+              s.selections ||
+              rosterErrors[`${selectionPath}.selections.selection.${selection.selections.selection.indexOf(s)}`])
           )
         })
         .map((subSelection) => (

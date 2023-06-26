@@ -24,7 +24,7 @@ export const validateRoster = (roster, gameData) => {
       const cost = roster.costs?.cost.find((c) => c.typeId === cl.typeId)
       if (cost && cl.value !== -1 && cost.value > cl.value) {
         errors[''] = errors[''] || []
-        errors[''].push(`${roster.name} has ${cost.value}${cost.name}, more than the limit of ${cl.value}${cl.name}`)
+        errors[''].push(`Roster has ${cost.value}${cost.name}, more than the limit of ${cl.value}${cl.name}`)
       }
     })
 
@@ -248,6 +248,15 @@ const collectGroupIds = (entry, ids = []) => {
   return ids
 }
 
+const getSubjectName = (subject, constraint) => {
+  switch (constraint.scope) {
+    case 'roster':
+      return 'Roster'
+    default:
+      return subject.name
+  }
+}
+
 const checkConstraints = (roster, path, entry, gameData, group = false) => {
   let errors = []
 
@@ -257,40 +266,41 @@ const checkConstraints = (roster, path, entry, gameData, group = false) => {
     if (entry.constraints) {
       entry.constraints?.forEach((constraint) => {
         const subject = getSubject(roster, path, constraint)
+        if (!subject) {
+          return
+        }
+
         const occurances =
           entry.primary === undefined
             ? countBy(subject, entry.id, constraint, groupIds)
             : countByCategory(subject, entry, constraint)
         const value = getConstraintValue(constraint, entry.id, subject, gameData)
+        const name = getSubjectName(subject, constraint)
+        const entryName = entry.name.replace(/\W+$/, '')
 
         if (constraint.type === 'min' && value !== -1 && !entry.hidden && occurances < value) {
           if (value === 1) {
-            errors.push(`${subject.name} must have ${an(pluralize.singular(entry.name.replace(/\W+$/, '')))} selection`)
+            errors.push(`${name} must have ${an(pluralize.singular(entryName))} selection`)
           } else {
             errors.push(
-              `${subject.name} must have ${value - occurances} more ${pluralize(entry.name.replace(/\W+$/, ''))}`,
+              `${name} must have ${value - occurances} more ${entryName} selection${value - occurances > 1 ? 's' : ''}`,
             )
           }
         }
+
         if (constraint.type === 'max' && value < max) {
           max = value
         }
         if (constraint.type === 'max' && value !== -1 && occurances > value * (subject?.number ?? 1)) {
           if (value === 0) {
-            errors.push(
-              `${subject.name} cannot have ${an(pluralize.singular(entry.name.replace(/\W+$/, '')))} selection`,
-            )
+            errors.push(`${name} cannot have ${an(pluralize.singular(entryName))} selection`)
           } else {
-            errors.push(
-              `${subject.name} must have ${occurances - value} fewer ${pluralize(entry.name.replace(/\W+$/, ''))}`,
-            )
+            errors.push(`${name} has ${occurances - value} too many ${entryName} selections`)
           }
         }
 
         if (constraint.type === 'exactly' && value !== occurances) {
-          errors.push(
-            `${subject.name} must have ${value} ${pluralize(entry.name.replace(/\W+$/, ''))}, but has ${occurances}`,
-          )
+          errors.push(`${name} must have ${value} ${entryName}, but has ${occurances}`)
         }
       })
 
