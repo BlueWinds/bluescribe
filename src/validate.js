@@ -317,15 +317,18 @@ const checkConstraints = (roster, path, entry, gameData, group = false) => {
   return errors.length ? { [path]: errors } : {}
 }
 
+const numberRegex = /-?\d+([.]\d+)?/
+const stringIncrement = (string, value) => string.replace(numberRegex, (match) => parseFloat(match) + value)
+
 const applyModifiers = (roster, path, entry, gameData, catalogue) => {
-  const ids = {}
+  let ids
   function index(x, path = '') {
     if (typeof x == 'object') {
       if (x.id) {
         ids[x.id] = path
       }
       if (x.typeId) {
-        ids[x.typeId] = path
+        ids[x.typeId] = path.slice(1)
       }
 
       for (let attr in x) {
@@ -333,14 +336,18 @@ const applyModifiers = (roster, path, entry, gameData, catalogue) => {
       }
     }
   }
-  index(entry)
 
   const applyModifier = (modifier) => {
     if (!checkConditions(roster, path, modifier, gameData)) {
       return
     }
 
-    const target = entry[modifier.field] !== undefined ? modifier.field : `${ids[modifier.field]}.value`.slice(1)
+    if (!ids) {
+      ids = {}
+      index(entry)
+    }
+
+    const target = entry[modifier.field] !== undefined ? modifier.field : `${ids[modifier.field]}.value`
     if (modifier.type === 'set') {
       if (_.isNaN(modifier.value)) {
         debugger
@@ -362,7 +369,8 @@ const applyModifiers = (roster, path, entry, gameData, catalogue) => {
         }
       }
 
-      _.set(entry, target, _.get(entry, target) + modifier.value * times)
+      const oldValue = _.get(entry, target).toString()
+      _.set(entry, target, stringIncrement(oldValue, modifier.value * times))
     } else if (modifier.type === 'append') {
       entry[modifier.field] += modifier.value
     } else if (modifier.type === 'add') {
