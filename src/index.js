@@ -14,25 +14,27 @@ function determinePlatform() {
   }
 }
 
-determinePlatform().then(async ({ default: Platform }) => {
-  const fs = Platform.fs
+determinePlatform().then(async ({ default: platform }) => {
+  const fs = platform.fs
+
+  console.log(platform)
 
   try {
-    await fs.promises.readdir(Platform.gameSystemPath)
+    await fs.promises.readdir(platform.gameSystemPath)
   } catch (e) {
-    await fs.promises.mkdir(Platform.gameSystemPath, { recursive: true })
+    await fs.promises.mkdir(platform.gameSystemPath, { recursive: true })
   }
 
   try {
-    await fs.promises.readdir(Platform.rosterPath)
+    await fs.promises.readdir(platform.rosterPath)
   } catch (e) {
-    await fs.promises.mkdir(Platform.rosterPath, { recursive: true })
+    await fs.promises.mkdir(platform.rosterPath, { recursive: true })
   }
 
   const root = ReactDOM.createRoot(document.getElementById('root'))
   root.render(
     <React.StrictMode>
-      <FSContext.Provider value={Platform}>
+      <FSContext.Provider value={platform}>
         <App />
       </FSContext.Provider>
     </React.StrictMode>,

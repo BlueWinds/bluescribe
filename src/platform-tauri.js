@@ -1,6 +1,6 @@
 import { invoke } from '@tauri-apps/api/tauri'
 import { createDir, metadata, readDir, readBinaryFile, removeDir, removeFile } from '@tauri-apps/plugin-fs'
-import { appConfigDir, join } from '@tauri-apps/api/path'
+import { appDataDir, join } from '@tauri-apps/api/path'
 
 // Emulate the parts of the metadata object that we use
 class offlineMetadata {
@@ -47,8 +47,8 @@ const OfflineFS = {
 }
 
 const fs = Object.assign({}, OfflineFS)
-const gameSystemPath = await join(await appConfigDir(), 'gameSystems')
-const rosterPath = await join(await appConfigDir(), 'rosters')
+const gameSystemPath = await join(await appDataDir(), 'gameSystems')
+const rosterPath = await join(await appDataDir(), 'rosters')
 
 const Platform = {
   fs,

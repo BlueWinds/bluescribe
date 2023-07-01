@@ -53,7 +53,7 @@
   },
   "plugins": {
     "fs": {
-      "scope": ["**"]
+      "scope": ["$APPDATA/**"]
     }
   }
 }
