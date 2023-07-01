@@ -33,6 +33,8 @@ import { refreshRoster } from './utils'
 import EditSystem from './repo/EditSystem'
 import { pathToForce, validateRoster } from './validate'
 import packageJson from '../package.json'
+import discordIcon from './discord-icon.png'
+import githubIcon from './github-icon.png'
 
 const Body = ({ children, systemInfo, setSystemInfo }) => {
   const [roster, setRoster] = useRoster()
@@ -49,11 +51,23 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
 
   return (
     <div className="container">
+      <Tooltip id="tooltip" />
       <header>
         <nav>
           <ul>
             <li>
-              <strong>BlueScribe</strong>
+              <strong
+                data-tooltip-id="tooltip"
+                data-tooltip-html="BlueScribe is an army list builder for tabletop wargames; it is heavily inspired by and 100% compatible with BattleScribe, reading the same format datafiles and writing rosters in the same format.<br /><br />No tracking, no subscription, no paid features. BlueScribe is GNU GPL 3.0 licensed."
+              >
+                BlueScribe
+              </strong>
+              <a href="https://discord.com/channels/558412685981777922/1117546890284765234" target="discord">
+                <img className="icon" src={discordIcon} alt="Discord" title="Discord" />
+              </a>
+              <a href="https://github.com/BlueWinds/bluescribe" target="github">
+                <img className="icon" src={githubIcon} alt="Github" title="Github" />
+              </a>
               <div>
                 <small>{packageJson.version}</small>
               </div>
@@ -258,7 +272,6 @@ function App() {
                     )
                   }}
                 >
-                  <Tooltip id="tooltip" />
                   <Roster />
                 </ErrorBoundary>
               </Body>
