@@ -222,23 +222,22 @@ const checkCache = async (dir, fs) => {
 }
 
 export const readFiles = async (dir, fs) => {
+  if (window.__TAURI__) {
+    console.log('Native File Reading!')
+    // If we've got tauri, use the native path
+    const cache = await window.__TAURI_INVOKE__('fast_cache', { dir: dir })
+    console.log('Got data of size ' + cache.length)
+    if (cache) {
+      return JSON.parse(cache)
+    }
+  }
+
+  console.log('Javascript File Reading!')
   const cache = await checkCache(dir, fs)
   if (cache) {
     return cache
   }
 
-  if (window.__TAURI__) {
-    console.log('Native Caching!')
-    // If we're on desktop, use the fast path
-    await window.__TAURI_INVOKE__('fast_cache', { dir: dir })
-
-    const cache = await checkCache(dir, fs)
-    if (cache) {
-      return cache
-    }
-  }
-
-  console.log('Javascript Caching!')
   const parsed = {
     version: cacheVersion,
     catalogues: {},

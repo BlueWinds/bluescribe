@@ -2,6 +2,7 @@ use serde_json::{json, Map, Value};
 use std::borrow::BorrowMut;
 use std::collections::HashMap;
 use std::fs;
+use std::io::{BufWriter, Write};
 use std::path::{Path, PathBuf};
 use std::sync::atomic::{AtomicBool, Ordering};
 use xml2json_rs::JsonConfig;
@@ -10,8 +11,7 @@ use xml2json_rs::JsonConfig;
 const CACHE_VERSION: u8 = 4;
 static READING_FILES: AtomicBool = AtomicBool::new(false);
 
-#[allow(dead_code)]
-fn load_cache(dir: &Path) -> Result<Value, String> {
+fn load_cache(dir: &Path) -> Result<String, String> {
     println!("Loading cache");
     let cache_file = dir.join("cache.json");
     if cache_file.exists() {
@@ -19,7 +19,7 @@ fn load_cache(dir: &Path) -> Result<Value, String> {
         let cache: Value = serde_json::from_str(&cache_str).expect("Unable to parse cache file");
         if let Some(version) = cache.as_object().unwrap().get("version") {
             if version == CACHE_VERSION {
-                return Ok(cache);
+                return Ok(cache_str);
             } else {
                 println!(
                     "Cache version mismatch. Found v{}, wanted v{}",
@@ -99,24 +99,25 @@ fn index(x: &mut Value) -> HashMap<String, Value> {
 }
 
 #[tauri::command]
-pub async fn fast_cache(dir: String) {
+pub async fn fast_cache(dir: String) -> Result<String, String> {
     // Only read files one at a time
     if READING_FILES
         .compare_exchange(false, true, Ordering::SeqCst, Ordering::SeqCst)
         .is_err()
     {
-        return;
+        return Err("Already reading files".to_string());
     }
 
     println!("Reading files from {}", dir);
     let dir = Path::new(&dir);
 
-    // if let Ok(_) = load_cache(dir) {
-    //     println!("Valid Cache");
-    //     return;
-    // }
+    if let Ok(cache) = load_cache(dir) {
+        println!("Valid Cache");
+        READING_FILES.store(false, Ordering::SeqCst);
+        return Ok(cache);
+    }
 
-    // println!("No cache found. Reparsing raw files.");
+    println!("No cache found. Reparsing raw files.");
 
     let mut parsed = json!( {
         "version": CACHE_VERSION,
@@ -128,6 +129,10 @@ pub async fn fast_cache(dir: String) {
     for (i, path) in paths.enumerate() {
         println!("Parsing file {} of {}", i, count);
         let path = path.expect("Unable to read path").path();
+        // If the path is a json file, don't even try
+        if path.extension().unwrap() == "json" {
+            continue;
+        }
         let mut data = read_xml(&path).expect(format!("Unable to parse XML ({:?})", path).as_str());
         if data.is_null() {
             println!("Unable to parse file {:?} (null)", path);
@@ -160,7 +165,7 @@ pub async fn fast_cache(dir: String) {
             parsed["catalogues"][data_id] = data;
         } else {
             READING_FILES.store(false, Ordering::SeqCst);
-            return;
+            return Err("Wut?".to_string());
         }
     }
 
@@ -169,9 +174,11 @@ pub async fn fast_cache(dir: String) {
     fs::create_dir_all(&cache_path).unwrap();
     cache_path.push("cache.json");
     println!("Writing to {:?}", cache_path);
-    let mut file = fs::File::create(&cache_path).unwrap();
-    serde_json::to_writer_pretty(&mut file, &parsed).unwrap();
+    let mut file = BufWriter::new(fs::File::create(&cache_path).unwrap());
+    let data = serde_json::to_string(&parsed).unwrap();
+    file.write_all(data.as_bytes()).unwrap();
     println!("\tWritten.");
 
     READING_FILES.store(false, Ordering::SeqCst);
+    Ok(data)
 }
