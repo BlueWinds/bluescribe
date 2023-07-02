@@ -199,7 +199,8 @@ const listFiles = async (dir, fs) => {
 }
 
 const cacheVersion = 4
-export const readFiles = async (dir, fs) => {
+
+const checkCache = async (dir, fs) => {
   try {
     if (await fs.promises.stat(path.join(dir, 'cache.json'))) {
       console.log('Loading cache')
@@ -217,6 +218,27 @@ export const readFiles = async (dir, fs) => {
   } catch {
     console.log('No cache found. Reparsing raw files.')
   }
+  return null
+}
+
+export const readFiles = async (dir, fs) => {
+  const cache = await checkCache(dir, fs)
+  if (cache) {
+    return cache
+  }
+
+  if (window.__TAURI__) {
+    console.log('Native Caching!')
+    // If we're on desktop, use the fast path
+    await window.__TAURI_INVOKE__('fast_cache', { dir: dir })
+
+    const cache = await checkCache(dir, fs)
+    if (cache) {
+      return cache
+    }
+  }
+
+  console.log('Javascript Caching!')
   const parsed = {
     version: cacheVersion,
     catalogues: {},
@@ -224,8 +246,8 @@ export const readFiles = async (dir, fs) => {
 
   const paths = await listFiles(dir, fs)
   await Promise.all(
-    paths.map(async (path) => {
-      const data = await readXML(path, fs)
+    paths.map(async (filepath) => {
+      const data = await readXML(filepath, fs)
       data.ids = {}
 
       function index(x) {
