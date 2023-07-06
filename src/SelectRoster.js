@@ -4,7 +4,7 @@ import useStorage from 'squirrel-gill'
 import { FileDrop } from 'react-file-drop'
 
 import { listRosters, loadRoster, importRoster, deleteRoster } from './repo/rosters'
-import { useFs, useOffline, useRoster, useSystem, useConfirm } from './Context'
+import { useFs, useNative, useRoster, useSystem, useConfirm } from './Context'
 import { createRoster } from './utils'
 
 const SelectRoster = () => {
@@ -15,7 +15,7 @@ const SelectRoster = () => {
   const gameData = useSystem()
   const confirmDelete = useConfirm(true, `Delete ${selected}?`)
   const { fs, rosterPath } = useFs()
-  const { shellOpen } = useOffline()
+  const { shellOpen } = useNative()
 
   useEffect(() => {
     const load = async () => {

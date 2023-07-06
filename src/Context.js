@@ -4,7 +4,7 @@ import _ from 'lodash'
 import { sumCosts } from './utils'
 
 export const FSContext = createContext(null)
-export const OfflineContext = createContext([])
+export const NativeContext = createContext([])
 
 export const GameContext = createContext(null)
 export const RosterContext = createContext([])
@@ -53,7 +53,7 @@ export const useUpdateRoster = () => {
 }
 
 export const useFs = () => useContext(FSContext)
-export const useOffline = () => useContext(OfflineContext)
+export const useNative = () => useContext(NativeContext)
 
 export const useSystem = () => useContext(GameContext)
 export const usePath = () => useContext(PathContext)

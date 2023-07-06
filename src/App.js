@@ -20,6 +20,7 @@ import {
   RosterContext,
   RosterErrorsContext,
   useFs,
+  useNative,
   useConfirm,
   usePath,
   useRoster,
@@ -190,6 +191,7 @@ function App() {
   const [openCategories, setOpenCategories] = useState({})
   const [currentPath, setCurrentPath] = useState('')
   const { fs, gameSystemPath, rosterPath } = useFs()
+  const { readFilesNative } = useNative()
 
   const createDirectories = async () => {
     try {
@@ -212,7 +214,12 @@ function App() {
         setLoading(true)
         try {
           console.log('System: ' + systemInfo.name, gameSystemPath)
-          setGameData(await readFiles(path.join(gameSystemPath, systemInfo.name), fs))
+          const systemPath = path.join(gameSystemPath, systemInfo.name)
+          var dataPath = systemPath
+          if (systemInfo.externalPath) {
+            dataPath = systemInfo.externalPath
+          }
+          setGameData(await readFiles(dataPath, fs, systemPath, readFilesNative))
         } catch (e) {
           console.log(e)
           setSystemInfo({})
@@ -224,7 +231,7 @@ function App() {
     if (systemInfo.name) {
       load()
     }
-  }, [systemInfo, mode, gameSystemPath, fs])
+  }, [systemInfo, mode, fs, gameSystemPath, readFilesNative])
 
   window.gameData = gameData
 

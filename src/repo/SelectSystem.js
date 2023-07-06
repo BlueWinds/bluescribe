@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import path from 'path-browserify'
 import BounceLoader from 'react-spinners/BounceLoader'
 import _ from 'lodash'
 
@@ -10,7 +11,7 @@ import {
   addExternalGameSystem,
   clearGameSystem,
 } from './'
-import { useFs, useOffline } from '../Context'
+import { useFs, useNative } from '../Context'
 
 const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => {
   const [systems, setSystems] = useState(null)
@@ -20,7 +21,7 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
   const [updatingSystem, setUpdatingSystem] = useState(false)
   const { fs, gameSystemPath } = useFs()
 
-  const { selectDirectory } = useOffline()
+  const { selectDirectory } = useNative()
 
   const isOffline = !!selectDirectory
 
@@ -217,8 +218,12 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
           {selected !== 'Add New' && !updatingSystem && systems[selected].externalPath && (
             <button
               onClick={async () => {
-                const cacheFile = fs.configDir + systems[selected].name + '/cache.json'
-                await fs.promises.unlink(cacheFile)
+                try {
+                  const cacheFile = path.join(gameSystemPath, systems[selected].name, 'cache.json')
+                  await fs.promises.unlink(cacheFile)
+                } catch {
+                  // Cache file doesn't exist
+                }
               }}
               className="outline"
             >

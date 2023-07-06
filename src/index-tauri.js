@@ -1,16 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
+import { invoke } from '@tauri-apps/api/tauri'
+import { appDataDir, homeDir, join } from '@tauri-apps/api/path'
+import { open as openDialog } from '@tauri-apps/plugin-dialog'
+import { createDir, metadata, readDir, readBinaryFile, removeDir, removeFile } from '@tauri-apps/plugin-fs'
+import { open as shellOpen } from '@tauri-apps/plugin-shell'
+
 import './index.css'
 import App from './App'
-import { FSContext, OfflineContext } from './Context'
-
-import { invoke } from '@tauri-apps/api/tauri'
-import { createDir, metadata, readDir, readBinaryFile, removeDir, removeFile } from '@tauri-apps/plugin-fs'
-import { appDataDir, homeDir, join } from '@tauri-apps/api/path'
-
-import { open as openDialog } from '@tauri-apps/plugin-dialog'
-import { open as shellOpen } from '@tauri-apps/plugin-shell'
+import { FSContext, NativeContext } from './Context'
 
 // Emulate the parts of the metadata object that we use
 class offlineMetadata {
@@ -73,9 +72,14 @@ const selectDirectory = async () => {
   })
 }
 
-const Offline = {
+const readFilesNative = async (dir, gameSystemPath) => {
+  return await invoke('fast_cache', { dir, gameSystemPath })
+}
+
+const Native = {
   shellOpen,
   selectDirectory,
+  readFilesNative,
 }
 
 ;(async () => {
@@ -83,9 +87,9 @@ const Offline = {
   root.render(
     <React.StrictMode>
       <FSContext.Provider value={Platform}>
-        <OfflineContext.Provider value={Offline}>
+        <NativeContext.Provider value={Native}>
           <App />
-        </OfflineContext.Provider>
+        </NativeContext.Provider>
       </FSContext.Provider>
     </React.StrictMode>,
   )

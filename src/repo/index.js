@@ -132,7 +132,7 @@ export const addLocalGameSystem = async (files, fs, gameSystemPath) => {
   return system
 }
 
-export const addExternalGameSystem = async (externalDir, fs) => {
+export const addExternalGameSystem = async (externalDir, fs, gameSystemPath) => {
   const system = {
     name: externalDir.split(/\\|\//).pop(),
     description: externalDir.split(/\\|\//).pop(),
@@ -142,7 +142,7 @@ export const addExternalGameSystem = async (externalDir, fs) => {
     externalPath: externalDir,
   }
 
-  const systemDir = fs.configDir + system.name
+  const systemDir = path.join(gameSystemPath, system.name)
   await fs.promises.mkdir(systemDir)
   await fs.promises.writeFile(systemDir + '/system.json', JSON.stringify(system))
 
@@ -221,18 +221,24 @@ const checkCache = async (dir, fs) => {
   return null
 }
 
-export const readFiles = async (dir, fs) => {
-  if (window.__TAURI__) {
-    console.log('Native File Reading!')
-    // If we've got tauri, use the native path
-    const cache = await window.__TAURI_INVOKE__('fast_cache', { dir: dir })
-    console.log('Got data of size ' + cache.length)
-    if (cache) {
-      return JSON.parse(cache)
-    }
+export const readFiles = async (dir, fs, gameSystemPath = null, nativeCacher = null) => {
+  // For ease of use, if the gameSystemPath is null, we assume that the dir is the gameSystemPath
+  if (gameSystemPath === null) {
+    gameSystemPath = dir
   }
 
-  console.log('Javascript File Reading!')
+  if (nativeCacher) {
+    const cache = await nativeCacher(dir, gameSystemPath)
+    if (cache) {
+      try {
+        return JSON.parse(cache)
+      } catch (e) {
+        console.error("Couldn't parse native cache: ", e)
+      }
+    }
+    console.log('Falling back to JS implementation')
+  }
+
   const cache = await checkCache(dir, fs)
   if (cache) {
     return cache
@@ -283,10 +289,10 @@ export const readFiles = async (dir, fs) => {
   )
 
   try {
-    await fs.promises.unlink(path.join(dir, 'cache.json'))
+    await fs.promises.unlink(path.join(gameSystemPath, 'cache.json'))
   } catch {}
 
-  await fs.promises.writeFile(path.join(dir, 'cache.json'), JSON.stringify(parsed))
+  await fs.promises.writeFile(path.join(gameSystemPath, 'cache.json'), JSON.stringify(parsed))
 
   return parsed
 }
