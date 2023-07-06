@@ -4,19 +4,17 @@ use std::collections::HashMap;
 use std::fs;
 use std::io::{BufWriter, Write};
 use std::path::{Path, PathBuf};
-use std::sync::atomic::{AtomicBool, Ordering};
 use xml2json_rs::JsonConfig;
 
 // This implementation is compatible with v4 of the JavaScript implementation
 const CACHE_VERSION: u8 = 4;
-static READING_FILES: AtomicBool = AtomicBool::new(false);
 
 fn load_cache(dir: &Path) -> Result<String, String> {
     println!("Loading cache");
     let cache_file = dir.join("cache.json");
     if cache_file.exists() {
-        let cache_str = fs::read_to_string(cache_file).expect("Unable to read cache file");
-        let cache: Value = serde_json::from_str(&cache_str).expect("Unable to parse cache file");
+        let cache_str = fs::read_to_string(cache_file).unwrap_or_default();
+        let cache: Value = serde_json::from_str(&cache_str).unwrap_or(json!({}));
         if let Some(version) = cache.as_object().unwrap().get("version") {
             if version == CACHE_VERSION {
                 return Ok(cache_str);
@@ -34,13 +32,20 @@ fn load_cache(dir: &Path) -> Result<String, String> {
 }
 
 fn read_xml(path: &Path) -> Result<Value, String> {
-    let xml_data = fs::read_to_string(path).expect("Unable to read XML file");
-    let json_builder = JsonConfig::new().merge_attrs(true).finalize();
-    let json = json_builder
-        .build_from_xml(&xml_data)
-        .expect("Failed to parse XML");
+    let xml_data = fs::read_to_string(path);
+    if xml_data.is_err() {
+        return Err("Unable to read file".to_string());
+    }
 
-    Ok(json)
+    let xml_data = xml_data.unwrap();
+    let json_builder = JsonConfig::new().merge_attrs(true).finalize();
+    let json = json_builder.build_from_xml(&xml_data);
+
+    if json.is_err() {
+        return Err("Unable to parse XML".to_string());
+    }
+
+    Ok(json.unwrap())
 }
 
 fn remove_shared(obj: &mut Map<String, Value>) {
@@ -87,6 +92,15 @@ fn index(x: &mut Value) -> HashMap<String, Value> {
         if array.len() == 1 && !array[0].is_object() {
             *x = array[0].take();
         }
+    } else if let Some(string) = x.as_str() {
+        // bools and numbers also end up as strings... Fix up their types :)
+        if string == "true" {
+            *x = json!(true);
+        } else if string == "false" {
+            *x = json!(false);
+        } else if let Ok(number) = string.parse::<f64>() {
+            *x = json!(number);
+        }
     }
 
     if x.is_object() {
@@ -99,21 +113,15 @@ fn index(x: &mut Value) -> HashMap<String, Value> {
 }
 
 #[tauri::command]
-pub async fn fast_cache(dir: String) -> Result<String, String> {
-    // Only read files one at a time
-    if READING_FILES
-        .compare_exchange(false, true, Ordering::SeqCst, Ordering::SeqCst)
-        .is_err()
-    {
-        return Err("Already reading files".to_string());
-    }
-
+pub async fn fast_cache(dir: String, game_system_path: String) -> Result<String, String> {
     println!("Reading files from {}", dir);
-    let dir = Path::new(&dir);
+    println!("Writing cache to {}", game_system_path);
 
-    if let Ok(cache) = load_cache(dir) {
+    let dir: &Path = Path::new(&dir);
+    let game_system_path = Path::new(&game_system_path);
+
+    if let Ok(cache) = load_cache(game_system_path) {
         println!("Valid Cache");
-        READING_FILES.store(false, Ordering::SeqCst);
         return Ok(cache);
     }
 
@@ -130,10 +138,16 @@ pub async fn fast_cache(dir: String) -> Result<String, String> {
         println!("Parsing file {} of {}", i, count);
         let path = path.expect("Unable to read path").path();
         // If the path is a json file, don't even try
-        if path.extension().unwrap() == "json" {
+        let extension = path.extension();
+        if let Some(extension) = extension {
+            if extension != "cat" && extension != "gst" {
+                continue;
+            }
+        } else {
+            // No extension
             continue;
         }
-        let mut data = read_xml(&path).expect(format!("Unable to parse XML ({:?})", path).as_str());
+        let mut data = read_xml(&path)?;
         if data.is_null() {
             println!("Unable to parse file {:?} (null)", path);
             continue;
@@ -164,13 +178,12 @@ pub async fn fast_cache(dir: String) -> Result<String, String> {
             let data_id = data["id"].as_str().unwrap().to_string();
             parsed["catalogues"][data_id] = data;
         } else {
-            READING_FILES.store(false, Ordering::SeqCst);
             return Err("Wut?".to_string());
         }
     }
 
     let mut cache_path = PathBuf::new();
-    cache_path.push(dir);
+    cache_path.push(game_system_path);
     fs::create_dir_all(&cache_path).unwrap();
     cache_path.push("cache.json");
     println!("Writing to {:?}", cache_path);
@@ -179,6 +192,5 @@ pub async fn fast_cache(dir: String) -> Result<String, String> {
     file.write_all(data.as_bytes()).unwrap();
     println!("\tWritten.");
 
-    READING_FILES.store(false, Ordering::SeqCst);
     Ok(data)
 }
