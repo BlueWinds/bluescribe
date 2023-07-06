@@ -14,10 +14,25 @@ export const PathContext = createContext([])
 
 export const useConfirm = (shouldPrompt, message) => {
   return (callback) => {
-    if (shouldPrompt && !window.confirm(message)) {
-      return
+    const handleConfirmation = (result) => {
+      if (!result) {
+        return
+      }
+      callback()
     }
-    callback()
+
+    if (shouldPrompt) {
+      var result = window.confirm(message)
+
+      // Some implementations (Thanks Tauri) return a promise
+      if (result instanceof Promise) {
+        result.then(handleConfirmation)
+      } else {
+        handleConfirmation(result)
+      }
+    } else {
+      handleConfirmation(true)
+    }
   }
 }
 
