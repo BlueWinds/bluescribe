@@ -1,3 +1,10 @@
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+
+import './index.css'
+import App from './App'
+import { FSContext } from './Context'
+
 import { invoke } from '@tauri-apps/api/tauri'
 import { createDir, metadata, readDir, readBinaryFile, removeDir, removeFile } from '@tauri-apps/plugin-fs'
 import { appDataDir, join } from '@tauri-apps/api/path'
@@ -56,4 +63,13 @@ const Platform = {
   rosterPath,
 }
 
-export default Platform
+;(async () => {
+  const root = ReactDOM.createRoot(document.getElementById('root'))
+  root.render(
+    <React.StrictMode>
+      <FSContext.Provider value={Platform}>
+        <App />
+      </FSContext.Provider>
+    </React.StrictMode>,
+  )
+})()

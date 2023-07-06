@@ -5,38 +5,23 @@ import './index.css'
 import App from './App'
 import { FSContext } from './Context'
 
-function determinePlatform() {
-  if (window.__TAURI__ !== undefined) {
-    return import('./platform-tauri.js')
-  } else {
-    // Default to web
-    return import('./platform-web.js')
-  }
+import FS from '@isomorphic-git/lightning-fs'
+
+const fs = new FS('bluescribedata')
+
+const Platform = {
+  fs,
+  gameSystemPath: '/gameSystems',
+  rosterPath: '/rosters',
 }
 
-determinePlatform().then(async ({ default: platform }) => {
-  const fs = platform.fs
-
-  console.log(platform)
-
-  try {
-    await fs.promises.readdir(platform.gameSystemPath)
-  } catch (e) {
-    await fs.promises.mkdir(platform.gameSystemPath, { recursive: true })
-  }
-
-  try {
-    await fs.promises.readdir(platform.rosterPath)
-  } catch (e) {
-    await fs.promises.mkdir(platform.rosterPath, { recursive: true })
-  }
-
+;(async () => {
   const root = ReactDOM.createRoot(document.getElementById('root'))
   root.render(
     <React.StrictMode>
-      <FSContext.Provider value={platform}>
+      <FSContext.Provider value={Platform}>
         <App />
       </FSContext.Provider>
     </React.StrictMode>,
   )
-})
+})()

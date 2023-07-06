@@ -189,7 +189,22 @@ function App() {
   const [roster, setRoster] = useState(null)
   const [openCategories, setOpenCategories] = useState({})
   const [currentPath, setCurrentPath] = useState('')
-  const { fs, gameSystemPath } = useFs()
+  const { fs, gameSystemPath, rosterPath } = useFs()
+
+  const createDirectories = async () => {
+    try {
+      await fs.promises.readdir(gameSystemPath)
+    } catch (e) {
+      await fs.promises.mkdir(gameSystemPath, { recursive: true })
+    }
+
+    try {
+      await fs.promises.readdir(rosterPath)
+    } catch (e) {
+      await fs.promises.mkdir(rosterPath, { recursive: true })
+    }
+  }
+  createDirectories()
 
   useEffect(() => {
     const load = async () => {

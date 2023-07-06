@@ -14,6 +14,12 @@ module.exports = {
 
     config.devServer = { host: 'local-ipv4' }
 
+    // If `TAURI_PLATFORM_TYPE` is present in the environment, we're building for Tauri.
+    //  Our entry point should be `index-tauri.js` instead of `index.js`
+    if (process.env.TAURI_PLATFORM_TYPE) {
+      config.entry = config.entry.replace('index.js', 'index-tauri.js')
+    }
+
     return config
   },
   jest: function jest(config) {
