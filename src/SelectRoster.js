@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react'
 import BounceLoader from 'react-spinners/BounceLoader'
 import useStorage from 'squirrel-gill'
 import { FileDrop } from 'react-file-drop'
-import { open } from '@tauri-apps/plugin-shell'
 
 import { listRosters, loadRoster, importRoster, deleteRoster } from './repo/rosters'
-import { useFs, useRoster, useSystem, useConfirm } from './Context'
+import { useFs, useOffline, useRoster, useSystem, useConfirm } from './Context'
 import { createRoster } from './utils'
 
 const SelectRoster = () => {
@@ -16,6 +15,7 @@ const SelectRoster = () => {
   const gameData = useSystem()
   const confirmDelete = useConfirm(true, `Delete ${selected}?`)
   const { fs, rosterPath } = useFs()
+  const { shellOpen } = useOffline()
 
   useEffect(() => {
     const load = async () => {
@@ -125,11 +125,11 @@ const SelectRoster = () => {
               </button>
             </>
           )}
-          {window.__TAURI__ && (
+          {!!shellOpen && (
             <button
               className="secondary outline"
               onClick={async () => {
-                await open(rosterPath)
+                await shellOpen(rosterPath)
               }}
             >
               Open roster directory

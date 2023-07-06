@@ -2,9 +2,6 @@ import { useEffect, useState } from 'react'
 import BounceLoader from 'react-spinners/BounceLoader'
 import _ from 'lodash'
 
-import { open } from '@tauri-apps/plugin-dialog'
-import { homeDir } from '@tauri-apps/api/path'
-
 import {
   listGameSystems,
   listAvailableGameSystems,
@@ -13,7 +10,7 @@ import {
   addExternalGameSystem,
   clearGameSystem,
 } from './'
-import { useFs } from '../Context'
+import { useFs, useOffline } from '../Context'
 
 const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => {
   const [systems, setSystems] = useState(null)
@@ -23,7 +20,9 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
   const [updatingSystem, setUpdatingSystem] = useState(false)
   const { fs, gameSystemPath } = useFs()
 
-  const isOffline = window.__TAURI__ !== undefined
+  const { selectDirectory } = useOffline()
+
+  const isOffline = !!selectDirectory
 
   useEffect(() => {
     const load = async () => {
@@ -91,10 +90,7 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
                     <div
                       id="import-system"
                       onClick={async (e) => {
-                        const externalDir = await open({
-                          directory: true,
-                          defaultPath: await homeDir(),
-                        })
+                        const externalDir = await selectDirectory()
                         if (externalDir === null) {
                           return null
                         }
