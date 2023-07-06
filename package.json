@@ -46,7 +46,7 @@
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
     "prepare": "husky install",
-    "tauri": "tauri",
+    "tauri": "cross-env BROWSER=none tauri",
     "prep_tauri": "run-script-os",
     "prep_tauri:linux:darwin": "mv build .build_bluescribe && mkdir build && mv .build_bluescribe build/bluescribe && cp build/bluescribe/index.html build/index.html",
     "prep_tauri:win32": "move build .build_bluescribe && mkdir build && move .build_bluescribe build\\bluescribe && copy build\\bluescribe\\index.html build\\index.html"
@@ -74,6 +74,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "cross-env": "^7.0.3",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "gh-pages": "^5.0.0",
