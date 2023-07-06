@@ -138,7 +138,7 @@ pub async fn fast_cache(dir: String, game_system_path: String) -> Result<String,
     let paths = fs::read_dir(dir).expect("Unable to read directory");
     let count = fs::read_dir(dir).expect("Unable to read directory").count();
     for (i, path) in paths.enumerate() {
-        println!("Parsing file {} of {}", i, count);
+        println!("Parsing file {} of {}", i + 1, count);
         let path = path.expect("Unable to read path").path();
         // If the path is a json file, don't even try
         let extension = path.extension();
@@ -158,22 +158,11 @@ pub async fn fast_cache(dir: String, game_system_path: String) -> Result<String,
 
         let data_ids = index(&mut data);
         if !data.is_object() {
-            println!("Data is not an object!!!!");
-            println!("{:?}", data);
+            continue;
         }
         data.as_object_mut()
             .unwrap()
             .insert("ids".to_string(), json!(data_ids));
-
-        // let mut dump_path = PathBuf::new();
-        // dump_path.push("..\\dump");
-        // fs::create_dir_all(&dump_path).unwrap();
-        // dump_path.push(format!(
-        //     "{}.json",
-        //     path.file_name().unwrap().to_str().unwrap()
-        // ));
-        // let mut file = fs::File::create(&dump_path).unwrap();
-        // serde_json::to_writer_pretty(&mut file, &data).unwrap();
 
         if data["type"] == "gameSystem" {
             parsed["gameSystem"] = data;
@@ -189,11 +178,9 @@ pub async fn fast_cache(dir: String, game_system_path: String) -> Result<String,
     cache_path.push(game_system_path);
     fs::create_dir_all(&cache_path).unwrap();
     cache_path.push("cache.json");
-    println!("Writing to {:?}", cache_path);
     let mut file = BufWriter::new(fs::File::create(&cache_path).unwrap());
     let data = serde_json::to_string(&parsed).unwrap();
     file.write_all(data.as_bytes()).unwrap();
-    println!("\tWritten.");
 
     Ok(data)
 }
