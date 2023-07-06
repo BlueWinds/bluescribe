@@ -93,13 +93,16 @@ fn index(x: &mut Value) -> HashMap<String, Value> {
             *x = array[0].take();
         }
     } else if let Some(string) = x.as_str() {
-        // bools and numbers also end up as strings... Fix up their types :)
+        // bools and numbers end up as strings. Fix up their types or trim whitespace
         if string == "true" {
             *x = json!(true);
         } else if string == "false" {
             *x = json!(false);
         } else if let Ok(number) = string.parse::<f64>() {
             *x = json!(number);
+        } else {
+            // Trim whitespace
+            *x = json!(string.trim());
         }
     }
 
