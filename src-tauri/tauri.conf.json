@@ -39,7 +39,15 @@
       }
     },
     "security": {
-      "csp": null
+      "csp": null,
+      "dangerousRemoteDomainIpcAccess": [
+        {
+          "scheme": "https",
+          "domain": "tauri.localhost",
+          "windows": ["main"],
+          "plugins": ["clipboard", "path", "dialog", "fs", "shell"]
+        }
+      ]
     },
     "windows": [
       {
