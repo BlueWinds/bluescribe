@@ -137,14 +137,22 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
                 </p>
                 <p>
                   Last updated {new Date(Date.parse(systems[selected].lastUpdated)).toLocaleDateString()}.{' '}
-                  <a target="_blank" rel="noreferrer" href={systems[selected].bugTrackerUrl}>
-                    Repository
-                  </a>
-                  {' | '}
-                  <a target="_blank" rel="noreferrer" href={systems[selected].reportBugUrl}>
-                    Report a bug
-                  </a>
-                  {' | '}
+                  {systems[selected].bugTrackerUrl && (
+                    <>
+                      <a target="_blank" rel="noreferrer" href={systems[selected].bugTrackerUrl}>
+                        Repository
+                      </a>
+                      {' | '}
+                    </>
+                  )}
+                  {systems[selected].reportBugUrl && (
+                    <>
+                      <a target="_blank" rel="noreferrer" href={systems[selected].reportBugUrl}>
+                        Report a bug
+                      </a>
+                      {' | '}
+                    </>
+                  )}
                   <span
                     role="link"
                     onClick={() => {

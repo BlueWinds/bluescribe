@@ -14,60 +14,60 @@ describe('40k', () => {
 
   const rosters = {
     '12AvatarKhaine.ros': {
-      '': ['Ulthwe test warp must have a Warlord selection'],
+      '': ['Roster must have a Warlord selection'],
       'forces.force.0': [
-        'Battalion Detachment -3CP must have 3 more Troops',
-        'Battalion Detachment -3CP must have 9 fewer HQS',
+        'Battalion Detachment -3CP has 9 too many HQ selections',
+        'Battalion Detachment -3CP must have 3 more Troops selections',
         'Battalion Detachment -3CP must have a Craftworld Selection selection',
         'Battalion Detachment -3CP must have a Detachment Command Cost selection',
-        'Ulthwe test warp must have 11 fewer Avatar of Khaines',
-        'Ulthwe test warp must have a Battle Size selection',
-        'Ulthwe test warp must have a Game Type selection',
+        'Roster has 11 too many Avatar of Khaine selections',
+        'Roster must have a Battle Size selection',
+        'Roster must have a Game Type selection',
       ],
     },
     'AutarchWarlockSkyrunners.ros': {
-      'forces.force.0': ['New Roster must have a Game Type selection'],
+      'forces.force.0': ['Roster must have a Game Type selection'],
     },
     'CaptainPistol.ros': {
-      'forces.force.0': ['CaptainPistol must have a Game Type selection'],
+      'forces.force.0': ['Roster must have a Game Type selection'],
       'forces.force.0.selections.selection.3.selections.selection.2': [
         'Warlord does not exist in the game data. It may have been removed in a data update.',
       ],
     },
     'Chaos-Aeldari-CategoryConstraints.ros': {
       '': [
-        'New Roster has 559pts, more than the limit of 5pts',
-        'New Roster has 32PL, more than the limit of 5PL',
-        'New Roster has 10CP, more than the limit of 5CP',
+        'Roster has 559pts, more than the limit of 5pts',
+        'Roster has 32PL, more than the limit of 5PL',
+        'Roster has 10CP, more than the limit of 5CP',
       ],
       'forces.force.0': [
-        'New Roster must have a Game Type selection',
-        'Patrol Detachment 0CP must have 1 fewer HQS',
+        'Patrol Detachment 0CP has 1 too many HQ selections',
         'Patrol Detachment 0CP must have a Troop selection',
+        'Roster must have a Game Type selection',
       ],
       'forces.force.1': [
-        'New Roster must have a Game Type selection',
-        'Patrol Detachment -2CP must have 1 fewer Troops',
-        'Patrol Detachment -2CP must have 1 more Troops',
+        'Patrol Detachment -2CP has 1 too many Troops selections',
+        'Patrol Detachment -2CP must have 1 more Troops selection',
         'Patrol Detachment -2CP must have an HQ selection',
+        'Roster must have a Game Type selection',
       ],
     },
     'ChildForce.ros': {
       // TODO: support child forces
-      'forces.force.0': ['New Roster must have a Game Type selection'],
+      'forces.force.0': ['Roster must have a Game Type selection'],
     },
     'emptyForce.ros': {
-      '': ['TS_duplicity_ca2022_v1 must have a Warlord selection'],
+      '': ['Roster must have a Warlord selection'],
       'forces.force.0': [
-        'Battalion Detachment -3CP must have 2 more HQS',
-        'Battalion Detachment -3CP must have 3 more Troops',
+        'Battalion Detachment -3CP must have 2 more HQ selections',
+        'Battalion Detachment -3CP must have 3 more Troops selections',
         'Battalion Detachment -3CP must have a Cults of the Legion selection',
         'Battalion Detachment -3CP must have a Detachment Command Cost selection',
-        'TS_duplicity_ca2022_v1 must have a Game Type selection',
+        'Roster must have a Game Type selection',
       ],
     },
     'GenestealerHidden.ros': {
-      'forces.force.0': ['New Roster must have a Game Type selection'],
+      'forces.force.0': ['Roster must have a Game Type selection'],
       'forces.force.0.selections.selection.5.selections.selection.2': [
         'Proficient Planning: A Perfect Ambush is hidden and cannot be selected.',
       ],
@@ -76,14 +76,14 @@ describe('40k', () => {
       // Battlescribe shows an error 'has two too many selections of Aspect Shrine Relic (max -2)' that we don't.
       // I've opted not to consider this a bug, because BlueScribe's behavior seems more correct?
       // If this causes actual problems, I'll add a more realistic test for this case.
-      '': ['Ulthwe test warp must have a Warlord selection'],
+      '': ['Roster must have a Warlord selection'],
       'forces.force.0': [
-        'Battalion Detachment -3CP must have 1 more HQS',
-        'Battalion Detachment -3CP must have 3 more Troops',
+        'Battalion Detachment -3CP must have 1 more HQ selection',
+        'Battalion Detachment -3CP must have 3 more Troops selections',
         'Battalion Detachment -3CP must have a Craftworld Selection selection',
         'Battalion Detachment -3CP must have a Detachment Command Cost selection',
-        'Ulthwe test warp must have a Battle Size selection',
-        'Ulthwe test warp must have a Game Type selection',
+        'Roster must have a Battle Size selection',
+        'Roster must have a Game Type selection',
       ],
       'forces.force.0.selections.selection.0': [
         'Treasures of the Aeldari (Asuryani) is hidden and cannot be selected.',
@@ -92,7 +92,7 @@ describe('40k', () => {
         'The Ghosthelm of Alishazier is hidden and cannot be selected.',
       ],
       'forces.force.0.selections.selection.0.selections.selection.0.selections.selection.100000': [
-        'Ulthwe test warp cannot have a Treasures of the Aeldari Relic selection',
+        'Roster cannot have a Treasures of the Aeldari Relic selection',
       ],
       'forces.force.0.selections.selection.0.selections.selection.100000': [
         'Farseer Skyrunner must have a Runes of Fortune selection',
@@ -112,26 +112,26 @@ describe('40k', () => {
       // last bit, which still matches, so we don't throw an error here.
       // If this causes an issue in practice (perhaps because the same entry is referenced multiple times?)
       // then we can look into it further.
-      '': ['GrimaldusLitanyNotInstanceof must have a Warlord selection'],
+      '': ['Roster must have a Warlord selection'],
       'forces.force.0': [
-        'GrimaldusLitanyNotInstanceof must have a Game Type selection',
         'Patrol Detachment -2CP must have a Troop selection',
+        'Roster must have a Game Type selection',
       ],
     },
     'hhhhhhhh.ros': {
-      '': ['hhhhhhhh must have a Warlord selection'],
+      '': ['Roster must have a Warlord selection'],
       'forces.force.0': [
         'Patrol Detachment -2CP must have a Detachment Command Cost selection',
         'Patrol Detachment -2CP must have a Troop selection',
-        'hhhhhhhh must have a Battle Size selection',
-        'hhhhhhhh must have a Game Type selection',
+        'Roster must have a Battle Size selection',
+        'Roster must have a Game Type selection',
       ],
     },
     'MBH x EC.ros': {
-      'forces.force.0': ['MBH x EC must have a Game Type selection'],
-      'forces.force.1': ['MBH x EC must have a Game Type selection'],
+      'forces.force.0': ['Roster must have a Game Type selection'],
+      'forces.force.1': ['Roster must have a Game Type selection'],
       'forces.force.1.selections.selection.2': ['Furies is hidden and cannot be selected.'],
-      'forces.force.2': ['MBH x EC must have a Game Type selection'],
+      'forces.force.2': ['Roster must have a Game Type selection'],
       'forces.force.2.selections.selection.2': ['Gifts of Chaos (1 Relic) is hidden and cannot be selected.'],
       'forces.force.2.selections.selection.3.selections.selection.4': [
         'Raiment Revulsive does not exist in the game data. It may have been removed in a data update.',
@@ -189,7 +189,9 @@ describe('40k', () => {
       'forces.force.2.selections.selection.7.selections.selection.10': [
         'Chosen w/ lightning claw does not exist in the game data. It may have been removed in a data update.',
       ],
-      'forces.force.2.selections.selection.7.selections.selection.100000': ['Chosen must have 5 more Chosens'],
+      'forces.force.2.selections.selection.7.selections.selection.100000': [
+        'Chosen must have 5 more Chosen selections',
+      ],
       'forces.force.2.selections.selection.7.selections.selection.2': [
         'Chosen does not exist in the game data. It may have been removed in a data update.',
       ],
@@ -211,16 +213,63 @@ describe('40k', () => {
       'forces.force.2.selections.selection.7.selections.selection.9': [
         'Chosen w/ lightning claw does not exist in the game data. It may have been removed in a data update.',
       ],
-      'forces.force.3': ['MBH x EC must have a Game Type selection'],
+      'forces.force.3': ['Roster must have a Game Type selection'],
       'forces.force.3.selections.selection.0.selections.selection.100000': [
         'Mortarion must have a 1. Revoltingly Resilient selection',
         'Mortarion must have a 2. Living Plague selection',
         'Mortarion must have a 4. Arch-Contaminator selection',
       ],
     },
-    // 'rfffff.ros': {},
-    // 'Terminator.ros': {},
-    // 'Test admec.ros': {},
+    'rfffff.ros': {
+      '': ['Roster must have a Warlord selection'],
+      'forces.force.0': [
+        'Patrol Detachment -2CP must have a Cults of the Legion selection',
+        'Patrol Detachment -2CP must have a Detachment Command Cost selection',
+        'Patrol Detachment -2CP must have an HQ selection',
+        'Roster must have a Battle Size selection',
+        'Roster must have a Game Type selection',
+      ],
+      'forces.force.0.selections.selection.0.selections.selection.100000': [
+        'Rubric Marines must have 4 more Rubric Marines selections',
+        'Rubric Marines must have an Aspiring Sorcerer selection',
+      ],
+    },
+    'Terminator.ros': {
+      '': ['Roster must have a Warlord selection'],
+      'forces.force.0': [
+        'Battalion Detachment -3CP must have 2 more HQ selections',
+        'Battalion Detachment -3CP must have 3 more Troops selections',
+        'Battalion Detachment -3CP must have a Cults of the Legion selection',
+        'Battalion Detachment -3CP must have a Detachment Command Cost selection',
+        'Roster must have a Battle Size selection',
+        'Roster must have a Game Type selection',
+      ],
+      'forces.force.0.selections.selection.0.selections.selection.100000': [
+        'Scarab Occult Terminators must have 4 more Scarab Occult Terminators selections',
+        'Scarab Occult Terminators must have a Scarab Occult Sorcerer selection',
+      ],
+    },
+    'Test admec.ros': {
+      'forces.force.0': ['Roster must have a Game Type selection'],
+      'forces.force.0.selections.selection.2.selections.selection.100000': [
+        'Roster has 1 too many Arcana Mechanicum selections',
+      ],
+      'forces.force.0.selections.selection.22.selections.selection.0': [
+        'Archeotech Specialist does not exist in the game data. It may have been removed in a data update.',
+      ],
+      'forces.force.0.selections.selection.3.selections.selection.100000': [
+        'Roster has 1 too many Arcana Mechanicum selections',
+      ],
+      'forces.force.0.selections.selection.4.selections.selection.100000': [
+        'Roster has 1 too many Arcana Mechanicum selections',
+      ],
+      'forces.force.0.selections.selection.6': [
+        'Stratagem: Mechanicus Locum does not exist in the game data. It may have been removed in a data update.',
+      ],
+      'forces.force.0.selections.selection.7': [
+        'Stratagem: Artefactotum does not exist in the game data. It may have been removed in a data update.',
+      ],
+    },
     // 'Test_eldar.ros': {},
     // 'Testts.ros': {},
     // 'TS_duplicity_ca2022_v1.ros': {},

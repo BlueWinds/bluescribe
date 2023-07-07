@@ -24,7 +24,7 @@ export const validateRoster = (roster, gameData) => {
       const cost = roster.costs?.cost.find((c) => c.typeId === cl.typeId)
       if (cost && cl.value !== -1 && cost.value > cl.value) {
         errors[''] = errors[''] || []
-        errors[''].push(`${roster.name} has ${cost.value}${cost.name}, more than the limit of ${cl.value}${cl.name}`)
+        errors[''].push(`Roster has ${cost.value}${cost.name}, more than the limit of ${cl.value}${cl.name}`)
       }
     })
 
@@ -248,6 +248,15 @@ const collectGroupIds = (entry, ids = []) => {
   return ids
 }
 
+const getSubjectName = (subject, constraint) => {
+  switch (constraint.scope) {
+    case 'roster':
+      return 'Roster'
+    default:
+      return subject.name
+  }
+}
+
 const checkConstraints = (roster, path, entry, gameData, group = false) => {
   let errors = []
 
@@ -257,41 +266,41 @@ const checkConstraints = (roster, path, entry, gameData, group = false) => {
     if (entry.constraints) {
       entry.constraints?.forEach((constraint) => {
         const subject = getSubject(roster, path, constraint)
+        if (!subject) {
+          return
+        }
+
         const occurances =
           entry.primary === undefined
             ? countBy(subject, entry.id, constraint, groupIds)
             : countByCategory(subject, entry, constraint)
         const value = getConstraintValue(constraint, entry.id, subject, gameData)
+        const name = getSubjectName(subject, constraint)
+        const entryName = entry.name.replace(/\W+$/, '')
 
         if (constraint.type === 'min' && value !== -1 && !entry.hidden && occurances < value) {
           if (value === 1) {
-            errors.push(`${subject.name} must have ${an(pluralize.singular(entry.name.replace(/\W+$/, '')))} selection`)
+            errors.push(`${name} must have ${an(pluralize.singular(entryName))} selection`)
           } else {
             errors.push(
-              `${subject.name} must have ${value - occurances} more ${pluralize(entry.name.replace(/\W+$/, ''))}`,
+              `${name} must have ${value - occurances} more ${entryName} selection${value - occurances > 1 ? 's' : ''}`,
             )
           }
         }
+
         if (constraint.type === 'max' && value < max) {
           max = value
         }
         if (constraint.type === 'max' && value !== -1 && occurances > value * (subject?.number ?? 1)) {
           if (value === 0) {
-            // if (entry.name === 'Master of the Legion') { debugger }
-            errors.push(
-              `${subject.name} cannot have ${an(pluralize.singular(entry.name.replace(/\W+$/, '')))} selection`,
-            )
+            errors.push(`${name} cannot have ${an(pluralize.singular(entryName))} selection`)
           } else {
-            errors.push(
-              `${subject.name} must have ${occurances - value} fewer ${pluralize(entry.name.replace(/\W+$/, ''))}`,
-            )
+            errors.push(`${name} has ${occurances - value} too many ${entryName} selections`)
           }
         }
 
         if (constraint.type === 'exactly' && value !== occurances) {
-          errors.push(
-            `${subject.name} must have ${value} ${pluralize(entry.name.replace(/\W+$/, ''))}, but has ${occurances}`,
-          )
+          errors.push(`${name} must have ${value} ${entryName}, but has ${occurances}`)
         }
       })
 
@@ -308,15 +317,18 @@ const checkConstraints = (roster, path, entry, gameData, group = false) => {
   return errors.length ? { [path]: errors } : {}
 }
 
+const numberRegex = /-?\d+([.]\d+)?/
+const stringIncrement = (string, value) => string.replace(numberRegex, (match) => parseFloat(match) + value)
+
 const applyModifiers = (roster, path, entry, gameData, catalogue) => {
-  const ids = {}
+  let ids
   function index(x, path = '') {
     if (typeof x == 'object') {
       if (x.id) {
         ids[x.id] = path
       }
       if (x.typeId) {
-        ids[x.typeId] = path
+        ids[x.typeId] = path.slice(1)
       }
 
       for (let attr in x) {
@@ -324,14 +336,18 @@ const applyModifiers = (roster, path, entry, gameData, catalogue) => {
       }
     }
   }
-  index(entry)
 
   const applyModifier = (modifier) => {
     if (!checkConditions(roster, path, modifier, gameData)) {
       return
     }
 
-    const target = entry[modifier.field] !== undefined ? modifier.field : `${ids[modifier.field]}.value`.slice(1)
+    if (!ids) {
+      ids = {}
+      index(entry)
+    }
+
+    const target = entry[modifier.field] !== undefined ? modifier.field : `${ids[modifier.field]}.value`
     if (modifier.type === 'set') {
       if (_.isNaN(modifier.value)) {
         debugger
@@ -353,7 +369,8 @@ const applyModifiers = (roster, path, entry, gameData, catalogue) => {
         }
       }
 
-      _.set(entry, target, _.get(entry, target) + modifier.value * times)
+      const oldValue = _.get(entry, target).toString()
+      _.set(entry, target, stringIncrement(oldValue, modifier.value * times))
     } else if (modifier.type === 'append') {
       entry[modifier.field] += modifier.value
     } else if (modifier.type === 'add') {
@@ -459,7 +476,7 @@ const getSubject = (roster, path, condition) => {
     case 'parent':
       return _.get(roster, pathParent(path))
     case 'force':
-      return path.length ? _.get(roster, pathToForce(path)) : roster
+      return _.get(roster, pathToForce(path))
     case 'roster':
       return roster
     case 'ancestor':
