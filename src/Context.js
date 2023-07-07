@@ -13,26 +13,11 @@ export const OpenCategoriesContext = createContext([])
 export const PathContext = createContext([])
 
 export const useConfirm = (shouldPrompt, message) => {
-  return (callback) => {
-    const handleConfirmation = (result) => {
-      if (!result) {
-        return
-      }
-      callback()
+  return async (callback) => {
+    if (shouldPrompt && !(await window.confirm(message))) {
+      return
     }
-
-    if (shouldPrompt) {
-      var result = window.confirm(message)
-
-      // Some implementations (Thanks Tauri) return a promise
-      if (result instanceof Promise) {
-        result.then(handleConfirmation)
-      } else {
-        handleConfirmation(result)
-      }
-    } else {
-      handleConfirmation(true)
-    }
+    callback()
   }
 }
 

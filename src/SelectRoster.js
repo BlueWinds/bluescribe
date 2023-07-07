@@ -114,8 +114,8 @@ const SelectRoster = () => {
               </button>
               <button
                 className="secondary outline"
-                onClick={() =>
-                  confirmDelete(async () => {
+                onClick={async () =>
+                  await confirmDelete(async () => {
                     await deleteRoster(selected, fs, rosterPath)
                     setRosters(null)
                   })

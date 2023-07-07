@@ -84,8 +84,8 @@ const Force = () => {
         <span
           role="link"
           className="outline"
-          onClick={() => {
-            confirmDelete(() => {
+          onClick={async () => {
+            await confirmDelete(() => {
               _.pull(roster.forces.force, force)
               setRoster(roster)
               setPath('')

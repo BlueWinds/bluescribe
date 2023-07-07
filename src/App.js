@@ -133,8 +133,8 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
                       <li data-tooltip-id="tooltip" data-tooltip-html="Load a different roster">
                         <span
                           role="link"
-                          onClick={() =>
-                            confirmLeaveRoster(() => {
+                          onClick={async () =>
+                            await confirmLeaveRoster(() => {
                               document.querySelectorAll('details').forEach((d) => d.removeAttribute('open'))
                               setPath('')
                               setRoster()
@@ -148,8 +148,8 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
                     <li data-tooltip-id="tooltip" data-tooltip-html="Change game system">
                       <span
                         role="link"
-                        onClick={() =>
-                          confirmLeaveRoster(() => {
+                        onClick={async () =>
+                          await confirmLeaveRoster(() => {
                             document.querySelectorAll('details').forEach((d) => d.removeAttribute('open'))
                             setPath('')
                             setRoster()
