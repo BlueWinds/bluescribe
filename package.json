@@ -36,6 +36,7 @@
     "stream-browserify": "^3.0.0"
   },
   "scripts": {
+    "prepare": "husky install",
     "postinstall": "run-script-os",
     "postinstall:linux:darwin": "mkdir -p src/__tests__/downloadedGameSystems/wh40k && cd src/__tests__/downloadedGameSystems/wh40k && git init && git remote add origin https://github.com/BSData/wh40k.git || true && git fetch --depth 1 origin fd0b88293e5f7abacb49639be941eb8098cf785a && git checkout FETCH_HEAD",
     "postinstall:win32": "mkdir src\\__tests__\\downloadedGameSystems\\wh40k && cd src\\__tests__\\downloadedGameSystems\\wh40k && git init && git remote add origin https://github.com/BSData/wh40k.git || true  && git fetch --depth 1 origin fd0b88293e5f7abacb49639be941eb8098cf785a && git checkout FETCH_HEAD",
@@ -44,8 +45,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject",
-    "prepare": "husky install",
+    "eject": "react-scripts eject",
     "tauri": "cross-env BROWSER=none tauri",
     "prep_tauri": "run-script-os",
     "prep_tauri:linux:darwin": "mv build .build_bluescribe && mkdir build && mv .build_bluescribe build/bluescribe && cp build/bluescribe/index.html build/index.html",

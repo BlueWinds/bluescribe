@@ -36,6 +36,13 @@ const AddForce = () => {
           const cost = costString(sumCosts(force))
           return (
             <h6 key={path} className="left">
+              {forceErrors.length ? (
+                <span className="errors" data-tooltip-id="tooltip" data-tooltip-html={forceErrors.join('<br />')}>
+                  !!
+                </span>
+              ) : (
+                ''
+              )}
               <span
                 onClick={() => setPath(path)}
                 role="link"
@@ -45,15 +52,6 @@ const AddForce = () => {
                 {force.catalogueName}
                 <small>{force.name}</small>
               </span>
-              {forceErrors.length ? (
-                <div>
-                  <small className="errors" data-tooltip-id="tooltip" data-tooltip-html={forceErrors.join('<br />')}>
-                    Validation errors
-                  </small>
-                </div>
-              ) : (
-                ''
-              )}
             </h6>
           )
         })}

@@ -240,12 +240,22 @@ const sumCost = (subject, entry, filterByCategory) => {
   return sum
 }
 
-const collectGroupIds = (entry, ids = []) => {
+// Profiling showed that this function was taking quite a large amount of time during
+// validation, so extra care is taken with performance here.
+const collectGroupIds = _.memoize(
+  (entry) => {
+    const ids = []
+    collectGroupIdsInternal(entry, ids)
+    return ids
+  },
+  (e) => e.id,
+)
+
+const collectGroupIdsInternal = (entry, ids) => {
   entry.selectionEntryGroups?.forEach((group) => {
     ids.push(group.id)
-    collectGroupIds(group, ids)
+    collectGroupIdsInternal(group, ids)
   })
-  return ids
 }
 
 const getSubjectName = (subject, constraint) => {
@@ -328,11 +338,11 @@ const applyModifiers = (roster, path, entry, gameData, catalogue) => {
         ids[x.id] = path
       }
       if (x.typeId) {
-        ids[x.typeId] = path.slice(1)
+        ids[x.typeId] = path
       }
 
       for (let attr in x) {
-        index(x[attr], `${path}.${attr}`)
+        index(x[attr], `${path ? path + '.' : ''}${attr}`)
       }
     }
   }
@@ -369,6 +379,9 @@ const applyModifiers = (roster, path, entry, gameData, catalogue) => {
         }
       }
 
+      if (_.get(entry, target) === undefined) {
+        debugger
+      }
       const oldValue = _.get(entry, target).toString()
       _.set(entry, target, stringIncrement(oldValue, modifier.value * times))
     } else if (modifier.type === 'append') {

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import BounceLoader from 'react-spinners/BounceLoader'
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
-import { DebounceInput } from 'react-debounce-input'
 import useStorage from 'squirrel-gill'
 import { ErrorBoundary } from 'react-error-boundary'
 import path from 'path-browserify'
@@ -25,7 +24,6 @@ import {
   usePath,
   useRoster,
   useSystem,
-  useUpdateRoster,
 } from './Context'
 import SelectionModal from './Force/SelectionModal'
 import SelectForce from './Force/SelectForce'
@@ -39,7 +37,6 @@ import githubIcon from './github-icon.png'
 
 const Body = ({ children, systemInfo, setSystemInfo }) => {
   const [roster, setRoster] = useRoster()
-  const updateRoster = useUpdateRoster()
   const confirmLeaveRoster = useConfirm(
     roster?.__.updated,
     `${roster?.__.filename} has not been saved. Are you sure you want to close it?`,
@@ -74,21 +71,11 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
               </div>
             </li>
             {roster && (
-              <>
-                <li>
-                  <DebounceInput
-                    minLength={2}
-                    debounceTimeout={300}
-                    value={roster.name}
-                    onChange={(e) => updateRoster('name', e.target.value)}
-                  />
-                </li>
-                <li>
-                  <SelectForce value={pathToForce(path)} onChange={setPath}>
-                    <option value="">Manage Roster</option>
-                  </SelectForce>
-                </li>
-              </>
+              <li>
+                <SelectForce value={pathToForce(path)} onChange={setPath}>
+                  <option value="">Manage Roster</option>
+                </SelectForce>
+              </li>
             )}
           </ul>
           {system && (
