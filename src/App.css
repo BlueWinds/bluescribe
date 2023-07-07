@@ -49,14 +49,8 @@ h2 {
   --form-element-spacing-horizontal: 0.5rem;
 }
 
-nav input {
-  border: none;
-  background: transparent;
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 0.625rem;
-  color: #e1e6eb;
-  width: auto;
+nav select {
+  max-width: 20em;
 }
 
 h2 button {
@@ -73,6 +67,10 @@ h2 button {
 .errors code {
   white-space: pre-line;
   line-height: 1.8em;
+}
+
+h6 .errors {
+  margin-right: -1rem;
 }
 
 ul.errors {
