@@ -228,10 +228,14 @@ export const readFiles = async (dir, fs, gameSystemPath = null, nativeCacher = n
   }
 
   if (nativeCacher) {
-    const cache = await nativeCacher(dir, gameSystemPath)
+    let cache = await nativeCacher(dir, gameSystemPath)
     if (cache) {
       try {
-        return JSON.parse(cache)
+        cache = JSON.parse(cache)
+        if (cache.version === cacheVersion) {
+          return cache
+        }
+        console.error('Native cache out of date')
       } catch (e) {
         console.error("Couldn't parse native cache: ", e)
       }
