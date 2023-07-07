@@ -7,7 +7,7 @@ use std::path::{Path, PathBuf};
 use xml2json_rs::JsonConfig;
 
 // This implementation is compatible with v4 of the JavaScript implementation
-const CACHE_VERSION: u8 = 4;
+const CACHE_VERSION: u8 = 5;
 
 fn load_cache(dir: &Path) -> Result<String, String> {
     println!("Loading cache");
@@ -100,9 +100,6 @@ fn index(x: &mut Value) -> HashMap<String, Value> {
             *x = json!(false);
         } else if let Ok(number) = string.parse::<f64>() {
             *x = json!(number);
-        } else {
-            // Trim whitespace
-            *x = json!(string.trim());
         }
     }
 

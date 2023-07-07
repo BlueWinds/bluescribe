@@ -212,7 +212,6 @@ function App() {
   useEffect(() => {
     const load = async () => {
       if (mode === 'editRoster') {
-        setLoading(true)
         try {
           console.log('System: ' + systemInfo.name, gameSystemPath)
           const systemPath = path.join(gameSystemPath, systemInfo.name)
@@ -230,6 +229,7 @@ function App() {
     }
 
     if (systemInfo.name) {
+      setLoading(true)
       load()
     }
   }, [systemInfo, mode, fs, gameSystemPath, readFilesNative])
