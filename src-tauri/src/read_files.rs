@@ -38,7 +38,10 @@ fn read_xml(path: &Path) -> Result<Value, String> {
     }
 
     let xml_data = xml_data.unwrap();
-    let json_builder = JsonConfig::new().merge_attrs(true).finalize();
+    let json_builder = JsonConfig::new()
+        .merge_attrs(true)
+        .charkey("#text")
+        .finalize();
     let json = json_builder.build_from_xml(&xml_data);
 
     if json.is_err() {
