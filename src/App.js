@@ -60,7 +60,7 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
               >
                 BlueScribe
               </strong>
-              <a href="https://discord.com/channels/558412685981777922/1117546890284765234" target="discord">
+              <a href="https://discord.gg/m4q2BbxDQV" target="discord">
                 <img className="icon" src={discordIcon} alt="Discord" title="Discord" />
               </a>
               <a href="https://github.com/BlueWinds/bluescribe" target="github">
