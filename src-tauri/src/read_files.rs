@@ -100,6 +100,8 @@ fn index(x: &mut Value) -> HashMap<String, Value> {
             *x = json!(false);
         } else if let Ok(number) = string.parse::<f64>() {
             *x = json!(number);
+        } else {
+            *x = json!(string);
         }
     }
 

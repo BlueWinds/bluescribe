@@ -31,7 +31,7 @@ const sumDefaultCosts = (entry, costs = {}) => {
       const defaultEntry = selectionGroup.selectionEntries.find((e) =>
         e.id.includes(selectionGroup.defaultSelectionEntryId),
       )
-      defaultEntry.costs?.forEach((cost) => {
+      defaultEntry?.costs?.forEach((cost) => {
         if (cost.value && count) {
           costs[cost.name] = (costs[cost.name] | 0) + count * cost.value
         }
