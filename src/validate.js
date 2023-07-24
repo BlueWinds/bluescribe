@@ -334,11 +334,12 @@ const applyModifiers = (roster, path, entry, gameData, catalogue) => {
   let ids
   function index(x, path = '') {
     if (typeof x == 'object') {
+      const value = x['#text'] ? '.#text' : '.value'
       if (x.id) {
-        ids[x.id] = path
+        ids[x.id] = path + value
       }
       if (x.typeId) {
-        ids[x.typeId] = path
+        ids[x.typeId] = path + value
       }
 
       for (let attr in x) {
@@ -357,7 +358,7 @@ const applyModifiers = (roster, path, entry, gameData, catalogue) => {
       index(entry)
     }
 
-    const target = entry[modifier.field] !== undefined ? modifier.field : `${ids[modifier.field]}.value`
+    const target = entry[modifier.field] !== undefined ? modifier.field : `${ids[modifier.field]}`
     if (modifier.type === 'set') {
       if (_.isNaN(modifier.value)) {
         debugger
