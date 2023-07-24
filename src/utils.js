@@ -84,14 +84,14 @@ export const textProfile = (profiles) => {
       <table>
         <thead>
           <th>${name}</th>
-          ${profileList[0][1].characteristics.map((c) => `<th>${c.name}</th>`).join('\n')}
+          ${profileList[0][1].characteristics?.map((c) => `<th>${c.name}</th>`).join('\n')}
         </thead>
         <tbody>
           ${profileList
             .map(
               ([number, profile]) => `<tr>
             <td>${number > 1 ? `x${number} ` : ''}${profile.name}</td>
-            ${profile.characteristics.map((c) => `<td>${c['#text']}</td>`).join('\n')}
+            ${profile.characteristics?.map((c) => `<td>${c['#text']}</td>`).join('\n')}
           </tr>`,
             )
             .join('\n')}

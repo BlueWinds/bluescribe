@@ -26,7 +26,7 @@ const Profiles = ({ profiles, number }) => {
                     {number > 1 ? `x${number} ` : ''}
                     {profile.name}
                   </td>
-                  {profile.characteristics.characteristic.map((c) => (
+                  {profile.characteristics?.characteristic.map((c) => (
                     <td className="profile" key={c.name}>
                       {c['#text']}
                     </td>
