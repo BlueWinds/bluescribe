@@ -80,7 +80,7 @@ describe('exactly constraint', () => {
     const errors = validateRoster(file, gameData)
 
     expect(errors).toEqual({
-      'forces.force.0': ['Roster must have 2 Exactly 2s, but has 1'],
+      'forces.force.0': ['Roster must have 2 Exactly, but has 1'],
     })
   })
 

@@ -37,7 +37,7 @@ describe('40k', () => {
     'Chaos-Aeldari-CategoryConstraints.ros': {
       '': [
         'Roster has 559pts, more than the limit of 5pts',
-        'Roster has 32PL, more than the limit of 5PL',
+        'Roster has 32 PL, more than the limit of 5 PL',
         'Roster has 10CP, more than the limit of 5CP',
       ],
       'forces.force.0': [
@@ -190,7 +190,7 @@ describe('40k', () => {
         'Chosen w/ lightning claw does not exist in the game data. It may have been removed in a data update.',
       ],
       'forces.force.2.selections.selection.7.selections.selection.100000': [
-        'Chosen must have 5 more Chosen selections',
+        'Chosen must have 3 more Chosen selections',
       ],
       'forces.force.2.selections.selection.7.selections.selection.2': [
         'Chosen does not exist in the game data. It may have been removed in a data update.',

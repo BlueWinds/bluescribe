@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "catalogues": {
     "842a-830c-10b0-37eb": {
       "type": "catalogue",
@@ -14,6 +14,7 @@
               "type": "category"
             }
           ],
+          "#text": "\n      \n    ",
           "name": "Default",
           "hidden": false,
           "id": "9ac4-bc9e-d214-8a7b"
@@ -82,17 +83,20 @@
                           "id": "9bf8-f06-4531-e520"
                         }
                       ],
+                      "#text": "\n                  \n                ",
                       "type": "set",
                       "value": "gun",
                       "field": "defaultSelectionEntryId"
                     }
                   ],
+                  "#text": "\n              \n              \n              \n            ",
                   "name": "Weapon",
                   "hidden": false,
                   "id": "3df4-9dd2-7ee5-2773",
                   "defaultSelectionEntryId": "sword"
                 }
               ],
+              "#text": "\n          \n        ",
               "type": "upgrade",
               "name": "Should Select Gun If Prefer Gun",
               "hidden": false,
@@ -123,12 +127,14 @@
                       "id": "8b89-46f8-74ce-28ae"
                     }
                   ],
+                  "#text": "\n              \n              \n            ",
                   "name": "Weapon",
                   "hidden": false,
                   "id": "5005-1d61-aee2-b895",
                   "defaultSelectionEntryId": "67e2-dbce-dcf7-362d"
                 }
               ],
+              "#text": "\n          \n        ",
               "type": "upgrade",
               "name": "Should Select Sword",
               "hidden": false,
@@ -149,6 +155,7 @@
                           "id": "c4dd-146c-42bb-eda8"
                         }
                       ],
+                      "#text": "\n                  \n                ",
                       "type": "upgrade",
                       "name": "Sword",
                       "hidden": false,
@@ -174,12 +181,14 @@
                       "id": "8b89-46f8-74ce-28ae"
                     }
                   ],
+                  "#text": "\n              \n              \n            ",
                   "name": "Weapon",
                   "hidden": false,
                   "id": "4f6f-a145-b969-a0a8",
                   "defaultSelectionEntryId": "1fe0-10b3-47dc-f795"
                 }
               ],
+              "#text": "\n          \n        ",
               "type": "upgrade",
               "name": "Should Select Gun (Sword with max 0)",
               "hidden": false,
@@ -196,6 +205,7 @@
                   "id": "c429-e67a-8ecb-d637"
                 }
               ],
+              "#text": "\n          \n        ",
               "type": "upgrade",
               "name": "Prefer Gun",
               "hidden": false,
@@ -205,12 +215,14 @@
           "categoryLinks": [
             { "targetId": "e5ec-f6dd-ef70-1f98", "id": "fa75-ee18-75ed-12a1", "primary": true, "name": "Main" }
           ],
+          "#text": "\n      \n      \n      \n      \n    ",
           "type": "upgrade",
           "name": "Main Entry",
           "hidden": false,
           "id": "2796-9085-215b-dfa3"
         }
       ],
+      "#text": "\n  \n  \n  \n  \n",
       "library": false,
       "id": "842a-830c-10b0-37eb",
       "name": "New Catalogue",
@@ -229,6 +241,7 @@
               "type": "category"
             }
           ],
+          "#text": "\n      \n    ",
           "name": "Default",
           "hidden": false,
           "id": "9ac4-bc9e-d214-8a7b"
@@ -302,17 +315,20 @@
                           "id": "9bf8-f06-4531-e520"
                         }
                       ],
+                      "#text": "\n                  \n                ",
                       "type": "set",
                       "value": "gun",
                       "field": "defaultSelectionEntryId"
                     }
                   ],
+                  "#text": "\n              \n              \n              \n            ",
                   "name": "Weapon",
                   "hidden": false,
                   "id": "3df4-9dd2-7ee5-2773",
                   "defaultSelectionEntryId": "sword"
                 }
               ],
+              "#text": "\n          \n        ",
               "type": "upgrade",
               "name": "Should Select Gun If Prefer Gun",
               "hidden": false,
@@ -343,12 +359,14 @@
                       "id": "8b89-46f8-74ce-28ae"
                     }
                   ],
+                  "#text": "\n              \n              \n            ",
                   "name": "Weapon",
                   "hidden": false,
                   "id": "5005-1d61-aee2-b895",
                   "defaultSelectionEntryId": "67e2-dbce-dcf7-362d"
                 }
               ],
+              "#text": "\n          \n        ",
               "type": "upgrade",
               "name": "Should Select Sword",
               "hidden": false,
@@ -369,6 +387,7 @@
                           "id": "c4dd-146c-42bb-eda8"
                         }
                       ],
+                      "#text": "\n                  \n                ",
                       "type": "upgrade",
                       "name": "Sword",
                       "hidden": false,
@@ -394,12 +413,14 @@
                       "id": "8b89-46f8-74ce-28ae"
                     }
                   ],
+                  "#text": "\n              \n              \n            ",
                   "name": "Weapon",
                   "hidden": false,
                   "id": "4f6f-a145-b969-a0a8",
                   "defaultSelectionEntryId": "1fe0-10b3-47dc-f795"
                 }
               ],
+              "#text": "\n          \n        ",
               "type": "upgrade",
               "name": "Should Select Gun (Sword with max 0)",
               "hidden": false,
@@ -416,6 +437,7 @@
                   "id": "c429-e67a-8ecb-d637"
                 }
               ],
+              "#text": "\n          \n        ",
               "type": "upgrade",
               "name": "Prefer Gun",
               "hidden": false,
@@ -425,6 +447,7 @@
           "categoryLinks": [
             { "targetId": "e5ec-f6dd-ef70-1f98", "id": "fa75-ee18-75ed-12a1", "primary": true, "name": "Main" }
           ],
+          "#text": "\n      \n      \n      \n      \n    ",
           "type": "upgrade",
           "name": "Main Entry",
           "hidden": false,
@@ -490,17 +513,20 @@
                       "id": "9bf8-f06-4531-e520"
                     }
                   ],
+                  "#text": "\n                  \n                ",
                   "type": "set",
                   "value": "gun",
                   "field": "defaultSelectionEntryId"
                 }
               ],
+              "#text": "\n              \n              \n              \n            ",
               "name": "Weapon",
               "hidden": false,
               "id": "3df4-9dd2-7ee5-2773",
               "defaultSelectionEntryId": "sword"
             }
           ],
+          "#text": "\n          \n        ",
           "type": "upgrade",
           "name": "Should Select Gun If Prefer Gun",
           "hidden": false,
@@ -542,11 +568,13 @@
                   "id": "9bf8-f06-4531-e520"
                 }
               ],
+              "#text": "\n                  \n                ",
               "type": "set",
               "value": "gun",
               "field": "defaultSelectionEntryId"
             }
           ],
+          "#text": "\n              \n              \n              \n            ",
           "name": "Weapon",
           "hidden": false,
           "id": "3df4-9dd2-7ee5-2773",
@@ -604,12 +632,14 @@
                   "id": "8b89-46f8-74ce-28ae"
                 }
               ],
+              "#text": "\n              \n              \n            ",
               "name": "Weapon",
               "hidden": false,
               "id": "5005-1d61-aee2-b895",
               "defaultSelectionEntryId": "67e2-dbce-dcf7-362d"
             }
           ],
+          "#text": "\n          \n        ",
           "type": "upgrade",
           "name": "Should Select Sword",
           "hidden": false,
@@ -638,6 +668,7 @@
               "id": "8b89-46f8-74ce-28ae"
             }
           ],
+          "#text": "\n              \n              \n            ",
           "name": "Weapon",
           "hidden": false,
           "id": "5005-1d61-aee2-b895",
@@ -660,6 +691,7 @@
                       "id": "c4dd-146c-42bb-eda8"
                     }
                   ],
+                  "#text": "\n                  \n                ",
                   "type": "upgrade",
                   "name": "Sword",
                   "hidden": false,
@@ -685,12 +717,14 @@
                   "id": "8b89-46f8-74ce-28ae"
                 }
               ],
+              "#text": "\n              \n              \n            ",
               "name": "Weapon",
               "hidden": false,
               "id": "4f6f-a145-b969-a0a8",
               "defaultSelectionEntryId": "1fe0-10b3-47dc-f795"
             }
           ],
+          "#text": "\n          \n        ",
           "type": "upgrade",
           "name": "Should Select Gun (Sword with max 0)",
           "hidden": false,
@@ -709,6 +743,7 @@
                   "id": "c4dd-146c-42bb-eda8"
                 }
               ],
+              "#text": "\n                  \n                ",
               "type": "upgrade",
               "name": "Sword",
               "hidden": false,
@@ -734,6 +769,7 @@
               "id": "8b89-46f8-74ce-28ae"
             }
           ],
+          "#text": "\n              \n              \n            ",
           "name": "Weapon",
           "hidden": false,
           "id": "4f6f-a145-b969-a0a8",
@@ -750,6 +786,7 @@
               "id": "c4dd-146c-42bb-eda8"
             }
           ],
+          "#text": "\n                  \n                ",
           "type": "upgrade",
           "name": "Sword",
           "hidden": false,
@@ -775,6 +812,7 @@
               "id": "c429-e67a-8ecb-d637"
             }
           ],
+          "#text": "\n          \n        ",
           "type": "upgrade",
           "name": "Prefer Gun",
           "hidden": false,
@@ -799,6 +837,7 @@
   },
   "gameSystem": {
     "type": "gameSystem",
+    "#text": "\n  \n",
     "id": "sys-3fd3-721-8bdb-3572",
     "name": "defaultSelectionEntryId",
     "battleScribeVersion": 2.03,

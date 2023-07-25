@@ -314,10 +314,10 @@ const addRules = (selection, selectionEntry) => {
 }
 
 export const refreshSelection = (roster, path, selection, gameData) => {
-  if (selection.name === 'Master of the Legion') {
-    debugger
-  }
   const selectionEntry = getEntry(roster, path, selection.entryId, gameData, true)
+  if (!selectionEntry) {
+    return
+  }
 
   _.assign(selection, {
     name: selectionEntry.name,
@@ -335,6 +335,18 @@ export const refreshSelection = (roster, path, selection, gameData) => {
   addCategories(selection, selectionEntry, gameData, getCatalogue(roster, path, gameData))
   addProfiles(selection, selectionEntry, gameData)
   addRules(selection, selectionEntry, gameData)
+
+  if (selectionEntry.collective) {
+    const min = getMinCount(selectionEntry)
+    const max = getMaxCount(selectionEntry)
+    if (min > selection.number) {
+      selection.number = min
+    }
+
+    if (max !== -1 && max < selection.number) {
+      selection.number = max
+    }
+  }
 
   selection.selections?.selection.forEach((subSelection, index) =>
     refreshSelection(roster, `${path}.selections.selection.${index}`, subSelection, gameData),
