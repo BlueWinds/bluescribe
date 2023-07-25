@@ -271,7 +271,6 @@ const checkConstraints = (roster, path, entry, gameData, group = false) => {
   let errors = []
 
   try {
-    const groupIds = collectGroupIds(entry)
     let max = Infinity
     if (entry.constraints) {
       entry.constraints?.forEach((constraint) => {
@@ -282,11 +281,11 @@ const checkConstraints = (roster, path, entry, gameData, group = false) => {
 
         const occurances =
           entry.primary === undefined
-            ? countBy(subject, entry.id, constraint, groupIds)
+            ? countBy(subject, entry.id, constraint, collectGroupIds(entry))
             : countByCategory(subject, entry, constraint)
         const value = getConstraintValue(constraint, entry.id, subject, gameData)
         const name = getSubjectName(subject, constraint)
-        const entryName = entry.name.replace(/\W+$/, '')
+        const entryName = entry.name.replace(/[^A-z]+$/, '')
 
         if (constraint.type === 'min' && value !== -1 && !entry.hidden && occurances < value) {
           if (value === 1) {
@@ -375,16 +374,22 @@ const applyModifiers = (roster, path, entry, gameData, catalogue) => {
         const round = repeat.roundUp ? Math.ceil : Math.floor
 
         times = repeat.repeats * round(value / modifier.repeats[0].value)
-        if (modifier.type === 'decrement') {
-          times *= -1
+        if (_.isNaN(times)) {
+          debugger
         }
       }
 
-      if (_.get(entry, target) === undefined) {
-        debugger
+      if (modifier.type === 'decrement') {
+        times *= -1
       }
-      const oldValue = _.get(entry, target).toString()
-      _.set(entry, target, stringIncrement(oldValue, modifier.value * times))
+
+      const oldValue = _.get(entry, target)
+
+      if (_.isString(oldValue)) {
+        _.set(entry, target, stringIncrement(oldValue, modifier.value * times))
+      } else {
+        _.set(entry, target, oldValue + modifier.value * times)
+      }
     } else if (modifier.type === 'append') {
       entry[modifier.field] += modifier.value
     } else if (modifier.type === 'add') {
@@ -517,7 +522,7 @@ const getValue = (condition, subject, gameData, catalogue) => {
   const childId = findId(gameData, catalogue, condition.childId)?.targetId || condition.childId
 
   if (!subject) {
-    return NaN
+    return 0
   }
   switch (condition.field) {
     case 'selections':
