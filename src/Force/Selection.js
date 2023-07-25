@@ -395,10 +395,6 @@ const Count = ({ catalogue, selection, option, min, max, onSelect, entryGroup })
   const gameData = useSystem()
 
   const value = _.sum(selection.selections?.selection.map((s) => (s.entryId === option.id ? s.number : 0))) || 0
-  if (value === min && value === max) {
-    return null
-  }
-
   const cost = costString(sumCosts(option))
 
   const numberTip =
