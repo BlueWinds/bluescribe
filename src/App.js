@@ -83,7 +83,7 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
               {roster && (
                 <li>
                   <button className="outline" onClick={() => setOpen(!open)}>
-                    View
+                    View/Print
                   </button>
                 </li>
               )}
@@ -142,11 +142,14 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
                             })
                           }
                         >
-                          {roster.__.filename.split('/').at(-1)}
+                          Roster
+                          <div>
+                            <small>{roster.__.filename.split('/').at(-1)}</small>
+                          </div>
                         </span>
                       </li>
                     )}
-                    <li data-tooltip-id="tooltip" data-tooltip-html="Change game system">
+                    <li data-tooltip-id="tooltip" data-tooltip-html="Load a different game system">
                       <span
                         role="link"
                         onClick={async () =>
@@ -158,7 +161,10 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
                           })
                         }
                       >
-                        {system?.gameSystem.name}
+                        Game System
+                        <div>
+                          <small>{system?.gameSystem.name}</small>
+                        </div>
                       </span>
                     </li>
                   </ul>
@@ -170,7 +176,7 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
       </header>
       {children}
       <SelectionModal open={open} setOpen={setOpen}>
-        {roster && open && <ViewRoster />}
+        {roster && <ViewRoster />}
       </SelectionModal>
     </div>
   )
@@ -191,23 +197,8 @@ function App() {
   const [roster, setRoster] = useState(null)
   const [openCategories, setOpenCategories] = useState({})
   const [currentPath, setCurrentPath] = useState('')
-  const { fs, gameSystemPath, rosterPath } = useFs()
+  const { fs, gameSystemPath } = useFs()
   const { readFilesNative } = useNative()
-
-  const createDirectories = async () => {
-    try {
-      await fs.promises.readdir(gameSystemPath)
-    } catch (e) {
-      await fs.promises.mkdir(gameSystemPath, { recursive: true })
-    }
-
-    try {
-      await fs.promises.readdir(rosterPath)
-    } catch (e) {
-      await fs.promises.mkdir(rosterPath, { recursive: true })
-    }
-  }
-  createDirectories()
 
   useEffect(() => {
     const load = async () => {

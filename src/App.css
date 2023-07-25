@@ -238,6 +238,7 @@ summary {
 
 .profile {
   margin-bottom: var(--spacing);
+  padding-bottom: var(--spacing);
 }
 
 .profile td,
@@ -464,4 +465,59 @@ dialog article article {
 input.page {
   float: right;
   width: 4.5rem;
+}
+
+.grid.print {
+  margin: auto;
+  width: 15em;
+}
+
+.grid.print button {
+  align-self: center;
+  justify-self: center;
+  margin: 0;
+  padding: 0 calc(var(--spacing) / 2);
+}
+
+@media print {
+  /* All your print styles go here */
+  header,
+  .container > article {
+    display: none;
+  }
+
+  .container {
+    max-width: inherit;
+  }
+
+  .modal-is-open {
+    overflow: auto;
+  }
+
+  dialog {
+    padding: 0;
+    position: inherit;
+    display: initial !important;
+  }
+
+  .print {
+    display: none;
+  }
+
+  .view-roster {
+    width: 100%;
+    max-width: 100%;
+    background: var(--card-background-color);
+    min-height: 100vh;
+  }
+
+  dialog > article {
+    margin: 0;
+  }
+
+  dialog article {
+    max-width: 100%;
+    box-shadow: none;
+    max-height: none;
+  }
 }

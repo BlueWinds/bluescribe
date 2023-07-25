@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import _ from 'lodash'
 import useStorage from 'squirrel-gill'
 
@@ -16,19 +16,38 @@ const ViewRoster = () => {
   //   <input type="radio" checked={type === 'compact'} onChange={() => setType('compact')} />
   //   Compact
   // </label>
+
+  useEffect(() => {
+    const listener = () => {
+      document.body.querySelectorAll('details').forEach((details) => {
+        details.open = false
+      })
+    }
+
+    window.addEventListener('beforeprint', listener)
+    return () => {
+      window.removeEventListener('beforeprint', listener)
+    }
+  })
+
   return (
     <>
-      <fieldset>
-        <span>View roster as</span>
-        <label>
-          <input type="radio" checked={type === 'full'} onChange={() => setType('full')} />
-          Full
-        </label>
-        <label>
-          <input type="radio" checked={type === 'text'} onChange={() => setType('text')} />
-          Text
-        </label>
-      </fieldset>
+      <div className="grid print">
+        <fieldset>
+          <span>View roster as</span>
+          <label>
+            <input type="radio" checked={type === 'full'} onChange={() => setType('full')} />
+            Full
+          </label>
+          <label>
+            <input type="radio" checked={type === 'text'} onChange={() => setType('text')} />
+            Text
+          </label>
+        </fieldset>
+        <button className="outline" onClick={() => window.print()}>
+          Print
+        </button>
+      </div>
       {type === 'text' && (
         <code className="text-roster">
           +++ {roster.name} ({roster.gameSystemName}) [{costString(sumCosts(roster))}] +++

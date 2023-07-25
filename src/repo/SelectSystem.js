@@ -70,10 +70,17 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
             <label>
               {available ? (
                 <>
+                  <select onChange={(e) => setSelectedAvailable(e.target.value)}>
+                    {available.map((system, index) => (
+                      <option key={system.name} value={index}>
+                        {system.description}
+                      </option>
+                    ))}
+                  </select>
                   <p>
-                    Select a game system to download data, or{' '}
+                    Or{' '}
                     <span role="link" onClick={() => document.getElementById('import-system').click()}>
-                      click here to select a folder
+                      select a folder
                     </span>{' '}
                     containing a <code>.gst</code> and <code>.cat</code> files.
                   </p>
@@ -102,13 +109,6 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
                       }}
                     />
                   )}
-                  <select onChange={(e) => setSelectedAvailable(e.target.value)}>
-                    {available.map((system, index) => (
-                      <option key={system.name} value={index}>
-                        {system.description}
-                      </option>
-                    ))}
-                  </select>
                 </>
               ) : (
                 <BounceLoader color="#36d7b7" className="loading" />
