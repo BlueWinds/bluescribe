@@ -1,14 +1,15 @@
 import _ from 'lodash'
 import { Fragment, useState } from 'react'
 
-import { useRoster, useRosterErrors, useConfirm, usePath } from '../Context'
+import { useRoster, useRosterErrors, useSystem, useConfirm, usePath } from '../Context'
 import AddUnit from './AddUnit'
 import Selection from './Selection'
 import ListSelection from './ListSelection'
-import { costString, sumCosts } from '../utils'
+import { costString, findId, sumCosts } from '../utils'
 import { pathToForce } from '../validate'
 
 const Force = () => {
+  const gameData = useSystem()
   const [roster, setRoster] = useRoster()
   const [path, setPath] = usePath()
   const forcePath = pathToForce(path)
@@ -36,21 +37,23 @@ const Force = () => {
     if (!selections[category.entryId]) {
       return null
     }
-    const open = openSections[category.name] || openSections[category.name] === undefined
+
+    const { name } = findId(gameData, gameData.catalogues[force.catalogueId], category.entryId)
+    const open = openSections[name] || openSections[name] === undefined
 
     return (
-      <Fragment key={category.name}>
+      <Fragment key={name}>
         <tr
           className="category"
           onClick={() =>
             setOpenSections({
               ...openSections,
-              [category.name]: !open,
+              [name]: !open,
             })
           }
         >
           <th colSpan="3" open={open}>
-            {category.name}
+            {name}
           </th>
         </tr>
         {open &&
@@ -107,8 +110,8 @@ const Force = () => {
           <h6>Selections</h6>
           <table>
             <tbody>
-              <tr onClick={() => setPath(forcePath)}>
-                <th colSpan="3">Add Unit</th>
+              <tr className={path === forcePath ? 'selected' : ''} onClick={() => setPath(forcePath)}>
+                <td colSpan="3">Add Unit</td>
               </tr>
               {categories}
             </tbody>

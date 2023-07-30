@@ -3,14 +3,16 @@ import _ from 'lodash'
 import useStorage from 'squirrel-gill'
 
 import { useRoster, useSystem } from './Context'
-import { costString, sumCosts } from './utils'
+import { costString, findId, sumCosts } from './utils'
 import Profiles, { collectSelectionProfiles } from './Force/Profiles'
 import Rules, { collectRules } from './Force/Rules'
 import Categories, { collectCategories } from './Force/Categories'
 
 const ViewRoster = () => {
+  const gameData = useSystem()
   const [roster] = useRoster()
   const [type, setType] = useStorage(localStorage, 'viewRosterType', 'full')
+  const [options, setOptions] = useStorage(localStorage, 'viewRosterOptions', {})
 
   // <label>
   //   <input type="radio" checked={type === 'compact'} onChange={() => setType('compact')} />
@@ -20,7 +22,7 @@ const ViewRoster = () => {
   useEffect(() => {
     const listener = () => {
       document.body.querySelectorAll('details').forEach((details) => {
-        details.open = false
+        details.open = !!details.closest('.print-open')
       })
     }
 
@@ -30,9 +32,13 @@ const ViewRoster = () => {
     }
   })
 
+  let rules = roster.forces?.force.map((force) => (
+    <Rules catalogue={gameData.catalogues[force.catalogueId]} rules={collectRules(force)} />
+  ))
+
   return (
     <>
-      <div className="grid print">
+      <div className="grid print ">
         <fieldset>
           <span>View roster as</span>
           <label>
@@ -44,9 +50,31 @@ const ViewRoster = () => {
             Text
           </label>
         </fieldset>
-        <button className="outline" onClick={() => window.print()}>
-          Print
-        </button>
+        <fieldset>
+          {type === 'full' && (
+            <label>
+              <input
+                type="checkbox"
+                checked={!!options.onePerPage}
+                onChange={() => setOptions({ ...options, onePerPage: !options.onePerPage })}
+              />
+              One entry per page
+            </label>
+          )}
+          {type === 'full' && (
+            <label>
+              <input
+                type="checkbox"
+                checked={!!options.printRules}
+                onChange={() => setOptions({ ...options, printRules: !options.printRules })}
+              />
+              Print rules text
+            </label>
+          )}
+          <button className="outline" onClick={() => window.print()}>
+            Print
+          </button>
+        </fieldset>
       </div>
       {type === 'text' && (
         <code className="text-roster">
@@ -57,13 +85,14 @@ const ViewRoster = () => {
         </code>
       )}
       {type === 'full' && (
-        <div className="view-roster">
+        <div className={'view-roster ' + Object.keys(_.pickBy(options, Boolean)).join(' ')}>
           <h4>
             {roster.name} ({roster.gameSystemName}) [{costString(sumCosts(roster))}]
           </h4>
           {roster.forces?.force.map((force) => (
             <ViewForce force={force} key={force.id} />
           ))}
+          {options.printRules && <article className="print-open">{rules}</article>}
         </div>
       )}
     </>
@@ -100,6 +129,8 @@ const ViewSelection = ({ catalogue, selection }) => {
 }
 
 const ViewForceText = ({ force }) => {
+  const gameData = useSystem()
+
   const selections = {}
   const parseSelection = (selection) => {
     const primary = _.find(selection.categories?.category, 'primary')?.entryId || '(No Category)'
@@ -127,7 +158,7 @@ const ViewForceText = ({ force }) => {
           <Fragment key={category.id}>
             {'\n\n'}
             {'  + '}
-            {category.name}
+            {findId(gameData, gameData.catalogues[force.catalogueId], category.entryId).name}
             {maybeCost(fakeSelection)} +{'\n\n'}
             {_.sortBy(selections[category.entryId], 'name')
               .map((s) => '    ' + viewSelectionText(s, 6))

@@ -237,8 +237,8 @@ summary {
 }
 
 .profile {
-  margin-bottom: var(--spacing);
-  padding-bottom: var(--spacing);
+  margin-bottom: calc(var(--spacing) / 2);
+  padding-bottom: calc(var(--spacing) / 2);
 }
 
 .profile td,
@@ -469,7 +469,7 @@ input.page {
 
 .grid.print {
   margin: auto;
-  width: 15em;
+  width: 24em;
 }
 
 .grid.print button {
@@ -481,7 +481,7 @@ input.page {
 
 @media print {
   /* All your print styles go here */
-  header,
+  .container > header,
   .container > article {
     display: none;
   }
@@ -519,5 +519,17 @@ input.page {
     max-width: 100%;
     box-shadow: none;
     max-height: none;
+  }
+
+  .view-roster.onePerPage > article {
+    break-after: page;
+  }
+  .view-roster.onePerPage > article:last-child {
+    break-after: auto;
+  }
+
+  .view-roster.onePerPage > h4,
+  .view-roster.onePerPage > h5 {
+    display: none;
   }
 }
