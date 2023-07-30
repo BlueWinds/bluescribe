@@ -22,15 +22,15 @@ jobs:
           node-version: 18
       - name: install frontend dependencies
         run: npm ci
-      - name: Build Web Deployment
-        if: matrix.platform == 'ubuntu-22.04'
-        run: npm run build
-      - name: Deploy Github Pages (ubuntu only)
-        if: matrix.platform == 'ubuntu-22.04'
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/
+      # - name: Build Web Deployment
+      #   if: matrix.platform == 'ubuntu-22.04'
+      #   run: npm run build
+      # - name: Deploy Github Pages (ubuntu only)
+      #   if: matrix.platform == 'ubuntu-22.04'
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./build/
       - name: get version (ubuntu/mac)
         if: matrix.platform != 'windows-latest'
         run: echo "PACKAGE_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
