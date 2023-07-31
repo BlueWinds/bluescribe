@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/bluescribe/static/css/main.ae412b85.css",
-    "main.js": "/bluescribe/static/js/main.263cc3de.js",
+    "main.css": "/bluescribe/static/css/main.a40322fa.css",
+    "main.js": "/bluescribe/static/js/main.2e1e0906.js",
     "static/media/discord-icon.png": "/bluescribe/static/media/discord-icon.9b87697961364fc8a6d0.png",
     "index.html": "/bluescribe/index.html",
-    "main.ae412b85.css.map": "/bluescribe/static/css/main.ae412b85.css.map",
-    "main.263cc3de.js.map": "/bluescribe/static/js/main.263cc3de.js.map"
+    "main.a40322fa.css.map": "/bluescribe/static/css/main.a40322fa.css.map",
+    "main.2e1e0906.js.map": "/bluescribe/static/js/main.2e1e0906.js.map"
   },
   "entrypoints": [
-    "static/css/main.ae412b85.css",
-    "static/js/main.263cc3de.js"
+    "static/css/main.a40322fa.css",
+    "static/js/main.2e1e0906.js"
   ]
 }
