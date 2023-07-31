@@ -326,6 +326,13 @@ const checkConstraints = (roster, path, entry, gameData, group = false) => {
   return errors.length ? { [path]: errors } : {}
 }
 
+const settable = {
+  description: true,
+  hidden: true,
+  name: true,
+  page: true,
+}
+
 const numberRegex = /-?\d+([.]\d+)?/
 const stringIncrement = (string, value) => string.replace(numberRegex, (match) => parseFloat(match) + value)
 
@@ -357,7 +364,13 @@ const applyModifiers = (roster, path, entry, gameData, catalogue) => {
       index(entry)
     }
 
-    const target = entry[modifier.field] !== undefined ? modifier.field : `${ids[modifier.field]}`
+    const target =
+      settable[modifier.field] || entry[modifier.field] !== undefined ? modifier.field : `${ids[modifier.field]}`
+
+    if (target === 'undefined' && modifier.value === true) {
+      debugger
+    }
+
     if (modifier.type === 'set') {
       if (_.isNaN(modifier.value)) {
         debugger

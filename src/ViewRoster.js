@@ -107,7 +107,7 @@ const ViewForce = ({ force }) => {
         {force.name} ({force.catalogueName}){maybeCost(force)}
       </h5>
       {force.selections?.selection.map((selection) => (
-        <ViewSelection selection={selection} catalogue={gameData.catalogues[force.catalogueId]} />
+        <ViewSelection key={selection.id} selection={selection} catalogue={gameData.catalogues[force.catalogueId]} />
       ))}
     </>
   )
