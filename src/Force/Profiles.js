@@ -8,7 +8,7 @@ const Profiles = ({ profiles, number }) => {
 
   return (
     <>
-      {gameData.gameSystem.profileTypes?.map(({ name, characteristicTypes }) =>
+      {gameData.gameSystem.profileTypes?.map(({ name, characteristicTypes = [] }) =>
         profiles[name] ? (
           <table className="profile" key={name}>
             <thead>

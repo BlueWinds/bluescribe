@@ -295,7 +295,7 @@ const addProfiles = (selection, selectionEntry) => {
       typeName: profile.typeName,
       publicationId: profile.publicationId,
       page: profile.page,
-      characteristics: { characteristic: profile.characteristics },
+      characteristics: { characteristic: profile.characteristics || [] },
     })),
   )
 }
