@@ -73,12 +73,14 @@ const Force = () => {
 
   const globalErrors = errors?.filter((e) => !e.includes('must have'))
 
+  const cost = costString(sumCosts(force))
+
   return (
     <section>
       <h6>
         {force.catalogueName}
         <small>{force.name}</small>
-        <small>{costString(sumCosts(force))}</small>
+        {cost && <small>{cost}</small>}
         {errors && (
           <span className="errors" data-tooltip-id="tooltip" data-tooltip-html={errors.join('<br />')}>
             Validation errors
