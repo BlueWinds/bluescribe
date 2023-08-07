@@ -37,7 +37,7 @@ describe('40k', () => {
     'Chaos-Aeldari-CategoryConstraints.ros': {
       '': [
         'Roster has 559pts, more than the limit of 5pts',
-        'Roster has 32 PL, more than the limit of 5 PL',
+        'Roster has 32PL, more than the limit of 5PL',
         'Roster has 10CP, more than the limit of 5CP',
       ],
       'forces.force.0': [
