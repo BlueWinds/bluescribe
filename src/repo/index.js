@@ -56,7 +56,7 @@ export const xmlData = async (contents, filename = '') => {
 
   // Working around bug in fast-xml-parser
   // https://github.com/NaturalIntelligence/fast-xml-parser/issues/590
-  data = data.replace(/#text="(.+?)"(.*?)>/g, '$2>$1')
+  data = data.replace(/#text="(.+?)"(.*?)>/gs, '$2>$1')
 
   if (filename.endsWith('z')) {
     const zipFileWriter = new BlobWriter()
