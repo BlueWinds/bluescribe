@@ -10,7 +10,7 @@ describe('40k', () => {
   let gameData
   beforeAll(async () => {
     gameData = await readFiles(path.join(__dirname, 'downloadedGameSystems/wh40k'), fs)
-  })
+  }, 60000)
 
   const rosters = {
     '12AvatarKhaine.ros': {
