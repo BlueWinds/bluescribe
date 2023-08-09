@@ -336,20 +336,33 @@ const settable = {
 const numberRegex = /-?\d+([.]\d+)?/
 const stringIncrement = (string, value) => string.replace(numberRegex, (match) => parseFloat(match) + value)
 
+const modifierAttributes = [
+  'costs',
+  'categoryLinks',
+  'constraints',
+  'infoLinks',
+  'infoGroups',
+  'profiles',
+  'rules',
+  'selectionEntries',
+  'selectionEntryGroups',
+]
+
 const applyModifiers = (roster, path, entry, gameData, catalogue) => {
   let ids
   function index(x, path = '') {
     if (typeof x == 'object') {
       const value = x['#text'] ? '.#text' : '.value'
-      if (x.id) {
+      if (x.id && !ids[x.id]) {
         ids[x.id] = path + value
       }
-      if (x.typeId) {
+
+      if (x.typeId && !ids[x.typeId]) {
         ids[x.typeId] = path + value
       }
 
-      for (let attr in x) {
-        index(x[attr], `${path ? path + '.' : ''}${attr}`)
+      for (let attr of modifierAttributes) {
+        x[attr]?.forEach((item, i) => index(item, `${path ? path + '.' : ''}${attr}.${i}`))
       }
     }
   }

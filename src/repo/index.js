@@ -76,7 +76,7 @@ export const listAvailableGameSystems = async () => {
     'https://api.codetabs.com/v1/proxy?quest=https://github.com/BSData/gallery/releases/download/index-v1/bsdata.catpkg-gallery.json',
   )
 
-  return data.data.repositories
+  return data.data.repositories.filter((repo) => repo.battleScribeVersion === '2.03')
 }
 
 export const listGameSystems = async (fs, gameSystemPath) => {
@@ -266,11 +266,15 @@ export const readFiles = async (dir, fs, gameSystemPath = null, nativeCacher = n
 
         delete x.import
         for (let attr in x) {
-          if (x[attr] === '') {
+          if (/^\s*$/s.test(x[attr])) {
             delete x[attr]
           }
 
           if (x[attr] instanceof Array) {
+            if (attr === 'selectionEntryGroups') {
+              x[attr].forEach((group) => group.selectionEntries?.forEach((entry) => (entry.from = 'group')))
+            }
+
             x[attr].forEach(index)
 
             if (attr.startsWith('shared')) {

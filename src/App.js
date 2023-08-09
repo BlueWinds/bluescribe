@@ -157,7 +157,7 @@ const Body = ({ children, systemInfo, setSystemInfo }) => {
                             document.querySelectorAll('details').forEach((d) => d.removeAttribute('open'))
                             setPath('')
                             setRoster()
-                            setSystemInfo({})
+                            setSystemInfo({ name: systemInfo.name })
                           })
                         }
                       >
@@ -219,7 +219,7 @@ function App() {
       }
     }
 
-    if (systemInfo.name) {
+    if (systemInfo.battleScribeVersion) {
       setLoading(true)
       load()
     }
@@ -235,10 +235,10 @@ function App() {
     )
   }
 
-  if (!systemInfo?.name) {
+  if (!systemInfo?.battleScribeVersion) {
     return (
       <Body systemInfo={systemInfo} setSystemInfo={setSystemInfo}>
-        <SelectSystem setSystemInfo={setSystemInfo} setMode={setMode} />
+        <SelectSystem setSystemInfo={setSystemInfo} setMode={setMode} previouslySelected={systemInfo} />
       </Body>
     )
   }

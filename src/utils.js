@@ -213,6 +213,7 @@ export const addSelection = (base, selectionEntry, gameData, entryGroup, catalog
       id: randomId(),
       name: selectionEntry.name,
       entryId: selectionEntry.id,
+      from: selectionEntry.from,
       number: collective ? number : 1,
       page: selectionEntry.page,
       publicationId: selectionEntry.publicationId,
@@ -327,6 +328,10 @@ export const refreshSelection = (roster, path, selection, gameData) => {
     profiles: { profile: [] },
     rules: { rule: [] },
   })
+
+  if (selectionEntry.from) {
+    selection.from = selectionEntry.from
+  }
 
   selection.costs.cost.forEach((c) => {
     c.value *= selection.number

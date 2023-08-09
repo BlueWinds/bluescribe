@@ -223,7 +223,7 @@ const SelectSystem = ({ setSystemInfo, setMode, previouslySelected, error }) => 
               Update data
             </button>
           )}
-          {selected !== 'Add New' && !updatingSystem && systems[selected].externalPath && (
+          {selected !== 'Add New' && !updatingSystem && (
             <button
               onClick={async () => {
                 try {
