@@ -198,7 +198,7 @@ const listFiles = async (dir, fs) => {
   return paths
 }
 
-const cacheVersion = 5
+const cacheVersion = 6
 
 const checkCache = async (dir, fs) => {
   try {
